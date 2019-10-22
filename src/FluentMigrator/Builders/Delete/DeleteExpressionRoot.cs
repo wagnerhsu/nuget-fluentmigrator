@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteExpressionRoot.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -30,14 +43,17 @@ using FluentMigrator.Model;
 namespace FluentMigrator.Builders.Delete
 {
     /// <summary>
-    /// The implementation of the <see cref="IDeleteExpressionRoot"/> interface
+    /// The implementation of the <see cref="IDeleteExpressionRoot" /> interface
     /// </summary>
     public class DeleteExpressionRoot : IDeleteExpressionRoot
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly IMigrationContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeleteExpressionRoot"/> class.
+        /// Initializes a new instance of the <see cref="DeleteExpressionRoot" /> class.
         /// </summary>
         /// <param name="context">The migration context</param>
         public DeleteExpressionRoot(IMigrationContext context)

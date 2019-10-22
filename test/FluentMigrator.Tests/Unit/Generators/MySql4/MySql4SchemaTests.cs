@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MySql4SchemaTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using FluentMigrator.Runner.Generators.MySql;
 
 using NUnit.Framework;
@@ -6,17 +19,31 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.MySql4
 {
+    /// <summary>
+    /// Defines test class MySql4SchemaTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseSchemaTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseSchemaTests" />
     [TestFixture]
     public class MySql4SchemaTests : BaseSchemaTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected MySql4Generator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new MySql4Generator();
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterSchema.
+        /// </summary>
         [Test]
         public override void CanAlterSchema()
         {
@@ -26,6 +53,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSchema.
+        /// </summary>
         [Test]
         public override void CanCreateSchema()
         {
@@ -35,6 +65,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method CanDropSchema.
+        /// </summary>
         [Test]
         public override void CanDropSchema()
         {

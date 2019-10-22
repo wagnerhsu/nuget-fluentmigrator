@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ExecuteEmbeddedSqlScriptExpressionBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -31,9 +44,13 @@ namespace FluentMigrator.Expressions
         /// <summary>
         /// Gets the fully qualified ressource name and assembly
         /// </summary>
-        /// <param name="resourceNames">The resource names where the <paramref name="sqlScriptNames"/> should be found</param>
+        /// <param name="resourceNames">The resource names where the <paramref name="sqlScriptNames" /> should be found</param>
         /// <param name="sqlScriptNames">The names of the SQL script ressources to be found</param>
         /// <returns>the fully qualified ressource name and assembly</returns>
+        /// <exception cref="InvalidOperationException">@"Could not find a unique resource named {sqlScriptName} in assemblies {string.Join(", ", foundAssemblyNames)}.
+        /// Possible candidates are:
+        /// {string.Join(Environment.NewLine + "\t", ressourceNames)}</exception>
+        /// <exception cref="InvalidOperationException">Could not find a resource with one of the following names {string.Join(",", sqlScriptNames)} in assemblies {string.Join(", ", assemblyNames)}</exception>
         protected static (string name, Assembly assembly) GetQualifiedResourcePath(
             [NotNull] IReadOnlyCollection<(string name, Assembly assembly)> resourceNames,
             [NotNull, ItemNotNull] params string[] sqlScriptNames)
@@ -68,7 +85,7 @@ Possible candidates are:
         /// <summary>
         /// Finds ressources with the given name
         /// </summary>
-        /// <param name="resourceNames">The resource names where the <paramref name="sqlScriptName"/> should be found</param>
+        /// <param name="resourceNames">The resource names where the <paramref name="sqlScriptName" /> should be found</param>
         /// <param name="sqlScriptName">The name of the SQL script ressource to be found</param>
         /// <returns>The found ressources</returns>
         [NotNull]

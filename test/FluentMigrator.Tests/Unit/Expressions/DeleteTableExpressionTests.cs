@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteTableExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -29,9 +42,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Expressions
 {
+    /// <summary>
+    /// Defines test class DeleteTableExpressionTests.
+    /// </summary>
     [TestFixture]
     public class DeleteTableExpressionTests
     {
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenTableNameIsNull.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenTableNameIsNull()
         {
@@ -40,6 +59,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.TableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenTableNameIsEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenTableNameIsEmptyString()
         {
@@ -48,6 +70,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.TableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenTableNameIsNotNullEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenTableNameIsNotNullEmptyString()
         {
@@ -56,12 +81,18 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldNotContain(ErrorMessages.TableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ReverseThrowsException.
+        /// </summary>
         [Test]
         public void ReverseThrowsException()
         {
             Assert.Throws<NotSupportedException>(() => new DeleteColumnExpression().Reverse());
         }
 
+        /// <summary>
+        /// Defines the test method ToStringIsDescriptive.
+        /// </summary>
         [Test]
         public void ToStringIsDescriptive()
         {
@@ -69,6 +100,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             expression.ToString().ShouldBe("DeleteTable Bacon");
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull()
         {
@@ -79,6 +113,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.SchemaName, Is.Null);
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged()
         {
@@ -89,6 +126,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.SchemaName, Is.EqualTo("testschema"));
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema()
         {

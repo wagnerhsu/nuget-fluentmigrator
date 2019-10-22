@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TransactionMode.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -16,9 +29,18 @@
 
 namespace FluentMigrator.DotNet.Cli
 {
+    /// <summary>
+    /// Enum TransactionMode
+    /// </summary>
     public enum TransactionMode
     {
+        /// <summary>
+        /// The migration
+        /// </summary>
         Migration,
+        /// <summary>
+        /// The session
+        /// </summary>
         Session,
     }
 }

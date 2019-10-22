@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Hana
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaTypeMap.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -22,17 +35,49 @@ using FluentMigrator.Runner.Generators.Base;
 
 namespace FluentMigrator.Runner.Generators.Hana
 {
+    /// <summary>
+    /// Class HanaTypeMap.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
     internal class HanaTypeMap : TypeMapBase
     {
+        /// <summary>
+        /// The ANSI string capacity
+        /// </summary>
         public const int AnsiStringCapacity = 5000;
+        /// <summary>
+        /// The ANSI text capacity
+        /// </summary>
         public const int AnsiTextCapacity = 2147483647;
+        /// <summary>
+        /// The unicode string capacity
+        /// </summary>
         public const int UnicodeStringCapacity = 2000;
+        /// <summary>
+        /// The unicode text capacity
+        /// </summary>
         public const int UnicodeTextCapacity = int.MaxValue;
+        /// <summary>
+        /// The BLOB capacity
+        /// </summary>
         public const int BlobCapacity = 2147483647;
+        /// <summary>
+        /// The decimal capacity
+        /// </summary>
         public const int DecimalCapacity = 38;
+        /// <summary>
+        /// The XML capacity
+        /// </summary>
         public const int XmlCapacity = 1073741823;
+        /// <summary>
+        /// The image capacity
+        /// </summary>
         public const int ImageCapacity = 2147483647;
 
+        /// <summary>
+        /// Setups the type maps.
+        /// </summary>
         protected override void SetupTypeMaps()
         {
             SetTypeMap(DbType.AnsiStringFixedLength, "CHAR(255)");

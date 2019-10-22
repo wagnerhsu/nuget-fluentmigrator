@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TestMigration.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // 
@@ -20,9 +33,17 @@
 
 namespace FluentMigrator.Tests.Integration.Migrations
 {
+    /// <summary>
+    /// Class TestMigration.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     [Migration(1)]
     public class TestMigration : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Table("Users")
@@ -57,6 +78,9 @@ namespace FluentMigrator.Tests.Integration.Migrations
             //Insert.IntoTable("Users").Row(new { UserName = "Data1", Password = "Data2" });
         }
 
+        /// <summary>
+        /// Downs this instance.
+        /// </summary>
         public override void Down()
         {
             //Delete.ForeignKey("FK_Foo").OnTable("Users");

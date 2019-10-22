@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Postgres92GeneratorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -31,11 +44,20 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Postgres92
 {
+    /// <summary>
+    /// Defines test class Postgres92GeneratorTests.
+    /// </summary>
     [TestFixture]
     public class Postgres92GeneratorTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected PostgresGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -43,6 +65,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres92
             Generator = new Postgres92Generator(quoter, new OptionsWrapper<GeneratorOptions>(new GeneratorOptions()));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithBlobColumnWithObjectType.
+        /// </summary>
         [Test]
         public void CanCreateTableWithBlobColumnWithObjectType()
         {

@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RedshiftSequenceTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,17 +35,31 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Redshift
 {
+    /// <summary>
+    /// Class RedshiftSequenceTests. This class cannot be inherited.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseSequenceTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseSequenceTests" />
     [TestFixture]
     public sealed class RedshiftSequenceTests : BaseSequenceTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         private RedshiftGenerator _generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             _generator = new RedshiftGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequenceWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateSequenceWithCustomSchema()
         {
@@ -43,6 +70,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequenceWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateSequenceWithDefaultSchema()
         {
@@ -52,6 +82,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method CanDropSequenceWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropSequenceWithCustomSchema()
         {
@@ -62,6 +95,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method CanDropSequenceWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropSequenceWithDefaultSchema()
         {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerProcessorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -32,11 +45,19 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
 {
+    /// <summary>
+    /// Defines test class SqlServerProcessorTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016.SqlServerIntegrationTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016.SqlServerIntegrationTests" />
     [TestFixture]
     [Category("Integration")]
     [Category("SqlServer2016")]
     public class SqlServerProcessorTests : SqlServerIntegrationTests
     {
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfColumnExistsInDifferentSchema.
+        /// </summary>
         [Test]
         public void CallingColumnExistsReturnsFalseIfColumnExistsInDifferentSchema()
         {
@@ -44,6 +65,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.ColumnExists("test_schema2", table.Name, "id").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingConstraintExistsReturnsFalseIfConstraintExistsInDifferentSchema.
+        /// </summary>
         [Test]
         public void CallingConstraintExistsReturnsFalseIfConstraintExistsInDifferentSchema()
         {
@@ -52,6 +76,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.ConstraintExists("test_schema2", table.Name, "c1").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingTableExistsReturnsFalseIfTableExistsInDifferentSchema.
+        /// </summary>
         [Test]
         public void CallingTableExistsReturnsFalseIfTableExistsInDifferentSchema()
         {
@@ -59,6 +86,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.TableExists("test_schema2", table.Name).ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingProcessWithPerformDbOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges.
+        /// </summary>
         [Test]
         public void CallingProcessWithPerformDbOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges()
         {

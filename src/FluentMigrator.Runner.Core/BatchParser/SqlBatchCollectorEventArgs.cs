@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlBatchCollectorEventArgs.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +39,7 @@ namespace FluentMigrator.Runner.BatchParser
     internal class SqlBatchCollectorEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlBatchCollectorEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="SqlBatchCollectorEventArgs" /> class.
         /// </summary>
         /// <param name="sqlContent">The SQL text to be collected</param>
         /// <param name="isEndOfLine"><c>true</c> when a new line character should be appended</param>
@@ -39,12 +52,14 @@ namespace FluentMigrator.Runner.BatchParser
         /// <summary>
         /// Gets the SQL text to be collected
         /// </summary>
+        /// <value>The content of the SQL.</value>
         [NotNull]
         public string SqlContent { get; }
 
         /// <summary>
         /// Gets a value indicating whether a new line character should be appended
         /// </summary>
+        /// <value><c>true</c> if this instance is end of line; otherwise, <c>false</c>.</value>
         public bool IsEndOfLine { get; }
     }
 }

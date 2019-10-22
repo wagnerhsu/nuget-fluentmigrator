@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2000Generator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -31,19 +44,36 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Generators.SqlServer
 {
+    /// <summary>
+    /// Class SqlServer2000Generator.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Generic.GenericGenerator" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Generic.GenericGenerator" />
     public class SqlServer2000Generator : GenericGenerator
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2000Generator"/> class.
+        /// </summary>
         public SqlServer2000Generator()
             : this(new SqlServer2000Quoter())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2000Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
         public SqlServer2000Generator(
             [NotNull] SqlServer2000Quoter quoter)
             : this(quoter, new OptionsWrapper<GeneratorOptions>(new GeneratorOptions()))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2000Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         public SqlServer2000Generator(
             [NotNull] SqlServer2000Quoter quoter,
             [NotNull] IOptions<GeneratorOptions> generatorOptions)
@@ -51,6 +81,13 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2000Generator"/> class.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="descriptionGenerator">The description generator.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         protected SqlServer2000Generator(
             [NotNull] IColumn column,
             [NotNull] IQuoter quoter,
@@ -60,24 +97,58 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         {
         }
 
+        /// <summary>
+        /// Gets the rename table.
+        /// </summary>
+        /// <value>The rename table.</value>
         public override string RenameTable { get { return "sp_rename {0}, {1}"; } }
 
+        /// <summary>
+        /// Gets the rename column.
+        /// </summary>
+        /// <value>The rename column.</value>
         public override string RenameColumn { get { return "sp_rename {0}, {1}"; } }
 
+        /// <summary>
+        /// Gets the index of the drop.
+        /// </summary>
+        /// <value>The index of the drop.</value>
         public override string DropIndex { get { return "DROP INDEX {1}.{0}"; } }
 
+        /// <summary>
+        /// Gets the add column.
+        /// </summary>
+        /// <value>The add column.</value>
         public override string AddColumn { get { return "ALTER TABLE {0} ADD {1}"; } }
 
+        /// <summary>
+        /// Gets the identity insert.
+        /// </summary>
+        /// <value>The identity insert.</value>
         public virtual string IdentityInsert { get { return "SET IDENTITY_INSERT {0} {1}"; } }
 
+        /// <summary>
+        /// Gets the create constraint.
+        /// </summary>
+        /// <value>The create constraint.</value>
         public override string CreateConstraint { get { return "ALTER TABLE {0} ADD CONSTRAINT {1} {2}{3} ({4})"; } }
 
         //Not need for the nonclusted keyword as it is the default mode
+        /// <summary>
+        /// Gets the cluster type string.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         public override string GetClusterTypeString(CreateIndexExpression column)
         {
             return column.Index.IsClustered ? "CLUSTERED " : string.Empty;
         }
 
+        /// <summary>
+        /// Gets the constraint clustering string.
+        /// </summary>
+        /// <param name="constraint">The constraint.</param>
+        /// <returns>System.String.</returns>
         protected virtual string GetConstraintClusteringString(CreateConstraintExpression constraint)
         {
             object indexType;
@@ -88,6 +159,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return (indexType.Equals(SqlServerConstraintType.Clustered)) ? " CLUSTERED" : " NONCLUSTERED";
         }
 
+        /// <summary>
+        /// Generates an SQL statement to create a constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateConstraintExpression expression)
         {
             var constraintType = (expression.Constraint.IsPrimaryKeyConstraint) ? "PRIMARY KEY" : "UNIQUE";
@@ -104,6 +180,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
                 columns);
         }
 
+        /// <summary>
+        /// Generates an SQL statement to rename a table
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(RenameTableExpression expression)
         {
             var sourceParam = Quoter.QuoteValue(Quoter.QuoteTableName(expression.OldName, expression.SchemaName));
@@ -111,6 +192,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return string.Format(RenameTable, sourceParam, destinationParam);
         }
 
+        /// <summary>
+        /// Generates an SQL statement to rename a column
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(RenameColumnExpression expression)
         {
             var tableName = Quoter.QuoteTableName(expression.TableName, expression.SchemaName);
@@ -120,6 +206,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return string.Format(RenameColumn, sourceParam, destinationParam);
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE DROP COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteColumnExpression expression)
         {
             // before we drop a column, we have to drop any default value constraints in SQL Server
@@ -134,6 +225,12 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Builds the delete.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <param name="builder">The builder.</param>
         protected virtual void BuildDelete(DeleteColumnExpression expression, string columnName, StringBuilder builder)
         {
             builder.AppendLine(
@@ -152,6 +249,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
                                          Quoter.QuoteColumnName(columnName)));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to alter a DEFAULT constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterDefaultConstraintExpression expression)
         {
             // before we alter a default constraint on a column, we have to drop any default value constraints in SQL Server
@@ -175,6 +277,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Generates an SQL statement to INSERT data
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(InsertDataExpression expression)
         {
             if (IsUsingIdentityInsert(expression))
@@ -187,6 +294,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return base.Generate(expression);
         }
 
+        /// <summary>
+        /// Determines whether [is using identity insert] [the specified expression].
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns><c>true</c> if [is using identity insert] [the specified expression]; otherwise, <c>false</c>.</returns>
         protected static bool IsUsingIdentityInsert(InsertDataExpression expression)
         {
             if (expression.AdditionalFeatures.ContainsKey(SqlServerExtensions.IdentityInsert))
@@ -197,16 +309,31 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return false;
         }
 
+        /// <summary>
+        /// Generates a <c>CREATE SEQUENCE</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateSequenceExpression expression)
         {
             return CompatibilityMode.HandleCompatibilty("Sequences are not supported in SqlServer2000");
         }
 
+        /// <summary>
+        /// Generates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public override string Generate(DeleteSequenceExpression expression)
         {
             return CompatibilityMode.HandleCompatibilty("Sequences are not supported in SqlServer2000");
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop a default constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteDefaultConstraintExpression expression)
         {
             string sql =
@@ -229,11 +356,19 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return string.Format(sql, Quoter.QuoteTableName(expression.TableName, expression.SchemaName), expression.ColumnName);
         }
 
+        /// <summary>
+        /// Determines whether [is additional feature supported] [the specified feature].
+        /// </summary>
+        /// <param name="feature">The feature.</param>
+        /// <returns><c>true</c> if [is additional feature supported] [the specified feature]; otherwise, <c>false</c>.</returns>
         public override bool IsAdditionalFeatureSupported(string feature)
         {
             return _supportedAdditionalFeatures.Any(x => x == feature);
         }
 
+        /// <summary>
+        /// The supported additional features
+        /// </summary>
         private readonly IEnumerable<string> _supportedAdditionalFeatures = new List<string>
         {
             SqlServerExtensions.IdentityInsert,

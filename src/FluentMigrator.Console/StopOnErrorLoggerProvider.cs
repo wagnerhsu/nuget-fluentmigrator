@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : Migrate
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="StopOnErrorLoggerProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,10 +42,13 @@ namespace FluentMigrator.Console
     /// </summary>
     public class StopOnErrorLoggerProvider : ILoggerProvider
     {
+        /// <summary>
+        /// The options
+        /// </summary>
         private readonly FluentMigratorLoggerOptions _options;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StopOnErrorLoggerProvider"/> class.
+        /// Initializes a new instance of the <see cref="StopOnErrorLoggerProvider" /> class.
         /// </summary>
         /// <param name="options">The logger options</param>
         public StopOnErrorLoggerProvider(IOptions<FluentMigratorLoggerOptions> options)
@@ -52,10 +68,15 @@ namespace FluentMigrator.Console
             // Nothing to dispose
         }
 
+        /// <summary>
+        /// Class StopOnErrorLogger.
+        /// Implements the <see cref="FluentMigrator.Runner.Logging.FluentMigratorConsoleLogger" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Logging.FluentMigratorConsoleLogger" />
         private class StopOnErrorLogger : FluentMigratorConsoleLogger
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="StopOnErrorLogger"/> class.
+            /// Initializes a new instance of the <see cref="StopOnErrorLogger" /> class.
             /// </summary>
             /// <param name="options">The logger options</param>
             public StopOnErrorLogger(FluentMigratorLoggerOptions options)
@@ -77,6 +98,9 @@ namespace FluentMigrator.Console
                 Pause();
             }
 
+            /// <summary>
+            /// Pauses this instance.
+            /// </summary>
             private void Pause()
             {
                 System.Console.WriteLine(@"Press enter to continue...");

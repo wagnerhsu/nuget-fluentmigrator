@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2008GeneratorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,17 +23,29 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlServer2008
 {
+    /// <summary>
+    /// Defines test class SqlServer2008GeneratorTests.
+    /// </summary>
     [TestFixture]
     public class SqlServer2008GeneratorTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected SqlServer2008Generator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new SqlServer2008Generator();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDateTimeOffsetColumn.
+        /// </summary>
         [Test]
         public void CanCreateTableWithDateTimeOffsetColumn()
         {
@@ -34,6 +59,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2008
             result.ShouldBe("CREATE TABLE [dbo].[TestTable1] ([TestColumn1] DATETIMEOFFSET NOT NULL, [TestColumn2] DATETIME2 NOT NULL, [TestColumn3] DATE NOT NULL, [TestColumn4] TIME NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanUseSystemMethodCurrentDateTimeOffsetAsADefaultValueForAColumn.
+        /// </summary>
         [Test]
         public void CanUseSystemMethodCurrentDateTimeOffsetAsADefaultValueForAColumn()
         {
@@ -52,6 +80,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2008
             result.ShouldBe("ALTER TABLE [dbo].[NewTable] ADD [NewColumn] DATETIME NOT NULL CONSTRAINT [DF__NewColumn] DEFAULT SYSDATETIMEOFFSET()");
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertScopeIdentity.
+        /// </summary>
         [Test]
         public void CanInsertScopeIdentity()
         {
@@ -67,6 +98,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2008
             result.ShouldBe("INSERT INTO [dbo].[TestTable] ([Id], [Name], [Website]) VALUES (1, SCOPE_IDENTITY(), N'codethinked.com')");
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertAtAtIdentity.
+        /// </summary>
         [Test]
         public void CanInsertAtAtIdentity()
         {
@@ -82,6 +116,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2008
             result.ShouldBe("INSERT INTO [dbo].[TestTable] ([Id], [Name], [Website]) VALUES (1, @@IDENTITY, N'codethinked.com')");
         }
 
+        /// <summary>
+        /// Defines the test method NonUnicodeQuotesCorrectly.
+        /// </summary>
         [Test]
         public void NonUnicodeQuotesCorrectly()
         {
@@ -95,6 +132,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2008
             result.ShouldBe("INSERT INTO [dbo].[TestTable] ([NonUnicodeStringValue]) VALUES ('NonUnicodeString')");
         }
 
+        /// <summary>
+        /// Defines the test method ExplicitUnicodeQuotesCorrectly.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ExplicitUnicodeQuotesCorrectly()

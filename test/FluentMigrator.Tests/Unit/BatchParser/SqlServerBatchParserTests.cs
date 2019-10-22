@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerBatchParserTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -25,9 +38,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.BatchParser
 {
+    /// <summary>
+    /// Class SqlServerBatchParserTests.
+    /// </summary>
     [Category("BatchParser")]
     public class SqlServerBatchParserTests
     {
+        /// <summary>
+        /// Defines the test method TestNothing.
+        /// </summary>
         [Test]
         public void TestNothing()
         {
@@ -39,6 +58,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(0, output.Count);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlWithoutGo.
+        /// </summary>
         [Test]
         public void TestSqlWithoutGo()
         {
@@ -51,6 +73,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual("asd\n", output[0]);
         }
 
+        /// <summary>
+        /// Defines the test method TestEmptySqlWithoutGo.
+        /// </summary>
         [Test]
         public void TestEmptySqlWithoutGo()
         {
@@ -60,6 +85,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             batchParser.Process(new LinesSource(new[] { string.Empty }));
         }
 
+        /// <summary>
+        /// Defines the test method TestEmptyLineWithoutGo.
+        /// </summary>
         [Test]
         public void TestEmptyLineWithoutGo()
         {
@@ -71,6 +99,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(0, output.Count);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlAfterEmptyLineWithoutGo.
+        /// </summary>
         [Test]
         public void TestSqlAfterEmptyLineWithoutGo()
         {
@@ -83,6 +114,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual("\nasd\n", output[0]);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlWithGo.
+        /// </summary>
         [Test]
         public void TestSqlWithGo()
         {
@@ -98,6 +132,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual("go", specialTokens[0]);
         }
 
+        /// <summary>
+        /// Defines the test method TestEmptySqlWithGo.
+        /// </summary>
         [Test]
         public void TestEmptySqlWithGo()
         {
@@ -113,6 +150,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual("gO", specialTokens[0]);
         }
 
+        /// <summary>
+        /// Defines the test method TestEmptyLineWithGo.
+        /// </summary>
         [Test]
         public void TestEmptyLineWithGo()
         {
@@ -128,6 +168,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual("go", specialTokens[0]);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlAfterEmptyLineWithGo.
+        /// </summary>
         [Test]
         public void TestSqlAfterEmptyLineWithGo()
         {
@@ -143,6 +186,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual("go 1", specialTokens[0]);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlCommentWithGo.
+        /// </summary>
         [Test]
         public void TestSqlCommentWithGo()
         {
@@ -158,6 +204,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual("go", specialTokens[0]);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlMultiLineCommentWithGo.
+        /// </summary>
         [Test]
         public void TestSqlMultiLineCommentWithGo()
         {
@@ -173,6 +222,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual("go", specialTokens[0]);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlMultiLineCommentWithoutGo.
+        /// </summary>
         [Test]
         public void TestSqlMultiLineCommentWithoutGo()
         {
@@ -187,6 +239,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(0, specialTokens.Count);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlStrippedCommentWithoutGo.
+        /// </summary>
         [Test]
         public void TestSqlStrippedCommentWithoutGo()
         {
@@ -201,6 +256,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(0, specialTokens.Count);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlStrippedMultiLineCommentWithoutGo.
+        /// </summary>
         [Test]
         public void TestSqlStrippedMultiLineCommentWithoutGo()
         {
@@ -215,6 +273,11 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(0, specialTokens.Count);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlStrippedMultiLineCommentAndSqlWithoutGo.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [TestCase("/* t \n est */qweqwe", "qweqwe\n")]
         [TestCase("/* t \n est */\nqweqwe", "\nqweqwe\n")]
         public void TestSqlStrippedMultiLineCommentAndSqlWithoutGo(string input, string expected)
@@ -231,6 +294,11 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(0, specialTokens.Count);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlStrippedSingleLineCommentAndSqlWithoutGo.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [TestCase("-- blah\nqweqwe", "\nqweqwe\n")]
         [TestCase("qwe # blah\nqweqwe", "qwe # blah\nqweqwe\n")]
         [TestCase("# blah\nqweqwe", "# blah\nqweqwe\n")] // #'s do not indicate comments. Leave as is
@@ -248,6 +316,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(0, specialTokens.Count);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlUnclosedMultiLineComment.
+        /// </summary>
         [Test]
         public void TestSqlUnclosedMultiLineComment()
         {
@@ -262,6 +333,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(0, specialTokens.Count);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlMultipleGo.
+        /// </summary>
         [Test]
         public void TestSqlMultipleGo()
         {

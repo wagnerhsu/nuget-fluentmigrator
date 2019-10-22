@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerColumnTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -30,16 +43,40 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
 {
+    /// <summary>
+    /// Defines test class SqlServerColumnTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.BaseColumnTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.BaseColumnTests" />
     [TestFixture]
     [Category("Integration")]
     [Category("SqlServer2016")]
     public class SqlServerColumnTests : BaseColumnTests
     {
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private SqlServer2016Processor Processor { get; set; }
+        /// <summary>
+        /// Gets or sets the quoter.
+        /// </summary>
+        /// <value>The quoter.</value>
         private SqlServer2008Quoter Quoter { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsCanAcceptColumnNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsCanAcceptColumnNameWithSingleQuote()
         {
@@ -48,6 +85,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.ColumnExists(null, table.Name, "i'd").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsCanAcceptTableNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsCanAcceptTableNameWithSingleQuote()
         {
@@ -55,6 +95,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.ColumnExists(null, table.Name, "id").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfColumnDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsFalseIfColumnDoesNotExist()
         {
@@ -62,6 +105,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.ColumnExists(null, table.Name, "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfColumnDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsFalseIfColumnDoesNotExistWithSchema()
         {
@@ -69,18 +115,27 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.ColumnExists("test_schema", table.Name, "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfTableDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsFalseIfTableDoesNotExist()
         {
             Processor.ColumnExists(null, "DoesNotExist", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfTableDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsFalseIfTableDoesNotExistWithSchema()
         {
             Processor.ColumnExists("test_schema", "DoesNotExist", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsTrueIfColumnExists.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsTrueIfColumnExists()
         {
@@ -88,6 +143,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.ColumnExists(null, table.Name, "id").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsTrueIfColumnExistsWithSchema.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsTrueIfColumnExistsWithSchema()
         {
@@ -95,6 +153,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.ColumnExists("test_schema", table.Name, "id").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
@@ -108,12 +169,18 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
             ServiceProvider = serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -122,6 +189,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
             Quoter = ServiceScope.ServiceProvider.GetRequiredService<SqlServer2008Quoter>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

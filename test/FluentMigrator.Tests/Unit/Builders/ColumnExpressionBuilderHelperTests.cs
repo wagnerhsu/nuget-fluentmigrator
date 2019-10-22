@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ColumnExpressionBuilderHelperTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using FluentMigrator.Builders;
 using FluentMigrator.Expressions;
 using FluentMigrator.Infrastructure;
@@ -12,9 +25,15 @@ using JetBrains.Annotations;
 
 namespace FluentMigrator.Tests.Unit.Builders
 {
+    /// <summary>
+    /// Defines test class ColumnExpressionBuilderHelperTests.
+    /// </summary>
     [TestFixture]
     public class ColumnExpressionBuilderHelperTests
     {
+        /// <summary>
+        /// Defines the test method SetNotNullable_SetsColumnIfNotSettingExistingRowValues.
+        /// </summary>
         [Test]
         public void SetNotNullable_SetsColumnIfNotSettingExistingRowValues()
         {
@@ -30,6 +49,9 @@ namespace FluentMigrator.Tests.Unit.Builders
             columnMock.VerifySet(n => n.IsNullable = false);
         }
 
+        /// <summary>
+        /// Defines the test method SetNotNullable_DoesntSetIfSettingExistingRowValues.
+        /// </summary>
         [Test]
         public void SetNotNullable_DoesntSetIfSettingExistingRowValues()
         {
@@ -53,6 +75,9 @@ namespace FluentMigrator.Tests.Unit.Builders
             columnCloneMock.VerifySet(n => n.IsNullable = false, Times.Once());
         }
 
+        /// <summary>
+        /// Defines the test method SetExistingRows_AddsAllRowsExpression.
+        /// </summary>
         [Test]
         public void SetExistingRows_AddsAllRowsExpression()
         {
@@ -86,6 +111,9 @@ namespace FluentMigrator.Tests.Unit.Builders
             Assert.AreEqual(5, updateDataExpr.Set[0].Value);
         }
 
+        /// <summary>
+        /// Defines the test method SetExistingRows_IgnoredIfAlterColumn.
+        /// </summary>
         [Test]
         public void SetExistingRows_IgnoredIfAlterColumn()
         {
@@ -101,6 +129,9 @@ namespace FluentMigrator.Tests.Unit.Builders
             contextMock.Verify(n => n.Expressions.Add(It.IsAny<IMigrationExpression>()), Times.Never());
         }
 
+        /// <summary>
+        /// Defines the test method SetExistingRows_AfterNotNullableAddsAlterColumnExpression.
+        /// </summary>
         [Test]
         public void SetExistingRows_AfterNotNullableAddsAlterColumnExpression()
         {
@@ -157,6 +188,9 @@ namespace FluentMigrator.Tests.Unit.Builders
             Assert.AreEqual(2, alterColColumn.Precision);
         }
 
+        /// <summary>
+        /// Defines the test method SetExistingRows_AfterNotNullableSetsOriginalColumnNullable.
+        /// </summary>
         [Test]
         public void SetExistingRows_AfterNotNullableSetsOriginalColumnNullable()
         {
@@ -176,33 +210,45 @@ namespace FluentMigrator.Tests.Unit.Builders
             builderMock.VerifySet(n => n.Column.IsNullable = true);
         }
 
-/*
-        //Will this ever happen?  It should handle it, but need to test that if users goes
-        // .Nullable().SetExistingRowsTo(5).NotNullable() it will be handled.
-        public void SetExistingRows_SettingNullableRemovesAlterColumn()
-        {
-            throw new NotImplementedException();
-        }
-*/
+        /*
+                //Will this ever happen?  It should handle it, but need to test that if users goes
+                // .Nullable().SetExistingRowsTo(5).NotNullable() it will be handled.
+                public void SetExistingRows_SettingNullableRemovesAlterColumn()
+                {
+                    throw new NotImplementedException();
+                }
+        */
 
+        /// <summary>
+        /// Defines the test method SetNullable_ToTrue.
+        /// </summary>
         [Test]
         public void SetNullable_ToTrue()
         {
             VerifyColumnModification(h => h.SetNullable(true), c => c.IsNullable = true);
         }
 
+        /// <summary>
+        /// Defines the test method SetNullable_ToFalse.
+        /// </summary>
         [Test]
         public void SetNullable_ToFalse()
         {
             VerifyColumnModification(h => h.SetNullable(false), c => c.IsNullable = false);
         }
 
+        /// <summary>
+        /// Defines the test method CallingUniqueSetsIsUniqueToTrue.
+        /// </summary>
         [Test]
         public void CallingUniqueSetsIsUniqueToTrue()
         {
             VerifyColumnModification(h => h.Unique(null), c => c.IsUnique = true);
         }
 
+        /// <summary>
+        /// Defines the test method CallingUniqueAddsIndexExpressionToContext.
+        /// </summary>
         [Test]
         public void CallingUniqueAddsIndexExpressionToContext()
         {
@@ -230,6 +276,9 @@ namespace FluentMigrator.Tests.Unit.Builders
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexedNamedAddsIndexExpressionToContext.
+        /// </summary>
         [Test]
         public void CallingIndexedNamedAddsIndexExpressionToContext()
         {
@@ -257,12 +306,20 @@ namespace FluentMigrator.Tests.Unit.Builders
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexedSetsIsIndexedToTrue.
+        /// </summary>
         [Test]
         public void CallingIndexedSetsIsIndexedToTrue()
         {
             VerifyColumnModification(h => h.Indexed(null), c => c.IsIndexed = true);
         }
 
+        /// <summary>
+        /// Verifies the column modification.
+        /// </summary>
+        /// <param name="helperCall">The helper call.</param>
+        /// <param name="expectedAction">The expected action.</param>
         private void VerifyColumnModification(
             [NotNull] Action<ColumnExpressionBuilderHelper> helperCall,
             [NotNull] Action<ColumnDefinition> expectedAction)

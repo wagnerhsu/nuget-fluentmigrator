@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlAnywhere16DataTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -24,19 +37,33 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
 {
+    /// <summary>
+    /// Defines test class SqlAnywhere16DataTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseDataTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseDataTests" />
     [TestFixture]
     [Category("SqlAnywhere")]
     [Category("SqlAnywhere16")]
     public class SqlAnywhere16DataTests : BaseDataTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected SqlAnywhere16Generator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new SqlAnywhere16Generator();
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForAllRowsWithCustomSchema.
+        /// </summary>
         [Test]
         [Category("Delete")]
         public override void CanDeleteDataForAllRowsWithCustomSchema()
@@ -48,6 +75,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe("DELETE FROM [TestSchema].[TestTable1] WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForAllRowsWithDefaultSchema.
+        /// </summary>
         [Test]
         [Category("Delete")]
         public override void CanDeleteDataForAllRowsWithDefaultSchema()
@@ -58,6 +88,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe("DELETE FROM [dbo].[TestTable1] WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForMultipleRowsWithCustomSchema.
+        /// </summary>
         [Test]
         [Category("Delete")]
         public override void CanDeleteDataForMultipleRowsWithCustomSchema()
@@ -69,6 +102,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe("DELETE FROM [TestSchema].[TestTable1] WHERE [Name] = N'Just''in' AND [Website] IS NULL; DELETE FROM [TestSchema].[TestTable1] WHERE [Website] = N'github.com'");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForMultipleRowsWithDefaultSchema.
+        /// </summary>
         [Test]
         [Category("Delete")]
         public override void CanDeleteDataForMultipleRowsWithDefaultSchema()
@@ -79,6 +115,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe("DELETE FROM [dbo].[TestTable1] WHERE [Name] = N'Just''in' AND [Website] IS NULL; DELETE FROM [dbo].[TestTable1] WHERE [Website] = N'github.com'");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithCustomSchema.
+        /// </summary>
         [Test]
         [Category("Delete")]
         public override void CanDeleteDataWithCustomSchema()
@@ -90,6 +129,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe("DELETE FROM [TestSchema].[TestTable1] WHERE [Name] = N'Just''in' AND [Website] IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithDefaultSchema.
+        /// </summary>
         [Test]
         [Category("Delete")]
         public override void CanDeleteDataWithDefaultSchema()
@@ -100,6 +142,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe("DELETE FROM [dbo].[TestTable1] WHERE [Name] = N'Just''in' AND [Website] IS NULL");
         }
 
+        /// <summary>
+        /// Determines whether this instance [can delete data with database null criteria].
+        /// </summary>
         public override void CanDeleteDataWithDbNullCriteria()
         {
             var expression = GeneratorTestHelper.GetDeleteDataExpressionWithDbNullValue();
@@ -107,6 +152,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe("DELETE FROM [dbo].[TestTable1] WHERE [Name] = N'Just''in' AND [Website] IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithCustomSchema.
+        /// </summary>
         [Test]
         [Category("Insert")]
         public override void CanInsertDataWithCustomSchema()
@@ -121,6 +169,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithDefaultSchema.
+        /// </summary>
         [Test]
         [Category("Insert")]
         public override void CanInsertDataWithDefaultSchema()
@@ -134,6 +185,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertGuidDataWithCustomSchema.
+        /// </summary>
         [Test]
         [Category("Insert")]
         public override void CanInsertGuidDataWithCustomSchema()
@@ -145,6 +199,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe(string.Format("INSERT INTO [TestSchema].[TestTable1] ([guid]) VALUES ('{0}')", GeneratorTestHelper.TestGuid.ToString()));
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertGuidDataWithDefaultSchema.
+        /// </summary>
         [Test]
         [Category("Insert")]
         public override void CanInsertGuidDataWithDefaultSchema()
@@ -155,6 +212,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe(string.Format("INSERT INTO [dbo].[TestTable1] ([guid]) VALUES ('{0}')", GeneratorTestHelper.TestGuid.ToString()));
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataForAllDataWithCustomSchema.
+        /// </summary>
         [Test]
         [Category("Update")]
         public override void CanUpdateDataForAllDataWithCustomSchema()
@@ -166,6 +226,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe("UPDATE [TestSchema].[TestTable1] SET [Name] = N'Just''in', [Age] = 25 WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataForAllDataWithDefaultSchema.
+        /// </summary>
         [Test]
         [Category("Update")]
         public override void CanUpdateDataForAllDataWithDefaultSchema()
@@ -176,6 +239,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe("UPDATE [dbo].[TestTable1] SET [Name] = N'Just''in', [Age] = 25 WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataWithCustomSchema.
+        /// </summary>
         [Test]
         [Category("Update")]
         public override void CanUpdateDataWithCustomSchema()
@@ -187,6 +253,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe("UPDATE [TestSchema].[TestTable1] SET [Name] = N'Just''in', [Age] = 25 WHERE [Id] = 9 AND [Homepage] IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataWithDefaultSchema.
+        /// </summary>
         [Test]
         [Category("Update")]
         public override void CanUpdateDataWithDefaultSchema()
@@ -197,6 +266,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlAnywhere
             result.ShouldBe("UPDATE [dbo].[TestTable1] SET [Name] = N'Just''in', [Age] = 25 WHERE [Id] = 9 AND [Homepage] IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataWithDbNullCriteria.
+        /// </summary>
         [Test]
         [Category("Update")]
         public override void CanUpdateDataWithDbNullCriteria()

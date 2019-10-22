@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlAnywhere
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlAnywhereColumn.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -19,8 +32,17 @@ using FluentMigrator.Runner.Generators.Base;
 
 namespace FluentMigrator.Runner.Generators.SqlAnywhere
 {
+    /// <summary>
+    /// Class SqlAnywhereColumn.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.ColumnBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.ColumnBase" />
     internal class SqlAnywhereColumn : ColumnBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlAnywhereColumn"/> class.
+        /// </summary>
+        /// <param name="typeMap">The type map.</param>
         public SqlAnywhereColumn(ITypeMap typeMap)
             : base(typeMap, new SqlAnywhereQuoter())
         {
@@ -53,11 +75,21 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
             return string.Empty;
         }
 
+        /// <summary>
+        /// Defaults the value is SQL function.
+        /// </summary>
+        /// <param name="defaultValue">The default value.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool DefaultValueIsSqlFunction(object defaultValue)
         {
             return defaultValue is string && defaultValue.ToString().EndsWith("()");
         }
 
+        /// <summary>
+        /// Formats the unique constraint.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         protected virtual string FormatUniqueConstraint(ColumnDefinition column)
         {
             // Define unique constraints on columns in addition to creating a unique index
@@ -70,11 +102,21 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
             return column.IsIdentity ? GetIdentityString() : string.Empty;
         }
 
+        /// <summary>
+        /// Gets the identity string.
+        /// </summary>
+        /// <returns>System.String.</returns>
         private static string GetIdentityString()
         {
             return "DEFAULT AUTOINCREMENT";
         }
 
+        /// <summary>
+        /// Formats the default value.
+        /// </summary>
+        /// <param name="defaultValue">The default value.</param>
+        /// <param name="quoter">The quoter.</param>
+        /// <returns>System.String.</returns>
         public static string FormatDefaultValue(object defaultValue, IQuoter quoter)
         {
             if (DefaultValueIsSqlFunction(defaultValue))
@@ -83,6 +125,12 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
             return quoter.QuoteValue(defaultValue);
         }
 
+        /// <summary>
+        /// Gets the default name of the constraint.
+        /// </summary>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <returns>System.String.</returns>
         public static string GetDefaultConstraintName(string tableName, string columnName)
         {
             return $"DF_{tableName}_{columnName}";

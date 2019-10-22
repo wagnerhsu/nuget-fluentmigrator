@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="LoggerAnnouncer.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -24,19 +37,25 @@ using Microsoft.Extensions.Options;
 namespace FluentMigrator.Runner.Announcers
 {
     /// <summary>
-    /// Implementation of <see cref="IAnnouncer"/> that redirects all log messages to an <see cref="ILogger"/>
+    /// Implementation of <see cref="IAnnouncer" /> that redirects all log messages to an <see cref="ILogger" />
     /// </summary>
     [Obsolete]
     public class LoggerAnnouncer : IAnnouncer
     {
+        /// <summary>
+        /// The logger
+        /// </summary>
         [NotNull]
         private readonly ILogger _logger;
 
+        /// <summary>
+        /// The options
+        /// </summary>
         [NotNull]
         private readonly AnnouncerOptions _options;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoggerAnnouncer"/> class.
+        /// Initializes a new instance of the <see cref="LoggerAnnouncer" /> class.
         /// </summary>
         /// <param name="loggerFactory">The logger factory to create the logger from</param>
         /// <param name="options">The announcer options</param>
@@ -47,9 +66,9 @@ namespace FluentMigrator.Runner.Announcers
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoggerAnnouncer"/> class.
+        /// Initializes a new instance of the <see cref="LoggerAnnouncer" /> class.
         /// </summary>
-        /// <param name="logger"></param>
+        /// <param name="logger">The logger.</param>
         /// <param name="options">The announcer options</param>
         public LoggerAnnouncer([NotNull] ILogger logger, [NotNull] AnnouncerOptions options)
         {

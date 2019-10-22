@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RenameColumnExpression.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -33,18 +46,21 @@ namespace FluentMigrator.Expressions
         /// <summary>
         /// Gets or sets the name of the table
         /// </summary>
+        /// <value>The name of the table.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.TableNameCannotBeNullOrEmpty))]
         public virtual string TableName { get; set; }
 
         /// <summary>
         /// Gets or sets the old column name
         /// </summary>
+        /// <value>The old name.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.OldColumnNameCannotBeNullOrEmpty))]
         public virtual string OldName { get; set; }
 
         /// <summary>
         /// Gets or sets the new column name
         /// </summary>
+        /// <value>The new name.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.NewColumnNameCannotBeNullOrEmpty))]
         public virtual string NewName { get; set; }
 

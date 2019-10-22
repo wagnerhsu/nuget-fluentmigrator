@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateForeignKeyExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,9 +41,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Expressions
 {
+    /// <summary>
+    /// Defines test class CreateForeignKeyExpressionTests.
+    /// </summary>
     [TestFixture]
     public class CreateForeignKeyExpressionTests
     {
+        /// <summary>
+        /// Defines the test method ToStringIsDescriptive.
+        /// </summary>
         [Test]
         public void ToStringIsDescriptive()
         {
@@ -48,6 +67,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             sql.ShouldBe("CreateForeignKey FK UserRoles(User_id) User(Id)");
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull()
         {
@@ -59,6 +81,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.ForeignKey.PrimaryTableSchema, Is.Null);
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged()
         {
@@ -77,6 +102,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.ForeignKey.PrimaryTableSchema, Is.EqualTo("testschema"));
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema()
         {

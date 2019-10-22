@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="NonUnicodeString.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -24,6 +37,7 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the value of the non-Unicode string literal
         /// </summary>
+        /// <value>The value.</value>
         public string Value { get; }
 
         /// <summary>
@@ -38,9 +52,7 @@ namespace FluentMigrator
         /// <summary>
         /// Overrides ToString() to return the value.
         /// </summary>
-        /// <returns>
-        /// The value of the non-Unicode string literal.
-        /// </returns>
+        /// <returns>The value of the non-Unicode string literal.</returns>
         public override string ToString()
         {
             return Value;

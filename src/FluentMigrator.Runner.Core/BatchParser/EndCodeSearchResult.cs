@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="EndCodeSearchResult.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,14 +32,14 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Runner.BatchParser
 {
     /// <summary>
-    /// The result of a <see cref="IRangeSearcher.FindEndCode"/> operation
+    /// The result of a <see cref="IRangeSearcher.FindEndCode" /> operation
     /// </summary>
     public class EndCodeSearchResult
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EndCodeSearchResult"/> class.
+        /// Initializes a new instance of the <see cref="EndCodeSearchResult" /> class.
         /// </summary>
-        /// <param name="index">The index into the <see cref="ILineReader"/> where the end code was found</param>
+        /// <param name="index">The index into the <see cref="ILineReader" /> where the end code was found</param>
         public EndCodeSearchResult(int index)
         {
             Index = index;
@@ -34,9 +47,9 @@ namespace FluentMigrator.Runner.BatchParser
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EndCodeSearchResult"/> class.
+        /// Initializes a new instance of the <see cref="EndCodeSearchResult" /> class.
         /// </summary>
-        /// <param name="index">The index into the <see cref="ILineReader"/> where the nested start code was found</param>
+        /// <param name="index">The index into the <see cref="ILineReader" /> where the nested start code was found</param>
         /// <param name="nestedRangeSearcher">The searcher to be used to find the end of the nested range</param>
         public EndCodeSearchResult(int index, [NotNull] IRangeSearcher nestedRangeSearcher)
         {
@@ -47,23 +60,27 @@ namespace FluentMigrator.Runner.BatchParser
         /// <summary>
         /// Gets a value indicating whether this is a nested range
         /// </summary>
+        /// <value><c>true</c> if this instance is nested start; otherwise, <c>false</c>.</value>
         public bool IsNestedStart => NestedRangeSearcher != null;
 
         /// <summary>
-        /// Gets the index into the previously tested <see cref="ILineReader"/> of the end code or nested start code
+        /// Gets the index into the previously tested <see cref="ILineReader" /> of the end code or nested start code
         /// </summary>
+        /// <value>The index.</value>
         public int Index { get; }
 
         /// <summary>
         /// Gets the searcher to be used to find the end of the nested range
         /// </summary>
+        /// <value>The nested range searcher.</value>
         [CanBeNull]
         public IRangeSearcher NestedRangeSearcher { get; }
 
         /// <summary>
-        /// Operator to convert an index of the end code into a <see cref="EndCodeSearchResult"/>
+        /// Operator to convert an index of the end code into a <see cref="EndCodeSearchResult" />
         /// </summary>
-        /// <param name="index">The index into the <see cref="ILineReader"/> of the end code</param>
+        /// <param name="index">The index into the <see cref="ILineReader" /> of the end code</param>
+        /// <returns>The result of the conversion.</returns>
         public static implicit operator EndCodeSearchResult(int index)
         {
             if (index == -1)

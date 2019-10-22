@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerTestTable.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -26,15 +39,47 @@ using FluentMigrator.Runner.Processors.SqlServer;
 
 namespace FluentMigrator.Tests.Helpers
 {
+    /// <summary>
+    /// Class SqlServerTestTable.
+    /// Implements the <see cref="System.IDisposable" />
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public class SqlServerTestTable : IDisposable
     {
+        /// <summary>
+        /// The quoter
+        /// </summary>
         private readonly IQuoter _quoter;
+        /// <summary>
+        /// The schema name
+        /// </summary>
         private readonly string _schemaName;
+        /// <summary>
+        /// Gets or sets the connection.
+        /// </summary>
+        /// <value>The connection.</value>
         private SqlConnection Connection { get; set; }
+        /// <summary>
+        /// The indexies
+        /// </summary>
         private List<string> indexies = new List<string>();
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the transaction.
+        /// </summary>
+        /// <value>The transaction.</value>
         private SqlTransaction Transaction { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServerTestTable"/> class.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public SqlServerTestTable(SqlServerProcessor processor, string schemaName, params string[] columnDefinitions)
         {
             _schemaName = schemaName;
@@ -45,6 +90,13 @@ namespace FluentMigrator.Tests.Helpers
             Name = "TestTable";
             Create(processor, columnDefinitions);
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServerTestTable"/> class.
+        /// </summary>
+        /// <param name="table">The table.</param>
+        /// <param name="processor">The processor.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public SqlServerTestTable(string table, SqlServerProcessor processor, string schemaName, params string[] columnDefinitions)
         {
             _schemaName = schemaName;
@@ -57,11 +109,19 @@ namespace FluentMigrator.Tests.Helpers
             Create(processor, columnDefinitions);
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             Drop();
         }
 
+        /// <summary>
+        /// Creates the specified processor.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public void Create(SqlServerProcessor processor, IEnumerable<string> columnDefinitions)
         {
             if (!string.IsNullOrEmpty(_schemaName) && !processor.SchemaExists(_schemaName))
@@ -90,6 +150,9 @@ namespace FluentMigrator.Tests.Helpers
                 command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Drops this instance.
+        /// </summary>
         public void Drop()
         {
             var quotedSchema = _quoter.QuoteSchemaName(_schemaName);
@@ -112,6 +175,11 @@ namespace FluentMigrator.Tests.Helpers
             }
         }
 
+        /// <summary>
+        /// Withes the index on.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         public string WithIndexOn(string column)
         {
             var indexName = string.Format("idx_{0}", column);
@@ -128,6 +196,10 @@ namespace FluentMigrator.Tests.Helpers
             return indexName;
         }
 
+        /// <summary>
+        /// Withes the default value on.
+        /// </summary>
+        /// <param name="column">The column.</param>
         public void WithDefaultValueOn(string column)
         {
             var defaultConstraintName = string.Format("[DF_{0}_{1}]", Name, column);

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="NetConfigManager.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -23,9 +36,20 @@ using System.IO;
 
 namespace FluentMigrator.Runner.Initialization.NetFramework
 {
+    /// <summary>
+    /// Class NetConfigManager.
+    /// Implements the <see cref="FluentMigrator.Runner.Initialization.NetFramework.INetConfigManager" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Initialization.NetFramework.INetConfigManager" />
     internal class NetConfigManager
         : INetConfigManager
     {
+        /// <summary>
+        /// Loads from file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns>Configuration.</returns>
+        /// <exception cref="ArgumentException">Specified configuration file path does not exist - path</exception>
         public Configuration LoadFromFile(string path)
         {
             if (string.IsNullOrEmpty(path) || !File.Exists(path))
@@ -41,6 +65,10 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
             return ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
         }
 
+        /// <summary>
+        /// Loads from machine configuration.
+        /// </summary>
+        /// <returns>Configuration.</returns>
         public Configuration LoadFromMachineConfiguration()
         {
             return ConfigurationManager.OpenMachineConfiguration();

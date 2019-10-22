@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AssemblySourceConventionSetAccessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2019, FluentMigrator Project
 //
@@ -27,17 +40,25 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Initialization
 {
+    /// <summary>
+    /// Class AssemblySourceConventionSetAccessor.
+    /// Implements the <see cref="FluentMigrator.Runner.Initialization.IConventionSetAccessor" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Initialization.IConventionSetAccessor" />
     public class AssemblySourceConventionSetAccessor : IConventionSetAccessor
     {
+        /// <summary>
+        /// The lazy value
+        /// </summary>
         private readonly Lazy<IConventionSet> _lazyValue;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssemblySourceVersionTableMetaDataAccessor"/> class.
+        /// Initializes a new instance of the <see cref="AssemblySourceVersionTableMetaDataAccessor" /> class.
         /// </summary>
         /// <param name="typeFilterOptions">The type filter options</param>
         /// <param name="sources">The sources to get type candidates</param>
-        /// <param name="serviceProvider">The service provider used to instantiate the found <see cref="IConventionSet"/> implementation</param>
-        /// <param name="assemblySource">The assemblies used to search for the <see cref="IConventionSet"/> implementation</param>
+        /// <param name="serviceProvider">The service provider used to instantiate the found <see cref="IConventionSet" /> implementation</param>
+        /// <param name="assemblySource">The assemblies used to search for the <see cref="IConventionSet" /> implementation</param>
         public AssemblySourceConventionSetAccessor(
             [NotNull] IOptionsSnapshot<TypeFilterOptions> typeFilterOptions,
             [NotNull, ItemNotNull] IEnumerable<ITypeSourceItem<IConventionSet>> sources,
@@ -74,6 +95,12 @@ namespace FluentMigrator.Runner.Initialization
             return _lazyValue.Value;
         }
 
+        /// <summary>
+        /// Gets the assembly types.
+        /// </summary>
+        /// <param name="assemblySource">The assembly source.</param>
+        /// <param name="predicate">The predicate.</param>
+        /// <returns>IEnumerable&lt;Type&gt;.</returns>
         private static IEnumerable<Type> GetAssemblyTypes([CanBeNull] IAssemblySource assemblySource, [NotNull] Predicate<Type> predicate)
         {
             if (assemblySource == null)

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AutoReversingMigrationTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -28,11 +41,20 @@ using Moq;
 
 namespace FluentMigrator.Tests.Unit
 {
+    /// <summary>
+    /// Defines test class AutoReversingMigrationTests.
+    /// </summary>
     [TestFixture]
     public class AutoReversingMigrationTests
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private Mock<IMigrationContext> _context;
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -40,6 +62,9 @@ namespace FluentMigrator.Tests.Unit
             _context.SetupAllProperties();
         }
 
+        /// <summary>
+        /// Defines the test method CreateTableUpAutoReversingMigrationGivesDeleteTableDown.
+        /// </summary>
         [Test]
         public void CreateTableUpAutoReversingMigrationGivesDeleteTableDown()
         {
@@ -50,6 +75,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.True(_context.Object.Expressions.Any(me => me is DeleteTableExpression && ((DeleteTableExpression)me).TableName == "Foo"));
         }
 
+        /// <summary>
+        /// Defines the test method DownMigrationsAreInReverseOrderOfUpMigrations.
+        /// </summary>
         [Test]
         public void DownMigrationsAreInReverseOrderOfUpMigrations()
         {
@@ -63,8 +91,16 @@ namespace FluentMigrator.Tests.Unit
 
     }
 
+    /// <summary>
+    /// Class TestAutoReversingMigration.
+    /// Implements the <see cref="FluentMigrator.AutoReversingMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.AutoReversingMigration" />
     internal class TestAutoReversingMigration : AutoReversingMigration
     {
+        /// <summary>
+        /// Ups this instance.
+        /// </summary>
         public override void Up()
         {
             Create.Table("Foo");

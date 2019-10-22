@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DataReaderExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +31,16 @@ using System.Data;
 
 namespace FluentMigrator.Runner.Processors
 {
+    /// <summary>
+    /// Class DataReaderExtensions.
+    /// </summary>
     public static class DataReaderExtensions
     {
+        /// <summary>
+        /// Reads the data set.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <returns>DataSet.</returns>
         public static DataSet ReadDataSet(this IDataReader reader)
         {
             var result = new DataSet();
@@ -31,6 +52,11 @@ namespace FluentMigrator.Runner.Processors
             return result;
         }
 
+        /// <summary>
+        /// Reads the table.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <returns>DataTable.</returns>
         public static DataTable ReadTable(this IDataReader reader)
         {
             var table = new DataTable();
@@ -51,6 +77,11 @@ namespace FluentMigrator.Runner.Processors
             return table;
         }
 
+        /// <summary>
+        /// Creates the columns.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="table">The table.</param>
         private static void CreateColumns(this IDataReader reader, DataTable table)
         {
             for (var i = 0; i != reader.FieldCount; ++i)
@@ -59,6 +90,12 @@ namespace FluentMigrator.Runner.Processors
             }
         }
 
+        /// <summary>
+        /// Creates the column.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="fieldIndex">Index of the field.</param>
+        /// <returns>DataColumn.</returns>
         private static DataColumn CreateColumn(this IDataReader reader, int fieldIndex)
         {
             var fieldName = reader.GetName(fieldIndex);

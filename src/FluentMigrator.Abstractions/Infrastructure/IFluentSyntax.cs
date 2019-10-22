@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IFluentSyntax.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -24,9 +37,7 @@ namespace FluentMigrator.Infrastructure
     /// <summary>
     /// The base interface for the fluent API
     /// </summary>
-    /// <remarks>
-    /// This is just here to suppress the default members of <see cref="object"/>
-    /// </remarks>
+    /// <remarks>This is just here to suppress the default members of <see cref="object" /></remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IFluentSyntax
     {

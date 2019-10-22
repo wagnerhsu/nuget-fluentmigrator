@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="InsertDataExpressionBuilderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,9 +41,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Builders.Insert
 {
+    /// <summary>
+    /// Defines test class InsertDataExpressionBuilderTests.
+    /// </summary>
     [TestFixture]
     public class InsertDataExpressionBuilderTests
     {
+        /// <summary>
+        /// Defines the test method RowsGetSetWhenRowIsCalled.
+        /// </summary>
         [Test]
         public void RowsGetSetWhenRowIsCalled()
         {
@@ -56,6 +75,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Insert
             expression.Rows[1][1].Value.ShouldBe("Row2Data2");
         }
 
+        /// <summary>
+        /// Defines the test method RowsGetPopulatedWhenRowWithDictionaryIsCalled.
+        /// </summary>
         [Test]
         public void RowsGetPopulatedWhenRowWithDictionaryIsCalled()
         {
@@ -75,6 +97,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Insert
             expression.Rows[0][1].Value.ShouldBe("Row1Data2");
         }
 
+        /// <summary>
+        /// Defines the test method SqlServerIdentityInsertAddsCorrectAdditionalFeature.
+        /// </summary>
         [Test]
         public void SqlServerIdentityInsertAddsCorrectAdditionalFeature()
         {
@@ -86,6 +111,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Insert
                 new KeyValuePair<string, object>(SqlServerExtensions.IdentityInsert, true));
         }
 
+        /// <summary>
+        /// Defines the test method SqlServerIdentityInsertCalledTwiceAddsCorrectAdditionalFeature.
+        /// </summary>
         [Test]
         public void SqlServerIdentityInsertCalledTwiceAddsCorrectAdditionalFeature()
         {

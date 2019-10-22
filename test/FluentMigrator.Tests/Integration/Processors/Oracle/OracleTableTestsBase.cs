@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleTableTestsBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -28,15 +41,38 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Oracle
 {
+    /// <summary>
+    /// Class OracleTableTestsBase.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.BaseTableTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.BaseTableTests" />
     [Category("Integration")]
     public abstract class OracleTableTestsBase : BaseTableTests
     {
+        /// <summary>
+        /// The schema name
+        /// </summary>
         private const string SchemaName = "FMTEST";
 
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private OracleProcessorBase Processor { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingTableExistsCanAcceptTableNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingTableExistsCanAcceptTableNameWithSingleQuote()
         {
@@ -46,18 +82,27 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingTableExistsReturnsFalseIfTableDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingTableExistsReturnsFalseIfTableDoesNotExist()
         {
             Processor.TableExists(null, "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingTableExistsReturnsFalseIfTableDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingTableExistsReturnsFalseIfTableDoesNotExistWithSchema()
         {
             Processor.TableExists(SchemaName, "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingTableExistsReturnsTrueIfTableExists.
+        /// </summary>
         [Test]
         public override void CallingTableExistsReturnsTrueIfTableExists()
         {
@@ -67,6 +112,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingTableExistsReturnsTrueIfTableExistsWithSchema.
+        /// </summary>
         [Test]
         public override void CallingTableExistsReturnsTrueIfTableExistsWithSchema()
         {
@@ -76,6 +124,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             }
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
@@ -90,12 +141,18 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             ServiceProvider = serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -103,6 +160,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             Processor = ServiceScope.ServiceProvider.GetRequiredService<OracleProcessorBase>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteSequenceExpressionBuilderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -24,9 +37,15 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
 {
     using FluentMigrator.Builders.Delete.Sequence;
 
+    /// <summary>
+    /// Defines test class DeleteSequenceExpressionBuilderTests.
+    /// </summary>
     [TestFixture]
     public class DeleteSequenceExpressionBuilderTests
     {
+        /// <summary>
+        /// Defines the test method CallingInSchemaSetsInSchema.
+        /// </summary>
         [Test]
         public void CallingInSchemaSetsInSchema()
         {

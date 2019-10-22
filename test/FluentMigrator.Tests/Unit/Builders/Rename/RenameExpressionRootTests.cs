@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RenameExpressionRootTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -29,9 +42,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Builders.Rename
 {
+    /// <summary>
+    /// Defines test class RenameExpressionRootTests.
+    /// </summary>
     [TestFixture]
     public class RenameExpressionRootTests
     {
+        /// <summary>
+        /// Defines the test method CallingTableAddsRenameTableExpressionToContextWithSpecifiedOldName.
+        /// </summary>
         [Test]
         public void CallingTableAddsRenameTableExpressionToContextWithSpecifiedOldName()
         {
@@ -47,6 +66,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Rename
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingTableReturnsRenameTableExpressionBuilder.
+        /// </summary>
         [Test]
         public void CallingTableReturnsRenameTableExpressionBuilder()
         {
@@ -61,6 +83,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Rename
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnAddsRenameColumnExpressionToContextWithSpecifiedOldName.
+        /// </summary>
         [Test]
         public void CallingColumnAddsRenameColumnExpressionToContextWithSpecifiedOldName()
         {
@@ -76,6 +101,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Rename
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnReturnsRenameColumnExpressionBuilder.
+        /// </summary>
         [Test]
         public void CallingColumnReturnsRenameColumnExpressionBuilder()
         {

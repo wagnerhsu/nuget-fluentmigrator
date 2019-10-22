@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PostgresConstraintTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -30,16 +43,40 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Postgres
 {
+    /// <summary>
+    /// Defines test class PostgresConstraintTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.BaseConstraintTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.BaseConstraintTests" />
     [TestFixture]
     [Category("Integration")]
     [Category("Postgres")]
     public class PostgresConstraintTests : BaseConstraintTests
     {
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private PostgresProcessor Processor { get; set; }
+        /// <summary>
+        /// Gets or sets the quoter.
+        /// </summary>
+        /// <value>The quoter.</value>
         private PostgresQuoter Quoter { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingConstraintExistsCanAcceptConstraintNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingConstraintExistsCanAcceptConstraintNameWithSingleQuote()
         {
@@ -48,6 +85,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
                 Processor.ConstraintExists(null, table.Name, "c'1").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingConstraintExistsCanAcceptTableNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingConstraintExistsCanAcceptTableNameWithSingleQuote()
         {
@@ -55,6 +95,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
                 Processor.ConstraintExists(null, table.Name, "c1").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingConstraintExistsReturnsFalseIfConstraintDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingConstraintExistsReturnsFalseIfConstraintDoesNotExist()
         {
@@ -62,6 +105,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
                 Processor.ConstraintExists(null, table.Name, "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingConstraintExistsReturnsFalseIfConstraintDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingConstraintExistsReturnsFalseIfConstraintDoesNotExistWithSchema()
         {
@@ -69,18 +115,27 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
                 Processor.ConstraintExists("TestSchema", table.Name, "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingConstraintExistsReturnsFalseIfTableDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingConstraintExistsReturnsFalseIfTableDoesNotExist()
         {
             Processor.ConstraintExists(null, "DoesNotExist", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingConstraintExistsReturnsFalseIfTableDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingConstraintExistsReturnsFalseIfTableDoesNotExistWithSchema()
         {
             Processor.ConstraintExists("TestSchema", "DoesNotExist", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingConstraintExistsReturnsTrueIfConstraintExists.
+        /// </summary>
         [Test]
         public override void CallingConstraintExistsReturnsTrueIfConstraintExists()
         {
@@ -88,6 +143,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
                 Processor.ConstraintExists(null, table.Name, "c1").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingConstraintExistsReturnsTrueIfConstraintExistsWithSchema.
+        /// </summary>
         [Test]
         public override void CallingConstraintExistsReturnsTrueIfConstraintExistsWithSchema()
         {
@@ -95,6 +153,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
                 Processor.ConstraintExists("TestSchema", table.Name, "c1").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
@@ -108,12 +169,18 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
             ServiceProvider = serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -122,6 +189,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
             Quoter = ServiceScope.ServiceProvider.GetRequiredService<PostgresQuoter>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

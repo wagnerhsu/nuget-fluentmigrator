@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerCeTableTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using FluentMigrator.Runner.Generators.SqlServer;
 using NUnit.Framework;
 
@@ -5,18 +18,32 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
 {
+    /// <summary>
+    /// Defines test class SqlServerCeTableTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseTableTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseTableTests" />
     [TestFixture]
     [Category("SqlServerCe")]
     public class SqlServerCeTableTests : BaseTableTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected SqlServerCeGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new SqlServerCeGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomColumnTypeWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomColumnTypeWithCustomSchema()
         {
@@ -30,6 +57,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] [timestamp] NOT NULL, PRIMARY KEY ([TestColumn1]))");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomColumnTypeWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomColumnTypeWithDefaultSchema()
         {
@@ -42,6 +72,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] [timestamp] NOT NULL, PRIMARY KEY ([TestColumn1]))");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomSchema()
         {
@@ -52,6 +85,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] INT NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultSchema()
         {
@@ -61,6 +97,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] INT NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueExplicitlySetToNullWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueExplicitlySetToNullWithCustomSchema()
         {
@@ -73,6 +112,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL CONSTRAINT [DF_TestTable1_TestColumn1] DEFAULT NULL, [TestColumn2] INT NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueExplicitlySetToNullWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueExplicitlySetToNullWithDefaultSchema()
         {
@@ -85,6 +127,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
 
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueWithCustomSchema()
         {
@@ -95,6 +140,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL CONSTRAINT [DF_TestTable1_TestColumn1] DEFAULT N'Default', [TestColumn2] INT NOT NULL CONSTRAINT [DF_TestTable1_TestColumn2] DEFAULT 0)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueWithDefaultSchema()
         {
@@ -104,6 +152,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL CONSTRAINT [DF_TestTable1_TestColumn1] DEFAULT N'Default', [TestColumn2] INT NOT NULL CONSTRAINT [DF_TestTable1_TestColumn2] DEFAULT 0)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithCustomSchema()
         {
@@ -113,6 +164,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] INT NOT NULL IDENTITY(1,1), [TestColumn2] INT NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithDefaultSchema()
         {
@@ -123,6 +177,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] INT NOT NULL IDENTITY(1,1), [TestColumn2] INT NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithMultiColumnPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithMultiColumnPrimaryKeyWithCustomSchema()
         {
@@ -133,6 +190,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] INT NOT NULL, PRIMARY KEY ([TestColumn1], [TestColumn2]))");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithMultiColumnPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithMultiColumnPrimaryKeyWithDefaultSchema()
         {
@@ -142,6 +202,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] INT NOT NULL, PRIMARY KEY ([TestColumn1], [TestColumn2]))");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedMultiColumnPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedMultiColumnPrimaryKeyWithCustomSchema()
         {
@@ -152,6 +215,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] INT NOT NULL, CONSTRAINT [TestKey] PRIMARY KEY ([TestColumn1], [TestColumn2]))");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedMultiColumnPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedMultiColumnPrimaryKeyWithDefaultSchema()
         {
@@ -161,6 +227,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] INT NOT NULL, CONSTRAINT [TestKey] PRIMARY KEY ([TestColumn1], [TestColumn2]))");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedPrimaryKeyWithCustomSchema()
         {
@@ -171,6 +240,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] INT NOT NULL, CONSTRAINT [TestKey] PRIMARY KEY ([TestColumn1]))");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedPrimaryKeyWithDefaultSchema()
         {
@@ -180,6 +252,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] INT NOT NULL, CONSTRAINT [TestKey] PRIMARY KEY ([TestColumn1]))");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNullableFieldWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNullableFieldWithCustomSchema()
         {
@@ -191,6 +266,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255), [TestColumn2] INT NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNullableFieldWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNullableFieldWithDefaultSchema()
         {
@@ -201,6 +279,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255), [TestColumn2] INT NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithPrimaryKeyWithCustomSchema()
         {
@@ -211,6 +292,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] INT NOT NULL, PRIMARY KEY ([TestColumn1]))");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithPrimaryKeyWithDefaultSchema()
         {
@@ -220,6 +304,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(255) NOT NULL, [TestColumn2] INT NOT NULL, PRIMARY KEY ([TestColumn1]))");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropTableWithCustomSchema()
         {
@@ -230,6 +317,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("DROP TABLE [TestTable1]");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropTableWithDefaultSchema()
         {
@@ -239,6 +329,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("DROP TABLE [TestTable1]");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanRenameTableWithCustomSchema()
         {
@@ -249,6 +342,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("sp_rename N'TestTable1', N'TestTable2'");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanRenameTableWithDefaultSchema()
         {

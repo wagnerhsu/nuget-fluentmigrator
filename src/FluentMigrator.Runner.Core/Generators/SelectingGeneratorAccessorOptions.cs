@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SelectingGeneratorAccessorOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,13 +30,14 @@
 namespace FluentMigrator.Runner.Generators
 {
     /// <summary>
-    /// The options for the <see cref="SelectingGeneratorAccessor"/>
+    /// The options for the <see cref="SelectingGeneratorAccessor" />
     /// </summary>
     public class SelectingGeneratorAccessorOptions
     {
         /// <summary>
-        /// The ID of the generator to be returned by the <see cref="SelectingGeneratorAccessor"/>
+        /// The ID of the generator to be returned by the <see cref="SelectingGeneratorAccessor" />
         /// </summary>
+        /// <value>The generator identifier.</value>
         public string GeneratorId { get; set; }
     }
 }

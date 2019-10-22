@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Extensions.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IndexIncludeDefinition.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -24,21 +37,40 @@ using FluentMigrator.Infrastructure;
 
 namespace FluentMigrator.Model
 {
+    /// <summary>
+    /// Class IndexIncludeDefinition.
+    /// Implements the <see cref="System.ICloneable" />
+    /// Implements the <see cref="FluentMigrator.Infrastructure.ICanBeValidated" />
+    /// </summary>
+    /// <seealso cref="System.ICloneable" />
+    /// <seealso cref="FluentMigrator.Infrastructure.ICanBeValidated" />
     public class IndexIncludeDefinition
         : ICloneable,
 #pragma warning disable 618
           ICanBeValidated
 #pragma warning restore 618
     {
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.ColumnNameCannotBeNullOrEmpty))]
         public virtual string Name { get; set; }
 
+        /// <summary>
+        /// Collect validation errors
+        /// </summary>
+        /// <param name="errors">The collection of error messages</param>
         [Obsolete("Use the System.ComponentModel.DataAnnotations.Validator instead")]
         public virtual void CollectValidationErrors(ICollection<string> errors)
         {
             this.CollectErrors(errors);
         }
 
+        /// <summary>
+        /// Clones this instance.
+        /// </summary>
+        /// <returns>System.Object.</returns>
         public object Clone()
         {
             return MemberwiseClone();

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ITypeSourceItem.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2019, FluentMigrator Project
 //
@@ -20,16 +33,17 @@ using System.Collections.Generic;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// The source of types implementing the interface of type <typeparamref name="T"/>.
+    /// The source of types implementing the interface of type <typeparamref name="T" />.
     /// </summary>
     /// <typeparam name="T">The type of the interface to implement</typeparam>
     public interface ITypeSourceItem<T>
         where T : class
     {
         /// <summary>
-        /// Gets all type candidates that implement <typeparamref name="T"/>.
+        /// Gets all type candidates that implement <typeparamref name="T" />.
         /// </summary>
         /// <param name="predicate">The predicate to filter the types</param>
+        /// <returns>IEnumerable&lt;Type&gt;.</returns>
         IEnumerable<Type> GetCandidates(Predicate<Type> predicate);
     }
 }

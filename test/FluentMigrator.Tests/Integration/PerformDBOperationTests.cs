@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PerformDBOperationTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using FluentMigrator.Expressions;
 using FluentMigrator.Runner.Processors.SqlServer;
 
@@ -5,10 +18,18 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration
 {
+    /// <summary>
+    /// Defines test class PerformDBOperationTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.IntegrationTestBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.IntegrationTestBase" />
     [TestFixture]
     [Category("Integration")]
     public class PerformDBOperationTests : IntegrationTestBase
     {
+        /// <summary>
+        /// Defines the test method CanCreateAndDeleteTableUsingThePerformDBOperationExpressions.
+        /// </summary>
         [Test]
         [Category("SqlServer2008")]
         [Category("SqlServer2012")]

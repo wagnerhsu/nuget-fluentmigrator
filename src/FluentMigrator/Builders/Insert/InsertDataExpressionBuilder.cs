@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="InsertDataExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -26,14 +39,17 @@ using FluentMigrator.Model;
 namespace FluentMigrator.Builders.Insert
 {
     /// <summary>
-    /// An expression builder for a <see cref="InsertDataExpression"/>
+    /// An expression builder for a <see cref="InsertDataExpression" />
     /// </summary>
     public class InsertDataExpressionBuilder : IInsertDataOrInSchemaSyntax, ISupportAdditionalFeatures
     {
+        /// <summary>
+        /// The expression
+        /// </summary>
         private readonly InsertDataExpression _expression;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InsertDataExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="InsertDataExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         public InsertDataExpressionBuilder(InsertDataExpression expression)
@@ -71,6 +87,11 @@ namespace FluentMigrator.Builders.Insert
             return this;
         }
 
+        /// <summary>
+        /// Extracts the data.
+        /// </summary>
+        /// <param name="dataAsAnonymousType">Type of the data as anonymous.</param>
+        /// <returns>IDictionary&lt;System.String, System.Object&gt;.</returns>
         private static IDictionary<string, object> ExtractData(object dataAsAnonymousType)
         {
             var data = new Dictionary<string, object>();

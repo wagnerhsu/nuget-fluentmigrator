@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SchemaExpressionRoot.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -23,10 +36,13 @@ using FluentMigrator.Infrastructure;
 namespace FluentMigrator.Builders.Schema
 {
     /// <summary>
-    /// The implementation of the <see cref="ISchemaExpressionRoot"/> interface.
+    /// The implementation of the <see cref="ISchemaExpressionRoot" /> interface.
     /// </summary>
     public class SchemaExpressionRoot : ISchemaExpressionRoot
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly IMigrationContext _context;
 
         /// <summary>

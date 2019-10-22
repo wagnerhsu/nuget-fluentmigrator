@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IfDatabaseExpressionRootTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -35,9 +48,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
 {
+    /// <summary>
+    /// Defines test class IfDatabaseExpressionRootTests.
+    /// </summary>
     [TestFixture]
     public class IfDatabaseExpressionRootTests
     {
+        /// <summary>
+        /// Defines the test method CallsDelegateIfDatabaseTypeApplies.
+        /// </summary>
         [Test]
         public void CallsDelegateIfDatabaseTypeApplies()
         {
@@ -51,6 +70,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             delegateCalled.ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method DoesntCallsDelegateIfDatabaseTypeDoesntMatch.
+        /// </summary>
         [Test]
         public void DoesntCallsDelegateIfDatabaseTypeDoesntMatch()
         {
@@ -64,6 +86,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             delegateCalled.ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method WillAddExpressionIfDatabaseTypeApplies.
+        /// </summary>
         [Test]
         public void WillAddExpressionIfDatabaseTypeApplies()
         {
@@ -72,6 +97,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBe(1);
         }
 
+        /// <summary>
+        /// Defines the test method WillAddExpressionIfProcessorInMigrationProcessorPredicate.
+        /// </summary>
         [Test]
         public void WillAddExpressionIfProcessorInMigrationProcessorPredicate()
         {
@@ -80,6 +108,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBe(1);
         }
 
+        /// <summary>
+        /// Defines the test method WillNotAddExpressionIfProcessorNotInMigrationProcessorPredicate.
+        /// </summary>
         [Test]
         public void WillNotAddExpressionIfProcessorNotInMigrationProcessorPredicate()
         {
@@ -88,6 +119,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBe(0);
         }
 
+        /// <summary>
+        /// Defines the test method WillNotAddExpressionIfDatabaseTypeApplies.
+        /// </summary>
         [Test]
         public void WillNotAddExpressionIfDatabaseTypeApplies()
         {
@@ -96,6 +130,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBe(0);
         }
 
+        /// <summary>
+        /// Defines the test method WillNotAddExpressionIfProcessorNotMigrationProcessor.
+        /// </summary>
         [Test]
         public void WillNotAddExpressionIfProcessorNotMigrationProcessor()
         {
@@ -107,6 +144,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBe(0);
         }
 
+        /// <summary>
+        /// Defines the test method WillAddExpressionIfOneDatabaseTypeApplies.
+        /// </summary>
         [Test]
         public void WillAddExpressionIfOneDatabaseTypeApplies()
         {
@@ -115,6 +155,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBe(1);
         }
 
+        /// <summary>
+        /// Defines the test method WillAddAlterExpression.
+        /// </summary>
         [Test]
         public void WillAddAlterExpression()
         {
@@ -123,6 +166,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Defines the test method WillAddCreateExpression.
+        /// </summary>
         [Test]
         public void WillAddCreateExpression()
         {
@@ -131,6 +177,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Defines the test method WillAddDeleteExpression.
+        /// </summary>
         [Test]
         public void WillAddDeleteExpression()
         {
@@ -139,6 +188,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Defines the test method WillAddExecuteExpression.
+        /// </summary>
         [Test]
         public void WillAddExecuteExpression()
         {
@@ -147,6 +199,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Defines the test method WillAddInsertExpression.
+        /// </summary>
         [Test]
         public void WillAddInsertExpression()
         {
@@ -155,6 +210,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Defines the test method WillAddRenameExpression.
+        /// </summary>
         [Test]
         public void WillAddRenameExpression()
         {
@@ -163,6 +221,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Defines the test method WillAddSchemaExpression.
+        /// </summary>
         [Test]
         public void WillAddSchemaExpression()
         {
@@ -180,6 +241,9 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             unknownProcessorMock.Verify(x => x.TableExists(null, "Foo"));
         }
 
+        /// <summary>
+        /// Defines the test method WillAddUpdateExpression.
+        /// </summary>
         [Test]
         public void WillAddUpdateExpression()
         {
@@ -188,16 +252,34 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             context.Expressions.Count.ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Executes the test migration.
+        /// </summary>
+        /// <param name="databaseType">Type of the database.</param>
+        /// <returns>IMigrationContext.</returns>
         private IMigrationContext ExecuteTestMigration(params string[] databaseType)
         {
             return ExecuteTestMigration(databaseType, (IMock<IMigrationProcessor>)null);
         }
 
+        /// <summary>
+        /// Executes the test migration.
+        /// </summary>
+        /// <param name="databaseType">Type of the database.</param>
+        /// <param name="fluentEpression">The fluent epression.</param>
+        /// <returns>IMigrationContext.</returns>
         private IMigrationContext ExecuteTestMigration(IEnumerable<string> databaseType, params Action<IIfDatabaseExpressionRoot>[] fluentEpression)
         {
             return ExecuteTestMigration(databaseType, null, fluentEpression);
         }
 
+        /// <summary>
+        /// Executes the test migration.
+        /// </summary>
+        /// <param name="databaseType">Type of the database.</param>
+        /// <param name="processor">The processor.</param>
+        /// <param name="fluentExpression">The fluent expression.</param>
+        /// <returns>IMigrationContext.</returns>
         private IMigrationContext ExecuteTestMigration(IEnumerable<string> databaseType, IMock<IMigrationProcessor> processor, params Action<IIfDatabaseExpressionRoot>[] fluentExpression)
         {
             // Initialize
@@ -236,6 +318,12 @@ namespace FluentMigrator.Tests.Unit.Builders.IfDatabase
             return context;
         }
 
+        /// <summary>
+        /// Executes the test migration.
+        /// </summary>
+        /// <param name="databaseTypePredicate">The database type predicate.</param>
+        /// <param name="fluentExpression">The fluent expression.</param>
+        /// <returns>IMigrationContext.</returns>
         private IMigrationContext ExecuteTestMigration(Predicate<string> databaseTypePredicate, params Action<IIfDatabaseExpressionRoot>[] fluentExpression)
         {
             // Initialize

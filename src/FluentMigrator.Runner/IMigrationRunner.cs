@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IMigrationRunner.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -31,18 +44,21 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Gets the migration processor used by this runner
         /// </summary>
+        /// <value>The processor.</value>
         [NotNull]
         IMigrationProcessor Processor { get; }
 
         /// <summary>
         /// Gets or sets the migration loader to be used by this migration runner
         /// </summary>
+        /// <value>The migration loader.</value>
         [NotNull]
         IMigrationInformationLoader MigrationLoader { get; }
 
         /// <summary>
         /// Gets the assemblies searched for migrations, profile migrations, etc...
         /// </summary>
+        /// <value>The migration assemblies.</value>
         [Obsolete]
         [CanBeNull]
         IAssemblyCollection MigrationAssemblies { get; }
@@ -50,6 +66,7 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Gets the runner context
         /// </summary>
+        /// <value>The runner context.</value>
         [Obsolete]
         [CanBeNull]
         IRunnerContext RunnerContext { get; }
@@ -98,9 +115,7 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Validate that there were no missing migration versions
         /// </summary>
-        /// <remarks>
-        /// Throws an exception if a missing migration was found.
-        /// </remarks>
+        /// <remarks>Throws an exception if a missing migration was found.</remarks>
         void ValidateVersionOrder();
 
         /// <summary>

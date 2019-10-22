@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IndexColumnDefinitionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,9 +41,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Definitions
 {
+    /// <summary>
+    /// Defines test class IndexColumnDefinitionTests.
+    /// </summary>
     [TestFixture]
     public class IndexColumnDefinitionTests
     {
+        /// <summary>
+        /// Defines the test method DirectionIsAscendingIfNotSpecified.
+        /// </summary>
         [Test]
         public void DirectionIsAscendingIfNotSpecified()
         {
@@ -38,6 +57,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             column.Direction.ShouldBe(Direction.Ascending);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenColumnNameIsNull.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenColumnNameIsNull()
         {
@@ -46,6 +68,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldContain(ErrorMessages.ColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenColumnNameIsEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenColumnNameIsEmptyString()
         {
@@ -54,6 +79,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldContain(ErrorMessages.ColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenColumnNameIsNotNullOrEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenColumnNameIsNotNullOrEmptyString()
         {
@@ -62,6 +90,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldNotContain(ErrorMessages.ColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenIncludeNameIsNull.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenIncludeNameIsNull()
         {
@@ -70,6 +101,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldContain(ErrorMessages.ColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenIncludeNameIsEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenIncludeNameIsEmptyString()
         {
@@ -78,6 +112,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldContain(ErrorMessages.ColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenIncludeNameIsNotNullOrEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenIncludeNameIsNotNullOrEmptyString()
         {
@@ -86,6 +123,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldNotContain(ErrorMessages.ColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull()
         {
@@ -102,6 +142,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             Assert.That(processed.Index.SchemaName, Is.Null);
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged()
         {
@@ -119,6 +162,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             Assert.That(processed.Index.SchemaName, Is.EqualTo("testschema"));
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema()
         {

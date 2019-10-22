@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AssemblyLoaderFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 //
@@ -21,7 +34,7 @@
 namespace FluentMigrator.Runner.Initialization.AssemblyLoader
 {
     /// <summary>
-    /// Class that creates an <see cref="IAssemblyLoader"/> for a given assembly name
+    /// Class that creates an <see cref="IAssemblyLoader" /> for a given assembly name
     /// </summary>
     public class AssemblyLoaderFactory
     {

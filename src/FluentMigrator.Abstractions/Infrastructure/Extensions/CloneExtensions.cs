@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CloneExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,7 +41,7 @@ namespace FluentMigrator.Infrastructure.Extensions
     public static class CloneExtensions
     {
         /// <summary>
-        /// Clones all <paramref name="items"/>
+        /// Clones all <paramref name="items" />
         /// </summary>
         /// <typeparam name="T">The item type</typeparam>
         /// <param name="items">The items to clone</param>
@@ -53,7 +66,7 @@ namespace FluentMigrator.Infrastructure.Extensions
         }
 
         /// <summary>
-        /// Clones the values of <paramref name="dict"/> and stores them into <paramref name="target"/>
+        /// Clones the values of <paramref name="dict" /> and stores them into <paramref name="target" />
         /// </summary>
         /// <param name="dict">The key/value pairs to clone</param>
         /// <param name="target">The target dictionary to store the cloned key/value pairs</param>

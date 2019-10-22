@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IForeignKeyConvention.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -19,12 +32,12 @@ using FluentMigrator.Expressions;
 namespace FluentMigrator.Runner.Conventions
 {
     /// <summary>
-    /// A convention working on <see cref="IForeignKeyExpression"/> implementations
+    /// A convention working on <see cref="IForeignKeyExpression" /> implementations
     /// </summary>
     public interface IForeignKeyConvention
     {
         /// <summary>
-        /// Applies a convention to a <see cref="IForeignKeyExpression"/>
+        /// Applies a convention to a <see cref="IForeignKeyExpression" />
         /// </summary>
         /// <param name="expression">The expression this convention should be applied to</param>
         /// <returns>The same or a new expression. The underlying type must stay the same.</returns>

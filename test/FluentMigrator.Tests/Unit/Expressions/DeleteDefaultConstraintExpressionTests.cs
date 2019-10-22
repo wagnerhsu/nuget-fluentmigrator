@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteDefaultConstraintExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -29,9 +42,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Expressions
 {
+    /// <summary>
+    /// Defines test class DeleteDefaultConstraintExpressionTests.
+    /// </summary>
     [TestFixture]
     public class DeleteDefaultConstraintExpressionTests
     {
+        /// <summary>
+        /// Defines the test method CollectValidationErrorsShouldReturnErrorIfColumnNameIsEmpty.
+        /// </summary>
         [Test]
         public void CollectValidationErrorsShouldReturnErrorIfColumnNameIsEmpty()
         {
@@ -40,6 +59,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.ColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method CollectValidationErrorsShouldReturnErrorIfColumnNameIsNull.
+        /// </summary>
         [Test]
         public void CollectValidationErrorsShouldReturnErrorIfColumnNameIsNull()
         {
@@ -48,6 +70,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.ColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method CollectValidationErrorsShouldReturnErrorIfTableNameIsEmpty.
+        /// </summary>
         [Test]
         public void CollectValidationErrorsShouldReturnErrorIfTableNameIsEmpty()
         {
@@ -56,6 +81,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.TableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method CollectValidationErrorsShouldReturnErrorIfTableNameIsNull.
+        /// </summary>
         [Test]
         public void CollectValidationErrorsShouldReturnErrorIfTableNameIsNull()
         {
@@ -64,6 +92,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.TableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ExecuteWithShouldDelegateProcessOnMigrationProcessor.
+        /// </summary>
         [Test]
         public void ExecuteWithShouldDelegateProcessOnMigrationProcessor()
         {
@@ -76,6 +107,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             processorMock.VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method ToStringIsDescriptive.
+        /// </summary>
         [Test]
         public void ToStringIsDescriptive()
         {
@@ -84,6 +118,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             expression.ToString().ShouldBe("DeleteDefaultConstraint ThaSchema.ThaTable ThaColumn");
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull()
         {
@@ -94,6 +131,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.SchemaName, Is.Null);
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged()
         {
@@ -104,6 +144,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.SchemaName, Is.EqualTo("testschema"));
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema()
         {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AssemblyLoaderFromName.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -20,15 +33,31 @@ using System.Reflection;
 
 namespace FluentMigrator.Runner.Initialization.AssemblyLoader
 {
+    /// <summary>
+    /// Class AssemblyLoaderFromName.
+    /// Implements the <see cref="FluentMigrator.Runner.Initialization.AssemblyLoader.IAssemblyLoader" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Initialization.AssemblyLoader.IAssemblyLoader" />
     public class AssemblyLoaderFromName : IAssemblyLoader
     {
+        /// <summary>
+        /// The name
+        /// </summary>
         private readonly string _name;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssemblyLoaderFromName"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
         public AssemblyLoaderFromName(string name)
         {
             _name = name;
         }
 
+        /// <summary>
+        /// Loads this instance.
+        /// </summary>
+        /// <returns>Assembly.</returns>
         public Assembly Load()
         {
             Assembly assembly = Assembly.Load(_name);

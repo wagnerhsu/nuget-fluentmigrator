@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PostgresGeneratorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -30,11 +43,20 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Postgres
 {
+    /// <summary>
+    /// Defines test class PostgresGeneratorTests.
+    /// </summary>
     [TestFixture]
     public class PostgresGeneratorTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected PostgresGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -42,6 +64,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             Generator = new PostgresGenerator(quoter);
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDateTimeOffsetColumn.
+        /// </summary>
         [Test]
         public void CanCreateTableWithDateTimeOffsetColumn()
         {
@@ -56,6 +81,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe(string.Format("CREATE TABLE \"public\".\"{0}\" (\"TestColumn1\" timestamptz NOT NULL, \"TestColumn2\" timestamp NOT NULL, \"TestColumn3\" date NOT NULL, \"TestColumn4\" time NOT NULL);", tableName));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAutoIncrementColumnForInt64.
+        /// </summary>
         [Test]
         public void CanCreateAutoIncrementColumnForInt64()
         {
@@ -66,6 +94,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" bigserial NOT NULL, \"TestColumn2\" integer NOT NULL);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithBinaryColumnWithSize.
+        /// </summary>
         [Test]
         public void CanCreateTableWithBinaryColumnWithSize()
         {
@@ -77,6 +108,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" bytea NOT NULL, \"TestColumn2\" integer NOT NULL);"); // PostgreSQL does not actually use the configured size
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithBoolDefaultValue.
+        /// </summary>
         [Test]
         public void CanCreateTableWithBoolDefaultValue()
         {
@@ -87,6 +121,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" text NOT NULL DEFAULT true, \"TestColumn2\" integer NOT NULL);");
         }
 
+        /// <summary>
+        /// Defines the test method CanUseSystemMethodCurrentUserAsADefaultValueForAColumn.
+        /// </summary>
         [Test]
         public void CanUseSystemMethodCurrentUserAsADefaultValueForAColumn()
         {
@@ -98,6 +135,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("ALTER TABLE \"public\".\"NewTable\" ADD \"NewColumn\" varchar(15) NOT NULL DEFAULT current_user;");
         }
 
+        /// <summary>
+        /// Defines the test method CanUseSystemMethodCurrentUTCDateTimeAsADefaultValueForAColumn.
+        /// </summary>
         [Test]
         public void CanUseSystemMethodCurrentUTCDateTimeAsADefaultValueForAColumn()
         {
@@ -109,6 +149,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("ALTER TABLE \"public\".\"NewTable\" ADD \"NewColumn\" varchar(5) NOT NULL DEFAULT (now() at time zone 'UTC');");
         }
 
+        /// <summary>
+        /// Defines the test method NonUnicodeQuotesCorrectly.
+        /// </summary>
         [Test]
         public void NonUnicodeQuotesCorrectly()
         {
@@ -123,6 +166,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("INSERT INTO \"public\".\"TestTable\" (\"NormalString\",\"UnicodeString\") VALUES ('Just''in','codethinked''.com');");
         }
 
+        /// <summary>
+        /// Defines the test method ExplicitUnicodeStringIgnoredForNonSqlServer.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ExplicitUnicodeStringIgnoredForNonSqlServer()
@@ -138,6 +184,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("INSERT INTO \"public\".\"TestTable\" (\"NormalString\",\"UnicodeString\") VALUES ('Just''in','codethinked''.com');");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnAndSetAsNullable.
+        /// </summary>
         [Test]
         public void CanAlterColumnAndSetAsNullable()
         {
@@ -152,6 +201,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" TYPE text, ALTER \"TestColumn1\" DROP NOT NULL;");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnAndSetAsNotNullable.
+        /// </summary>
         [Test]
         public void CanAlterColumnAndSetAsNotNullable()
         {
@@ -166,6 +218,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" TYPE text, ALTER \"TestColumn1\" SET NOT NULL;");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintToNewGuid.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintToNewGuid()
         {
@@ -177,6 +232,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" DROP DEFAULT, ALTER \"TestColumn1\" SET DEFAULT uuid_generate_v4();");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDefaultConstraint.
+        /// </summary>
         [Test]
         public void CanDeleteDefaultConstraint()
         {
@@ -191,6 +249,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" DROP DEFAULT;");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintToCurrentUser.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintToCurrentUser()
         {
@@ -202,6 +263,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" DROP DEFAULT, ALTER \"TestColumn1\" SET DEFAULT current_user;");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintToCurrentDate.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintToCurrentDate()
         {
@@ -213,6 +277,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" DROP DEFAULT, ALTER \"TestColumn1\" SET DEFAULT now();");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintToCurrentUtcDateTime.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintToCurrentUtcDateTime()
         {
@@ -224,6 +291,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" DROP DEFAULT, ALTER \"TestColumn1\" SET DEFAULT (now() at time zone 'UTC');");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnAndOnlySetTypeIfIsNullableNotSet.
+        /// </summary>
         [Test]
         public void CanAlterColumnAndOnlySetTypeIfIsNullableNotSet()
         {

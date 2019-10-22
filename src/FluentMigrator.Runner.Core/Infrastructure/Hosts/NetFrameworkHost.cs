@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="NetFrameworkHost.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -24,11 +37,27 @@ using System.Reflection;
 
 namespace FluentMigrator.Runner.Infrastructure.Hosts
 {
+    /// <summary>
+    /// Class NetFrameworkHost.
+    /// Implements the <see cref="FluentMigrator.Runner.Infrastructure.IHostAbstraction" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Infrastructure.IHostAbstraction" />
     internal class NetFrameworkHost : IHostAbstraction
     {
+        /// <summary>
+        /// Gets the base directory.
+        /// </summary>
+        /// <value>The base directory.</value>
         public string BaseDirectory
             => AppDomain.CurrentDomain.BaseDirectory;
 
+        /// <summary>
+        /// Creates the instance.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
+        /// <param name="assemblyName">Name of the assembly.</param>
+        /// <param name="typeName">Name of the type.</param>
+        /// <returns>System.Object.</returns>
         public object CreateInstance(IServiceProvider serviceProvider, string assemblyName, string typeName)
         {
             if (serviceProvider != null)
@@ -50,6 +79,10 @@ namespace FluentMigrator.Runner.Infrastructure.Hosts
             return AppDomain.CurrentDomain.CreateInstanceAndUnwrap(assemblyName, typeName);
         }
 
+        /// <summary>
+        /// Gets the loaded assemblies.
+        /// </summary>
+        /// <returns>IEnumerable&lt;Assembly&gt;.</returns>
         public IEnumerable<Assembly> GetLoadedAssemblies()
             => AppDomain.CurrentDomain.GetAssemblies();
     }

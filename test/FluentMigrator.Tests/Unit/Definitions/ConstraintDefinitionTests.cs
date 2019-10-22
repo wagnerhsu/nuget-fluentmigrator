@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConstraintDefinitionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -22,9 +35,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Definitions
 {
+    /// <summary>
+    /// Defines test class ConstraintDefinitionTests.
+    /// </summary>
     [TestFixture]
     public class ConstraintDefinitionTests
     {
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull()
         {
@@ -38,6 +57,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             Assert.That(processed.Constraint.SchemaName, Is.Null);
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged()
         {
@@ -55,6 +77,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             Assert.That(processed.Constraint.SchemaName, Is.EqualTo("testschema"));
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema()
         {

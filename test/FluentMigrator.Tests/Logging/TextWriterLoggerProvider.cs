@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TextWriterLoggerProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,14 +41,29 @@ namespace FluentMigrator.Tests.Logging
     /// </summary>
     public class TextWriterLoggerProvider : ILoggerProvider
     {
+        /// <summary>
+        /// The writer
+        /// </summary>
         private readonly TextWriter _writer;
+        /// <summary>
+        /// The options
+        /// </summary>
         private readonly FluentMigratorLoggerOptions _options;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TextWriterLoggerProvider"/> class.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         public TextWriterLoggerProvider(TextWriter writer)
             : this(writer, new FluentMigratorLoggerOptions() { ShowSql = true })
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TextWriterLoggerProvider"/> class.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
+        /// <param name="options">The options.</param>
         public TextWriterLoggerProvider(TextWriter writer, FluentMigratorLoggerOptions options)
         {
             _writer = writer;
@@ -54,6 +82,11 @@ namespace FluentMigrator.Tests.Logging
             _writer?.Dispose();
         }
 
+        /// <summary>
+        /// Class TextWriterLogger.
+        /// Implements the <see cref="FluentMigrator.Runner.Logging.FluentMigratorRunnerLogger" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Logging.FluentMigratorRunnerLogger" />
         private class TextWriterLogger : FluentMigratorRunnerLogger
         {
             /// <inheritdoc />

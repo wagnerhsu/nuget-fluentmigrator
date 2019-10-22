@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaProcessorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -33,16 +46,38 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Hana
 {
+    /// <summary>
+    /// Defines test class HanaProcessorTests.
+    /// </summary>
     [TestFixture]
     [Category("Integration")]
     [Category("Hana")]
     public class HanaProcessorTests
     {
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private HanaProcessor Processor { get; set; }
+        /// <summary>
+        /// Gets or sets the output.
+        /// </summary>
+        /// <value>The output.</value>
         private StringWriter Output { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingProcessWithPerformDbOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges.
+        /// </summary>
         [Test]
         public void CallingProcessWithPerformDbOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges()
         {
@@ -69,6 +104,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
             Assert.That(fmOutput, Does.Contain("/* Performing DB Operation */"));
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -86,6 +124,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
             Processor = ServiceScope.ServiceProvider.GetRequiredService<HanaProcessor>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

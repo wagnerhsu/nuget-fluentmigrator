@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="LegacyExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -42,11 +55,11 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Gets a <see cref="ProcessorOptions"/> instance for a given <see cref="IMigrationProcessorOptions"/> implementation
+        /// Gets a <see cref="ProcessorOptions" /> instance for a given <see cref="IMigrationProcessorOptions" /> implementation
         /// </summary>
-        /// <param name="options">The instance to get the <see cref="ProcessorOptions"/> for</param>
+        /// <param name="options">The instance to get the <see cref="ProcessorOptions" /> for</param>
         /// <param name="connectionString">The connection string</param>
-        /// <returns>The found/created <see cref="ProcessorOptions"/></returns>
+        /// <returns>The found/created <see cref="ProcessorOptions" /></returns>
         internal static ProcessorOptions GetProcessorOptions(this IMigrationProcessorOptions options, string connectionString)
         {
             if (options == null)

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ValidateVersionOrder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -20,10 +33,20 @@ using McMaster.Extensions.CommandLineUtils;
 
 namespace FluentMigrator.DotNet.Cli.Commands
 {
+    /// <summary>
+    /// Class ValidateVersionOrder.
+    /// Implements the <see cref="FluentMigrator.DotNet.Cli.Commands.ConnectionCommand" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.DotNet.Cli.Commands.ConnectionCommand" />
     [HelpOption]
     [Command("versions", Description = "Validate the order of applied migrations")]
     public class ValidateVersionOrder : ConnectionCommand
     {
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <returns>System.Int32.</returns>
         private int OnExecute(IConsole console)
         {
             var options = MigratorOptions.CreateValidateVersionOrder(this);

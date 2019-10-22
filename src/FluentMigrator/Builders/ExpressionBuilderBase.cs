@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ExpressionBuilderBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -23,17 +36,18 @@ namespace FluentMigrator.Builders
     /// <summary>
     /// The base class for builders with underlying expressions
     /// </summary>
-    /// <typeparam name="T">A type that implements <see cref="IMigrationExpression"/></typeparam>
+    /// <typeparam name="T">A type that implements <see cref="IMigrationExpression" /></typeparam>
     public abstract class ExpressionBuilderBase<T>
         where T : class, IMigrationExpression
     {
         /// <summary>
         /// Gets the underlying migration expression
         /// </summary>
+        /// <value>The expression.</value>
         public T Expression { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExpressionBuilderBase{T}"/> class.
+        /// Initializes a new instance of the <see cref="ExpressionBuilderBase{T}" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         protected ExpressionBuilderBase(T expression)

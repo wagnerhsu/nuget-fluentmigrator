@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateSequenceExpressionBuilderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -26,51 +39,80 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
 {
     using FluentMigrator.Builders.Create.Sequence;
 
+    /// <summary>
+    /// Defines test class CreateSequenceExpressionBuilderTests.
+    /// </summary>
     [TestFixture]
     public class CreateSequenceExpressionBuilderTests
     {
+        /// <summary>
+        /// Defines the test method CallingInSchemaSetsSchemaName.
+        /// </summary>
         [Test]
         public void CallingInSchemaSetsSchemaName()
         {
             VerifySequenceProperty(c => c.SchemaName = "Schema", b => b.InSchema("Schema"));
         }
 
+        /// <summary>
+        /// Defines the test method CallingIncrementBySetsIncrement.
+        /// </summary>
         [Test]
         public void CallingIncrementBySetsIncrement()
         {
             VerifySequenceProperty(c => c.Increment = 10, b => b.IncrementBy(10));
         }
 
+        /// <summary>
+        /// Defines the test method CallingMinValueSetsMinValue.
+        /// </summary>
         [Test]
         public void CallingMinValueSetsMinValue()
         {
             VerifySequenceProperty(c => c.MinValue = 10, b => b.MinValue(10));
         }
 
+        /// <summary>
+        /// Defines the test method CallingMaxValueSetsMaxValue.
+        /// </summary>
         [Test]
         public void CallingMaxValueSetsMaxValue()
         {
             VerifySequenceProperty(c => c.MaxValue = 10, b => b.MaxValue(10));
         }
 
+        /// <summary>
+        /// Defines the test method CallingStartWithSetsStartWith.
+        /// </summary>
         [Test]
         public void CallingStartWithSetsStartWith()
         {
             VerifySequenceProperty(c => c.StartWith = 10, b => b.StartWith(10));
         }
 
+        /// <summary>
+        /// Defines the test method CallingCacheSetsCache.
+        /// </summary>
         [Test]
         public void CallingCacheSetsCache()
         {
             VerifySequenceProperty(c => c.Cache = 10, b => b.Cache(10));
         }
 
+        /// <summary>
+        /// Defines the test method CallingCycleSetsCycleToTrue.
+        /// </summary>
         [Test]
         public void CallingCycleSetsCycleToTrue()
         {
             VerifySequenceProperty(c => c.Cycle = true, b => b.Cycle());
         }
 
+        /// <summary>
+        /// Verifies the sequence property.
+        /// </summary>
+        /// <param name="sequenceExpression">The sequence expression.</param>
+        /// <param name="callToTest">The call to test.</param>
         private void VerifySequenceProperty(Action<SequenceDefinition> sequenceExpression, Action<CreateSequenceExpressionBuilder> callToTest)
         {
             var sequenceMock = new Mock<SequenceDefinition>();

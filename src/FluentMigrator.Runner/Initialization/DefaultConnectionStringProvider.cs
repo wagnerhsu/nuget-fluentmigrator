@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DefaultConnectionStringProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -30,26 +43,57 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Initialization
 {
+    /// <summary>
+    /// Class DefaultConnectionStringProvider.
+    /// Implements the <see cref="FluentMigrator.Runner.Initialization.IConnectionStringProvider" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Initialization.IConnectionStringProvider" />
     [Obsolete]
     public class DefaultConnectionStringProvider : IConnectionStringProvider
     {
+        /// <summary>
+        /// The accessors
+        /// </summary>
         [CanBeNull]
         [ItemNotNull]
         private readonly IReadOnlyCollection<IConnectionStringReader> _accessors;
 
+        /// <summary>
+        /// The synchronize root
+        /// </summary>
         private readonly object _syncRoot = new object();
+        /// <summary>
+        /// The connection string
+        /// </summary>
         private string _connectionString;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultConnectionStringProvider"/> class.
+        /// </summary>
         [Obsolete]
         public DefaultConnectionStringProvider()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultConnectionStringProvider"/> class.
+        /// </summary>
+        /// <param name="accessors">The accessors.</param>
         public DefaultConnectionStringProvider([NotNull, ItemNotNull] IEnumerable<IConnectionStringReader> accessors)
         {
             _accessors = accessors.ToList();
         }
 
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <param name="announcer">The announcer.</param>
+        /// <param name="connection">The connection.</param>
+        /// <param name="configPath">The configuration path.</param>
+        /// <param name="assemblyLocation">The assembly location.</param>
+        /// <param name="database">The database.</param>
+        /// <returns>System.String.</returns>
+        /// <exception cref="InvalidOperationException">No connection string specified</exception>
         public string GetConnectionString(IAnnouncer announcer, string connection, string configPath, string assemblyLocation,
             string database)
         {
@@ -73,6 +117,13 @@ namespace FluentMigrator.Runner.Initialization
             return _connectionString;
         }
 
+        /// <summary>
+        /// Creates the accessors.
+        /// </summary>
+        /// <param name="assemblyLocation">The assembly location.</param>
+        /// <param name="announcer">The announcer.</param>
+        /// <param name="configPath">The configuration path.</param>
+        /// <returns>IEnumerable&lt;IConnectionStringReader&gt;.</returns>
         [SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Parameters are required for the full .NET Framework")]
         private static IEnumerable<IConnectionStringReader> CreateAccessors(string assemblyLocation, IAnnouncer announcer, string configPath)
         {
@@ -94,6 +145,13 @@ namespace FluentMigrator.Runner.Initialization
 #endif
         }
 
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <param name="accessors">The accessors.</param>
+        /// <param name="connection">The connection.</param>
+        /// <param name="database">The database.</param>
+        /// <returns>System.String.</returns>
         private static string GetConnectionString(IReadOnlyCollection<IConnectionStringReader> accessors, string connection, string database)
         {
             var result = GetConnectionString(accessors, connection);
@@ -104,6 +162,12 @@ namespace FluentMigrator.Runner.Initialization
             return result;
         }
 
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <param name="accessors">The accessors.</param>
+        /// <param name="connectionStringOrName">Name of the connection string or.</param>
+        /// <returns>System.String.</returns>
         private static string GetConnectionString(IReadOnlyCollection<IConnectionStringReader> accessors, string connectionStringOrName)
         {
             if (string.IsNullOrEmpty(connectionStringOrName))

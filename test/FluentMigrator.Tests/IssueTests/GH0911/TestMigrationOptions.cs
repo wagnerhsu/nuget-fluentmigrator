@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TestMigrationOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -16,8 +29,15 @@
 
 namespace FluentMigrator.Tests.IssueTests.GH0911
 {
+    /// <summary>
+    /// Class TestMigrationOptions.
+    /// </summary>
     public class TestMigrationOptions
     {
+        /// <summary>
+        /// Gets or sets the name of the table.
+        /// </summary>
+        /// <value>The name of the table.</value>
         public string TableName { get; set; }
     }
 }

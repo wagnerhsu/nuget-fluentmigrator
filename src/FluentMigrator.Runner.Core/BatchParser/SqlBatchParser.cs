@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlBatchParser.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,19 +40,28 @@ namespace FluentMigrator.Runner.BatchParser
     /// </summary>
     public class SqlBatchParser
     {
+        /// <summary>
+        /// The range searchers
+        /// </summary>
         [NotNull]
         [ItemNotNull]
         private readonly IEnumerable<IRangeSearcher> _rangeSearchers;
 
+        /// <summary>
+        /// The special token searchers
+        /// </summary>
         [NotNull]
         [ItemNotNull]
         private readonly IEnumerable<ISpecialTokenSearcher> _specialTokenSearchers;
 
+        /// <summary>
+        /// The new line
+        /// </summary>
         [NotNull]
         private readonly string _newLine;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlBatchParser"/> class.
+        /// Initializes a new instance of the <see cref="SqlBatchParser" /> class.
         /// </summary>
         /// <param name="rangeSearchers">The range searchers to be used</param>
         /// <param name="specialTokenSearchers">The special token searchers to be used</param>
@@ -65,7 +87,7 @@ namespace FluentMigrator.Runner.BatchParser
         public event EventHandler<SqlTextEventArgs> SqlText;
 
         /// <summary>
-        /// Process the <paramref name="source"/>
+        /// Process the <paramref name="source" />
         /// </summary>
         /// <param name="source">The source to process/parse for SQL statement batches</param>
         /// <param name="stripComments"><c>true</c> when the comments should be stripped</param>
@@ -112,7 +134,7 @@ namespace FluentMigrator.Runner.BatchParser
         }
 
         /// <summary>
-        /// Invokes the <see cref="SpecialToken"/> event
+        /// Invokes the <see cref="SpecialToken" /> event
         /// </summary>
         /// <param name="e">The event arguments</param>
         protected virtual void OnSpecialToken(SpecialTokenEventArgs e)
@@ -121,7 +143,7 @@ namespace FluentMigrator.Runner.BatchParser
         }
 
         /// <summary>
-        /// Invokes the <see cref="SqlText"/> event
+        /// Invokes the <see cref="SqlText" /> event
         /// </summary>
         /// <param name="e">The event arguments</param>
         protected virtual void OnSqlText(SqlTextEventArgs e)

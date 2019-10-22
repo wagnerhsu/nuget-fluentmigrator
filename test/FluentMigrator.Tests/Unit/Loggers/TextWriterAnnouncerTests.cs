@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TextWriterAnnouncerTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -30,19 +43,41 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Loggers
 {
+    /// <summary>
+    /// Defines test class TextWriterAnnouncerTests.
+    /// </summary>
     [TestFixture]
     public class TextWriterAnnouncerTests
     {
+        /// <summary>
+        /// The logger factory
+        /// </summary>
         private ILoggerFactory _loggerFactory;
 
+        /// <summary>
+        /// The logger
+        /// </summary>
         private ILogger _logger;
 
+        /// <summary>
+        /// The options
+        /// </summary>
         private SqlScriptFluentMigratorLoggerOptions _options;
 
+        /// <summary>
+        /// The string writer
+        /// </summary>
         private StringWriter _stringWriter;
 
+        /// <summary>
+        /// Gets the output.
+        /// </summary>
+        /// <value>The output.</value>
         private string Output => _stringWriter.ToString();
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -53,6 +88,9 @@ namespace FluentMigrator.Tests.Unit.Loggers
             _logger = _loggerFactory.CreateLogger("Test");
         }
 
+        /// <summary>
+        /// Defines the test method CanAnnounceAndPadWithEquals.
+        /// </summary>
         [Test]
         public void CanAnnounceAndPadWithEquals()
         {
@@ -60,6 +98,9 @@ namespace FluentMigrator.Tests.Unit.Loggers
             Output.ShouldBe("/* Test ====================================================================== */" + Environment.NewLine + Environment.NewLine);
         }
 
+        /// <summary>
+        /// Defines the test method CanSay.
+        /// </summary>
         [Test]
         public void CanSay()
         {
@@ -67,6 +108,9 @@ namespace FluentMigrator.Tests.Unit.Loggers
             Output.ShouldBe("/* Create table */" + Environment.NewLine);
         }
 
+        /// <summary>
+        /// Defines the test method CanSaySql.
+        /// </summary>
         [Test]
         public void CanSaySql()
         {
@@ -74,6 +118,9 @@ namespace FluentMigrator.Tests.Unit.Loggers
             Output.ShouldBe("DELETE Blah" + Environment.NewLine);
         }
 
+        /// <summary>
+        /// Defines the test method CanSayTimeSpan.
+        /// </summary>
         [Test]
         public void CanSayTimeSpan()
         {

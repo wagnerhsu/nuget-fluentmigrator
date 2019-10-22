@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="LogFileFluentMigratorLoggerProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,7 +43,7 @@ namespace FluentMigrator.Runner.Logging
     public class LogFileFluentMigratorLoggerProvider : SqlScriptFluentMigratorLoggerProvider
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogFileFluentMigratorLoggerProvider"/> class.
+        /// Initializes a new instance of the <see cref="LogFileFluentMigratorLoggerProvider" /> class.
         /// </summary>
         /// <param name="assemblySource">The assembly source</param>
         /// <param name="options">The log file logger options</param>
@@ -41,6 +54,12 @@ namespace FluentMigrator.Runner.Logging
         {
         }
 
+        /// <summary>
+        /// Gets the name of the output file.
+        /// </summary>
+        /// <param name="assemblySource">The assembly source.</param>
+        /// <param name="options">The options.</param>
+        /// <returns>System.String.</returns>
         private static string GetOutputFileName(
             IAssemblySource assemblySource,
             LogFileFluentMigratorLoggerOptions options)

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaSchemaTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -28,27 +41,53 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Hana
 {
+    /// <summary>
+    /// Defines test class HanaSchemaTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.BaseSchemaTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.BaseSchemaTests" />
     [TestFixture]
     [Category("Integration")]
     [Category("Hana")]
     public class HanaSchemaTests : BaseSchemaTests
     {
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private HanaProcessor Processor { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingSchemaExistsReturnsFalseIfSchemaDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingSchemaExistsReturnsFalseIfSchemaDoesNotExist()
         {
             Processor.SchemaExists("DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingSchemaExistsReturnsTrueIfSchemaExists.
+        /// </summary>
         [Test]
         public override void CallingSchemaExistsReturnsTrueIfSchemaExists()
         {
             Assert.Ignore("Schemas aren't supported by this SAP Hana runner");
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
@@ -62,12 +101,18 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
             ServiceProvider = serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -75,6 +120,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
             Processor = ServiceScope.ServiceProvider.GetRequiredService<HanaProcessor>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AlterTableExpressionBuilderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -37,207 +50,312 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Builders.Alter
 {
+    /// <summary>
+    /// Defines test class AlterTableExpressionBuilderTests.
+    /// </summary>
     [TestFixture]
     public class AlterTableExpressionBuilderTests
     {
+        /// <summary>
+        /// Defines the test method CallingAsAnsiStringSetsColumnDbTypeToAnsiString.
+        /// </summary>
         [Test]
         public void CallingAsAnsiStringSetsColumnDbTypeToAnsiString()
         {
             VerifyColumnDbType(DbType.AnsiString, b => b.AsAnsiString());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsAnsiStringWithSizeSetsColumnDbTypeToAnsiString.
+        /// </summary>
         [Test]
         public void CallingAsAnsiStringWithSizeSetsColumnDbTypeToAnsiString()
         {
             VerifyColumnDbType(DbType.AnsiString, b => b.AsAnsiString(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsAnsiStringSetsColumnSizeToSpecifiedValue.
+        /// </summary>
         [Test]
         public void CallingAsAnsiStringSetsColumnSizeToSpecifiedValue()
         {
             VerifyColumnSize(255, b => b.AsAnsiString(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsBinarySetsColumnDbTypeToBinary.
+        /// </summary>
         [Test]
         public void CallingAsBinarySetsColumnDbTypeToBinary()
         {
             VerifyColumnDbType(DbType.Binary, b => b.AsBinary(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsBinarySetsColumnSizeToSpecifiedValue.
+        /// </summary>
         [Test]
         public void CallingAsBinarySetsColumnSizeToSpecifiedValue()
         {
             VerifyColumnSize(255, b => b.AsBinary(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsBooleanSetsColumnDbTypeToBoolean.
+        /// </summary>
         [Test]
         public void CallingAsBooleanSetsColumnDbTypeToBoolean()
         {
             VerifyColumnDbType(DbType.Boolean, b => b.AsBoolean());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsByteSetsColumnDbTypeToByte.
+        /// </summary>
         [Test]
         public void CallingAsByteSetsColumnDbTypeToByte()
         {
             VerifyColumnDbType(DbType.Byte, b => b.AsByte());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsCurrencySetsColumnDbTypeToCurrency.
+        /// </summary>
         [Test]
         public void CallingAsCurrencySetsColumnDbTypeToCurrency()
         {
             VerifyColumnDbType(DbType.Currency, b => b.AsCurrency());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsDateSetsColumnDbTypeToDate.
+        /// </summary>
         [Test]
         public void CallingAsDateSetsColumnDbTypeToDate()
         {
             VerifyColumnDbType(DbType.Date, b => b.AsDate());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsDateTimeSetsColumnDbTypeToDateTime.
+        /// </summary>
         [Test]
         public void CallingAsDateTimeSetsColumnDbTypeToDateTime()
         {
             VerifyColumnDbType(DbType.DateTime, b => b.AsDateTime());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsDateTime2SetsColumnDbTypeToDateTime2.
+        /// </summary>
         [Test]
         public void CallingAsDateTime2SetsColumnDbTypeToDateTime2()
         {
             VerifyColumnDbType(DbType.DateTime2, b => b.AsDateTime2());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsDateTimeOffsetSetsColumnDbTypeToDateTimeOffset.
+        /// </summary>
         [Test]
         public void CallingAsDateTimeOffsetSetsColumnDbTypeToDateTimeOffset()
         {
             VerifyColumnDbType(DbType.DateTimeOffset, b => b.AsDateTimeOffset());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsDecimalSetsColumnDbTypeToDecimal.
+        /// </summary>
         [Test]
         public void CallingAsDecimalSetsColumnDbTypeToDecimal()
         {
             VerifyColumnDbType(DbType.Decimal, b => b.AsDecimal());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsDecimalWithSizeSetsColumnDbTypeToDecimal.
+        /// </summary>
         [Test]
         public void CallingAsDecimalWithSizeSetsColumnDbTypeToDecimal()
         {
             VerifyColumnDbType(DbType.Decimal, b => b.AsDecimal(1, 2));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsDecimalStringSetsColumnSizeToSpecifiedValue.
+        /// </summary>
         [Test]
         public void CallingAsDecimalStringSetsColumnSizeToSpecifiedValue()
         {
             VerifyColumnSize(1, b => b.AsDecimal(1, 2));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsDecimalStringSetsColumnPrecisionToSpecifiedValue.
+        /// </summary>
         [Test]
         public void CallingAsDecimalStringSetsColumnPrecisionToSpecifiedValue()
         {
             VerifyColumnPrecision(2, b => b.AsDecimal(1, 2));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsDoubleSetsColumnDbTypeToDouble.
+        /// </summary>
         [Test]
         public void CallingAsDoubleSetsColumnDbTypeToDouble()
         {
             VerifyColumnDbType(DbType.Double, b => b.AsDouble());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsGuidSetsColumnDbTypeToGuid.
+        /// </summary>
         [Test]
         public void CallingAsGuidSetsColumnDbTypeToGuid()
         {
             VerifyColumnDbType(DbType.Guid, b => b.AsGuid());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsFixedLengthStringSetsColumnDbTypeToStringFixedLength.
+        /// </summary>
         [Test]
         public void CallingAsFixedLengthStringSetsColumnDbTypeToStringFixedLength()
         {
             VerifyColumnDbType(DbType.StringFixedLength, e => e.AsFixedLengthString(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsFixedLengthStringSetsColumnSizeToSpecifiedValue.
+        /// </summary>
         [Test]
         public void CallingAsFixedLengthStringSetsColumnSizeToSpecifiedValue()
         {
             VerifyColumnSize(255, b => b.AsFixedLengthString(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsFixedLengthAnsiStringSetsColumnDbTypeToAnsiStringFixedLength.
+        /// </summary>
         [Test]
         public void CallingAsFixedLengthAnsiStringSetsColumnDbTypeToAnsiStringFixedLength()
         {
             VerifyColumnDbType(DbType.AnsiStringFixedLength, b => b.AsFixedLengthAnsiString(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsFixedLengthAnsiStringSetsColumnSizeToSpecifiedValue.
+        /// </summary>
         [Test]
         public void CallingAsFixedLengthAnsiStringSetsColumnSizeToSpecifiedValue()
         {
             VerifyColumnSize(255, b => b.AsFixedLengthAnsiString(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsFloatSetsColumnDbTypeToSingle.
+        /// </summary>
         [Test]
         public void CallingAsFloatSetsColumnDbTypeToSingle()
         {
             VerifyColumnDbType(DbType.Single, b => b.AsFloat());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsInt16SetsColumnDbTypeToInt16.
+        /// </summary>
         [Test]
         public void CallingAsInt16SetsColumnDbTypeToInt16()
         {
             VerifyColumnDbType(DbType.Int16, b => b.AsInt16());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsInt32SetsColumnDbTypeToInt32.
+        /// </summary>
         [Test]
         public void CallingAsInt32SetsColumnDbTypeToInt32()
         {
             VerifyColumnDbType(DbType.Int32, b => b.AsInt32());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsInt64SetsColumnDbTypeToInt64.
+        /// </summary>
         [Test]
         public void CallingAsInt64SetsColumnDbTypeToInt64()
         {
             VerifyColumnDbType(DbType.Int64, b => b.AsInt64());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsStringSetsColumnDbTypeToString.
+        /// </summary>
         [Test]
         public void CallingAsStringSetsColumnDbTypeToString()
         {
             VerifyColumnDbType(DbType.String, b => b.AsString());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsStringWithSizeSetsColumnDbTypeToString.
+        /// </summary>
         [Test]
         public void CallingAsStringWithSizeSetsColumnDbTypeToString()
         {
             VerifyColumnDbType(DbType.String, b => b.AsString(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsStringSetsColumnSizeToSpecifiedValue.
+        /// </summary>
         [Test]
         public void CallingAsStringSetsColumnSizeToSpecifiedValue()
         {
             VerifyColumnSize(255, b => b.AsFixedLengthAnsiString(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsTimeSetsColumnDbTypeToTime.
+        /// </summary>
         [Test]
         public void CallingAsTimeSetsColumnDbTypeToTime()
         {
             VerifyColumnDbType(DbType.Time, b => b.AsTime());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsXmlSetsColumnDbTypeToXml.
+        /// </summary>
         [Test]
         public void CallingAsXmlSetsColumnDbTypeToXml()
         {
             VerifyColumnDbType(DbType.Xml, b => b.AsXml());
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsXmlWithSizeSetsColumnDbTypeToXml.
+        /// </summary>
         [Test]
         public void CallingAsXmlWithSizeSetsColumnDbTypeToXml()
         {
             VerifyColumnDbType(DbType.Xml, b => b.AsXml(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsXmlSetsColumnSizeToSpecifiedValue.
+        /// </summary>
         [Test]
         public void CallingAsXmlSetsColumnSizeToSpecifiedValue()
         {
             VerifyColumnSize(255, b => b.AsXml(255));
         }
 
+        /// <summary>
+        /// Defines the test method CallingAsCustomSetsTypeToNullAndSetsCustomType.
+        /// </summary>
         [Test]
         public void CallingAsCustomSetsTypeToNullAndSetsCustomType()
         {
@@ -245,6 +363,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             VerifyColumnProperty(c => c.CustomType = "Test", b => b.AsCustom("Test"));
         }
 
+        /// <summary>
+        /// Defines the test method CallingWithDefaultValueSetsDefaultValue.
+        /// </summary>
         [Test]
         public void CallingWithDefaultValueSetsDefaultValue()
         {
@@ -265,6 +386,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             columnMock.VerifySet(c => c.DefaultValue = value);
         }
 
+        /// <summary>
+        /// Defines the test method CallingWithDefaultValueOnNewColumnDoesNotAddDefaultConstraintExpression.
+        /// </summary>
         [Test]
         public void CallingWithDefaultValueOnNewColumnDoesNotAddDefaultConstraintExpression() {
             var expressions = new List<IMigrationExpression>();
@@ -283,6 +407,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             Assert.That(expressions.Count(), Is.EqualTo(0));
         }
 
+        /// <summary>
+        /// Defines the test method CallingWithDefaultValueOnAlterColumnAddsDefaultConstraintExpression.
+        /// </summary>
         [Test]
         public void CallingWithDefaultValueOnAlterColumnAddsDefaultConstraintExpression() {
             var expressions = new List<IMigrationExpression>();
@@ -301,6 +428,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             Assert.That(expressions.Count(), Is.EqualTo(1));
         }
 
+        /// <summary>
+        /// Defines the test method CallingWithDefaultSetsDefaultValue.
+        /// </summary>
         [Test]
         public void CallingWithDefaultSetsDefaultValue()
         {
@@ -317,6 +447,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             columnMock.VerifySet(c => c.DefaultValue = SystemMethods.CurrentDateTime);
         }
 
+        /// <summary>
+        /// Defines the test method CallingWithDefaultOnNewColumnDoesNotAddDefaultConstraintExpression.
+        /// </summary>
         [Test]
         public void CallingWithDefaultOnNewColumnDoesNotAddDefaultConstraintExpression()
         {
@@ -336,6 +469,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             Assert.That(expressions.Count(), Is.EqualTo(0));
         }
 
+        /// <summary>
+        /// Defines the test method CallingWithDefaultOnAlterColumnAddsDefaultConstraintExpression.
+        /// </summary>
         [Test]
         public void CallingWithDefaultOnAlterColumnAddsDefaultConstraintExpression()
         {
@@ -355,12 +491,18 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             Assert.That(expressions.Count(), Is.EqualTo(1));
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignKeySetsIsForeignKeyToTrue.
+        /// </summary>
         [Test]
         public void CallingForeignKeySetsIsForeignKeyToTrue()
         {
             VerifyColumnProperty(c => c.IsForeignKey = true, b => b.ForeignKey());
         }
 
+        /// <summary>
+        /// Defines the test method CallingReferencedByAddsNewForeignKeyExpressionToContext.
+        /// </summary>
         [Test]
         public void CallingReferencedByAddsNewForeignKeyExpressionToContext()
         {
@@ -396,6 +538,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignKeyAddsNewForeignKeyExpressionToContext.
+        /// </summary>
         [Test]
         public void CallingForeignKeyAddsNewForeignKeyExpressionToContext()
         {
@@ -430,7 +575,11 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             contextMock.VerifyGet(x => x.Expressions);
         }
 
-    [TestCase(Rule.Cascade), TestCase(Rule.SetDefault), TestCase(Rule.SetNull), TestCase(Rule.None)]
+        /// <summary>
+        /// Defines the test method CallingOnUpdateSetsOnUpdateOnForeignKeyExpression.
+        /// </summary>
+        /// <param name="rule">The rule.</param>
+        [TestCase(Rule.Cascade), TestCase(Rule.SetDefault), TestCase(Rule.SetNull), TestCase(Rule.None)]
         public void CallingOnUpdateSetsOnUpdateOnForeignKeyExpression(Rule rule)
         {
             var builder = new AlterTableExpressionBuilder(null, null) { CurrentForeignKey = new ForeignKeyDefinition() };
@@ -439,6 +588,10 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             Assert.That(builder.CurrentForeignKey.OnDelete, Is.EqualTo(Rule.None));
         }
 
+        /// <summary>
+        /// Defines the test method CallingOnDeleteSetsOnDeleteOnForeignKeyExpression.
+        /// </summary>
+        /// <param name="rule">The rule.</param>
         [TestCase(Rule.Cascade), TestCase(Rule.SetDefault), TestCase(Rule.SetNull), TestCase(Rule.None)]
         public void CallingOnDeleteSetsOnDeleteOnForeignKeyExpression(Rule rule)
         {
@@ -448,6 +601,10 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             Assert.That(builder.CurrentForeignKey.OnDelete, Is.EqualTo(rule));
         }
 
+        /// <summary>
+        /// Defines the test method CallingOnDeleteOrUpdateSetsOnUpdateAndOnDeleteOnForeignKeyExpression.
+        /// </summary>
+        /// <param name="rule">The rule.</param>
         [TestCase(Rule.Cascade), TestCase(Rule.SetDefault), TestCase(Rule.SetNull), TestCase(Rule.None)]
         public void CallingOnDeleteOrUpdateSetsOnUpdateAndOnDeleteOnForeignKeyExpression(Rule rule)
         {
@@ -457,12 +614,18 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             Assert.That(builder.CurrentForeignKey.OnDelete, Is.EqualTo(rule));
         }
 
+        /// <summary>
+        /// Defines the test method CallingIdentitySetsIsIdentityToTrue.
+        /// </summary>
         [Test]
         public void CallingIdentitySetsIsIdentityToTrue()
         {
             VerifyColumnProperty(c => c.IsIdentity = true, b => b.Identity());
         }
 
+        /// <summary>
+        /// Defines the test method CallingIdentityWithSeededIdentitySetsAdditionalProperties.
+        /// </summary>
         [Test]
         public void CallingIdentityWithSeededIdentitySetsAdditionalProperties()
         {
@@ -481,6 +644,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
                 new KeyValuePair<string, object>(SqlServerExtensions.IdentityIncrement, 44));
         }
 
+        /// <summary>
+        /// Defines the test method CallingIdentityWithSeededLongIdentitySetsAdditionalProperties.
+        /// </summary>
         [Test]
         public void CallingIdentityWithSeededLongIdentitySetsAdditionalProperties()
         {
@@ -499,24 +665,36 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
                 new KeyValuePair<string, object>(SqlServerExtensions.IdentityIncrement, 44));
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexedCallsHelperWithNullIndexName.
+        /// </summary>
         [Test]
         public void CallingIndexedCallsHelperWithNullIndexName()
         {
             VerifyColumnHelperCall(c => c.Indexed(), h => h.Indexed(null));
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexedNamedCallsHelperWithName.
+        /// </summary>
         [Test]
         public void CallingIndexedNamedCallsHelperWithName()
         {
             VerifyColumnHelperCall(c => c.Indexed("MyIndexName"), h => h.Indexed("MyIndexName"));
         }
 
+        /// <summary>
+        /// Defines the test method CallingPrimaryKeySetsIsPrimaryKeyToTrue.
+        /// </summary>
         [Test]
         public void CallingPrimaryKeySetsIsPrimaryKeyToTrue()
         {
             VerifyColumnProperty(c => c.IsPrimaryKey = true, b => b.PrimaryKey());
         }
 
+        /// <summary>
+        /// Defines the test method ColumnHelperSetOnCreation.
+        /// </summary>
         [Test]
         public void ColumnHelperSetOnCreation()
         {
@@ -528,6 +706,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             Assert.IsNotNull(builder.ColumnHelper);
         }
 
+        /// <summary>
+        /// Defines the test method ColumnExpressionBuilderUsesExpressionSchemaAndTableName.
+        /// </summary>
         [Test]
         public void ColumnExpressionBuilderUsesExpressionSchemaAndTableName()
         {
@@ -543,6 +724,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             Assert.AreEqual("Flinstone", builderAsInterface.TableName);
         }
 
+        /// <summary>
+        /// Defines the test method ColumnExpressionBuilderUsesCurrentColumn.
+        /// </summary>
         [Test]
         public void ColumnExpressionBuilderUsesCurrentColumn()
         {
@@ -559,24 +743,36 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             Assert.AreSame(curColumn, builderAsInterface.Column);
         }
 
+        /// <summary>
+        /// Defines the test method NullableUsesHelper.
+        /// </summary>
         [Test]
         public void NullableUsesHelper()
         {
             VerifyColumnHelperCall(c => c.Nullable(), h => h.SetNullable(true));
         }
 
+        /// <summary>
+        /// Defines the test method NotNullableUsesHelper.
+        /// </summary>
         [Test]
         public void NotNullableUsesHelper()
         {
             VerifyColumnHelperCall(c => c.NotNullable(), h => h.SetNullable(false));
         }
 
+        /// <summary>
+        /// Defines the test method UniqueUsesHelper.
+        /// </summary>
         [Test]
         public void UniqueUsesHelper()
         {
             VerifyColumnHelperCall(c => c.Unique(), h => h.Unique(null));
         }
 
+        /// <summary>
+        /// Defines the test method NamedUniqueUsesHelper.
+        /// </summary>
         [Test]
         public void NamedUniqueUsesHelper()
         {
@@ -584,12 +780,20 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
         }
 
 
+        /// <summary>
+        /// Defines the test method SetExistingRowsUsesHelper.
+        /// </summary>
         [Test]
         public void SetExistingRowsUsesHelper()
         {
             VerifyColumnHelperCall(c => c.SetExistingRowsTo("test"), h => h.SetExistingRowsTo("test"));
         }
 
+        /// <summary>
+        /// Verifies the column helper call.
+        /// </summary>
+        /// <param name="callToTest">The call to test.</param>
+        /// <param name="expectedHelperAction">The expected helper action.</param>
         private void VerifyColumnHelperCall(Action<AlterTableExpressionBuilder> callToTest, System.Linq.Expressions.Expression<Action<ColumnExpressionBuilderHelper>> expectedHelperAction)
         {
             var expressionMock = new Mock<AlterTableExpression>();
@@ -604,6 +808,11 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             helperMock.Verify(expectedHelperAction);
         }
 
+        /// <summary>
+        /// Verifies the column property.
+        /// </summary>
+        /// <param name="columnExpression">The column expression.</param>
+        /// <param name="callToTest">The call to test.</param>
         private void VerifyColumnProperty(Action<ColumnDefinition> columnExpression, Action<AlterTableExpressionBuilder> callToTest)
         {
             var columnMock = new Mock<ColumnDefinition>();
@@ -622,6 +831,11 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
 
         }
 
+        /// <summary>
+        /// Verifies the type of the column database.
+        /// </summary>
+        /// <param name="expected">The expected.</param>
+        /// <param name="callToTest">The call to test.</param>
         private void VerifyColumnDbType(DbType expected, Action<AlterTableExpressionBuilder> callToTest)
         {
             var columnMock = new Mock<ColumnDefinition>();
@@ -638,6 +852,11 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             columnMock.VerifySet(c => c.Type = expected);
         }
 
+        /// <summary>
+        /// Verifies the size of the column.
+        /// </summary>
+        /// <param name="expected">The expected.</param>
+        /// <param name="callToTest">The call to test.</param>
         private void VerifyColumnSize(int expected, Action<AlterTableExpressionBuilder> callToTest)
         {
             var columnMock = new Mock<ColumnDefinition>();
@@ -654,6 +873,11 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             columnMock.VerifySet(c => c.Size = expected);
         }
 
+        /// <summary>
+        /// Verifies the column precision.
+        /// </summary>
+        /// <param name="expected">The expected.</param>
+        /// <param name="callToTest">The call to test.</param>
         private void VerifyColumnPrecision(int expected, Action<AlterTableExpressionBuilder> callToTest)
         {
             var columnMock = new Mock<ColumnDefinition>();

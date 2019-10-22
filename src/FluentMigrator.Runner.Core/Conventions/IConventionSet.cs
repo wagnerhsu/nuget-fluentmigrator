@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IConventionSet.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -26,47 +39,53 @@ namespace FluentMigrator.Runner.Conventions
     public interface IConventionSet
     {
         /// <summary>
-        /// Gets the root path convention to be applied to <see cref="IFileSystemExpression"/> implementations
+        /// Gets the root path convention to be applied to <see cref="IFileSystemExpression" /> implementations
         /// </summary>
+        /// <value>The root path convention.</value>
         IRootPathConvention RootPathConvention { get; }
 
         /// <summary>
-        /// Gets the default schema name convention to be applied to <see cref="ISchemaExpression"/> implementations
+        /// Gets the default schema name convention to be applied to <see cref="ISchemaExpression" /> implementations
         /// </summary>
-        /// <remarks>
-        /// This class cannot be overridden. The <see cref="IDefaultSchemaNameConvention"/>
-        /// must be implemented/provided instead.
-        /// </remarks>
+        /// <value>The schema convention.</value>
+        /// <remarks>This class cannot be overridden. The <see cref="IDefaultSchemaNameConvention" />
+        /// must be implemented/provided instead.</remarks>
         DefaultSchemaConvention SchemaConvention { get; }
 
         /// <summary>
-        /// Gets the conventions to be applied to <see cref="IColumnsExpression"/> implementations
+        /// Gets the conventions to be applied to <see cref="IColumnsExpression" /> implementations
         /// </summary>
+        /// <value>The columns conventions.</value>
         IList<IColumnsConvention> ColumnsConventions { get; }
 
         /// <summary>
-        /// Gets the conventions to be applied to <see cref="IConstraintExpression"/> implementations
+        /// Gets the conventions to be applied to <see cref="IConstraintExpression" /> implementations
         /// </summary>
+        /// <value>The constraint conventions.</value>
         IList<IConstraintConvention> ConstraintConventions { get; }
 
         /// <summary>
-        /// Gets the conventions to be applied to <see cref="IForeignKeyExpression"/> implementations
+        /// Gets the conventions to be applied to <see cref="IForeignKeyExpression" /> implementations
         /// </summary>
+        /// <value>The foreign key conventions.</value>
         IList<IForeignKeyConvention> ForeignKeyConventions { get; }
 
         /// <summary>
-        /// Gets the conventions to be applied to <see cref="IIndexExpression"/> implementations
+        /// Gets the conventions to be applied to <see cref="IIndexExpression" /> implementations
         /// </summary>
+        /// <value>The index conventions.</value>
         IList<IIndexConvention> IndexConventions { get; }
 
         /// <summary>
-        /// Gets the conventions to be applied to <see cref="ISequenceExpression"/> implementations
+        /// Gets the conventions to be applied to <see cref="ISequenceExpression" /> implementations
         /// </summary>
+        /// <value>The sequence conventions.</value>
         IList<ISequenceConvention> SequenceConventions { get; }
 
         /// <summary>
-        /// Gets the conventions to be applied to <see cref="IAutoNameExpression"/> implementations
+        /// Gets the conventions to be applied to <see cref="IAutoNameExpression" /> implementations
         /// </summary>
+        /// <value>The automatic name conventions.</value>
         IList<IAutoNameConvention> AutoNameConventions { get; }
     }
 }

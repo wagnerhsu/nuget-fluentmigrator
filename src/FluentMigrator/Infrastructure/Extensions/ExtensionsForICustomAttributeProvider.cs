@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ExtensionsForICustomAttributeProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -23,7 +36,7 @@ using System.Reflection;
 namespace FluentMigrator.Infrastructure.Extensions
 {
     /// <summary>
-    /// Extension methods for <see cref="ICustomAttributeProvider"/>
+    /// Extension methods for <see cref="ICustomAttributeProvider" />
     /// </summary>
     public static class ExtensionsForICustomAttributeProvider
     {
@@ -31,7 +44,7 @@ namespace FluentMigrator.Infrastructure.Extensions
         /// Get the first attribute of exactly the given type
         /// </summary>
         /// <typeparam name="T">The attribute type to search for</typeparam>
-        /// <param name="member">The <see cref="ICustomAttributeProvider"/></param>
+        /// <param name="member">The <see cref="ICustomAttributeProvider" /></param>
         /// <returns>The found attribute or <c>null</c></returns>
         public static T GetOneAttribute<T>(this ICustomAttributeProvider member)
             where T : Attribute
@@ -43,8 +56,8 @@ namespace FluentMigrator.Infrastructure.Extensions
         /// Get the first attribute of the given type
         /// </summary>
         /// <typeparam name="T">The attribute type to search for</typeparam>
-        /// <param name="member">The <see cref="ICustomAttributeProvider"/></param>
-        /// <param name="inherit"><c>true</c> when attributes derived form <typeparamref name="T"/> should be returned too</param>
+        /// <param name="member">The <see cref="ICustomAttributeProvider" /></param>
+        /// <param name="inherit"><c>true</c> when attributes derived form <typeparamref name="T" /> should be returned too</param>
         /// <returns>The found attribute or <c>null</c></returns>
         public static T GetOneAttribute<T>(this ICustomAttributeProvider member, bool inherit)
             where T : Attribute
@@ -56,7 +69,7 @@ namespace FluentMigrator.Infrastructure.Extensions
         /// Get all attributes of exactly the given type
         /// </summary>
         /// <typeparam name="T">The attribute type to search for</typeparam>
-        /// <param name="member">The <see cref="ICustomAttributeProvider"/></param>
+        /// <param name="member">The <see cref="ICustomAttributeProvider" /></param>
         /// <returns>The found attributes</returns>
         public static T[] GetAllAttributes<T>(this ICustomAttributeProvider member)
             where T : Attribute
@@ -68,8 +81,8 @@ namespace FluentMigrator.Infrastructure.Extensions
         /// Get all attributes of the given type
         /// </summary>
         /// <typeparam name="T">The attribute type to search for</typeparam>
-        /// <param name="member">The <see cref="ICustomAttributeProvider"/></param>
-        /// <param name="inherit"><c>true</c> when attributes derived form <typeparamref name="T"/> should be returned too</param>
+        /// <param name="member">The <see cref="ICustomAttributeProvider" /></param>
+        /// <param name="inherit"><c>true</c> when attributes derived form <typeparamref name="T" /> should be returned too</param>
         /// <returns>The found attributes</returns>
         public static T[] GetAllAttributes<T>(this ICustomAttributeProvider member, bool inherit)
             where T : Attribute
@@ -81,7 +94,7 @@ namespace FluentMigrator.Infrastructure.Extensions
         /// Returns a value indicating whether the custom attribute provider contains the given attribute
         /// </summary>
         /// <typeparam name="T">The attribute type to search for</typeparam>
-        /// <param name="member">The <see cref="ICustomAttributeProvider"/></param>
+        /// <param name="member">The <see cref="ICustomAttributeProvider" /></param>
         /// <returns><c>true</c> when an attribute with the given type could be found</returns>
         public static bool HasAttribute<T>(this ICustomAttributeProvider member)
             where T : Attribute
@@ -93,8 +106,8 @@ namespace FluentMigrator.Infrastructure.Extensions
         /// Returns a value indicating whether the custom attribute provider contains the given attribute
         /// </summary>
         /// <typeparam name="T">The attribute type to search for</typeparam>
-        /// <param name="member">The <see cref="ICustomAttributeProvider"/></param>
-        /// <param name="inherit"><c>true</c> when attributes derived form <typeparamref name="T"/> should be returned too</param>
+        /// <param name="member">The <see cref="ICustomAttributeProvider" /></param>
+        /// <param name="inherit"><c>true</c> when attributes derived form <typeparamref name="T" /> should be returned too</param>
         /// <returns><c>true</c> when an attribute with the given type could be found</returns>
         public static bool HasAttribute<T>(this ICustomAttributeProvider member, bool inherit)
             where T : Attribute

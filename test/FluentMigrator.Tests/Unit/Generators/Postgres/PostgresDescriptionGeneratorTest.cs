@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PostgresDescriptionGeneratorTest.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System.Linq;
 using FluentMigrator.Runner.Generators.Postgres;
 using FluentMigrator.Runner.Processors.Postgres;
@@ -8,9 +21,17 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Postgres
 {
+    /// <summary>
+    /// Defines test class PostgresDescriptionGeneratorTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseDescriptionGeneratorTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseDescriptionGeneratorTests" />
     [TestFixture]
     public class PostgresDescriptionGeneratorTests : BaseDescriptionGeneratorTests
     {
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -18,6 +39,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             DescriptionGenerator = new PostgresDescriptionGenerator(quoter);
         }
 
+        /// <summary>
+        /// Defines the test method GenerateDescriptionStatementsForCreateTableReturnTableDescriptionStatement.
+        /// </summary>
         [Test]
         public override void GenerateDescriptionStatementsForCreateTableReturnTableDescriptionStatement()
         {
@@ -28,6 +52,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("COMMENT ON TABLE \"public\".\"TestTable1\" IS 'TestDescription';");
         }
 
+        /// <summary>
+        /// Defines the test method GenerateDescriptionStatementsForCreateTableReturnTableDescriptionAndColumnDescriptionsStatements.
+        /// </summary>
         [Test]
         public override void GenerateDescriptionStatementsForCreateTableReturnTableDescriptionAndColumnDescriptionsStatements()
         {
@@ -38,6 +65,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("COMMENT ON TABLE \"public\".\"TestTable1\" IS 'TestDescription';COMMENT ON COLUMN \"public\".\"TestTable1\".\"TestColumn1\" IS 'TestColumn1Description';COMMENT ON COLUMN \"public\".\"TestTable1\".\"TestColumn2\" IS 'TestColumn2Description';");
         }
 
+        /// <summary>
+        /// Defines the test method GenerateDescriptionStatementForAlterTableReturnTableDescriptionStatement.
+        /// </summary>
         [Test]
         public override void GenerateDescriptionStatementForAlterTableReturnTableDescriptionStatement()
         {
@@ -47,6 +77,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             statement.ShouldBe("COMMENT ON TABLE \"public\".\"TestTable1\" IS 'TestDescription';");
         }
 
+        /// <summary>
+        /// Defines the test method GenerateDescriptionStatementForCreateColumnReturnColumnDescriptionStatement.
+        /// </summary>
         [Test]
         public override void GenerateDescriptionStatementForCreateColumnReturnColumnDescriptionStatement()
         {
@@ -56,6 +89,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             statement.ShouldBe("COMMENT ON COLUMN \"public\".\"TestTable1\".\"TestColumn1\" IS 'TestColumn1Description';");
         }
 
+        /// <summary>
+        /// Defines the test method GenerateDescriptionStatementForAlterColumnReturnColumnDescriptionStatement.
+        /// </summary>
         [Test]
         public override void GenerateDescriptionStatementForAlterColumnReturnColumnDescriptionStatement()
         {

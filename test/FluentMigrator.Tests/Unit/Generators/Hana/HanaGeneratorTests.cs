@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaGeneratorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -28,18 +41,30 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Hana
 {
+    /// <summary>
+    /// Defines test class HanaGeneratorTests.
+    /// </summary>
     [TestFixture]
     [Category("Hana")]
     public class HanaGeneratorTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected HanaGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new HanaGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAutoIncrementColumnForInt64.
+        /// </summary>
         [Test]
         public void CanCreateAutoIncrementColumnForInt64()
         {
@@ -50,6 +75,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" BIGINT GENERATED ALWAYS AS IDENTITY, \"TestColumn2\" INTEGER);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithBinaryColumnWithSize.
+        /// </summary>
         [Test]
         public void CanCreateTableWithBinaryColumnWithSize()
         {
@@ -61,6 +89,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" VARBINARY(10000), \"TestColumn2\" INTEGER);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithBlobColumn.
+        /// </summary>
         [Test]
         public void CanCreateTableWithBlobColumn()
         {
@@ -71,6 +102,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" BLOB, \"TestColumn2\" INTEGER);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithBlobColumnWithObjectType.
+        /// </summary>
         [Test]
         public void CanCreateTableWithBlobColumnWithObjectType()
         {
@@ -81,6 +115,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" BLOB, \"TestColumn2\" INTEGER);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithBoolDefaultValue.
+        /// </summary>
         [Test]
         public void CanCreateTableWithBoolDefaultValue()
         {
@@ -91,6 +128,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255) DEFAULT 1, \"TestColumn2\" INTEGER);");
         }
 
+        /// <summary>
+        /// Defines the test method CanUseSystemMethodCurrentUTCDateTimeAsADefaultValueForAColumn.
+        /// </summary>
         [Test]
         public void CanUseSystemMethodCurrentUTCDateTimeAsADefaultValueForAColumn()
         {
@@ -103,6 +143,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("ALTER TABLE \"NewTable\" ADD (\"NewColumn\" NVARCHAR(5) DEFAULT CURRENT_UTCTIMESTAMP);");
         }
 
+        /// <summary>
+        /// Defines the test method CanUseSystemMethodCurrentCDateTimeAsADefaultValueForAColumn.
+        /// </summary>
         [Test]
         public void CanUseSystemMethodCurrentCDateTimeAsADefaultValueForAColumn()
         {
@@ -115,6 +158,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("ALTER TABLE \"NewTable\" ADD (\"NewColumn\" NVARCHAR(5) DEFAULT CURRENT_TIMESTAMP);");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnAndSetAsNullable.
+        /// </summary>
         [Test]
         public void CanAlterColumnAndSetAsNullable()
         {
@@ -129,6 +175,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("ALTER TABLE \"TestTable1\" ALTER (\"TestColumn1\" NVARCHAR(255) NULL);");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnAndSetAsNotNullable.
+        /// </summary>
         [Test]
         public void CanAlterColumnAndSetAsNotNullable()
         {

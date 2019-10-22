@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="GenericQuoter.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -22,6 +35,11 @@ namespace FluentMigrator.Runner.Generators.Generic
 {
     using System;
 
+    /// <summary>
+    /// Class GenericQuoter.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.IQuoter" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.IQuoter" />
     public class GenericQuoter : IQuoter
     {
         /// <inheritdoc />
@@ -70,11 +88,21 @@ namespace FluentMigrator.Runner.Generators.Generic
             return value.ToString();
         }
 
+        /// <summary>
+        /// Froms the time span.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public virtual string FromTimeSpan(TimeSpan value)
         {
             return ValueQuote + value.ToString() + ValueQuote;
         }
 
+        /// <summary>
+        /// Formats the byte array.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         protected virtual string FormatByteArray(byte[] value)
         {
             var hex = new System.Text.StringBuilder((value.Length * 2)+2);
@@ -84,91 +112,175 @@ namespace FluentMigrator.Runner.Generators.Generic
             return hex.ToString();
         }
 
+        /// <summary>
+        /// Formats the decimal.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         private string FormatDecimal(decimal value)
         {
             return value.ToString(CultureInfo.InvariantCulture);
         }
 
+        /// <summary>
+        /// Formats the float.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         private string FormatFloat(float value)
         {
             return value.ToString(CultureInfo.InvariantCulture);
         }
 
+        /// <summary>
+        /// Formats the double.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         private string FormatDouble(double value)
         {
             return value.ToString(CultureInfo.InvariantCulture);
         }
 
+        /// <summary>
+        /// Formats the null.
+        /// </summary>
+        /// <returns>System.String.</returns>
         public virtual string FormatNull()
         {
             return "NULL";
         }
 
+        /// <summary>
+        /// Formats the ANSI string.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public virtual string FormatAnsiString(string value)
         {
             return ValueQuote + value.Replace(ValueQuote, EscapeValueQuote) + ValueQuote;
         }
 
+        /// <summary>
+        /// Formats the national string.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public virtual string FormatNationalString(string value)
         {
             return ValueQuote + value.Replace(ValueQuote, EscapeValueQuote) + ValueQuote;
         }
 
+        /// <summary>
+        /// Formats the system methods.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
+        /// <exception cref="NotSupportedException">The system method {value} is not supported.</exception>
         public virtual string FormatSystemMethods(SystemMethods value)
         {
             throw new NotSupportedException($"The system method {value} is not supported.");
         }
 
+        /// <summary>
+        /// Formats the character.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public virtual string FormatChar(char value)
         {
             return ValueQuote + value + ValueQuote;
         }
 
+        /// <summary>
+        /// Formats the bool.
+        /// </summary>
+        /// <param name="value">if set to <c>true</c> [value].</param>
+        /// <returns>System.String.</returns>
         public virtual string FormatBool(bool value)
         {
             return (value) ? 1.ToString() : 0.ToString();
         }
 
+        /// <summary>
+        /// Formats the unique identifier.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public virtual string FormatGuid(Guid value)
         {
             return ValueQuote + value.ToString() + ValueQuote;
         }
 
+        /// <summary>
+        /// Formats the date time.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public virtual string FormatDateTime(DateTime value)
         {
             return ValueQuote + (value).ToString("yyyy-MM-ddTHH:mm:ss",CultureInfo.InvariantCulture) + ValueQuote;
         }
 
+        /// <summary>
+        /// Formats the date time offset.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public virtual string FormatDateTimeOffset(DateTimeOffset value)
         {
             return ValueQuote + (value).ToString("yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture) + ValueQuote;
         }
 
+        /// <summary>
+        /// Formats the enum.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public virtual string FormatEnum(object value)
         {
             return ValueQuote + value + ValueQuote;
         }
 
+        /// <summary>
+        /// Gets the value quote.
+        /// </summary>
+        /// <value>The value quote.</value>
         public virtual string ValueQuote { get { return "'"; } }
 
+        /// <summary>
+        /// Gets the escape value quote.
+        /// </summary>
+        /// <value>The escape value quote.</value>
         public virtual string EscapeValueQuote { get { return ValueQuote + ValueQuote; } }
 
         /// <summary>
         /// Gets the separator between identifiers (e.g. the dot between SCHEMA.TABLENAME)
         /// </summary>
+        /// <value>The identifier separator.</value>
         public virtual string IdentifierSeparator { get; } = ".";
 
         /// <summary>
         /// Returns the opening quote identifier - " is the standard according to the specification
         /// </summary>
+        /// <value>The open quote.</value>
         public virtual string OpenQuote => "\"";
 
         /// <summary>
         /// Returns the closing quote identifier - " is the standard according to the specification
         /// </summary>
+        /// <value>The close quote.</value>
         public virtual string CloseQuote => "\"";
 
+        /// <summary>
+        /// Gets the open quote escape string.
+        /// </summary>
+        /// <value>The open quote escape string.</value>
         public virtual string OpenQuoteEscapeString { get { return OpenQuote.PadRight(2, OpenQuote.ToCharArray()[0]); } }
+        /// <summary>
+        /// Gets the close quote escape string.
+        /// </summary>
+        /// <value>The close quote escape string.</value>
         public virtual string CloseQuoteEscapeString { get { return CloseQuote.PadRight(2, CloseQuote.ToCharArray()[0]); } }
 
         /// <inheritdoc />
@@ -181,6 +293,11 @@ namespace FluentMigrator.Runner.Generators.Generic
             return (name.StartsWith(OpenQuote) && name.EndsWith(CloseQuote));
         }
 
+        /// <summary>
+        /// Shoulds the quote.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         [ContractAnnotation("name:null => false")]
         protected virtual bool ShouldQuote([CanBeNull] string name)
         {
@@ -275,6 +392,12 @@ namespace FluentMigrator.Runner.Generators.Generic
             return unquoted;
         }
 
+        /// <summary>
+        /// Creates the schema prefixed quoted identifier.
+        /// </summary>
+        /// <param name="quotedSchemaName">Name of the quoted schema.</param>
+        /// <param name="quotedIdentifier">The quoted identifier.</param>
+        /// <returns>System.String.</returns>
         protected virtual string CreateSchemaPrefixedQuotedIdentifier(string quotedSchemaName, string quotedIdentifier)
         {
             if (string.IsNullOrEmpty(quotedSchemaName))

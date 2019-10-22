@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="UpdateDataExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -25,15 +38,18 @@ using FluentMigrator.Infrastructure;
 namespace FluentMigrator.Builders.Update
 {
     /// <summary>
-    /// An expression builder for a <see cref="UpdateDataExpression"/>
+    /// An expression builder for a <see cref="UpdateDataExpression" />
     /// </summary>
     public class UpdateDataExpressionBuilder : IUpdateSetOrInSchemaSyntax,
         IUpdateWhereSyntax
     {
+        /// <summary>
+        /// The expression
+        /// </summary>
         private readonly UpdateDataExpression _expression;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateDataExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="UpdateDataExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         public UpdateDataExpressionBuilder(UpdateDataExpression expression)
@@ -42,7 +58,7 @@ namespace FluentMigrator.Builders.Update
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateDataExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="UpdateDataExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         /// <param name="context">The migration context</param>
@@ -79,6 +95,11 @@ namespace FluentMigrator.Builders.Update
             _expression.IsAllRows = true;
         }
 
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <param name="dataAsAnonymousType">Type of the data as anonymous.</param>
+        /// <returns>List&lt;KeyValuePair&lt;System.String, System.Object&gt;&gt;.</returns>
         private static List<KeyValuePair<string, object>> GetData(object dataAsAnonymousType)
         {
             var data = new List<KeyValuePair<string, object>>();

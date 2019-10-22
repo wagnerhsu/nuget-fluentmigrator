@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AppConfigConnectionStringAccessorOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -30,12 +43,14 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
         /// <summary>
         /// Gets or sets the path where the config file can be found
         /// </summary>
+        /// <value>The connection string configuration path.</value>
         [CanBeNull]
         public string ConnectionStringConfigPath { get; set; }
 
         /// <summary>
         /// Gets or sets the machine name
         /// </summary>
+        /// <value>The name of the machine.</value>
         [CanBeNull]
         public string MachineName { get; set; } = Environment.MachineName;
     }

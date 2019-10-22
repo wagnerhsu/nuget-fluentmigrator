@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleManagedDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -20,19 +33,34 @@ using System;
 
 namespace FluentMigrator.Runner.Processors.Oracle
 {
+    /// <summary>
+    /// Class OracleManagedDbFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.Oracle.OracleBaseDbFactory" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.Oracle.OracleBaseDbFactory" />
     public class OracleManagedDbFactory : OracleBaseDbFactory
     {
+        /// <summary>
+        /// The entries
+        /// </summary>
         private static readonly TestEntry[] _entries =
         {
             new TestEntry("Oracle.ManagedDataAccess", "Oracle.ManagedDataAccess.Client.OracleClientFactory"),
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleManagedDbFactory"/> class.
+        /// </summary>
         [Obsolete]
         public OracleManagedDbFactory()
             : this(serviceProvider: null)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleManagedDbFactory"/> class.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
         public OracleManagedDbFactory(IServiceProvider serviceProvider)
             : base(serviceProvider, _entries)
         {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ColumnExpressionBuilderHelper.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using FluentMigrator.Expressions;
 using FluentMigrator.Infrastructure;
 using FluentMigrator.Model;
@@ -27,26 +40,31 @@ namespace FluentMigrator.Builders
     /// This class provides a common location for logic pertaining to setting and maintaining
     /// expressions for expression builders which manipulate the the ColumnDefinition.
     /// </summary>
-    /// <remarks>
-    /// This is a support class for the migrator framework and is not intended for external use.
-    /// TODO: make this internal, and the change assmebly info so InternalsVisibleTo is set for the test assemblies.
-    /// </remarks>
+    /// <remarks>This is a support class for the migrator framework and is not intended for external use.
+    /// TODO: make this internal, and the change assmebly info so InternalsVisibleTo is set for the test assemblies.</remarks>
     public class ColumnExpressionBuilderHelper
     {
+        /// <summary>
+        /// The existing rows data by column
+        /// </summary>
         private readonly Dictionary<ColumnDefinition, ExistingRowsData> _existingRowsDataByColumn;
+        /// <summary>
+        /// The builder
+        /// </summary>
         private readonly IColumnExpressionBuilder _builder;
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly IMigrationContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ColumnExpressionBuilderHelper"/> class.
+        /// Initializes a new instance of the <see cref="ColumnExpressionBuilderHelper" /> class.
         /// </summary>
-        /// <remarks>
-        /// This constructor exists only to ease creating mock objects.
-        /// </remarks>
+        /// <remarks>This constructor exists only to ease creating mock objects.</remarks>
         protected ColumnExpressionBuilderHelper() { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ColumnExpressionBuilderHelper"/> class.
+        /// Initializes a new instance of the <see cref="ColumnExpressionBuilderHelper" /> class.
         /// </summary>
         /// <param name="builder">The expression builder</param>
         /// <param name="context">The migration context</param>
@@ -61,6 +79,7 @@ namespace FluentMigrator.Builders
         /// Either updates the IsNullable flag on the column, or creates/removes the SetNotNull expression, depending
         /// on whether the column has a 'Set existing rows' expression.
         /// </summary>
+        /// <param name="isNullable">if set to <c>true</c> [is nullable].</param>
         public virtual void SetNullable(bool isNullable)
         {
             var column = _builder.Column;
@@ -116,6 +135,7 @@ namespace FluentMigrator.Builders
         /// Adds the existing row default value.  If the column has a value for IsNullable, this will also
         /// call SetNullable to create the expression, and will then set the column IsNullable to false.
         /// </summary>
+        /// <param name="existingRowValue">The existing row value.</param>
         public virtual void SetExistingRowsTo(object existingRowValue)
         {
             //TODO: validate that 'value' isn't set to null for non nullable columns.  If set to
@@ -214,7 +234,13 @@ namespace FluentMigrator.Builders
         /// </summary>
         private class ExistingRowsData
         {
+            /// <summary>
+            /// The set existing rows expression
+            /// </summary>
             public UpdateDataExpression SetExistingRowsExpression;
+            /// <summary>
+            /// The set column not nullable expression
+            /// </summary>
             public AlterColumnExpression SetColumnNotNullableExpression;
         }
     }

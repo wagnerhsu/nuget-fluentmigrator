@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PostgresTableTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -25,11 +38,22 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Postgres
 {
+    /// <summary>
+    /// Defines test class PostgresTableTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseTableTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseTableTests" />
     [TestFixture]
     public class PostgresTableTests : BaseTableTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected PostgresGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -37,6 +61,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             Generator = new PostgresGenerator(quoter);
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomColumnTypeWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomColumnTypeWithCustomSchema()
         {
@@ -50,6 +77,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"TestSchema\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" json NOT NULL, PRIMARY KEY (\"TestColumn1\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomColumnTypeWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomColumnTypeWithDefaultSchema()
         {
@@ -62,6 +92,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" json NOT NULL, PRIMARY KEY (\"TestColumn1\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomSchema()
         {
@@ -72,6 +105,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"TestSchema\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" integer NOT NULL);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultSchema()
         {
@@ -81,6 +117,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" integer NOT NULL);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueExplicitlySetToNullWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueExplicitlySetToNullWithCustomSchema()
         {
@@ -93,6 +132,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"TestSchema\".\"TestTable1\" (\"TestColumn1\" text NOT NULL DEFAULT NULL, \"TestColumn2\" integer NOT NULL DEFAULT 0);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueExplicitlySetToNullWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueExplicitlySetToNullWithDefaultSchema()
         {
@@ -105,6 +147,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
 
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueWithCustomSchema()
         {
@@ -115,6 +160,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"TestSchema\".\"TestTable1\" (\"TestColumn1\" text NOT NULL DEFAULT 'Default', \"TestColumn2\" integer NOT NULL DEFAULT 0);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithCustomSchema()
         {
@@ -125,6 +173,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"TestSchema\".\"TestTable1\" (\"TestColumn1\" serial NOT NULL, \"TestColumn2\" integer NOT NULL);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithDefaultSchema()
         {
@@ -134,6 +185,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" serial NOT NULL, \"TestColumn2\" integer NOT NULL);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueWithDefaultSchema()
         {
@@ -143,6 +197,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" text NOT NULL DEFAULT 'Default', \"TestColumn2\" integer NOT NULL DEFAULT 0);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithMultiColumnPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithMultiColumnPrimaryKeyWithCustomSchema()
         {
@@ -153,6 +210,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"TestSchema\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" integer NOT NULL, PRIMARY KEY (\"TestColumn1\",\"TestColumn2\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithMultiColumnPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithMultiColumnPrimaryKeyWithDefaultSchema()
         {
@@ -162,6 +222,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" integer NOT NULL, PRIMARY KEY (\"TestColumn1\",\"TestColumn2\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedMultiColumnPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedMultiColumnPrimaryKeyWithCustomSchema()
         {
@@ -172,6 +235,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"TestSchema\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" integer NOT NULL, CONSTRAINT \"TestKey\" PRIMARY KEY (\"TestColumn1\",\"TestColumn2\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedMultiColumnPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedMultiColumnPrimaryKeyWithDefaultSchema()
         {
@@ -181,6 +247,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" integer NOT NULL, CONSTRAINT \"TestKey\" PRIMARY KEY (\"TestColumn1\",\"TestColumn2\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedPrimaryKeyWithCustomSchema()
         {
@@ -191,6 +260,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"TestSchema\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" integer NOT NULL, CONSTRAINT \"TestKey\" PRIMARY KEY (\"TestColumn1\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedPrimaryKeyWithDefaultSchema()
         {
@@ -200,6 +272,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" integer NOT NULL, CONSTRAINT \"TestKey\" PRIMARY KEY (\"TestColumn1\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNullableFieldWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNullableFieldWithCustomSchema()
         {
@@ -210,6 +285,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"TestSchema\".\"TestTable1\" (\"TestColumn1\" text, \"TestColumn2\" integer NOT NULL);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNullableFieldWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNullableFieldWithDefaultSchema()
         {
@@ -219,6 +297,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" text, \"TestColumn2\" integer NOT NULL);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithPrimaryKeyWithCustomSchema()
         {
@@ -229,6 +310,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"TestSchema\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" integer NOT NULL, PRIMARY KEY (\"TestColumn1\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithPrimaryKeyWithDefaultSchema()
         {
@@ -238,6 +322,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" text NOT NULL, \"TestColumn2\" integer NOT NULL, PRIMARY KEY (\"TestColumn1\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropTableWithCustomSchema()
         {
@@ -248,6 +335,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("DROP TABLE \"TestSchema\".\"TestTable1\";");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropTableWithDefaultSchema()
         {
@@ -257,6 +347,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("DROP TABLE \"public\".\"TestTable1\";");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanRenameTableWithCustomSchema()
         {
@@ -267,6 +360,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Postgres
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" RENAME TO \"TestTable2\";");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanRenameTableWithDefaultSchema()
         {

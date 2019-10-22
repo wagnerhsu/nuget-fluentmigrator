@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TextLineLoggerProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -32,17 +45,23 @@ namespace FluentMigrator.Tests.Logging
     /// </summary>
     public class TextLineLoggerProvider : ILoggerProvider
     {
+        /// <summary>
+        /// The lines
+        /// </summary>
         [NotNull, ItemNotNull]
         private readonly ICollection<string> _lines;
 
+        /// <summary>
+        /// The options
+        /// </summary>
         [NotNull]
         private readonly FluentMigratorLoggerOptions _options;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TextLineLoggerProvider"/> class.
+        /// Initializes a new instance of the <see cref="TextLineLoggerProvider" /> class.
         /// </summary>
-        /// <param name="lines"></param>
-        /// <param name="options"></param>
+        /// <param name="lines">The lines.</param>
+        /// <param name="options">The options.</param>
         public TextLineLoggerProvider([NotNull, ItemNotNull] ICollection<string> lines, FluentMigratorLoggerOptions options = null)
         {
             _lines = lines;
@@ -60,12 +79,23 @@ namespace FluentMigrator.Tests.Logging
         {
         }
 
+        /// <summary>
+        /// Class TextLineLogger.
+        /// Implements the <see cref="FluentMigrator.Runner.Logging.FluentMigratorLogger" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Logging.FluentMigratorLogger" />
         private class TextLineLogger : FluentMigratorLogger
         {
+            /// <summary>
+            /// The lines
+            /// </summary>
             [NotNull]
             [ItemNotNull]
             private readonly ICollection<string> _lines;
 
+            /// <summary>
+            /// The options
+            /// </summary>
             [NotNull]
             private readonly FluentMigratorLoggerOptions _options;
 
@@ -127,6 +157,10 @@ namespace FluentMigrator.Tests.Logging
                 _lines.Add($"[+] {message}");
             }
 
+            /// <summary>
+            /// Adds the lines.
+            /// </summary>
+            /// <param name="writeAction">The write action.</param>
             private void AddLines(Action<TextWriter> writeAction)
             {
                 string output;

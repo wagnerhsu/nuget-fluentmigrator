@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PostgresTestSequence.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -21,15 +34,48 @@ using Npgsql;
 
 namespace FluentMigrator.Tests.Helpers
 {
+    /// <summary>
+    /// Class PostgresTestSequence.
+    /// Implements the <see cref="System.IDisposable" />
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public class PostgresTestSequence : IDisposable
     {
+        /// <summary>
+        /// The quoter
+        /// </summary>
         private readonly PostgresQuoter _quoter = new PostgresQuoter(new PostgresOptions());
+        /// <summary>
+        /// The schema name
+        /// </summary>
         private readonly string _schemaName;
+        /// <summary>
+        /// Gets or sets the connection.
+        /// </summary>
+        /// <value>The connection.</value>
         private NpgsqlConnection Connection { get; set; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the name with schema.
+        /// </summary>
+        /// <value>The name with schema.</value>
         public string NameWithSchema { get; set; }
+        /// <summary>
+        /// Gets or sets the transaction.
+        /// </summary>
+        /// <value>The transaction.</value>
         private NpgsqlTransaction Transaction { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostgresTestSequence"/> class.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="sequenceName">Name of the sequence.</param>
         public PostgresTestSequence(PostgresProcessor processor, string schemaName, string sequenceName)
         {
             _schemaName = schemaName;
@@ -41,11 +87,17 @@ namespace FluentMigrator.Tests.Helpers
             Create();
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             Drop();
         }
 
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
         public void Create()
         {
             if (!string.IsNullOrEmpty(_schemaName))
@@ -59,6 +111,9 @@ namespace FluentMigrator.Tests.Helpers
                 command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Drops this instance.
+        /// </summary>
         public void Drop()
         {
             using (var command = new NpgsqlCommand("DROP SEQUENCE " + NameWithSchema, Connection, Transaction))

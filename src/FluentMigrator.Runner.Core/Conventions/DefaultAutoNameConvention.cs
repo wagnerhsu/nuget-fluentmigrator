@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DefaultAutoNameConvention.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -23,7 +36,7 @@ using FluentMigrator.Expressions;
 namespace FluentMigrator.Runner.Conventions
 {
     /// <summary>
-    /// The default implementation of a <see cref="IAutoNameConvention"/>
+    /// The default implementation of a <see cref="IAutoNameConvention" />
     /// </summary>
     public class DefaultAutoNameConvention : IAutoNameConvention
     {
@@ -48,6 +61,12 @@ namespace FluentMigrator.Runner.Conventions
             return expression;
         }
 
+        /// <summary>
+        /// Gets the automatic script up name implementation.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="databaseTypes">The database types.</param>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         private static IEnumerable<string> GetAutoScriptUpNameImpl(Type type, IEnumerable<string> databaseTypes)
         {
             var migrationAttribute = type
@@ -67,6 +86,12 @@ namespace FluentMigrator.Runner.Conventions
             }
         }
 
+        /// <summary>
+        /// Gets the automatic script down name implementation.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="databaseTypes">The database types.</param>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         private static IEnumerable<string> GetAutoScriptDownNameImpl(Type type, IEnumerable<string> databaseTypes)
         {
             var migrationAttribute = type

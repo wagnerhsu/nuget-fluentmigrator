@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteExpressionRootTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -30,9 +43,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Builders.Delete
 {
+    /// <summary>
+    /// Defines test class DeleteExpressionRootTests.
+    /// </summary>
     [TestFixture]
     public class DeleteExpressionRootTests
     {
+        /// <summary>
+        /// Defines the test method CallingTableAddsDeleteTableExpressionToContextWithSpecifiedName.
+        /// </summary>
         [Test]
         public void CallingTableAddsDeleteTableExpressionToContextWithSpecifiedName()
         {
@@ -48,6 +67,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnAddsDeleteColumnExpressionToContextWithSpecifiedName.
+        /// </summary>
         [Test]
         public void CallingColumnAddsDeleteColumnExpressionToContextWithSpecifiedName()
         {
@@ -63,6 +85,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnReturnsDeleteColumnExpressionBuilder.
+        /// </summary>
         [Test]
         public void CallingColumnReturnsDeleteColumnExpressionBuilder()
         {
@@ -77,6 +102,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignKeyAddsDeleteForeignKeyExpressionToContext.
+        /// </summary>
         [Test]
         public void CallingForeignKeyAddsDeleteForeignKeyExpressionToContext()
         {
@@ -92,6 +120,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignKeyReturnsDeleteForeignKeyExpressionBuilder.
+        /// </summary>
         [Test]
         public void CallingForeignKeyReturnsDeleteForeignKeyExpressionBuilder()
         {
@@ -106,6 +137,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignKeyWithNameAddsDeleteForeignKeyExpressionToContextWithSpecifiedName.
+        /// </summary>
         [Test]
         public void CallingForeignKeyWithNameAddsDeleteForeignKeyExpressionToContextWithSpecifiedName()
         {
@@ -121,6 +155,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingSequenceAddsDeleteSequenceExpressionToContextWithSpecifiedName.
+        /// </summary>
         [Test]
         public void CallingSequenceAddsDeleteSequenceExpressionToContextWithSpecifiedName()
         {
@@ -136,6 +173,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingDefaultConstraintAddsDeleteDefaultConstraintExpressionToContext.
+        /// </summary>
         [Test]
         public void CallingDefaultConstraintAddsDeleteDefaultConstraintExpressionToContext()
         {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleSequenceTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using FluentMigrator.Exceptions;
 using FluentMigrator.Runner.Generators.Oracle;
 using NUnit.Framework;
@@ -6,11 +19,22 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Oracle
 {
+    /// <summary>
+    /// Defines test class OracleSequenceTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseSequenceTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseSequenceTests" />
     [TestFixture]
     public class OracleSequenceTests : BaseSequenceTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected OracleGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -20,6 +44,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             };
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequenceWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateSequenceWithCustomSchema()
         {
@@ -30,6 +57,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("CREATE SEQUENCE TestSchema.Sequence INCREMENT BY 2 MINVALUE 0 MAXVALUE 100 START WITH 2 CACHE 10 CYCLE");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequenceWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateSequenceWithDefaultSchema()
         {
@@ -39,6 +69,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("CREATE SEQUENCE Sequence INCREMENT BY 2 MINVALUE 0 MAXVALUE 100 START WITH 2 CACHE 10 CYCLE");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequenceWithNocacheSchema.
+        /// </summary>
         [Test]
         public void CanCreateSequenceWithNocacheSchema()
         {
@@ -49,6 +82,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("CREATE SEQUENCE Sequence INCREMENT BY 2 MINVALUE 0 MAXVALUE 100 START WITH 2 NOCACHE CYCLE");
         }
 
+        /// <summary>
+        /// Defines the test method CanNotCreateSequenceWithCacheOneSchema.
+        /// </summary>
         [Test]
         public void CanNotCreateSequenceWithCacheOneSchema()
         {
@@ -61,6 +97,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             );
         }
 
+        /// <summary>
+        /// Defines the test method CanDropSequenceWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropSequenceWithCustomSchema()
         {
@@ -71,6 +110,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("DROP SEQUENCE TestSchema.Sequence");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropSequenceWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropSequenceWithDefaultSchema()
         {

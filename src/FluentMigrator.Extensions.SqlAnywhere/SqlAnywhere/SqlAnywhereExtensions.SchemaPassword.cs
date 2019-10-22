@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Extensions.SqlAnywhere
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlAnywhereExtensions.SchemaPassword.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -33,6 +46,7 @@ namespace FluentMigrator.SqlAnywhere
         /// <param name="expression">The schema creation expression</param>
         /// <param name="password">The password to use</param>
         /// <returns>The next step</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public static ICreateSchemaOptionsSyntax Password(this ICreateSchemaOptionsSyntax expression, string password)
         {
             var additionalFeatures = expression as ISupportAdditionalFeatures ??

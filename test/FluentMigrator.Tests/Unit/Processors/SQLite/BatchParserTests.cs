@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="BatchParserTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -33,9 +46,18 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Processors.SQLite
 {
+    /// <summary>
+    /// Class BatchParserTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Processors.ProcessorBatchParserTestsBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Processors.ProcessorBatchParserTestsBase" />
     [Category("SQLite")]
     public class BatchParserTests : ProcessorBatchParserTestsBase
     {
+        /// <summary>
+        /// Creates the processor.
+        /// </summary>
+        /// <returns>IMigrationProcessor.</returns>
         protected override IMigrationProcessor CreateProcessor()
         {
             var mockedDbFactory = new Mock<SQLiteDbFactory>();

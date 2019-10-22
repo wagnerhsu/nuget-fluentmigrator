@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RangeSearcherTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -27,8 +40,17 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.BatchParser
 {
+    /// <summary>
+    /// Class RangeSearcherTests.
+    /// </summary>
     public class RangeSearcherTests
     {
+        /// <summary>
+        /// Defines the test method TestConfiguration.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="startLength">The start length.</param>
+        /// <param name="endLength">The end length.</param>
         [TestCase(typeof(AnsiSqlIdentifier), 1, 1)]
         [TestCase(typeof(MySqlIdentifier), 1, 1)]
         [TestCase(typeof(SqlServerIdentifier), 1, 1)]
@@ -44,6 +66,11 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(endLength, rangeSearcher.EndCodeLength);
         }
 
+        /// <summary>
+        /// Defines the test method TestAnsiSqlIdentifiers.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [TestCase("  \"qweqwe\"  ", "qweqwe")]
         [TestCase(@"  ""qwe\""qweqwe""  ", "qwe\\")]
         public void TestAnsiSqlIdentifiers(string input, string expected)
@@ -68,6 +95,11 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(expected, result);
         }
 
+        /// <summary>
+        /// Defines the test method TestMySqlIdentifiers.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [TestCase("  `qweqwe`  ", "qweqwe")]
         [TestCase("  `qwe``qweqwe`  ", "qwe``qweqwe")]
         public void TestMySqlIdentifiers(string input, string expected)
@@ -92,6 +124,11 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(expected, result);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlServerIdentifiers.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [TestCase("  [qweqwe]  ", "qweqwe")]
         [TestCase("  [qwe]]qweqwe]  ", "qwe]]qweqwe")]
         public void TestSqlServerIdentifiers(string input, string expected)
@@ -116,6 +153,11 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(expected, result);
         }
 
+        /// <summary>
+        /// Defines the test method TestSqlString.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [TestCase("  'qweqwe'  ", "qweqwe")]
         [TestCase("  'qweqwe'", "qweqwe")]
         [TestCase("  'qwe''qweqwe'  ", "qwe''qweqwe")]
@@ -141,6 +183,10 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(expected, result);
         }
 
+        /// <summary>
+        /// Defines the test method TestIncompleteSqlString.
+        /// </summary>
+        /// <param name="input">The input.</param>
         [TestCase("  'qweqwe")]
         public void TestIncompleteSqlString(string input)
         {
@@ -159,6 +205,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.IsNull(endInfo);
         }
 
+        /// <summary>
+        /// Defines the test method TestMissingSqlString.
+        /// </summary>
         [Test]
         public void TestMissingSqlString()
         {
@@ -171,6 +220,11 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(-1, startIndex);
         }
 
+        /// <summary>
+        /// Defines the test method TestMultiLineCommentWithSingleLine.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [TestCase("  /* blah */  ", " blah ")]
         [TestCase("  /* blah /* blubb */  ", " blah /* blubb ")]
         public void TestMultiLineCommentWithSingleLine(string input, string expected)
@@ -195,6 +249,11 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(expected, result);
         }
 
+        /// <summary>
+        /// Defines the test method TestMultiLineCommentWithMultipleLines.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [TestCase("/** blah\n * blubb\n*/  ", "* blah\n * blubb\n")]
         public void TestMultiLineCommentWithMultipleLines(string input, string expected)
         {
@@ -246,6 +305,12 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             }
         }
 
+        /// <summary>
+        /// Defines the test method TestDoubleDashSingleLineComment.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expectedComment">The expected comment.</param>
+        /// <param name="expectedOther">The expected other.</param>
         [TestCase("   -- qweqwe", " qweqwe", "   ")]
         [TestCase("   -- qwe\nqwe", " qwe", "   \nqwe")]
         [TestCase("asd -- qwe\nqwe", " qwe", "asd \nqwe")]
@@ -300,6 +365,12 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(expectedOther, otherContent.ToString());
         }
 
+        /// <summary>
+        /// Defines the test method TestPoundSignSingleLineComment.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expectedComment">The expected comment.</param>
+        /// <param name="expectedOther">The expected other.</param>
         [TestCase("   # qweqwe", " qweqwe", "   ")]
         [TestCase("   # qwe\nqwe", " qwe", "   \nqwe")]
         [TestCase("asd # qwe\nqwe", "", "asd # qwe\nqwe")]
@@ -354,6 +425,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(expectedOther, otherContent.ToString());
         }
 
+        /// <summary>
+        /// Defines the test method TestNestingMultiLineComment.
+        /// </summary>
         [Test]
         public void TestNestingMultiLineComment()
         {

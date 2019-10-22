@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Extensions.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerExtensions.SchemaAuthorization.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -21,6 +34,9 @@ using FluentMigrator.Infrastructure;
 
 namespace FluentMigrator.SqlServer
 {
+    /// <summary>
+    /// Class SqlServerExtensions.
+    /// </summary>
     public static partial class SqlServerExtensions
     {
         /// <summary>
@@ -29,6 +45,7 @@ namespace FluentMigrator.SqlServer
         /// <param name="expression">The schema creation expression</param>
         /// <param name="owner">The schema owner</param>
         /// <returns>The next step</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public static ICreateSchemaOptionsSyntax Authorization(this ICreateSchemaOptionsSyntax expression, string owner)
         {
             var additionalFeatures = expression as ISupportAdditionalFeatures ??

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Program.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -22,14 +35,25 @@ using McMaster.Extensions.CommandLineUtils;
 
 namespace FluentMigrator.DotNet.Cli
 {
+    /// <summary>
+    /// Class Program.
+    /// </summary>
     [Microsoft.FSharp.Core.Sealed]
     public static class Program
     {
+        /// <summary>
+        /// Initializes static members of the <see cref="Program"/> class.
+        /// </summary>
         static Program()
         {
             Microsoft.Data.Sqlite.SqliteFactory.Instance.CreateParameter();
         }
 
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <returns>System.Int32.</returns>
         public static int Main(string[] args)
         {
             return CommandLineApplication.Execute<Root>(args);

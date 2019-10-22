@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleGenerator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -31,24 +44,47 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Generators.Oracle
 {
+    /// <summary>
+    /// Class OracleGenerator.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Generic.GenericGenerator" />
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Oracle.IOracleGenerator" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Generic.GenericGenerator" />
+    /// <seealso cref="FluentMigrator.Runner.Generators.Oracle.IOracleGenerator" />
     public class OracleGenerator : GenericGenerator, IOracleGenerator
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleGenerator"/> class.
+        /// </summary>
         public OracleGenerator()
             : this(false)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleGenerator"/> class.
+        /// </summary>
+        /// <param name="useQuotedIdentifiers">if set to <c>true</c> [use quoted identifiers].</param>
         public OracleGenerator(bool useQuotedIdentifiers)
             : this(GetQuoter(useQuotedIdentifiers))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleGenerator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
         public OracleGenerator(
             [NotNull] OracleQuoterBase quoter)
             : this(quoter, new OptionsWrapper<GeneratorOptions>(new GeneratorOptions()))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleGenerator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         public OracleGenerator(
             [NotNull] OracleQuoterBase quoter,
             [NotNull] IOptions<GeneratorOptions> generatorOptions)
@@ -56,6 +92,12 @@ namespace FluentMigrator.Runner.Generators.Oracle
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleGenerator"/> class.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         public OracleGenerator(
             [NotNull] IColumn column,
             [NotNull] OracleQuoterBase quoter,
@@ -64,6 +106,13 @@ namespace FluentMigrator.Runner.Generators.Oracle
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleGenerator"/> class.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="descriptionGenerator">The description generator.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         protected OracleGenerator(
             [NotNull] IColumn column,
             [NotNull] OracleQuoterBase quoter,
@@ -73,12 +122,21 @@ namespace FluentMigrator.Runner.Generators.Oracle
         {
         }
 
+        /// <summary>
+        /// Gets the quoter.
+        /// </summary>
+        /// <param name="useQuotedIdentifiers">if set to <c>true</c> [use quoted identifiers].</param>
+        /// <returns>OracleQuoterBase.</returns>
         protected static OracleQuoterBase GetQuoter(bool useQuotedIdentifiers)
         {
             return useQuotedIdentifiers ? new OracleQuoterQuotedIdentifier() : new OracleQuoter();
         }
 
 
+        /// <summary>
+        /// Gets the drop table.
+        /// </summary>
+        /// <value>The drop table.</value>
         public override string DropTable
         {
             get
@@ -86,11 +144,21 @@ namespace FluentMigrator.Runner.Generators.Oracle
                 return "DROP TABLE {0}";
             }
         }
+        /// <summary>
+        /// Generates a <c>DROP TABLE</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteTableExpression expression)
         {
             return string.Format(DropTable, ExpandTableName(Quoter.QuoteTableName(expression.SchemaName),Quoter.QuoteTableName(expression.TableName)));
         }
 
+        /// <summary>
+        /// Generates a <c>CREATE SEQUENCE</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateSequenceExpression expression)
         {
             var result = new StringBuilder("CREATE SEQUENCE ");
@@ -146,31 +214,58 @@ namespace FluentMigrator.Runner.Generators.Oracle
             return result.ToString();
         }
 
+        /// <summary>
+        /// Gets the add column.
+        /// </summary>
+        /// <value>The add column.</value>
         public override string AddColumn
         {
             get { return "ALTER TABLE {0} ADD {1}"; }
         }
 
+        /// <summary>
+        /// Gets the alter column.
+        /// </summary>
+        /// <value>The alter column.</value>
         public override string AlterColumn
         {
             get { return "ALTER TABLE {0} MODIFY {1}"; }
         }
 
+        /// <summary>
+        /// Gets the rename table.
+        /// </summary>
+        /// <value>The rename table.</value>
         public override string RenameTable
         {
             get { return "ALTER TABLE {0} RENAME TO {1}"; }
         }
 
+        /// <summary>
+        /// Gets the insert data.
+        /// </summary>
+        /// <value>The insert data.</value>
         public override string InsertData
         {
             get { return "INTO {0} ({1}) VALUES ({2})"; }
         }
 
+        /// <summary>
+        /// Expands the name of the table.
+        /// </summary>
+        /// <param name="schema">The schema.</param>
+        /// <param name="table">The table.</param>
+        /// <returns>System.String.</returns>
         private static string ExpandTableName(string schema, string table)
         {
             return string.IsNullOrEmpty(schema) ? table : string.Concat(schema,".",table);
         }
 
+        /// <summary>
+        /// Wraps the statement in execute immediate block.
+        /// </summary>
+        /// <param name="statement">The statement.</param>
+        /// <returns>System.String.</returns>
         private static string WrapStatementInExecuteImmediateBlock(string statement)
         {
             if (string.IsNullOrEmpty(statement))
@@ -181,6 +276,11 @@ namespace FluentMigrator.Runner.Generators.Oracle
             return string.Format("EXECUTE IMMEDIATE '{0}';", FormatHelper.FormatSqlEscape(statement));
         }
 
+        /// <summary>
+        /// Wraps the in block.
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
+        /// <returns>System.String.</returns>
         private static string WrapInBlock(string sql)
         {
             if (string.IsNullOrEmpty(sql))
@@ -191,6 +291,11 @@ namespace FluentMigrator.Runner.Generators.Oracle
             return string.Format("BEGIN {0} END;", sql);
         }
 
+        /// <summary>
+        /// Inners the generate.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         private string InnerGenerate(CreateTableExpression expression)
         {
             var tableName = Quoter.QuoteTableName(expression.TableName);
@@ -199,11 +304,21 @@ namespace FluentMigrator.Runner.Generators.Oracle
             return string.Format("CREATE TABLE {0} ({1})",ExpandTableName(schemaName,tableName), Column.Generate(expression.Columns, tableName));
         }
 
+        /// <summary>
+        /// Appends the SQL statement end token.
+        /// </summary>
+        /// <param name="stringBuilder">The string builder.</param>
+        /// <returns>StringBuilder.</returns>
         protected override StringBuilder AppendSqlStatementEndToken(StringBuilder stringBuilder)
         {
             return stringBuilder.AppendLine().AppendLine(";");
         }
 
+        /// <summary>
+        /// Outputs a create table string
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateTableExpression expression)
         {
             var descriptionStatements = DescriptionGenerator.GenerateDescriptionStatements(expression);
@@ -229,6 +344,11 @@ namespace FluentMigrator.Runner.Generators.Oracle
             return WrapInBlock(createTableWithDescriptionsBuilder.ToString());
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterTableExpression expression)
         {
             var descriptionStatement = DescriptionGenerator.GenerateDescriptionStatement(expression);
@@ -241,6 +361,11 @@ namespace FluentMigrator.Runner.Generators.Oracle
             return descriptionStatement;
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE ADD COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateColumnExpression expression)
         {
             var descriptionStatement = DescriptionGenerator.GenerateDescriptionStatement(expression);
@@ -256,6 +381,11 @@ namespace FluentMigrator.Runner.Generators.Oracle
             return WrapInBlock(createColumnWithDescriptionBuilder.ToString());
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE ALTER COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterColumnExpression expression)
         {
             var descriptionStatement = DescriptionGenerator.GenerateDescriptionStatement(expression);
@@ -271,6 +401,11 @@ namespace FluentMigrator.Runner.Generators.Oracle
             return WrapInBlock(alterColumnWithDescriptionBuilder.ToString());
         }
 
+        /// <summary>
+        /// Generates an SQL statement to INSERT data
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(InsertDataExpression expression)
         {
             var columnNames = new List<string>();
@@ -294,6 +429,11 @@ namespace FluentMigrator.Runner.Generators.Oracle
             return "INSERT ALL " + string.Join(" ", insertStrings.ToArray()) + " SELECT 1 FROM DUAL";
         }
 
+        /// <summary>
+        /// Generates an SQL statement to alter a DEFAULT constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterDefaultConstraintExpression expression)
         {
             return string.Format(AlterColumn, Quoter.QuoteTableName(expression.TableName), Column.Generate(new ColumnDefinition
@@ -304,6 +444,11 @@ namespace FluentMigrator.Runner.Generators.Oracle
             }));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop a default constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteDefaultConstraintExpression expression)
         {
             return Generate(new AlterDefaultConstraintExpression
@@ -314,6 +459,11 @@ namespace FluentMigrator.Runner.Generators.Oracle
             });
         }
 
+        /// <summary>
+        /// Generates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public override string Generate(DeleteIndexExpression expression)
         {
             var quotedSchema = Quoter.QuoteSchemaName(expression.Index.SchemaName);

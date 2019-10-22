@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigratorConsoleTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,13 +41,28 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Runners
 {
+    /// <summary>
+    /// Defines test class MigratorConsoleTests.
+    /// </summary>
     [TestFixture]
     public class MigratorConsoleTests
     {
+        /// <summary>
+        /// The database
+        /// </summary>
         private const string Database = "SQLite";
+        /// <summary>
+        /// The connection
+        /// </summary>
         private const string Connection = "Data Source=:memory:";
+        /// <summary>
+        /// The target
+        /// </summary>
         private const string Target = "FluentMigrator.Tests.dll";
 
+        /// <summary>
+        /// Defines the test method CanInitMigratorConsoleWithValidArguments.
+        /// </summary>
         [Test]
         public void CanInitMigratorConsoleWithValidArguments()
         {
@@ -55,6 +83,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             console.Version.ShouldBe(1);
         }
 
+        /// <summary>
+        /// Defines the test method CanInitMigratorConsoleWithValidArgumentsRegardlessOfCase.
+        /// </summary>
         [Test]
         public void CanInitMigratorConsoleWithValidArgumentsRegardlessOfCase()
         {
@@ -75,6 +106,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             console.Version.ShouldBe(1);
         }
 
+        /// <summary>
+        /// Defines the test method ConsoleAnnouncerHasMoreOutputWhenVerbose.
+        /// </summary>
         [Test]
         public void ConsoleAnnouncerHasMoreOutputWhenVerbose()
         {
@@ -108,6 +142,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.Greater(sbVerbose.ToString().Length, sbNonVerbose.ToString().Length);
         }
 
+        /// <summary>
+        /// Defines the test method ConsoleAnnouncerHasOutput.
+        /// </summary>
         [Test]
         public void ConsoleAnnouncerHasOutput()
         {
@@ -129,6 +166,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.AreNotEqual(0, output.Length);
         }
 
+        /// <summary>
+        /// Defines the test method ConsoleAnnouncerHasOutputEvenIfMarkedAsPreviewOnly.
+        /// </summary>
         [Test]
         public void ConsoleAnnouncerHasOutputEvenIfMarkedAsPreviewOnly()
         {
@@ -152,6 +192,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.AreNotEqual(0, output.Length);
         }
 
+        /// <summary>
+        /// Defines the test method FileAnnouncerHasOutputToDefaultOutputFile.
+        /// </summary>
         [Test]
         public void FileAnnouncerHasOutputToDefaultOutputFile()
         {
@@ -176,6 +219,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             File.Delete(outputFileName);
         }
 
+        /// <summary>
+        /// Defines the test method FileAnnouncerHasOutputToSpecifiedOutputFile.
+        /// </summary>
         [Test]
         public void FileAnnouncerHasOutputToSpecifiedOutputFile()
         {
@@ -201,6 +247,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             File.Delete(outputFileName);
         }
 
+        /// <summary>
+        /// Defines the test method MustInitializeConsoleWithConnectionArgument.
+        /// </summary>
         [Test]
         public void MustInitializeConsoleWithConnectionArgument()
         {
@@ -208,6 +257,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.That(exitCode, Is.EqualTo(1));
         }
 
+        /// <summary>
+        /// Defines the test method MustInitializeConsoleWithDatabaseArgument.
+        /// </summary>
         [Test]
         public void MustInitializeConsoleWithDatabaseArgument()
         {
@@ -215,6 +267,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.That(exitCode, Is.EqualTo(1));
         }
 
+        /// <summary>
+        /// Defines the test method TagsPassedToRunnerContextOnExecuteMigrations.
+        /// </summary>
         [Test]
         public void TagsPassedToRunnerContextOnExecuteMigrations()
         {
@@ -235,6 +290,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             CollectionAssert.AreEquivalent(expectedTags, migratorConsole.Tags);
         }
 
+        /// <summary>
+        /// Defines the test method TransactionPerSessionShouldBeSetOnRunnerContextWithShortSwitch.
+        /// </summary>
         [Test]
         public void TransactionPerSessionShouldBeSetOnRunnerContextWithShortSwitch()
         {
@@ -249,6 +307,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             console.TransactionPerSession.ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method TransactionPerSessionShouldBeSetOnRunnerContextWithLongSwitch.
+        /// </summary>
         [Test]
         public void TransactionPerSessionShouldBeSetOnRunnerContextWithLongSwitch()
         {
@@ -263,6 +324,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             console.TransactionPerSession.ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method ProviderSwitchesPassedToRunnerContextOnExecuteMigrations.
+        /// </summary>
         [Test]
         public void ProviderSwitchesPassedToRunnerContextOnExecuteMigrations()
         {

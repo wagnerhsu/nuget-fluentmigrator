@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteSchemaExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -26,9 +39,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Expressions
 {
+    /// <summary>
+    /// Defines test class DeleteSchemaExpressionTests.
+    /// </summary>
     [TestFixture]
     public class DeleteSchemaExpressionTests
     {
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenSchemaNameIsEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenSchemaNameIsEmptyString()
         {
@@ -38,6 +57,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.SchemaNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenSchemaNameIsSet.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenSchemaNameIsSet()
         {

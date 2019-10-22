@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SQLite
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SQLiteDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -21,8 +34,16 @@ using System;
 namespace FluentMigrator.Runner.Processors.SQLite
 {
     // ReSharper disable once InconsistentNaming
+    /// <summary>
+    /// Class SQLiteDbFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
     public class SQLiteDbFactory : ReflectionBasedDbFactory
     {
+        /// <summary>
+        /// The test entries
+        /// </summary>
         private static readonly TestEntry[] _testEntries =
         {
             new TestEntry("System.Data.SQLite", "System.Data.SQLite.SQLiteFactory"),
@@ -30,12 +51,19 @@ namespace FluentMigrator.Runner.Processors.SQLite
             new TestEntry("Microsoft.Data.Sqlite", "Microsoft.Data.Sqlite.SqliteFactory"),
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SQLiteDbFactory"/> class.
+        /// </summary>
         [Obsolete]
         public SQLiteDbFactory()
             : base(_testEntries)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SQLiteDbFactory"/> class.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
         public SQLiteDbFactory(IServiceProvider serviceProvider)
             : base(serviceProvider, _testEntries)
         {

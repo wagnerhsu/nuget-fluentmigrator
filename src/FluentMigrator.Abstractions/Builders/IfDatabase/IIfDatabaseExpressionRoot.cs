@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IIfDatabaseExpressionRoot.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -38,41 +51,49 @@ namespace FluentMigrator.Builders.IfDatabase
         /// <summary>
         /// Creates an ALTER expression
         /// </summary>
+        /// <value>The alter.</value>
         IAlterExpressionRoot Alter { get; }
 
         /// <summary>
         /// Creates CREATE expression
         /// </summary>
+        /// <value>The create.</value>
         ICreateExpressionRoot Create { get; }
 
         /// <summary>
         /// Creates a DELETE expression
         /// </summary>
+        /// <value>The delete.</value>
         IDeleteExpressionRoot Delete { get; }
 
         /// <summary>
         /// Renames a database object
         /// </summary>
+        /// <value>The rename.</value>
         IRenameExpressionRoot Rename { get; }
 
         /// <summary>
         /// Inserts data into a table
         /// </summary>
+        /// <value>The insert.</value>
         IInsertExpressionRoot Insert { get; }
 
         /// <summary>
         /// Execute some SQL
         /// </summary>
+        /// <value>The execute.</value>
         IExecuteExpressionRoot Execute { get; }
 
         /// <summary>
         /// Check if a database object exists
         /// </summary>
+        /// <value>The schema.</value>
         ISchemaExpressionRoot Schema { get; }
 
         /// <summary>
         /// Updates data in a table
         /// </summary>
+        /// <value>The update.</value>
         IUpdateExpressionRoot Update { get; }
 
         /// <summary>

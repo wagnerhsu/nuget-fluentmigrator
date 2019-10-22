@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2016Generator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -20,19 +33,36 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Generators.SqlServer
 {
+    /// <summary>
+    /// Class SqlServer2016Generator.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2014Generator" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2014Generator" />
     public class SqlServer2016Generator : SqlServer2014Generator
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2016Generator"/> class.
+        /// </summary>
         public SqlServer2016Generator()
             : this(new SqlServer2008Quoter())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2016Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
         public SqlServer2016Generator(
             [NotNull] SqlServer2008Quoter quoter)
             : base(quoter, new OptionsWrapper<GeneratorOptions>(new GeneratorOptions()))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2016Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         public SqlServer2016Generator(
             [NotNull] SqlServer2008Quoter quoter,
             [NotNull] IOptions<GeneratorOptions> generatorOptions)
@@ -40,6 +70,13 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2016Generator"/> class.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="descriptionGenerator">The description generator.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         protected SqlServer2016Generator(
             [NotNull] IColumn column,
             [NotNull] IQuoter quoter,

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConventionSet.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -21,22 +34,22 @@ using FluentMigrator.Expressions;
 namespace FluentMigrator.Runner.Conventions
 {
     /// <summary>
-    /// A convenience (empty) implementation of <see cref="IConventionSet"/>
+    /// A convenience (empty) implementation of <see cref="IConventionSet" />
     /// </summary>
     public class ConventionSet : IConventionSet
     {
         /// <summary>
-        /// Gets or sets the root path convention to be applied to <see cref="IFileSystemExpression"/> implementations
+        /// Gets or sets the root path convention to be applied to <see cref="IFileSystemExpression" /> implementations
         /// </summary>
+        /// <value>The root path convention.</value>
         public IRootPathConvention RootPathConvention { get; set; }
 
         /// <summary>
-        /// Gets or sets the default schema name convention to be applied to <see cref="ISchemaExpression"/> implementations
+        /// Gets or sets the default schema name convention to be applied to <see cref="ISchemaExpression" /> implementations
         /// </summary>
-        /// <remarks>
-        /// This class cannot be overridden. The <see cref="IDefaultSchemaNameConvention"/>
-        /// must be implemented/provided instead.
-        /// </remarks>
+        /// <value>The schema convention.</value>
+        /// <remarks>This class cannot be overridden. The <see cref="IDefaultSchemaNameConvention" />
+        /// must be implemented/provided instead.</remarks>
         public DefaultSchemaConvention SchemaConvention { get; set; }
 
         /// <inheritdoc />

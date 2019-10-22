@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="InvalidMigration2.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -18,9 +31,17 @@
 
 namespace FluentMigrator.Tests.Integration.Migrations.Invalid
 {
+    /// <summary>
+    /// Class InvalidMigration2.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     [Migration(2)]
     public class InvalidMigration2 : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.ForeignKey()
@@ -28,6 +49,9 @@ namespace FluentMigrator.Tests.Integration.Migrations.Invalid
                 .ToTable("NonexistentTable").PrimaryColumn("Id");
         }
 
+        /// <summary>
+        /// Downs this instance.
+        /// </summary>
         public override void Down()
         {
             Delete.ForeignKey("Users_NonexistentId_NonexistentTable_Id");

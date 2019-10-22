@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IConnectionStringReader.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -26,15 +39,15 @@ namespace FluentMigrator.Runner.Initialization
         /// <summary>
         /// Gets the priority
         /// </summary>
-        /// <remarks>
-        /// Higher value means that it gets processed first
-        /// </remarks>
+        /// <value>The priority.</value>
+        /// <remarks>Higher value means that it gets processed first</remarks>
         int Priority { get; }
 
         /// <summary>
         /// Gets the connection string
         /// </summary>
         /// <param name="connectionStringOrName">The name of the connection string</param>
+        /// <returns>System.String.</returns>
         [CanBeNull]
         string GetConnectionString([CanBeNull] string connectionStringOrName);
     }

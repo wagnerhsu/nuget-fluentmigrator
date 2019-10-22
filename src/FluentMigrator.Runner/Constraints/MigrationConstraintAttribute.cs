@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationConstraintAttribute.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2019, Fluent Migrator Project
@@ -24,12 +37,16 @@ namespace FluentMigrator.Runner.Constraints
     /// </summary>
     public class MigrationConstraintAttribute : Attribute
     {
+        /// <summary>
+        /// The predicate
+        /// </summary>
         private readonly Func<MigrationConstraintContext, bool> _predicate;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationConstraintAttribute"/> class.
+        /// Initializes a new instance of the <see cref="MigrationConstraintAttribute" /> class.
         /// </summary>
-        /// <param name="predicate">Predicate that determines whether this migration should be run in given context <see cref="MigrationConstraintAttribute"/>.</param>
+        /// <param name="predicate">Predicate that determines whether this migration should be run in given context <see cref="MigrationConstraintAttribute" />.</param>
+        /// <exception cref="ArgumentNullException">predicate - Predicate must not be null</exception>
         public MigrationConstraintAttribute(Func<MigrationConstraintContext, bool> predicate)
         {
             _predicate = predicate ?? throw new ArgumentNullException("predicate", "Predicate must not be null");

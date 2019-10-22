@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ExpressionBuilderWithColumnTypesBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System.Data;
 using FluentMigrator.Expressions;
 using FluentMigrator.Infrastructure;
@@ -8,17 +21,15 @@ namespace FluentMigrator.Builders
     /// <summary>
     /// A base class for expressions that affect column types
     /// </summary>
-    /// <remarks>
-    /// This class will be removed as soon as C# supports default interface methods.
-    /// </remarks>
     /// <typeparam name="TExpression">The migration expression</typeparam>
     /// <typeparam name="TNext">The next type</typeparam>
+    /// <remarks>This class will be removed as soon as C# supports default interface methods.</remarks>
     public abstract class ExpressionBuilderWithColumnTypesBase<TExpression, TNext> : ExpressionBuilderBase<TExpression>, IColumnTypeSyntax<TNext>
         where TExpression : class, IMigrationExpression
         where TNext : IFluentSyntax
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExpressionBuilderWithColumnTypesBase{TExpression,TNext}"/> class.
+        /// Initializes a new instance of the <see cref="ExpressionBuilderWithColumnTypesBase{TExpression,TNext}" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         protected ExpressionBuilderWithColumnTypesBase(TExpression expression)
@@ -35,6 +46,7 @@ namespace FluentMigrator.Builders
         /// <summary>
         /// Gets the current column definition
         /// </summary>
+        /// <value>The column.</value>
         private ColumnDefinition Column => GetColumnForType();
 
         /// <inheritdoc />
@@ -282,6 +294,12 @@ namespace FluentMigrator.Builders
             return (TNext)(object)this;
         }
 
+        /// <summary>
+        /// Sets the column as string.
+        /// </summary>
+        /// <param name="dbType">Type of the database.</param>
+        /// <param name="size">The size.</param>
+        /// <param name="collationName">Name of the collation.</param>
         private void SetColumnAsString(DbType dbType, int? size = null, string collationName = "")
         {
             Column.Type = dbType;

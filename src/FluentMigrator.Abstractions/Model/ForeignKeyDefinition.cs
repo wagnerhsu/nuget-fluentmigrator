@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ForeignKeyDefinition.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -38,49 +51,58 @@ namespace FluentMigrator.Model
         /// <summary>
         /// Gets or sets a foreign key name
         /// </summary>
+        /// <value>The name.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.ForeignKeyNameCannotBeNullOrEmpty))]
         public virtual string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the foreign key table
         /// </summary>
+        /// <value>The foreign table.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.ForeignTableNameCannotBeNullOrEmpty))]
         public virtual string ForeignTable { get; set; }
 
         /// <summary>
         /// Gets or sets the foreign keys table schema
         /// </summary>
+        /// <value>The foreign table schema.</value>
         public virtual string ForeignTableSchema { get; set; }
 
         /// <summary>
         /// Gets or sets the primary table
         /// </summary>
+        /// <value>The primary table.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.PrimaryTableNameCannotBeNullOrEmpty))]
         public virtual string PrimaryTable { get; set; }
 
         /// <summary>
         /// Gets or sets the primary table schema
         /// </summary>
+        /// <value>The primary table schema.</value>
         public virtual string PrimaryTableSchema { get; set; }
 
         /// <summary>
         /// Gets or sets the rule for a cascading DELETE
         /// </summary>
+        /// <value>The on delete.</value>
         public virtual Rule OnDelete { get; set; }
 
         /// <summary>
         /// Gets or sets the rule for a cascading UPDATE
         /// </summary>
+        /// <value>The on update.</value>
         public virtual Rule OnUpdate { get; set; }
 
         /// <summary>
         /// GEts or sets the foreign key column names
         /// </summary>
+        /// <value>The foreign columns.</value>
         public virtual ICollection<string> ForeignColumns { get; set; } = new List<string>();
 
         /// <summary>
         /// Gets or sets the primary key column names
         /// </summary>
+        /// <value>The primary columns.</value>
         public virtual ICollection<string> PrimaryColumns { get; set; } = new List<string>();
 
         /// <inheritdoc />
@@ -110,7 +132,7 @@ namespace FluentMigrator.Model
         /// <summary>
         /// Gets a value indicating whether primary and foreign key columns are defined
         /// </summary>
-        /// <returns></returns>
+        /// <returns><c>true</c> if [has foreign and primary columns defined]; otherwise, <c>false</c>.</returns>
         public bool HasForeignAndPrimaryColumnsDefined()
         {
             return ForeignColumns.Count > 0 && PrimaryColumns.Count > 0;

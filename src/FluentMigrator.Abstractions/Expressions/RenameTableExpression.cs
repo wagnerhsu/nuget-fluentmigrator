@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RenameTableExpression.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -33,12 +46,14 @@ namespace FluentMigrator.Expressions
         /// <summary>
         /// Gets or sets the old table name
         /// </summary>
+        /// <value>The old name.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.OldTableNameCannotBeNullOrEmpty))]
         public virtual string OldName { get; set; }
 
         /// <summary>
         /// Gets or sets the new table name
         /// </summary>
+        /// <value>The new name.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.NewTableNameCannotBeNullOrEmpty))]
         public virtual string NewName { get; set; }
 

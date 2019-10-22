@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlAnywhere
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlAnywhereDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -16,8 +29,16 @@
 
 namespace FluentMigrator.Runner.Processors.SqlAnywhere
 {
+    /// <summary>
+    /// Class SqlAnywhereDbFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
     public class SqlAnywhereDbFactory : ReflectionBasedDbFactory
     {
+        /// <summary>
+        /// The test entries
+        /// </summary>
         private static readonly TestEntry[] _testEntries =
         {
             new TestEntry("Sap.Data.SQLAnywhere.v4.5", "Sap.Data.SQLAnywhere.SAFactory"),
@@ -26,6 +47,9 @@ namespace FluentMigrator.Runner.Processors.SqlAnywhere
             new TestEntry("iAnywhere.Data.SQLAnywhere.EF6", "iAnywhere.Data.SQLAnywhere.SAFactory"),
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlAnywhereDbFactory"/> class.
+        /// </summary>
         public SqlAnywhereDbFactory()
             : base(serviceProvider: null, _testEntries)
         {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AssemblySourceVersionTableMetaDataAccessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -28,19 +41,22 @@ using Microsoft.Extensions.Options;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// Scans the given source assemblies and returns a found <see cref="IVersionTableMetaData"/> implementation
+    /// Scans the given source assemblies and returns a found <see cref="IVersionTableMetaData" /> implementation
     /// </summary>
     public class AssemblySourceVersionTableMetaDataAccessor : IVersionTableMetaDataAccessor
     {
+        /// <summary>
+        /// The lazy value
+        /// </summary>
         private readonly Lazy<IVersionTableMetaData> _lazyValue;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssemblySourceVersionTableMetaDataAccessor"/> class.
+        /// Initializes a new instance of the <see cref="AssemblySourceVersionTableMetaDataAccessor" /> class.
         /// </summary>
         /// <param name="typeFilterOptions">The type filter options</param>
         /// <param name="sources">The sources to get type candidates</param>
-        /// <param name="serviceProvider">The service provider used to instantiate the found <see cref="IVersionTableMetaData"/> implementation</param>
-        /// <param name="assemblySource">The assemblies used to search for the <see cref="IVersionTableMetaData"/> implementation</param>
+        /// <param name="serviceProvider">The service provider used to instantiate the found <see cref="IVersionTableMetaData" /> implementation</param>
+        /// <param name="assemblySource">The assemblies used to search for the <see cref="IVersionTableMetaData" /> implementation</param>
         public AssemblySourceVersionTableMetaDataAccessor(
             [NotNull] IOptionsSnapshot<TypeFilterOptions> typeFilterOptions,
             [NotNull, ItemNotNull] IEnumerable<IVersionTableMetaDataSourceItem> sources,
@@ -74,6 +90,12 @@ namespace FluentMigrator.Runner.Initialization
         /// <inheritdoc />
         public IVersionTableMetaData VersionTableMetaData => _lazyValue.Value;
 
+        /// <summary>
+        /// Gets the assembly types.
+        /// </summary>
+        /// <param name="assemblySource">The assembly source.</param>
+        /// <param name="predicate">The predicate.</param>
+        /// <returns>IEnumerable&lt;Type&gt;.</returns>
         private static IEnumerable<Type> GetAssemblyTypes([CanBeNull] IAssemblySource assemblySource, [NotNull] Predicate<Type> predicate)
         {
             if (assemblySource == null)

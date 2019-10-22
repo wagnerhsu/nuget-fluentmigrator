@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaSequenceTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -25,12 +38,23 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Hana
 {
+    /// <summary>
+    /// Defines test class HanaSequenceTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseSequenceTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseSequenceTests" />
     [TestFixture]
     [Category("Hana")]
     public class HanaSequenceTests : BaseSequenceTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected HanaGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -40,6 +64,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             };
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequenceWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateSequenceWithCustomSchema()
         {
@@ -50,6 +77,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE SEQUENCE \"Sequence\" INCREMENT BY 2 MINVALUE 0 MAXVALUE 100 START WITH 2 CACHE 10 CYCLE;");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequenceWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateSequenceWithDefaultSchema()
         {
@@ -59,6 +89,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE SEQUENCE \"Sequence\" INCREMENT BY 2 MINVALUE 0 MAXVALUE 100 START WITH 2 CACHE 10 CYCLE;");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequenceWithNocache.
+        /// </summary>
         [Test]
         public void CanCreateSequenceWithNocache()
         {
@@ -69,6 +102,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE SEQUENCE \"Sequence\" INCREMENT BY 2 MINVALUE 0 MAXVALUE 100 START WITH 2 NO CACHE CYCLE;");
         }
 
+        /// <summary>
+        /// Defines the test method CanNotCreateSequenceWithCacheOne.
+        /// </summary>
         [Test]
         public void CanNotCreateSequenceWithCacheOne()
         {
@@ -81,6 +117,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             );
         }
 
+        /// <summary>
+        /// Defines the test method CanDropSequenceWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropSequenceWithCustomSchema()
         {
@@ -91,6 +130,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("DROP SEQUENCE \"Sequence\";");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropSequenceWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropSequenceWithDefaultSchema()
         {

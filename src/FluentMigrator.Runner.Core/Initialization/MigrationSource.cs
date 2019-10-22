@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationSource.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -26,27 +39,42 @@ using Microsoft.Extensions.DependencyInjection;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// The default implementation of a <see cref="IFilteringMigrationSource"/>.
+    /// The default implementation of a <see cref="IFilteringMigrationSource" />.
     /// </summary>
     public class MigrationSource : IFilteringMigrationSource
     {
+        /// <summary>
+        /// The source
+        /// </summary>
         [NotNull]
         private readonly IAssemblySource _source;
 
+        /// <summary>
+        /// The conventions
+        /// </summary>
         [NotNull]
         private readonly IMigrationRunnerConventions _conventions;
 
+        /// <summary>
+        /// The service provider
+        /// </summary>
         [CanBeNull]
         private readonly IServiceProvider _serviceProvider;
 
+        /// <summary>
+        /// The instance cache
+        /// </summary>
         [NotNull]
         private readonly ConcurrentDictionary<Type, IMigration> _instanceCache = new ConcurrentDictionary<Type, IMigration>();
 
+        /// <summary>
+        /// The source items
+        /// </summary>
         [NotNull, ItemNotNull]
         private readonly IEnumerable<IMigrationSourceItem> _sourceItems;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProfileSource"/> class.
+        /// Initializes a new instance of the <see cref="ProfileSource" /> class.
         /// </summary>
         /// <param name="source">The assembly source</param>
         /// <param name="conventions">The migration runner conventios</param>
@@ -65,7 +93,7 @@ namespace FluentMigrator.Runner.Initialization
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProfileSource"/> class.
+        /// Initializes a new instance of the <see cref="ProfileSource" /> class.
         /// </summary>
         /// <param name="source">The assembly source</param>
         /// <param name="conventions">The migration runner conventios</param>
@@ -96,6 +124,10 @@ namespace FluentMigrator.Runner.Initialization
             return instances;
         }
 
+        /// <summary>
+        /// Gets the migration type candidates.
+        /// </summary>
+        /// <returns>IEnumerable&lt;Type&gt;.</returns>
         private IEnumerable<Type> GetMigrationTypeCandidates()
         {
             return _source
@@ -103,6 +135,11 @@ namespace FluentMigrator.Runner.Initialization
                 .Union(_sourceItems.SelectMany(i => i.MigrationTypeCandidates));
         }
 
+        /// <summary>
+        /// Creates the instance.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>IMigration.</returns>
         private IMigration CreateInstance(Type type)
         {
             if (_serviceProvider == null)

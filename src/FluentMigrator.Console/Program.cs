@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : Migrate
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Program.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -20,9 +33,17 @@ using System;
 
 namespace FluentMigrator.Console
 {
+    /// <summary>
+    /// Class Program.
+    /// </summary>
     [Microsoft.FSharp.Core.Sealed]
     internal static class Program
     {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <returns>System.Int32.</returns>
         private static int Main(string[] args)
         {
             try

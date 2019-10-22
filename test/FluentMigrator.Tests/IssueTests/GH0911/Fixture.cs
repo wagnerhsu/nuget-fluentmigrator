@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Fixture.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -29,19 +42,34 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.IssueTests.GH0911
 {
+    /// <summary>
+    /// Defines test class Fixture.
+    /// </summary>
     [TestFixture]
     [Category("Issue")]
     [Category("GH-0911")]
     [Category("SqlServer2016")]
     public class Fixture
     {
+        /// <summary>
+        /// The database options
+        /// </summary>
         private static readonly IntegrationTestOptions.DatabaseServerOptions _dbOptions =
             IntegrationTestOptions.SqlServer2016;
 
+        /// <summary>
+        /// The database table name
+        /// </summary>
         private string _dbTableName;
 
+        /// <summary>
+        /// The service provider
+        /// </summary>
         private ServiceProvider _serviceProvider;
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -69,12 +97,18 @@ namespace FluentMigrator.Tests.IssueTests.GH0911
                 .BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {
             _serviceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Defines the test method EnsureThatVarCharColumnsHaveLengthOf40.
+        /// </summary>
         [Test]
         public void EnsureThatVarCharColumnsHaveLengthOf40()
         {
@@ -119,8 +153,17 @@ namespace FluentMigrator.Tests.IssueTests.GH0911
             }
         }
 
+        /// <summary>
+        /// Class VersionTableMetaData.
+        /// Implements the <see cref="FluentMigrator.Runner.VersionTableInfo.IVersionTableMetaData" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.VersionTableInfo.IVersionTableMetaData" />
         private class VersionTableMetaData : IVersionTableMetaData
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="VersionTableMetaData"/> class.
+            /// </summary>
+            /// <param name="tableName">Name of the table.</param>
             public VersionTableMetaData(string tableName)
             {
                 TableName = $"{tableName}_Version";

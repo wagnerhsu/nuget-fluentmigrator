@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Firebird
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdDdlLockTracker.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -27,11 +40,17 @@ namespace FluentMigrator.Runner.Processors.Firebird
     /// </summary>
     public class FirebirdDDLLockTracker
     {
+        /// <summary>
+        /// The DDL tables
+        /// </summary>
         private readonly ISet<string> _ddlTables;
+        /// <summary>
+        /// The DDL columns
+        /// </summary>
         private readonly IDictionary<string, ISet<string>> _ddlColumns;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirebirdDDLLockTracker"/> class.
+        /// Initializes a new instance of the <see cref="FirebirdDDLLockTracker" /> class.
         /// </summary>
         /// <param name="quoter">The Firebird quoter</param>
         public FirebirdDDLLockTracker(IQuoter quoter)

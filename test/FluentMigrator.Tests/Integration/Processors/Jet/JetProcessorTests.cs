@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="JetProcessorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -24,15 +37,26 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Jet
 {
+    /// <summary>
+    /// Defines test class JetProcessorTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.Jet.JetIntegrationTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.Jet.JetIntegrationTests" />
     [TestFixture]
     public class JetProcessorTests : JetIntegrationTests
     {
+        /// <summary>
+        /// Defines the test method CallingTableExistsReturnsFalseIfTableDoesNotExist.
+        /// </summary>
         [Test]
         public void CallingTableExistsReturnsFalseIfTableDoesNotExist()
         {
             Processor.TableExists(null, "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingTableExistsReturnsTrueIfTableExists.
+        /// </summary>
         [Test]
         public void CallingTableExistsReturnsTrueIfTableExists()
         {
@@ -40,6 +64,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Jet
                 Processor.TableExists(null, table.Name).ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsTrueIfColumnExists.
+        /// </summary>
         [Test]
         public void CallingColumnExistsReturnsTrueIfColumnExists()
         {
@@ -47,12 +74,18 @@ namespace FluentMigrator.Tests.Integration.Processors.Jet
                 Processor.ColumnExists(null, table.Name, "id").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfTableDoesNotExist.
+        /// </summary>
         [Test]
         public void CallingColumnExistsReturnsFalseIfTableDoesNotExist()
         {
             Processor.ColumnExists(null, "DoesNotExist", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfColumnDoesNotExist.
+        /// </summary>
         [Test]
         public void CallingColumnExistsReturnsFalseIfColumnDoesNotExist()
         {
@@ -60,6 +93,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Jet
                 Processor.ColumnExists(null, table.Name, "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CanReadData.
+        /// </summary>
         [Test]
         public void CanReadData()
         {
@@ -76,6 +112,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Jet
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanReadTableData.
+        /// </summary>
         [Test]
         public void CanReadTableData()
         {
@@ -92,6 +131,10 @@ namespace FluentMigrator.Tests.Integration.Processors.Jet
             }
         }
 
+        /// <summary>
+        /// Adds the test data.
+        /// </summary>
+        /// <param name="table">The table.</param>
         private void AddTestData(JetTestTable table)
         {
             for (int i = 0; i < 3; i++)

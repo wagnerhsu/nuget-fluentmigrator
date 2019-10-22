@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DotConnectOracleDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -18,19 +31,34 @@ using System;
 
 namespace FluentMigrator.Runner.Processors.DotConnectOracle
 {
+    /// <summary>
+    /// Class DotConnectOracleDbFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
     public class DotConnectOracleDbFactory : ReflectionBasedDbFactory
     {
+        /// <summary>
+        /// The entries
+        /// </summary>
         private static readonly TestEntry[] _entries =
         {
             new TestEntry("DevArt.Data.Oracle", "Devart.Data.Oracle.OracleProviderFactory"),
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DotConnectOracleDbFactory"/> class.
+        /// </summary>
         [Obsolete]
         public DotConnectOracleDbFactory()
             : this(serviceProvider: null)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DotConnectOracleDbFactory"/> class.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
         public DotConnectOracleDbFactory(IServiceProvider serviceProvider)
             : base(serviceProvider, _entries)
         {

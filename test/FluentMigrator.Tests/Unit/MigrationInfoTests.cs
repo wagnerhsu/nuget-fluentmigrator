@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationInfoTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -25,9 +38,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit
 {
+    /// <summary>
+    /// Defines test class MigrationInfoTests.
+    /// </summary>
     [TestFixture]
     public class MigrationInfoTests
     {
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -35,14 +54,28 @@ namespace FluentMigrator.Tests.Unit
             _migration = Mock.Of<IMigration>();
         }
 
+        /// <summary>
+        /// The migration
+        /// </summary>
         private IMigration _migration;
+        /// <summary>
+        /// The expected version
+        /// </summary>
         private long _expectedVersion;
 
+        /// <summary>
+        /// Creates the specified behavior.
+        /// </summary>
+        /// <param name="behavior">The behavior.</param>
+        /// <returns>MigrationInfo.</returns>
         private MigrationInfo Create(TransactionBehavior behavior = TransactionBehavior.Default)
         {
             return new MigrationInfo(_expectedVersion, behavior, _migration);
         }
 
+        /// <summary>
+        /// Defines the test method ConstructingShouldRetainMigration.
+        /// </summary>
         [Test]
         public void ConstructingShouldRetainMigration()
         {
@@ -50,6 +83,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.Migration.ShouldBeSameAs(_migration);
         }
 
+        /// <summary>
+        /// Defines the test method ConstructingShouldRetainTransactionBehaviorDefault.
+        /// </summary>
         [Test]
         public void ConstructingShouldRetainTransactionBehaviorDefault()
         {
@@ -57,6 +93,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.TransactionBehavior.ShouldBe(TransactionBehavior.Default);
         }
 
+        /// <summary>
+        /// Defines the test method ConstructingShouldRetainTransactionBehaviorNone.
+        /// </summary>
         [Test]
         public void ConstructingShouldRetainTransactionBehaviorNone()
         {
@@ -64,6 +103,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.TransactionBehavior.ShouldBe(TransactionBehavior.None);
         }
 
+        /// <summary>
+        /// Defines the test method ConstructingShouldRetainValueOfVersion.
+        /// </summary>
         [Test]
         public void ConstructingShouldRetainValueOfVersion()
         {
@@ -71,6 +113,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.Version.ShouldBe(_expectedVersion);
         }
 
+        /// <summary>
+        /// Defines the test method HasTraitReturnsFalseWhenTraitIsNotDefined.
+        /// </summary>
         [Test]
         public void HasTraitReturnsFalseWhenTraitIsNotDefined()
         {
@@ -78,6 +123,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.HasTrait("foo").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method HasTraitReturnsTrueWhenTraitIsDefined.
+        /// </summary>
         [Test]
         public void HasTraitReturnsTrueWhenTraitIsDefined()
         {
@@ -86,6 +134,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.HasTrait("foo").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method TraitMethodReturnsNullForNonExistentTrait.
+        /// </summary>
         [Test]
         public void TraitMethodReturnsNullForNonExistentTrait()
         {
@@ -93,6 +144,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.Trait("foo").ShouldBeNull();
         }
 
+        /// <summary>
+        /// Defines the test method TraitMethodReturnsTraitValue.
+        /// </summary>
         [Test]
         public void TraitMethodReturnsTraitValue()
         {

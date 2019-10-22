@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationGeneratorFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -25,11 +38,20 @@ using FluentMigrator.Runner.Processors;
 
 namespace FluentMigrator.Runner.Generators
 {
+    /// <summary>
+    /// Class MigrationGeneratorFactory.
+    /// </summary>
     [Obsolete]
     public class MigrationGeneratorFactory
     {
+        /// <summary>
+        /// The migration generators
+        /// </summary>
         private static readonly IDictionary<string, IMigrationGenerator> _migrationGenerators;
 
+        /// <summary>
+        /// Initializes static members of the <see cref="MigrationGeneratorFactory"/> class.
+        /// </summary>
         static MigrationGeneratorFactory()
         {
             var assemblies = MigrationProcessorFactoryProvider.RegisteredFactories.Select(x => x.GetType().Assembly);
@@ -56,14 +78,26 @@ namespace FluentMigrator.Runner.Generators
             _migrationGenerators = available;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MigrationGeneratorFactory"/> class.
+        /// </summary>
         [Obsolete("Ony the statically provided generators are accessed")]
         public MigrationGeneratorFactory()
         {
         }
 
+        /// <summary>
+        /// Gets the registered generators.
+        /// </summary>
+        /// <value>The registered generators.</value>
         public static IEnumerable<IMigrationGenerator> RegisteredGenerators
             => _migrationGenerators.Values;
 
+        /// <summary>
+        /// Gets the generator.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>IMigrationGenerator.</returns>
         [Obsolete("Ony the statically provided generators are accessed")]
         public virtual IMigrationGenerator GetGenerator(string name)
         {
@@ -73,6 +107,10 @@ namespace FluentMigrator.Runner.Generators
                    .FirstOrDefault();
         }
 
+        /// <summary>
+        /// Lists the available generator types.
+        /// </summary>
+        /// <returns>System.String.</returns>
         [Obsolete("Ony the statically provided generators are accessed")]
         public string ListAvailableGeneratorTypes()
         {

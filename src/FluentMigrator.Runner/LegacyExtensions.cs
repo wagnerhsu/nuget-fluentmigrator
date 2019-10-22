@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="LegacyExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -111,7 +124,7 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Get all assemblies for the given assembly names
         /// </summary>
-        /// <param name="loaderFactory">The factory to create an <see cref="IAssemblyLoader"/> for a given assembly (file) name</param>
+        /// <param name="loaderFactory">The factory to create an <see cref="IAssemblyLoader" /> for a given assembly (file) name</param>
         /// <param name="assemblyNames">The assembly (file) names</param>
         /// <returns>The collection of assemblies that could be loaded</returns>
         public static IEnumerable<Assembly> GetTargetAssemblies(

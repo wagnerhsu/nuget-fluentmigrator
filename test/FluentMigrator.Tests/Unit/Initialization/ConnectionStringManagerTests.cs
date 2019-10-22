@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConnectionStringManagerTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -36,9 +49,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Initialization
 {
+    /// <summary>
+    /// Defines test class ConnectionStringManagerTests.
+    /// </summary>
     [TestFixture]
     public class ConnectionStringManagerTests
     {
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -49,18 +68,46 @@ namespace FluentMigrator.Tests.Unit.Initialization
             _configManagerMock = new Mock<INetConfigManager>(MockBehavior.Strict);
         }
 
+        /// <summary>
+        /// The target
+        /// </summary>
         private const string TARGET = "FluentMigrator.Tests.dll";
+        /// <summary>
+        /// The database
+        /// </summary>
         private const string DATABASE = "sqlserver2008";
+        /// <summary>
+        /// The connection name
+        /// </summary>
         private const string CONNECTION_NAME = "Test.Connection";
+        /// <summary>
+        /// The log messages
+        /// </summary>
         private ICollection<string> _logMessages;
+        /// <summary>
+        /// The logger
+        /// </summary>
         private ILogger<ConnectionStringManager> _logger;
+        /// <summary>
+        /// The configuration manager mock
+        /// </summary>
         private Mock<INetConfigManager> _configManagerMock;
 
+        /// <summary>
+        /// Gets the path.
+        /// </summary>
+        /// <param name="relative">The relative.</param>
+        /// <returns>System.String.</returns>
         private static string GetPath(string relative)
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Unit", "Initialization", "Fixtures", relative);
         }
 
+        /// <summary>
+        /// Loads from file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns>Configuration.</returns>
         private static Configuration LoadFromFile(string path)
         {
             var fileMap = new ExeConfigurationFileMap {ExeConfigFilename = path};
@@ -68,6 +115,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             return ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldLoadMachineNameConnectionFromSpecifiedConfigIfNoConnectionNameSpecified.
+        /// </summary>
         [Test]
         public void ShouldLoadMachineNameConnectionFromSpecifiedConfigIfNoConnectionNameSpecified()
         {
@@ -82,6 +132,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             Assert.That(sut.ConnectionString, Is.EqualTo("From Machine Name"));
         }
 
+        /// <summary>
+        /// Defines the test method ShouldLoadNamedConnectionFromMachineConfigIfTargetAssemblyConfigHasNoMatch.
+        /// </summary>
         [Test]
         public void ShouldLoadNamedConnectionFromMachineConfigIfTargetAssemblyConfigHasNoMatch()
         {
@@ -102,6 +155,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             Assert.That(sut.ConnectionString, Is.EqualTo("From Machine Config"));
         }
 
+        /// <summary>
+        /// Defines the test method ShouldLoadNamedConnectionFromSpecifiedConfigFile.
+        /// </summary>
         [Test]
         public void ShouldLoadNamedConnectionFromSpecifiedConfigFile()
         {
@@ -115,6 +171,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             Assert.That(sut.ConnectionString, Is.EqualTo("From Arbitrary Config"));
         }
 
+        /// <summary>
+        /// Defines the test method ShouldLoadNamedConnectionFromTargetAssemblyConfig.
+        /// </summary>
         [Test]
         public void ShouldLoadNamedConnectionFromTargetAssemblyConfig()
         {
@@ -130,6 +189,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             Assert.That(sut.ConnectionString, Is.EqualTo("From App Config"));
         }
 
+        /// <summary>
+        /// Defines the test method ShouldObfuscatePasswordOfConnectionString.
+        /// </summary>
         [Test]
         public void ShouldObfuscatePasswordOfConnectionString()
         {
@@ -156,6 +218,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             _logMessages.Count(x => x.Contains(expectedMessage)).ShouldBe(1);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldUseAsConnectionStringIfNoConnectionMatchesAndNoMatchInMachineConfig.
+        /// </summary>
         [Test]
         public void ShouldUseAsConnectionStringIfNoConnectionMatchesAndNoMatchInMachineConfig()
         {

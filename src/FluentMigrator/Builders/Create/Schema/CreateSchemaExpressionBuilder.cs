@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateSchemaExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -22,12 +35,12 @@ using FluentMigrator.Infrastructure;
 namespace FluentMigrator.Builders.Create.Schema
 {
     /// <summary>
-    /// An expression builder for a <see cref="CreateSchemaExpression"/>
+    /// An expression builder for a <see cref="CreateSchemaExpression" />
     /// </summary>
     public class CreateSchemaExpressionBuilder : ExpressionBuilderBase<CreateSchemaExpression>, ICreateSchemaOptionsSyntax, ISupportAdditionalFeatures
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateSchemaExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="CreateSchemaExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         public CreateSchemaExpressionBuilder(CreateSchemaExpression expression)

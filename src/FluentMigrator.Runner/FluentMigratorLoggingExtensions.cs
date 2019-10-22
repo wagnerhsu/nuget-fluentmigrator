@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FluentMigratorLoggingExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +36,7 @@ using Microsoft.Extensions.Options;
 namespace FluentMigrator.Runner
 {
     /// <summary>
-    /// Extension methods for <see cref="ILoggerFactory"/> and <see cref="ILoggingBuilder"/>
+    /// Extension methods for <see cref="ILoggerFactory" /> and <see cref="ILoggingBuilder" />
     /// </summary>
     public static class FluentMigratorLoggingExtensions
     {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConventionSetTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2019, FluentMigrator Project
 //
@@ -24,8 +37,14 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Initialization
 {
+    /// <summary>
+    /// Class ConventionSetTests.
+    /// </summary>
     public class ConventionSetTests
     {
+        /// <summary>
+        /// Defines the test method CanLoadConventionSetFromAssembly.
+        /// </summary>
         [Test]
         public void CanLoadConventionSetFromAssembly()
         {
@@ -39,6 +58,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             Assert.AreEqual("custom-schema", expr.SchemaName);
         }
 
+        /// <summary>
+        /// Defines the test method CanLoadConventionSetFromAssemblyWithScanForAll.
+        /// </summary>
         [Test]
         public void CanLoadConventionSetFromAssemblyWithScanForAll()
         {
@@ -52,6 +74,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             Assert.AreEqual("custom-schema", expr.SchemaName);
         }
 
+        /// <summary>
+        /// Defines the test method NotLoadingConventionSetFromAssemblyWithScanForMigrations.
+        /// </summary>
         [Test]
         public void NotLoadingConventionSetFromAssemblyWithScanForMigrations()
         {
@@ -66,8 +91,16 @@ namespace FluentMigrator.Tests.Unit.Initialization
         }
 
         // ReSharper disable once UnusedMember.Global
+        /// <summary>
+        /// Class CustomConventionSet.
+        /// Implements the <see cref="FluentMigrator.Runner.Conventions.ConventionSet" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Conventions.ConventionSet" />
         public class CustomConventionSet : ConventionSet
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="CustomConventionSet"/> class.
+            /// </summary>
             public CustomConventionSet()
             {
                 base.SchemaConvention = new DefaultSchemaConvention("custom-schema");

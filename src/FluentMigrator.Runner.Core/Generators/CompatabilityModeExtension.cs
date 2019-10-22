@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CompatabilityModeExtension.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -22,9 +35,19 @@ using FluentMigrator.Exceptions;
 
 namespace FluentMigrator.Runner.Generators
 {
+    /// <summary>
+    /// Class CompatabilityModeExtension.
+    /// </summary>
     [Obsolete]
     public static class CompatabilityModeExtension
     {
+        /// <summary>
+        /// Handles the compatabilty.
+        /// </summary>
+        /// <param name="mode">The mode.</param>
+        /// <param name="message">The message.</param>
+        /// <returns>System.String.</returns>
+        /// <exception cref="DatabaseOperationNotSupportedException"></exception>
         [Obsolete]
         public static string HandleCompatabilty(this CompatabilityMode mode, string message)
         {

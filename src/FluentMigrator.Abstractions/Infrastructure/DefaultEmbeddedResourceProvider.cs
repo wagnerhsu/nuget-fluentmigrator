@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DefaultEmbeddedResourceProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -24,15 +37,18 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Infrastructure
 {
     /// <summary>
-    /// The default implementation of the <see cref="IEmbeddedResourceProvider"/> interface
+    /// The default implementation of the <see cref="IEmbeddedResourceProvider" /> interface
     /// </summary>
     public class DefaultEmbeddedResourceProvider : IEmbeddedResourceProvider
     {
+        /// <summary>
+        /// The assemblies
+        /// </summary>
         [CanBeNull, ItemNotNull]
         private readonly IReadOnlyCollection<Assembly> _assemblies;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultEmbeddedResourceProvider"/> class.
+        /// Initializes a new instance of the <see cref="DefaultEmbeddedResourceProvider" /> class.
         /// </summary>
         /// <param name="assemblies">The assemblies to be scanned for the embedded resources</param>
         public DefaultEmbeddedResourceProvider([NotNull, ItemNotNull] IEnumerable<Assembly> assemblies)
@@ -41,7 +57,7 @@ namespace FluentMigrator.Infrastructure
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultEmbeddedResourceProvider"/> class.
+        /// Initializes a new instance of the <see cref="DefaultEmbeddedResourceProvider" /> class.
         /// </summary>
         /// <param name="assemblies">The assemblies to be scanned for the embedded resources</param>
         public DefaultEmbeddedResourceProvider([NotNull, ItemNotNull] params Assembly[] assemblies)
@@ -50,7 +66,7 @@ namespace FluentMigrator.Infrastructure
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultEmbeddedResourceProvider"/> class.
+        /// Initializes a new instance of the <see cref="DefaultEmbeddedResourceProvider" /> class.
         /// </summary>
         /// <param name="assemblyCollection">The assembly collection to get the ebmedded resources for</param>
         [Obsolete]

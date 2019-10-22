@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleBaseDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +31,18 @@ using System;
 
 namespace FluentMigrator.Runner.Processors.Oracle
 {
+    /// <summary>
+    /// Class OracleBaseDbFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
     public class OracleBaseDbFactory : ReflectionBasedDbFactory
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleBaseDbFactory"/> class.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
+        /// <param name="testEntries">The test entries.</param>
         protected OracleBaseDbFactory(IServiceProvider serviceProvider, params TestEntry[] testEntries)
             : base(serviceProvider, testEntries)
         {

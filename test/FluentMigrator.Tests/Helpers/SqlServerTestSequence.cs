@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerTestSequence.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,16 +33,42 @@ using FluentMigrator.Runner.Processors.SqlServer;
 
 namespace FluentMigrator.Tests.Helpers
 {
+    /// <summary>
+    /// Class SqlServerTestSequence.
+    /// Implements the <see cref="System.IDisposable" />
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public class SqlServerTestSequence : IDisposable
     {
+        /// <summary>
+        /// The schema name
+        /// </summary>
         private readonly string _schemaName;
 
+        /// <summary>
+        /// Gets or sets the connection.
+        /// </summary>
+        /// <value>The connection.</value>
         private SqlConnection Connection { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Gets or sets the transaction.
+        /// </summary>
+        /// <value>The transaction.</value>
         private SqlTransaction Transaction { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServerTestSequence"/> class.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="sequenceName">Name of the sequence.</param>
         public SqlServerTestSequence(SqlServerProcessor processor, string schemaName, string sequenceName)
         {
             _schemaName = schemaName;
@@ -40,11 +79,17 @@ namespace FluentMigrator.Tests.Helpers
             Create();
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             Drop();
         }
 
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
         public void Create()
         {
             if (!string.IsNullOrEmpty(_schemaName))
@@ -60,6 +105,9 @@ namespace FluentMigrator.Tests.Helpers
                 command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Drops this instance.
+        /// </summary>
         public void Drop()
         {
             if (string.IsNullOrEmpty(_schemaName))

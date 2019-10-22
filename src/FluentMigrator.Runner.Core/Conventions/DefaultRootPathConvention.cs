@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DefaultRootPathConvention.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -21,22 +34,23 @@ using FluentMigrator.Expressions;
 namespace FluentMigrator.Runner.Conventions
 {
     /// <summary>
-    /// The default implementation of a <see cref="IRootPathConvention"/>
+    /// The default implementation of a <see cref="IRootPathConvention" />
     /// </summary>
-    /// <remarks>
-    /// It sets the working directory, which is either the
+    /// <remarks>It sets the working directory, which is either the
     /// path given in the constructor or - when the given path is
-    /// null - the current directory.
-    /// </remarks>
+    /// null - the current directory.</remarks>
     public class DefaultRootPathConvention : IRootPathConvention
     {
+        /// <summary>
+        /// The root path
+        /// </summary>
         private readonly string _rootPath;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultRootPathConvention"/> class.
+        /// Initializes a new instance of the <see cref="DefaultRootPathConvention" /> class.
         /// </summary>
         /// <param name="rootPath">The root path for expressions requiring file system access.</param>
-        /// <remarks>When <paramref name="rootPath"/> is null, then the current directory is
+        /// <remarks>When <paramref name="rootPath" /> is null, then the current directory is
         /// returned</remarks>
         public DefaultRootPathConvention(string rootPath)
         {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaIndexTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -31,16 +44,40 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Hana
 {
+    /// <summary>
+    /// Defines test class HanaIndexTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.BaseIndexTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.BaseIndexTests" />
     [TestFixture]
     [Category("Integration")]
     [Category("Hana")]
     public class HanaIndexTests : BaseIndexTests
     {
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private HanaProcessor Processor { get; set; }
+        /// <summary>
+        /// Gets or sets the quoter.
+        /// </summary>
+        /// <value>The quoter.</value>
         private IQuoter Quoter { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsCanAcceptIndexNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsCanAcceptIndexNameWithSingleQuote()
         {
@@ -52,6 +89,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsCanAcceptTableNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsCanAcceptTableNameWithSingleQuote()
         {
@@ -62,6 +102,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsFalseIfIndexDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsFalseIfIndexDoesNotExist()
         {
@@ -69,6 +112,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
                 Processor.IndexExists(null, table.Name, "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsFalseIfIndexDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsFalseIfIndexDoesNotExistWithSchema()
         {
@@ -76,18 +122,27 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
                 Processor.IndexExists("test_schema", table.Name, "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsFalseIfTableDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsFalseIfTableDoesNotExist()
         {
             Processor.IndexExists(null, "DoesNotExist", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsFalseIfTableDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsFalseIfTableDoesNotExistWithSchema()
         {
             Processor.IndexExists("test_schema", "DoesNotExist", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsTrueIfIndexExists.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsTrueIfIndexExists()
         {
@@ -98,6 +153,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsTrueIfIndexExistsWithSchema.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsTrueIfIndexExistsWithSchema()
         {
@@ -108,6 +166,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
             }
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
@@ -121,12 +182,18 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
             ServiceProvider = serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -135,6 +202,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana
             Quoter = ServiceScope.ServiceProvider.GetRequiredService<HanaQuoter>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

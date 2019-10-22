@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Oracle12CTableTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -25,9 +38,17 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Oracle12C
 {
+    /// <summary>
+    /// Defines test class Oracle12CTableTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.Oracle.OracleBaseTableTests{FluentMigrator.Runner.Generators.Oracle.Oracle12CGenerator}" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.Oracle.OracleBaseTableTests{FluentMigrator.Runner.Generators.Oracle.Oracle12CGenerator}" />
     [TestFixture]
     public class Oracle12CTableTests : OracleBaseTableTests<Oracle12CGenerator>
     {
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithCustomSchema()
         {
@@ -38,6 +59,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle12C
             result.ShouldBe("CREATE TABLE TestSchema.TestTable1 (TestColumn1 NUMBER(10,0) GENERATED ALWAYS AS IDENTITY , TestColumn2 NUMBER(10,0) NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithDefaultSchema()
         {

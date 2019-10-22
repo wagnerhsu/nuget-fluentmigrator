@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TypeFilterOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -24,11 +37,13 @@ namespace FluentMigrator.Runner.Initialization
         /// <summary>
         /// Gets or sets the root namespace for filtering
         /// </summary>
+        /// <value>The namespace.</value>
         public string Namespace { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating whether all sub-namespaces should be included
         /// </summary>
+        /// <value><c>true</c> if [nested namespaces]; otherwise, <c>false</c>.</value>
         public bool NestedNamespaces { get; set; }
     }
 }

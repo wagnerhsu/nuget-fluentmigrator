@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IMigrationContext.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -33,22 +46,26 @@ namespace FluentMigrator.Infrastructure
         /// <summary>
         /// Gets the service provider used to create this migration context
         /// </summary>
+        /// <value>The service provider.</value>
         [NotNull]
         IServiceProvider ServiceProvider { get; }
 
         /// <summary>
         /// Gets or sets the collection of expressions
         /// </summary>
+        /// <value>The expressions.</value>
         ICollection<IMigrationExpression> Expressions { get; set; }
 
         /// <summary>
-        /// Gets the <see cref="IQuerySchema"/> to access the database
+        /// Gets the <see cref="IQuerySchema" /> to access the database
         /// </summary>
+        /// <value>The query schema.</value>
         IQuerySchema QuerySchema { get; }
 
         /// <summary>
         /// Gets or sets the collection of migration assemblies
         /// </summary>
+        /// <value>The migration assemblies.</value>
         [Obsolete]
         [CanBeNull]
         IAssemblyCollection MigrationAssemblies { get; set; }
@@ -56,12 +73,14 @@ namespace FluentMigrator.Infrastructure
         /// <summary>
         /// Gets or sets the arbitrary application context passed to the task runner
         /// </summary>
+        /// <value>The application context.</value>
         [Obsolete]
         object ApplicationContext { get; set; }
 
         /// <summary>
         /// Gets or sets the connection string
         /// </summary>
+        /// <value>The connection.</value>
         string Connection { get; set; }
     }
 }

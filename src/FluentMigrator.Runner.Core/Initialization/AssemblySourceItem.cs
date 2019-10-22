@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AssemblySourceItem.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,14 +33,14 @@ using System.Reflection;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// The default implementation of an <see cref="IAssemblySourceItem"/>
+    /// The default implementation of an <see cref="IAssemblySourceItem" />
     /// </summary>
     public class AssemblySourceItem : IAssemblySourceItem
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssemblySourceItem"/> class.
+        /// Initializes a new instance of the <see cref="AssemblySourceItem" /> class.
         /// </summary>
-        /// <param name="assemblies">The assemblies to be returned by <see cref="Assemblies"/></param>
+        /// <param name="assemblies">The assemblies to be returned by <see cref="Assemblies" /></param>
         public AssemblySourceItem(params Assembly[] assemblies)
         {
             Assemblies = assemblies;

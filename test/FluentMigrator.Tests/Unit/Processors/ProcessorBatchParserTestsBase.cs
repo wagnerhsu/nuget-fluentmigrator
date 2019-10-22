@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ProcessorBatchParserTestsBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -27,18 +40,46 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Processors
 {
+    /// <summary>
+    /// Class ProcessorBatchParserTestsBase.
+    /// </summary>
     [Category("BatchParser")]
     public abstract class ProcessorBatchParserTestsBase
     {
+        /// <summary>
+        /// The connection string
+        /// </summary>
         private const string ConnectionString = "server=this";
 
+        /// <summary>
+        /// The connection state
+        /// </summary>
         private ConnectionState _connectionState;
 
+        /// <summary>
+        /// Gets the mocked connection.
+        /// </summary>
+        /// <value>The mocked connection.</value>
         protected Mock<DbConnection> MockedConnection { get; private set; }
+        /// <summary>
+        /// Gets the mocked database provider factory.
+        /// </summary>
+        /// <value>The mocked database provider factory.</value>
         protected Mock<DbProviderFactory> MockedDbProviderFactory { get; private set; }
+        /// <summary>
+        /// Gets the mocked connection string accessor.
+        /// </summary>
+        /// <value>The mocked connection string accessor.</value>
         protected Mock<IConnectionStringAccessor> MockedConnectionStringAccessor { get; private set; }
+        /// <summary>
+        /// Gets or sets the mocked commands.
+        /// </summary>
+        /// <value>The mocked commands.</value>
         private List<Mock<DbCommand>> MockedCommands { get; set; }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -75,6 +116,9 @@ namespace FluentMigrator.Tests.Unit.Processors
                     });
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {
@@ -86,6 +130,9 @@ namespace FluentMigrator.Tests.Unit.Processors
             MockedDbProviderFactory.VerifyNoOtherCalls();
         }
 
+        /// <summary>
+        /// Defines the test method TestOneCommandForMultipleLines.
+        /// </summary>
         [Test]
         public void TestOneCommandForMultipleLines()
         {
@@ -109,6 +156,9 @@ namespace FluentMigrator.Tests.Unit.Processors
             MockedConnection.Protected().Verify("Dispose", Times.Exactly(1), ItExpr.IsAny<bool>());
         }
 
+        /// <summary>
+        /// Defines the test method TestThatTwoCommandsGetSeparatedByGo.
+        /// </summary>
         [Test]
         public void TestThatTwoCommandsGetSeparatedByGo()
         {
@@ -133,6 +183,9 @@ namespace FluentMigrator.Tests.Unit.Processors
             MockedConnection.Protected().Verify("Dispose", Times.Exactly(1), ItExpr.IsAny<bool>());
         }
 
+        /// <summary>
+        /// Defines the test method TestThatTwoCommandsAreNotSeparatedByGoInComment.
+        /// </summary>
         [Test]
         public void TestThatTwoCommandsAreNotSeparatedByGoInComment()
         {
@@ -157,6 +210,9 @@ namespace FluentMigrator.Tests.Unit.Processors
             MockedConnection.Protected().Verify("Dispose", Times.Exactly(1), ItExpr.IsAny<bool>());
         }
 
+        /// <summary>
+        /// Defines the test method TestThatTwoCommandsAreNotSeparatedByGoInString.
+        /// </summary>
         [Test]
         public void TestThatTwoCommandsAreNotSeparatedByGoInString()
         {
@@ -181,6 +237,9 @@ namespace FluentMigrator.Tests.Unit.Processors
             MockedConnection.Protected().Verify("Dispose", Times.Exactly(1), ItExpr.IsAny<bool>());
         }
 
+        /// <summary>
+        /// Defines the test method Issue442.
+        /// </summary>
         [Test]
         public void Issue442()
         {
@@ -205,6 +264,9 @@ namespace FluentMigrator.Tests.Unit.Processors
             MockedConnection.Protected().Verify("Dispose", Times.Exactly(1), ItExpr.IsAny<bool>());
         }
 
+        /// <summary>
+        /// Defines the test method Issue842.
+        /// </summary>
         [Test]
         public void Issue842()
         {
@@ -229,6 +291,9 @@ namespace FluentMigrator.Tests.Unit.Processors
             MockedConnection.Protected().Verify("Dispose", Times.Exactly(1), ItExpr.IsAny<bool>());
         }
 
+        /// <summary>
+        /// Defines the test method TestThatGoWithRunCount.
+        /// </summary>
         [Test]
         public void TestThatGoWithRunCount()
         {
@@ -262,6 +327,10 @@ namespace FluentMigrator.Tests.Unit.Processors
             MockedConnection.Protected().Verify("Dispose", Times.Exactly(1), ItExpr.IsAny<bool>());
         }
 
+        /// <summary>
+        /// Creates the processor.
+        /// </summary>
+        /// <returns>IMigrationProcessor.</returns>
         protected abstract IMigrationProcessor CreateProcessor();
     }
 }

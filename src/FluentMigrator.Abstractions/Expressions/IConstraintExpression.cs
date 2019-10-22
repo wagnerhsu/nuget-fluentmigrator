@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IConstraintExpression.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -26,6 +39,7 @@ namespace FluentMigrator.Expressions
         /// <summary>
         /// Gets the constraint definition
         /// </summary>
+        /// <value>The constraint.</value>
         ConstraintDefinition Constraint { get; }
     }
 }

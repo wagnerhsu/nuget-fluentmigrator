@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ExecuteSqlScriptExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -33,12 +46,24 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Expressions
 {
+    /// <summary>
+    /// Defines test class ExecuteSqlScriptExpressionTests.
+    /// </summary>
     [TestFixture]
     public class ExecuteSqlScriptExpressionTests
     {
+        /// <summary>
+        /// The test SQL script
+        /// </summary>
         private string testSqlScript = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "testscript.sql");
+        /// <summary>
+        /// The script contents
+        /// </summary>
         private string scriptContents = "TEST SCRIPT";
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnWhenSqlScriptIsNullOrEmpty.
+        /// </summary>
         [Test]
         public void ErrorIsReturnWhenSqlScriptIsNullOrEmpty()
         {
@@ -47,6 +72,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.SqlScriptCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ExecutesTheStatementWithParameters.
+        /// </summary>
         [Test]
         public void ExecutesTheStatementWithParameters()
         {
@@ -64,6 +92,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             processor.Verify();
         }
 
+        /// <summary>
+        /// Defines the test method ExecutesTheStatement.
+        /// </summary>
         [Test]
         public void ExecutesTheStatement()
         {
@@ -76,6 +107,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             processor.Verify();
         }
 
+        /// <summary>
+        /// Defines the test method ToStringIsDescriptive.
+        /// </summary>
         [Test]
         public void ToStringIsDescriptive()
         {
@@ -83,6 +117,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             expression.ToString().ShouldBe($"ExecuteSqlScript {testSqlScript}");
         }
 
+        /// <summary>
+        /// Defines the test method CanUseScriptsOnAnotherDriveToWorkingDirectory.
+        /// </summary>
         [Test]
         [Category("NotWorkingOnMono")]
         public void CanUseScriptsOnAnotherDriveToWorkingDirectory()

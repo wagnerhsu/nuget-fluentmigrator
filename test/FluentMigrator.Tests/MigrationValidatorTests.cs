@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationValidatorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -27,9 +40,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests
 {
+    /// <summary>
+    /// Defines test class MigrationValidatorTests.
+    /// </summary>
     [TestFixture]
     public class MigrationValidatorTests
     {
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -37,21 +56,38 @@ namespace FluentMigrator.Tests
             _migrationValidator = new MigrationValidator(Mock.Of<ILogger>(), new DefaultConventionSet());
         }
 
+        /// <summary>
+        /// The migration validator
+        /// </summary>
         private MigrationValidator _migrationValidator;
 
+        /// <summary>
+        /// The migration
+        /// </summary>
         private IMigration _migration;
 
+        /// <summary>
+        /// Builds the invalid expression.
+        /// </summary>
+        /// <returns>IMigrationExpression.</returns>
         private IMigrationExpression BuildInvalidExpression()
         {
             return new CreateTableExpression();
         }
 
+        /// <summary>
+        /// Builds the valid expression.
+        /// </summary>
+        /// <returns>IMigrationExpression.</returns>
         private IMigrationExpression BuildValidExpression()
         {
             var expression = new CreateTableExpression { TableName = "Foo" };
             return expression;
         }
 
+        /// <summary>
+        /// Defines the test method ItDoesNotThrowIfExpressionsAreValid.
+        /// </summary>
         [Test]
         public void ItDoesNotThrowIfExpressionsAreValid()
         {
@@ -61,6 +97,9 @@ namespace FluentMigrator.Tests
                     new[] { BuildValidExpression() }));
         }
 
+        /// <summary>
+        /// Defines the test method ItThrowsInvalidMigrationExceptionIfExpressionsAreInvalid.
+        /// </summary>
         [Test]
         public void ItThrowsInvalidMigrationExceptionIfExpressionsAreInvalid()
         {
@@ -70,6 +109,9 @@ namespace FluentMigrator.Tests
                     new[] { BuildInvalidExpression() }));
         }
 
+        /// <summary>
+        /// Defines the test method ItThrowsInvalidMigrationExceptionIfExpressionsContainsMultipleInvalidOfSameType.
+        /// </summary>
         [Test]
         public void ItThrowsInvalidMigrationExceptionIfExpressionsContainsMultipleInvalidOfSameType()
         {

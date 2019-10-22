@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IColumnsExpression.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -28,11 +41,13 @@ namespace FluentMigrator.Expressions
         /// <summary>
         /// Gets the table name
         /// </summary>
+        /// <value>The name of the table.</value>
         string TableName { get; }
 
         /// <summary>
         /// Gets the list of columns
         /// </summary>
+        /// <value>The columns.</value>
         IEnumerable<ColumnDefinition> Columns { get; }
     }
 }

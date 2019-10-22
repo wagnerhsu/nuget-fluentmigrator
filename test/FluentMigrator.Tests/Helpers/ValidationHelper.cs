@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ValidationHelper.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -22,8 +35,16 @@ using System.Linq;
 
 namespace FluentMigrator.Tests.Helpers
 {
+    /// <summary>
+    /// Class ValidationHelper.
+    /// </summary>
     public static class ValidationHelper
     {
+        /// <summary>
+        /// Collects the errors.
+        /// </summary>
+        /// <param name="items">The items.</param>
+        /// <returns>ICollection&lt;System.String&gt;.</returns>
         public static ICollection<string> CollectErrors(params object[] items)
         {
             var result = new List<ValidationResult>();

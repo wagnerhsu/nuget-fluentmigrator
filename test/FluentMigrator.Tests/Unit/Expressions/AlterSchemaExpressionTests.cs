@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AlterSchemaExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,9 +41,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Expressions
 {
+    /// <summary>
+    /// Defines test class AlterSchemaExpressionTests.
+    /// </summary>
     [TestFixture]
     public class AlterSchemaExpressionTests
     {
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenTableNameIsNull.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenTableNameIsNull()
         {
@@ -39,6 +58,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.TableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenTableNameIsEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenTableNameIsEmptyString()
         {
@@ -47,6 +69,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.TableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenTableNameIsNotNullEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenTableNameIsNotNullEmptyString()
         {
@@ -55,6 +80,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldNotContain(ErrorMessages.TableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenDestinationSchemaNameIsNull.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenDestinationSchemaNameIsNull()
         {
@@ -63,6 +91,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.DestinationSchemaCannotBeNull);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenDestinationSchemaNameIsEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenDestinationSchemaNameIsEmptyString()
         {
@@ -71,6 +102,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.DestinationSchemaCannotBeNull);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenDestinationSchemaNameIsNotNullEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenDestinationSchemaNameIsNotNullEmptyString()
         {
@@ -79,12 +113,18 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldNotContain(ErrorMessages.DestinationSchemaCannotBeNull);
         }
 
+        /// <summary>
+        /// Defines the test method ReverseThrowsException.
+        /// </summary>
         [Test]
         public void ReverseThrowsException()
         {
             Assert.Throws<NotSupportedException>(() => new AlterSchemaExpression().Reverse());
         }
 
+        /// <summary>
+        /// Defines the test method ToStringIsDescriptive.
+        /// </summary>
         [Test]
         public void ToStringIsDescriptive()
         {

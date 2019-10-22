@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdProcessorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -33,19 +46,47 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Firebird
 {
+    /// <summary>
+    /// Defines test class FirebirdProcessorTests.
+    /// </summary>
     [TestFixture]
     [Category("Integration")]
     [Category("Firebird")]
     public class FirebirdProcessorTests
     {
+        /// <summary>
+        /// The prober
+        /// </summary>
         private readonly FirebirdLibraryProber _prober = new FirebirdLibraryProber();
+        /// <summary>
+        /// The temporary database
+        /// </summary>
         private TemporaryDatabase _temporaryDatabase;
 
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private FirebirdProcessor Processor { get; set; }
+        /// <summary>
+        /// Gets or sets the quoter.
+        /// </summary>
+        /// <value>The quoter.</value>
         private FirebirdQuoter Quoter {get; set; }
 
+        /// <summary>
+        /// Defines the test method CanReadData.
+        /// </summary>
         [Test]
         public void CanReadData()
         {
@@ -64,6 +105,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanReadTableData.
+        /// </summary>
         [Test]
         public void CanReadTableData()
         {
@@ -82,6 +126,10 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Adds the test data.
+        /// </summary>
+        /// <param name="table">The table.</param>
         private void AddTestData(FirebirdTestTable table)
         {
             if (table.Connection.State != ConnectionState.Open)
@@ -100,6 +148,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             Processor.AutoCommit();
         }
 
+        /// <summary>
+        /// Defines the test method CanReadDataWithSchema.
+        /// </summary>
         [Test]
         public void CanReadDataWithSchema()
         {
@@ -118,6 +169,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanReadTableDataWithSchema.
+        /// </summary>
         [Test]
         public void CanReadTableDataWithSchema()
         {
@@ -136,6 +190,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAndDropSequenceWithExistCheck.
+        /// </summary>
         [Test]
         public void CanCreateAndDropSequenceWithExistCheck()
         {
@@ -157,6 +214,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterSequence.
+        /// </summary>
         [Test]
         public void CanAlterSequence()
         {
@@ -181,12 +241,18 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingSequenceExistsReturnsFalseIfSequenceDoesNotExist.
+        /// </summary>
         [Test]
         public void CallingSequenceExistsReturnsFalseIfSequenceDoesNotExist()
         {
             Processor.SequenceExists("", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTrigger.
+        /// </summary>
         [Test]
         public void CanCreateTrigger()
         {
@@ -197,6 +263,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanDropTrigger.
+        /// </summary>
         [Test]
         public void CanDropTrigger()
         {
@@ -210,6 +279,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method IdentityCanCreateIdentityColumn.
+        /// </summary>
         [Test]
         public void IdentityCanCreateIdentityColumn()
         {
@@ -226,6 +298,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method IdentityCanDropIdentityColumn.
+        /// </summary>
         [Test]
         public void IdentityCanDropIdentityColumn()
         {
@@ -251,6 +326,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method IdentityCanAlterColumnToIdentity.
+        /// </summary>
         [Test]
         public void IdentityCanAlterColumnToIdentity()
         {
@@ -276,6 +354,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method IdentityCanAlterColumnToNotIdentity.
+        /// </summary>
         [Test]
         public void IdentityCanAlterColumnToNotIdentity()
         {
@@ -301,6 +382,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method IdentityCanInsert.
+        /// </summary>
         [Test]
         public void IdentityCanInsert()
         {
@@ -328,6 +412,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method IdentityCanInsertMultiple.
+        /// </summary>
         [Test]
         public void IdentityCanInsertMultiple()
         {
@@ -366,6 +453,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -387,6 +477,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             Quoter = ServiceScope.ServiceProvider.GetRequiredService<FirebirdQuoter>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

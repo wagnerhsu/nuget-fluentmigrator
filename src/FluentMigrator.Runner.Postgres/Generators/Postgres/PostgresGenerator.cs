@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Postgres
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PostgresGenerator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -31,14 +44,28 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Generators.Postgres
 {
+    /// <summary>
+    /// Class PostgresGenerator.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Generic.GenericGenerator" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Generic.GenericGenerator" />
     public class PostgresGenerator : GenericGenerator
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostgresGenerator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
         public PostgresGenerator(
             [NotNull] PostgresQuoter quoter)
             : this(quoter, new OptionsWrapper<GeneratorOptions>(new GeneratorOptions()))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostgresGenerator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         public PostgresGenerator(
             [NotNull] PostgresQuoter quoter,
             [NotNull] IOptions<GeneratorOptions> generatorOptions)
@@ -46,6 +73,12 @@ namespace FluentMigrator.Runner.Generators.Postgres
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostgresGenerator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
+        /// <param name="typeMap">The type map.</param>
         protected PostgresGenerator(
             [NotNull] PostgresQuoter quoter,
             [NotNull] IOptions<GeneratorOptions> generatorOptions,
@@ -54,6 +87,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
         {
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterTableExpression expression)
         {
             var alterStatement = new StringBuilder();
@@ -66,16 +104,31 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return alterStatement.ToString();
         }
 
+        /// <summary>
+        /// Generates a <c>CREATE SCHEMA</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateSchemaExpression expression)
         {
             return string.Format("CREATE SCHEMA {0};", Quoter.QuoteSchemaName(expression.SchemaName));
         }
 
+        /// <summary>
+        /// Generates a <c>DROP SCHEMA</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteSchemaExpression expression)
         {
             return string.Format("DROP SCHEMA {0};", Quoter.QuoteSchemaName(expression.SchemaName));
         }
 
+        /// <summary>
+        /// Outputs a create table string
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateTableExpression expression)
         {
             var createStatement = new StringBuilder();
@@ -95,6 +148,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return createStatement.ToString();
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE ALTER COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterColumnExpression expression)
         {
             var alterStatement = new StringBuilder();
@@ -111,6 +169,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return alterStatement.ToString();
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE ADD COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateColumnExpression expression)
         {
             var createStatement = new StringBuilder();
@@ -124,11 +187,21 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return createStatement.ToString();
         }
 
+        /// <summary>
+        /// Generates a <c>DROP TABLE</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteTableExpression expression)
         {
             return string.Format("DROP TABLE {0};", Quoter.QuoteTableName(expression.TableName, expression.SchemaName));
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE DROP COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteColumnExpression expression)
         {
             StringBuilder builder = new StringBuilder();
@@ -142,6 +215,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Generates an SQL statement to create a foreign key
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateForeignKeyExpression expression)
         {
             var primaryColumns = GetColumnList(expression.ForeignKey.PrimaryColumns);
@@ -160,6 +238,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             );
         }
 
+        /// <summary>
+        /// Generates an SQL statement to delete a foreign key
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteForeignKeyExpression expression)
         {
             return string.Format("ALTER TABLE {0} DROP CONSTRAINT {1};",
@@ -167,6 +250,12 @@ namespace FluentMigrator.Runner.Generators.Postgres
                 Quoter.Quote(expression.ForeignKey.Name));
         }
 
+        /// <summary>
+        /// Generates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
+        /// <inheritdoc />
         public override string Generate(CreateIndexExpression expression)
         {
             var result = new StringBuilder("CREATE");
@@ -202,6 +291,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
              */
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop an index
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteIndexExpression expression)
         {
             var quotedSchema = Quoter.QuoteSchemaName(expression.Index.SchemaName);
@@ -210,11 +304,21 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return string.Format("DROP INDEX {0};", indexName);
         }
 
+        /// <summary>
+        /// Generates an SQL statement to rename a table
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(RenameTableExpression expression)
         {
             return string.Format("ALTER TABLE {0} RENAME TO {1};", Quoter.QuoteTableName(expression.OldName, expression.SchemaName), Quoter.Quote(expression.NewName));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to rename a column
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(RenameColumnExpression expression)
         {
             return string.Format(
@@ -224,6 +328,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
                 Quoter.QuoteColumnName(expression.NewName));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to INSERT data
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(InsertDataExpression expression)
         {
             var result = new StringBuilder();
@@ -244,6 +353,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return result.ToString();
         }
 
+        /// <summary>
+        /// Generates an SQL statement to alter a DEFAULT constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterDefaultConstraintExpression expression)
         {
             return string.Format(
@@ -253,6 +367,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
                 ((PostgresColumn)Column).FormatAlterDefaultValue(expression.ColumnName, expression.DefaultValue));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to DELETE data
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteDataExpression expression)
         {
             var result = new StringBuilder();
@@ -287,6 +406,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return result.ToString();
         }
 
+        /// <summary>
+        /// Generates an SQL statement to UPDATE data
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(UpdateDataExpression expression)
         {
             var updateItems = new List<string>();
@@ -318,21 +442,41 @@ namespace FluentMigrator.Runner.Generators.Postgres
                 string.Join(" AND ", whereClauses.ToArray()));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to move a table from one schema to another
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterSchemaExpression expression)
         {
             return string.Format("ALTER TABLE {0} SET SCHEMA {1};", Quoter.QuoteTableName(expression.TableName, expression.SourceSchemaName), Quoter.QuoteSchemaName(expression.DestinationSchemaName));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop a default constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteDefaultConstraintExpression expression)
         {
             return string.Format("ALTER TABLE {0} ALTER {1} DROP DEFAULT;", Quoter.QuoteTableName(expression.TableName, expression.SchemaName), Quoter.Quote(expression.ColumnName));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop a constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteConstraintExpression expression)
         {
             return string.Format("ALTER TABLE {0} DROP CONSTRAINT {1};", Quoter.QuoteTableName(expression.Constraint.TableName, expression.Constraint.SchemaName), Quoter.Quote(expression.Constraint.ConstraintName));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to create a constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateConstraintExpression expression)
         {
             var constraintType = (expression.Constraint.IsPrimaryKeyConstraint) ? "PRIMARY KEY" : "UNIQUE";
@@ -352,6 +496,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
                 string.Join(", ", columns));
         }
 
+        /// <summary>
+        /// Gets the column list.
+        /// </summary>
+        /// <param name="columns">The columns.</param>
+        /// <returns>System.String.</returns>
         protected string GetColumnList(IEnumerable<string> columns)
         {
             var result = "";
@@ -362,6 +511,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return result.TrimEnd(',');
         }
 
+        /// <summary>
+        /// Gets the data list.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns>System.String.</returns>
         protected string GetDataList(List<object> data)
         {
             var result = "";
@@ -372,6 +526,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return result.TrimEnd(',');
         }
 
+        /// <summary>
+        /// Generates a <c>CREATE SEQUENCE</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateSequenceExpression expression)
         {
             var result = new StringBuilder("CREATE SEQUENCE ");
@@ -420,6 +579,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return string.Format("{0};", result.ToString());
         }
 
+        /// <summary>
+        /// Generates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public override string Generate(DeleteSequenceExpression expression)
         {
             return string.Format("{0};", base.Generate(expression));

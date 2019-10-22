@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="BaseSequenceTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -18,11 +31,26 @@
 
 namespace FluentMigrator.Tests.Unit.Generators
 {
+    /// <summary>
+    /// Class BaseSequenceTests.
+    /// </summary>
     public abstract class BaseSequenceTests
     {
+        /// <summary>
+        /// Determines whether this instance [can create sequence with custom schema].
+        /// </summary>
         public abstract void CanCreateSequenceWithCustomSchema();
+        /// <summary>
+        /// Determines whether this instance [can create sequence with default schema].
+        /// </summary>
         public abstract void CanCreateSequenceWithDefaultSchema();
+        /// <summary>
+        /// Determines whether this instance [can drop sequence with custom schema].
+        /// </summary>
         public abstract void CanDropSequenceWithCustomSchema();
+        /// <summary>
+        /// Determines whether this instance [can drop sequence with default schema].
+        /// </summary>
         public abstract void CanDropSequenceWithDefaultSchema();
     }
 }

@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IGeneratorAccessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,15 +34,14 @@ namespace FluentMigrator.Runner.Generators
     /// <summary>
     /// Accesses the selected migration generator
     /// </summary>
-    /// <remarks>
-    /// This is only different from using <see cref="IMigrationGenerator"/>
-    /// as constructor parameter when multiple databases should be supported.
-    /// </remarks>
+    /// <remarks>This is only different from using <see cref="IMigrationGenerator" />
+    /// as constructor parameter when multiple databases should be supported.</remarks>
     public interface IGeneratorAccessor
     {
         /// <summary>
         /// Gets the selected migration generator
         /// </summary>
+        /// <value>The generator.</value>
         [NotNull]
         IMigrationGenerator Generator { get; }
     }

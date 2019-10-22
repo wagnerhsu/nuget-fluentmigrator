@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ExecuteSqlStatementExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -26,9 +39,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Expressions
 {
+    /// <summary>
+    /// Defines test class ExecuteSqlStatementExpressionTests.
+    /// </summary>
     [TestFixture]
     public class ExecuteSqlStatementExpressionTests
     {
+        /// <summary>
+        /// Defines the test method ErrorIsReturnWhenSqlStatementIsNullOrEmpty.
+        /// </summary>
         [Test]
         public void ErrorIsReturnWhenSqlStatementIsNullOrEmpty()
         {
@@ -37,6 +56,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.SqlStatementCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ExecutesTheStatement.
+        /// </summary>
         [Test]
         public void ExecutesTheStatement()
         {
@@ -49,6 +71,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             processor.Verify();
         }
 
+        /// <summary>
+        /// Defines the test method ToStringIsDescriptive.
+        /// </summary>
         [Test]
         public void ToStringIsDescriptive()
         {

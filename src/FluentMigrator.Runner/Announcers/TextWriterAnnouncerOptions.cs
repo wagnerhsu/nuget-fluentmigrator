@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TextWriterAnnouncerOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -19,11 +32,24 @@ using System.Diagnostics;
 
 namespace FluentMigrator.Runner.Announcers
 {
+    /// <summary>
+    /// Class TextWriterAnnouncerOptions.
+    /// Implements the <see cref="FluentMigrator.Runner.Announcers.AnnouncerOptions" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Announcers.AnnouncerOptions" />
     [Obsolete]
     public class TextWriterAnnouncerOptions : AnnouncerOptions
     {
+        /// <summary>
+        /// Gets or sets the write delegate.
+        /// </summary>
+        /// <value>The write delegate.</value>
         public Action<string> WriteDelegate { get; set; } = DefaultWriteHandler;
 
+        /// <summary>
+        /// Defaults the write handler.
+        /// </summary>
+        /// <param name="line">The line.</param>
         private static void DefaultWriteHandler(string line)
         {
             Debug.WriteLine(line);

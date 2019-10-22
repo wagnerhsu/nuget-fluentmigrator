@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SQLite
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SQLiteProcessorFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -23,21 +36,43 @@ using FluentMigrator.Runner.Generators.SQLite;
 namespace FluentMigrator.Runner.Processors.SQLite
 {
     // ReSharper disable once InconsistentNaming
+    /// <summary>
+    /// Class SQLiteProcessorFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.MigrationProcessorFactory" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.MigrationProcessorFactory" />
     [Obsolete]
     public class SQLiteProcessorFactory : MigrationProcessorFactory
     {
+        /// <summary>
+        /// The service provider
+        /// </summary>
         private readonly IServiceProvider _serviceProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SQLiteProcessorFactory"/> class.
+        /// </summary>
         [Obsolete]
         public SQLiteProcessorFactory()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SQLiteProcessorFactory"/> class.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
         public SQLiteProcessorFactory(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
 
+        /// <summary>
+        /// Creates the specified connection string.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <param name="announcer">The announcer.</param>
+        /// <param name="options">The options.</param>
+        /// <returns>IMigrationProcessor.</returns>
         [Obsolete]
         public override IMigrationProcessor Create(string connectionString, IAnnouncer announcer, IMigrationProcessorOptions options)
         {

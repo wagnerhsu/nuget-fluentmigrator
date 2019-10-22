@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ValidationUtilities.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -44,6 +57,13 @@ namespace FluentMigrator
             return TryProcessChildren(context, value, results);
         }
 
+        /// <summary>
+        /// Tries the process children.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="results">The results.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool TryProcessChildren(ValidationContext context, object value, ICollection<ValidationResult> results)
         {
             if (value is IValidationChildren validationChildren)

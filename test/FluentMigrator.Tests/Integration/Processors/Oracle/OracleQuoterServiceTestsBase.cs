@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleQuoterServiceTestsBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,8 +40,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration.Processors.Oracle
 {
+    /// <summary>
+    /// Class OracleQuoterServiceTestsBase.
+    /// </summary>
     public abstract class OracleQuoterServiceTestsBase
     {
+        /// <summary>
+        /// Defines the test method CreateProcessorWithNoProviderSwitchesShouldUseOracleQuoter.
+        /// </summary>
+        /// <param name="providerSwitches">The provider switches.</param>
         [TestCase("")]
         [TestCase(null)]
         public void CreateProcessorWithNoProviderSwitchesShouldUseOracleQuoter(string providerSwitches)
@@ -42,6 +62,10 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CreateProcessorWithProviderSwitchIndicatingQuotedShouldUseOracleQuoterQuotedIdentifier.
+        /// </summary>
+        /// <param name="providerSwitches">The provider switches.</param>
         [TestCase("QuotedIdentifiers=true")]
         [TestCase("QuotedIdentifiers=TRUE;")]
         [TestCase("QuotedIDENTIFIERS=TRUE;")]
@@ -60,6 +84,11 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
                 });
         }
 
+        /// <summary>
+        /// Executes the specified initialize action.
+        /// </summary>
+        /// <param name="initAction">The initialize action.</param>
+        /// <param name="executeAction">The execute action.</param>
         private void Execute([CanBeNull] Action<IServiceCollection> initAction, [NotNull] Action<IServiceProvider> executeAction)
         {
             var serivces = AddOracleServices(ServiceCollectionExtensions.CreateServices());
@@ -73,6 +102,11 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             }
         }
 
+        /// <summary>
+        /// Adds the oracle services.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        /// <returns>IServiceCollection.</returns>
         protected abstract IServiceCollection AddOracleServices(IServiceCollection services);
     }
 }

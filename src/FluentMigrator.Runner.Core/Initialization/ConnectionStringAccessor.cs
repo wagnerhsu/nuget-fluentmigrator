@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConnectionStringAccessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -25,14 +38,17 @@ using Microsoft.Extensions.Options;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// Default implementation of <see cref="IConnectionStringAccessor"/>
+    /// Default implementation of <see cref="IConnectionStringAccessor" />
     /// </summary>
     public class ConnectionStringAccessor : IConnectionStringAccessor
     {
+        /// <summary>
+        /// The lazy data
+        /// </summary>
         private readonly Lazy<string> _lazyData;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectionStringAccessor"/> class.
+        /// Initializes a new instance of the <see cref="ConnectionStringAccessor" /> class.
         /// </summary>
         /// <param name="processorOptions">The processor options containing the connection string or name</param>
         /// <param name="processorSelectorOptions">The selected processor (its ID is used as connection string name)</param>

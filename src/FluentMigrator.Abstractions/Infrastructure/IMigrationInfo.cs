@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IMigrationInfo.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -26,33 +39,38 @@ namespace FluentMigrator.Infrastructure
         /// <summary>
         /// Gets the migration version
         /// </summary>
+        /// <value>The version.</value>
         long Version { get; }
 
         /// <summary>
         /// Gets the migration description
         /// </summary>
+        /// <value>The description.</value>
         string Description { get; }
 
         /// <summary>
         /// Gets the desired transaction behavior
         /// </summary>
+        /// <value>The transaction behavior.</value>
         TransactionBehavior TransactionBehavior { get; }
 
         /// <summary>
         /// Gets the migration
         /// </summary>
+        /// <value>The migration.</value>
         IMigration Migration { get; }
 
         /// <summary>
         /// Gets a value indicating whether the migration is a breaking change
         /// </summary>
+        /// <value><c>true</c> if this instance is breaking change; otherwise, <c>false</c>.</value>
         bool IsBreakingChange { get; }
 
         /// <summary>
         /// Gets the trait object with the given name
         /// </summary>
         /// <param name="name">The trait name</param>
-        /// <returns>The object associated with the given <paramref name="name"/></returns>
+        /// <returns>The object associated with the given <paramref name="name" /></returns>
         object Trait(string name);
 
         /// <summary>
@@ -65,7 +83,7 @@ namespace FluentMigrator.Infrastructure
         /// <summary>
         /// Gets the migration name
         /// </summary>
-        /// <returns></returns>
+        /// <returns>System.String.</returns>
         string GetName();
     }
 }

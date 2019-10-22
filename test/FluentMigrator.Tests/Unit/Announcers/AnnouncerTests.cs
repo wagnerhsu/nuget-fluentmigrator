@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AnnouncerTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -23,10 +36,16 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Announcers
 {
+    /// <summary>
+    /// Defines test class AnnouncerTests.
+    /// </summary>
     [TestFixture]
     [Obsolete]
     public class AnnouncerTests
     {
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -34,8 +53,14 @@ namespace FluentMigrator.Tests.Unit.Announcers
             _announcer = announcerMock.Object;
         }
 
+        /// <summary>
+        /// The announcer
+        /// </summary>
         private Announcer _announcer;
 
+        /// <summary>
+        /// Defines the test method ElapsedTime_Should_Not_Write_When_ShowElapsedTime_Is_False.
+        /// </summary>
         [Test]
         public void ElapsedTime_Should_Not_Write_When_ShowElapsedTime_Is_False()
         {
@@ -46,6 +71,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Mock.Get(_announcer).Verify(a => a.Write(It.IsAny<string>(), It.IsAny<bool>()), Times.Never());
         }
 
+        /// <summary>
+        /// Defines the test method ElapsedTime_Should_Write_When_ShowElapsedTime_Is_True.
+        /// </summary>
         [Test]
         public void ElapsedTime_Should_Write_When_ShowElapsedTime_Is_True()
         {
@@ -58,6 +86,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Mock.Get(_announcer).VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method Error_Should_Write.
+        /// </summary>
         [Test]
         public void Error_Should_Write()
         {
@@ -69,6 +100,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Mock.Get(_announcer).VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method Heading_Should_Write.
+        /// </summary>
         [Test]
         public void Heading_Should_Write()
         {
@@ -80,6 +114,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Mock.Get(_announcer).VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method Say_Should_Write.
+        /// </summary>
         [Test]
         public void Say_Should_Write()
         {
@@ -91,6 +128,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Mock.Get(_announcer).VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method Sql_Should_Not_Write_When_Show_Sql_Is_False.
+        /// </summary>
         [Test]
         public void Sql_Should_Not_Write_When_Show_Sql_Is_False()
         {
@@ -101,6 +141,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Mock.Get(_announcer).Verify(a => a.Write(It.IsAny<string>(), It.IsAny<bool>()), Times.Never());
         }
 
+        /// <summary>
+        /// Defines the test method Sql_Should_Write_When_Show_Sql_Is_True.
+        /// </summary>
         [Test]
         public void Sql_Should_Write_When_Show_Sql_Is_True()
         {
@@ -113,6 +156,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Mock.Get(_announcer).VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method Sql_Should_Write_When_Show_Sql_Is_True_And_Sql_Is_Empty.
+        /// </summary>
         [Test]
         public void Sql_Should_Write_When_Show_Sql_Is_True_And_Sql_Is_Empty()
         {

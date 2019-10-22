@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Postgres
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PostgresOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -21,13 +34,24 @@ using System.Text.RegularExpressions;
 
 namespace FluentMigrator.Runner.Processors.Postgres
 {
+    /// <summary>
+    /// Class PostgresOptions.
+    /// Implements the <see cref="System.ICloneable" />
+    /// </summary>
+    /// <seealso cref="System.ICloneable" />
     public class PostgresOptions : ICloneable
     {
         /// <summary>
         /// Gets or sets a value indicating whether all names should be quoted unconditionally.
         /// </summary>
+        /// <value><c>true</c> if [force quote]; otherwise, <c>false</c>.</value>
         public bool ForceQuote { get; set; } = true;
 
+        /// <summary>
+        /// Parses the provider switches.
+        /// </summary>
+        /// <param name="providerSwitches">The provider switches.</param>
+        /// <returns>PostgresOptions.</returns>
         public static PostgresOptions ParseProviderSwitches(string providerSwitches)
         {
             var retval = new PostgresOptions();

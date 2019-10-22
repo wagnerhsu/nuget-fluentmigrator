@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RuntimeHost.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -26,18 +39,35 @@ using FluentMigrator.Runner.Infrastructure.Hosts;
 
 namespace FluentMigrator.Runner.Infrastructure
 {
+    /// <summary>
+    /// Class RuntimeHost.
+    /// </summary>
     public static class RuntimeHost
     {
+        /// <summary>
+        /// The no names
+        /// </summary>
         private static readonly string[] _noNames = new string[0];
 
 #if NETFRAMEWORK
+        /// <summary>
+        /// The current host
+        /// </summary>
         private static readonly IHostAbstraction _currentHost = new NetFrameworkHost();
 #else
         private static readonly IHostAbstraction _currentHost = new NetCoreHost();
 #endif
 
+        /// <summary>
+        /// Gets the current.
+        /// </summary>
+        /// <value>The current.</value>
         public static IHostAbstraction Current => _currentHost;
 
+        /// <summary>
+        /// Finds the assemblies.
+        /// </summary>
+        /// <returns>IEnumerable&lt;AssemblyName&gt;.</returns>
         public static IEnumerable<AssemblyName> FindAssemblies()
         {
             foreach (var fullGacDirectory in GetFullGacDirectories())
@@ -53,6 +83,11 @@ namespace FluentMigrator.Runner.Infrastructure
             }
         }
 
+        /// <summary>
+        /// Finds the assemblies.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>IEnumerable&lt;AssemblyName&gt;.</returns>
         public static IEnumerable<AssemblyName> FindAssemblies(string name)
         {
             foreach (var assemblyName in FindAssemblies())
@@ -62,6 +97,12 @@ namespace FluentMigrator.Runner.Infrastructure
             }
         }
 
+        /// <summary>
+        /// Gets the assembly names.
+        /// </summary>
+        /// <param name="fullGacDirectory">The full gac directory.</param>
+        /// <param name="assemblyName">Name of the assembly.</param>
+        /// <returns>IEnumerable&lt;AssemblyName&gt;.</returns>
         private static IEnumerable<AssemblyName> GetAssemblyNames(string fullGacDirectory, string assemblyName)
         {
             foreach (var fullPath in Directory.EnumerateDirectories(Path.Combine(fullGacDirectory, assemblyName)))
@@ -109,6 +150,10 @@ namespace FluentMigrator.Runner.Infrastructure
             }
         }
 
+        /// <summary>
+        /// Gets the full gac directories.
+        /// </summary>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         private static IEnumerable<string> GetFullGacDirectories()
         {
             var winDir = Environment.GetEnvironmentVariable("WINDIR");
@@ -134,6 +179,11 @@ namespace FluentMigrator.Runner.Infrastructure
             return new[] { gacDir };
         }
 
+        /// <summary>
+        /// Gets the full gac directories on windows.
+        /// </summary>
+        /// <param name="winDir">The win dir.</param>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         private static IEnumerable<string> GetFullGacDirectoriesOnWindows(string winDir)
         {
             var netAssemblyPaths = new []
@@ -155,6 +205,10 @@ namespace FluentMigrator.Runner.Infrastructure
             }
         }
 
+        /// <summary>
+        /// Gets the gac directories.
+        /// </summary>
+        /// <returns>System.String[].</returns>
         private static string[] GetGacDirectories()
         {
             if (Environment.Is64BitProcess)

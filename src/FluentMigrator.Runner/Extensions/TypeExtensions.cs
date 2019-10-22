@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TypeExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 // 
@@ -20,13 +33,27 @@ using System;
 
 namespace FluentMigrator.Runner.Extensions
 {
+    /// <summary>
+    /// Class TypeExtensions.
+    /// </summary>
     public static class TypeExtensions
     {
+        /// <summary>
+        /// Determines whether [is] [the specified type].
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="type">The type.</param>
+        /// <returns><c>true</c> if [is] [the specified type]; otherwise, <c>false</c>.</returns>
         public static bool Is<T>(this Type type)
         {
             return typeof (T).IsAssignableFrom(type);
         }
 
+        /// <summary>
+        /// Determines whether the specified type is concrete.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns><c>true</c> if the specified type is concrete; otherwise, <c>false</c>.</returns>
         public static bool IsConcrete(this Type type)
         {
             return type.IsClass && !type.IsAbstract;

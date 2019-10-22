@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ExecuteEmbeddedSqlScriptExpression.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -32,11 +45,14 @@ namespace FluentMigrator.Expressions
     /// </summary>
     public sealed class ExecuteEmbeddedSqlScriptExpression : ExecuteEmbeddedSqlScriptExpressionBase
     {
+        /// <summary>
+        /// The embedded resource providers
+        /// </summary>
         [CanBeNull]
         private readonly IReadOnlyCollection<IEmbeddedResourceProvider> _embeddedResourceProviders;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExecuteEmbeddedSqlScriptExpression"/> class.
+        /// Initializes a new instance of the <see cref="ExecuteEmbeddedSqlScriptExpression" /> class.
         /// </summary>
         [Obsolete]
         public ExecuteEmbeddedSqlScriptExpression()
@@ -44,7 +60,7 @@ namespace FluentMigrator.Expressions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExecuteEmbeddedSqlScriptExpression"/> class.
+        /// Initializes a new instance of the <see cref="ExecuteEmbeddedSqlScriptExpression" /> class.
         /// </summary>
         /// <param name="embeddedResourceProviders">The embedded resource providers</param>
         public ExecuteEmbeddedSqlScriptExpression([NotNull] IEnumerable<IEmbeddedResourceProvider> embeddedResourceProviders)
@@ -53,7 +69,7 @@ namespace FluentMigrator.Expressions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExecuteEmbeddedSqlScriptExpression"/> class.
+        /// Initializes a new instance of the <see cref="ExecuteEmbeddedSqlScriptExpression" /> class.
         /// </summary>
         /// <param name="assemblyCollection">The collection of assemblies to be searched for the resources</param>
         [Obsolete]
@@ -69,12 +85,14 @@ namespace FluentMigrator.Expressions
         /// <summary>
         /// Gets or sets the SQL script name
         /// </summary>
+        /// <value>The SQL script.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.SqlScriptCannotBeNullOrEmpty))]
         public string SqlScript { get; set; }
 
         /// <summary>
         /// Gets or sets the migration assemblies
         /// </summary>
+        /// <value>The migration assemblies.</value>
         [Obsolete()]
         [CanBeNull]
         public IAssemblyCollection MigrationAssemblies { get; set; }

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConsoleAnnouncer.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -22,18 +35,33 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Announcers
 {
+    /// <summary>
+    /// Class ConsoleAnnouncer.
+    /// Implements the <see cref="FluentMigrator.Runner.Announcers.Announcer" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Announcers.Announcer" />
     [Obsolete]
     public class ConsoleAnnouncer : Announcer
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleAnnouncer"/> class.
+        /// </summary>
         public ConsoleAnnouncer()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConsoleAnnouncer"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
         public ConsoleAnnouncer(IOptions<AnnouncerOptions> options)
             : base(options)
         {
         }
 
+        /// <summary>
+        /// Headers this instance.
+        /// </summary>
         public void Header()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -48,11 +76,18 @@ namespace FluentMigrator.Runner.Announcers
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// Horizontals the rule.
+        /// </summary>
         public void HorizontalRule()
         {
             Write("".PadRight(79, '-'));
         }
 
+        /// <summary>
+        /// Headings the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public override void Heading(string message)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -62,6 +97,10 @@ namespace FluentMigrator.Runner.Announcers
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// Says the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public override void Say(string message)
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -69,6 +108,10 @@ namespace FluentMigrator.Runner.Announcers
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// Emphasizes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public override void Emphasize(string message)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -76,12 +119,20 @@ namespace FluentMigrator.Runner.Announcers
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// Elapseds the time.
+        /// </summary>
+        /// <param name="timeSpan">The time span.</param>
         public override void ElapsedTime(TimeSpan timeSpan)
         {
             Console.ResetColor();
             base.ElapsedTime(timeSpan);
         }
 
+        /// <summary>
+        /// Errors the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public override void Error(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -89,6 +140,11 @@ namespace FluentMigrator.Runner.Announcers
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// Writes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="isNotSql">if set to <c>true</c> [is not SQL].</param>
         public override void Write(string message, bool isNotSql = true)
         {
             Console.Out.WriteLine(message);

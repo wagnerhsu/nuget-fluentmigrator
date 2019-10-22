@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConfigurationConnectionStringReader.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -22,15 +35,18 @@ using Microsoft.Extensions.DependencyInjection;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// Implementation of <see cref="IConnectionStringReader"/> that interprets tries to
-    /// get the connection string from an <see cref="IConfiguration"/> or <see cref="IConfigurationRoot"/>.
+    /// Implementation of <see cref="IConnectionStringReader" /> that interprets tries to
+    /// get the connection string from an <see cref="IConfiguration" /> or <see cref="IConfigurationRoot" />.
     /// </summary>
     public class ConfigurationConnectionStringReader : IConnectionStringReader
     {
+        /// <summary>
+        /// The service provider
+        /// </summary>
         private readonly IServiceProvider _serviceProvider;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConfigurationConnectionStringReader"/> class.
+        /// Initializes a new instance of the <see cref="ConfigurationConnectionStringReader" /> class.
         /// </summary>
         /// <param name="serviceProvider">The service provider to get the configuration interface from</param>
         public ConfigurationConnectionStringReader(IServiceProvider serviceProvider)

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PostgresProcessorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -38,15 +51,33 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Postgres
 {
+    /// <summary>
+    /// Defines test class PostgresProcessorTests.
+    /// </summary>
     [TestFixture]
     [Category("Integration")]
     [Category("Postgres")]
     public class PostgresProcessorTests
     {
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private PostgresProcessor Processor { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfColumnExistsInDifferentSchema.
+        /// </summary>
         [Test]
         public void CallingColumnExistsReturnsFalseIfColumnExistsInDifferentSchema()
         {
@@ -54,6 +85,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
                 Processor.ColumnExists("TestSchema2", table.Name, "id").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingConstraintExistsReturnsFalseIfConstraintExistsInDifferentSchema.
+        /// </summary>
         [Test]
         public void CallingConstraintExistsReturnsFalseIfConstraintExistsInDifferentSchema()
         {
@@ -62,6 +96,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
                 Processor.ConstraintExists("TestSchema2", table.Name, "c1").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingTableExistsReturnsFalseIfTableExistsInDifferentSchema.
+        /// </summary>
         [Test]
         public void CallingTableExistsReturnsFalseIfTableExistsInDifferentSchema()
         {
@@ -69,6 +106,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
                 Processor.TableExists("TestSchema2", table.Name).ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CanReadData.
+        /// </summary>
         [Test]
         public void CanReadData()
         {
@@ -85,6 +125,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanReadTableData.
+        /// </summary>
         [Test]
         public void CanReadTableData()
         {
@@ -101,6 +144,10 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
             }
         }
 
+        /// <summary>
+        /// Adds the test data.
+        /// </summary>
+        /// <param name="table">The table.</param>
         private void AddTestData(PostgresTestTable table)
         {
             for (int i = 0; i < 3; i++)
@@ -113,6 +160,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
         }
 
 
+        /// <summary>
+        /// Defines the test method CanReadDataWithSchema.
+        /// </summary>
         [Test]
         public void CanReadDataWithSchema()
         {
@@ -129,6 +179,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanReadTableDataWithSchema.
+        /// </summary>
         [Test]
         public void CanReadTableDataWithSchema()
         {
@@ -145,6 +198,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingProcessWithPerformDbOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges.
+        /// </summary>
         [Test]
         public void CallingProcessWithPerformDbOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges()
         {
@@ -197,6 +253,11 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
             }
         }
 
+        /// <summary>
+        /// Creates the processor services.
+        /// </summary>
+        /// <param name="initAction">The initialize action.</param>
+        /// <returns>ServiceProvider.</returns>
         private ServiceProvider CreateProcessorServices([CanBeNull] Action<IServiceCollection> initAction)
         {
             if (!IntegrationTestOptions.Postgres.IsEnabled)
@@ -212,18 +273,27 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
             return serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
             ServiceProvider = CreateProcessorServices(initAction: null);
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -231,6 +301,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
             Processor = ServiceScope.ServiceProvider.GetRequiredService<PostgresProcessor>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

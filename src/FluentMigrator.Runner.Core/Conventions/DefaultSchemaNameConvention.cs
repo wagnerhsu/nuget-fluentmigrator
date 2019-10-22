@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DefaultSchemaNameConvention.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -17,15 +30,21 @@
 namespace FluentMigrator.Runner.Conventions
 {
     /// <summary>
-    /// The default implementation of the <see cref="IDefaultSchemaNameConvention"/>
+    /// The default implementation of the <see cref="IDefaultSchemaNameConvention" />
     /// </summary>
     public class DefaultSchemaNameConvention : IDefaultSchemaNameConvention
     {
+        /// <summary>
+        /// The default schema name
+        /// </summary>
         private readonly string _defaultSchemaName;
+        /// <summary>
+        /// The is active
+        /// </summary>
         private readonly bool _isActive;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IDefaultSchemaNameConvention"/> class.
+        /// Initializes a new instance of the <see cref="IDefaultSchemaNameConvention" /> class.
         /// </summary>
         /// <param name="defaultSchemaName">The default schema name (can be null or empty)</param>
         public DefaultSchemaNameConvention(string defaultSchemaName)

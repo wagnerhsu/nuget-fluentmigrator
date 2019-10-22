@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="NetConfigManagerTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -28,14 +41,25 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Initialization
 {
+    /// <summary>
+    /// Defines test class NetConfigManagerTests.
+    /// </summary>
     [TestFixture]
     public class NetConfigManagerTests
     {
+        /// <summary>
+        /// Gets the path.
+        /// </summary>
+        /// <param name="relative">The relative.</param>
+        /// <returns>System.String.</returns>
         private static string GetPath(string relative)
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Unit", "Initialization", "Fixtures", relative);
         }
 
+        /// <summary>
+        /// Defines the test method ThrowsIfNullPath.
+        /// </summary>
         [Test]
         public void ThrowsIfNullPath()
         {
@@ -44,6 +68,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             Assert.Throws<ArgumentException>(() => sut.LoadFromFile(null));
         }
 
+        /// <summary>
+        /// Defines the test method ThrowsIfPathDoesNotExist.
+        /// </summary>
         [Test]
         public void ThrowsIfPathDoesNotExist()
         {
@@ -52,6 +79,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             Assert.Throws<ArgumentException>(() => sut.LoadFromFile(GetPath("FileDoesNotExist.config")));
         }
 
+        /// <summary>
+        /// Defines the test method LoadsConfigurationFromConfigFile.
+        /// </summary>
         [Test]
         public void LoadsConfigurationFromConfigFile()
         {
@@ -62,6 +92,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             config.ConnectionStrings.ConnectionStrings[0].ConnectionString.ShouldBe("From Arbitrary Config");
         }
 
+        /// <summary>
+        /// Defines the test method LoadsConfigurationFromExeConfigFile.
+        /// </summary>
         [Test]
         public void LoadsConfigurationFromExeConfigFile()
         {
@@ -72,6 +105,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             config.ConnectionStrings.ConnectionStrings[0].ConnectionString.ShouldBe("From App Config");
         }
 
+        /// <summary>
+        /// Defines the test method AddsConfigExtensionWhenNoExtensionIsSpecified.
+        /// </summary>
         [Test]
         public void AddsConfigExtensionWhenNoExtensionIsSpecified()
         {
@@ -82,6 +118,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             config.ConnectionStrings.ConnectionStrings[0].ConnectionString.ShouldBe("From App Config");
         }
 
+        /// <summary>
+        /// Defines the test method LoadsConfigurationFromMachineConfigFile.
+        /// </summary>
         [Test]
         [Category("NotWorkingOnMono")]
         public void LoadsConfigurationFromMachineConfigFile()

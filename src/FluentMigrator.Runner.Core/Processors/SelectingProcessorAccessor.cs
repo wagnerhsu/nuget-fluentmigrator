@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SelectingProcessorAccessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -30,17 +43,19 @@ using Microsoft.Extensions.Options;
 namespace FluentMigrator.Runner.Processors
 {
     /// <summary>
-    /// An <see cref="IProcessorAccessor"/> implementation that selects one generator by name
+    /// An <see cref="IProcessorAccessor" /> implementation that selects one generator by name
     /// </summary>
     public class SelectingProcessorAccessor : IProcessorAccessor
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SelectingProcessorAccessor"/> class.
+        /// Initializes a new instance of the <see cref="SelectingProcessorAccessor" /> class.
         /// </summary>
         /// <param name="processors">The processors to select from</param>
         /// <param name="options">The options used to determine the processor to be returned</param>
         /// <param name="generatorSelectorOptions">The generator selector options</param>
         /// <param name="serviceProvider">The service provider</param>
+        /// <exception cref="ProcessorFactoryNotFoundException">No migration processor registered.</exception>
+        /// <exception cref="ProcessorFactoryNotFoundException">More than one processor registered, but no processor id given. Specify the processor id by configuring SelectingProcessorAccessorOptions.</exception>
         public SelectingProcessorAccessor(
             [NotNull, ItemNotNull] IEnumerable<IMigrationProcessor> processors,
             [NotNull] IOptionsSnapshot<SelectingProcessorAccessorOptions> options,
@@ -95,6 +110,13 @@ namespace FluentMigrator.Runner.Processors
         /// <inheritdoc />
         public IMigrationProcessor Processor { get; }
 
+        /// <summary>
+        /// Finds the generator.
+        /// </summary>
+        /// <param name="processors">The processors.</param>
+        /// <param name="processorsId">The processors identifier.</param>
+        /// <returns>IMigrationProcessor.</returns>
+        /// <exception cref="ProcessorFactoryNotFoundException">@"A migration generator with the ID {processorsId} couldn't be found. Available generators are: {generatorNames}");</exception>
         [NotNull]
         private IMigrationProcessor FindGenerator(
             [NotNull, ItemNotNull] IReadOnlyCollection<IMigrationProcessor> processors,
@@ -119,8 +141,17 @@ namespace FluentMigrator.Runner.Processors
             throw new ProcessorFactoryNotFoundException($@"A migration generator with the ID {processorsId} couldn't be found. Available generators are: {generatorNames}");
         }
 
+        /// <summary>
+        /// Class PassThroughGeneratorAccessor.
+        /// Implements the <see cref="FluentMigrator.Runner.Generators.IGeneratorAccessor" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Generators.IGeneratorAccessor" />
         private class PassThroughGeneratorAccessor : IGeneratorAccessor
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PassThroughGeneratorAccessor"/> class.
+            /// </summary>
+            /// <param name="generator">The generator.</param>
             public PassThroughGeneratorAccessor(IMigrationGenerator generator)
             {
                 Generator = generator;

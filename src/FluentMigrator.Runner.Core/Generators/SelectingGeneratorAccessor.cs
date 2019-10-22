@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SelectingGeneratorAccessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -27,16 +40,18 @@ using Microsoft.Extensions.Options;
 namespace FluentMigrator.Runner.Generators
 {
     /// <summary>
-    /// An <see cref="IGeneratorAccessor"/> implementation that selects one generator by name
+    /// An <see cref="IGeneratorAccessor" /> implementation that selects one generator by name
     /// </summary>
     public class SelectingGeneratorAccessor : IGeneratorAccessor
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SelectingGeneratorAccessor"/> class.
+        /// Initializes a new instance of the <see cref="SelectingGeneratorAccessor" /> class.
         /// </summary>
         /// <param name="generators">The generators to select from</param>
         /// <param name="options">The options used to determine the generator to be returned</param>
         /// <param name="processorSelectorOptions">The processor selector options</param>
+        /// <exception cref="InvalidOperationException">No migration generator registerd.</exception>
+        /// <exception cref="InvalidOperationException">More than one generator registered, but no generator id given. Specify the generator id by configuring SelectingGeneratorAccessorOptions.</exception>
         public SelectingGeneratorAccessor(
             [NotNull, ItemNotNull] IEnumerable<IMigrationGenerator> generators,
             [NotNull] IOptionsSnapshot<SelectingGeneratorAccessorOptions> options,
@@ -67,6 +82,13 @@ namespace FluentMigrator.Runner.Generators
         /// <inheritdoc />
         public IMigrationGenerator Generator { get; }
 
+        /// <summary>
+        /// Finds the generator.
+        /// </summary>
+        /// <param name="generators">The generators.</param>
+        /// <param name="generatorId">The generator identifier.</param>
+        /// <returns>IMigrationGenerator.</returns>
+        /// <exception cref="InvalidOperationException">@"A migration generator with the ID {generatorId} couldn't be found. Available generators are: {generatorNames}");</exception>
         [NotNull]
         private IMigrationGenerator FindGenerator(
             [NotNull, ItemNotNull] IReadOnlyCollection<IMigrationGenerator> generators,

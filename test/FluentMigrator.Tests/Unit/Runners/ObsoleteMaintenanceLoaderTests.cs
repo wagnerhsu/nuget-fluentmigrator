@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ObsoleteMaintenanceLoaderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -30,18 +43,42 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Runners
 {
+    /// <summary>
+    /// Defines test class ObsoleteMaintenanceLoaderTests.
+    /// </summary>
     [TestFixture]
     [Obsolete]
     public class ObsoleteMaintenanceLoaderTests
     {
+        /// <summary>
+        /// The tag1
+        /// </summary>
         public const string Tag1 = "MaintenanceTestTag1";
+        /// <summary>
+        /// The tag2
+        /// </summary>
         public const string Tag2 = "MaintenanceTestTag2";
+        /// <summary>
+        /// The tags
+        /// </summary>
         private string[] _tags = {Tag1, Tag2};
 
+        /// <summary>
+        /// The migration conventions
+        /// </summary>
         private Mock<IMigrationRunnerConventions> _migrationConventions;
+        /// <summary>
+        /// The maintenance loader
+        /// </summary>
         private MaintenanceLoader _maintenanceLoader;
+        /// <summary>
+        /// The maintenance loader no tags
+        /// </summary>
         private MaintenanceLoader _maintenanceLoaderNoTags;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -54,6 +91,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             _maintenanceLoaderNoTags = new MaintenanceLoader(new SingleAssembly(GetType().Assembly), null, _migrationConventions.Object);
         }
 
+        /// <summary>
+        /// Defines the test method LoadsMigrationsForCorrectStage.
+        /// </summary>
         [Test]
         public void LoadsMigrationsForCorrectStage()
         {
@@ -74,6 +114,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             }
         }
 
+        /// <summary>
+        /// Defines the test method LoadsMigrationsFilteredByTag.
+        /// </summary>
         [Test]
         public void LoadsMigrationsFilteredByTag()
         {
@@ -93,6 +136,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             }
         }
 
+        /// <summary>
+        /// Defines the test method MigrationInfoIsAttributedIsFalse.
+        /// </summary>
         [Test]
         public void MigrationInfoIsAttributedIsFalse()
         {
@@ -105,6 +151,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             }
         }
 
+        /// <summary>
+        /// Defines the test method SetsTransactionBehaviorToSameAsMaintenanceAttribute.
+        /// </summary>
         [Test]
         public void SetsTransactionBehaviorToSameAsMaintenanceAttribute()
         {
@@ -121,6 +170,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             }
         }
 
+        /// <summary>
+        /// Defines the test method LoadsMigrationsNoTag.
+        /// </summary>
         [Test]
         public void LoadsMigrationsNoTag()
         {

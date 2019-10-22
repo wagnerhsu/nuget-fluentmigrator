@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IMigrationInformationLoader.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 //
@@ -26,8 +39,15 @@ using JetBrains.Annotations;
 
 namespace FluentMigrator.Runner
 {
+    /// <summary>
+    /// Interface IMigrationInformationLoader
+    /// </summary>
     public interface IMigrationInformationLoader
     {
+        /// <summary>
+        /// Loads the migrations.
+        /// </summary>
+        /// <returns>SortedList&lt;System.Int64, IMigrationInfo&gt;.</returns>
         [NotNull]
         SortedList<long, IMigrationInfo> LoadMigrations();
     }

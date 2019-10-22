@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TextWriterWithGoAnnouncerTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -27,13 +40,25 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Announcers
 {
+    /// <summary>
+    /// Defines test class TextWriterWithGoAnnouncerTests.
+    /// </summary>
     [TestFixture]
     [Obsolete]
     public class TextWriterWithGoAnnouncerTests
     {
+        /// <summary>
+        /// The string writer
+        /// </summary>
         private StringWriter _stringWriter;
+        /// <summary>
+        /// The announcer
+        /// </summary>
         private TextWriterWithGoAnnouncer _announcer;
 
+        /// <summary>
+        /// Tests the setup.
+        /// </summary>
         [SetUp]
         public void TestSetup()
         {
@@ -45,6 +70,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             };
         }
 
+        /// <summary>
+        /// Defines the test method Adds_Go_StatementAfterSqlAnouncement.
+        /// </summary>
         [Test]
         public void Adds_Go_StatementAfterSqlAnouncement()
         {
@@ -53,6 +81,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
                 "GO" + Environment.NewLine);
         }
 
+        /// <summary>
+        /// Defines the test method Sql_Should_Not_Write_When_Show_Sql_Is_False.
+        /// </summary>
         [Test]
         public void Sql_Should_Not_Write_When_Show_Sql_Is_False()
         {
@@ -62,6 +93,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Output.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method Sql_Should_Not_Write_Go_When_Sql_Is_Empty.
+        /// </summary>
         [Test]
         public void Sql_Should_Not_Write_Go_When_Sql_Is_Empty()
         {
@@ -69,6 +103,10 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Assert.IsFalse(Output.Contains("GO"));
         }
 
+        /// <summary>
+        /// Gets the output.
+        /// </summary>
+        /// <value>The output.</value>
         public string Output
         {
             get { return _stringWriter.GetStringBuilder().ToString(); }

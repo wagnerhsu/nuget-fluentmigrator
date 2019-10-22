@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteColumnExpressionBuilderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -25,9 +38,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Builders.Delete
 {
+    /// <summary>
+    /// Defines test class DeleteColumnExpressionBuilderTests.
+    /// </summary>
     [TestFixture]
     public class DeleteColumnExpressionBuilderTests
     {
+        /// <summary>
+        /// Defines the test method CallingFromTableSetsTableName.
+        /// </summary>
         [Test]
         public void CallingFromTableSetsTableName()
         {
@@ -39,6 +58,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             expressionMock.VerifySet(x => x.TableName = "Bacon");
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnAddsColumnNameToList.
+        /// </summary>
         [Test]
         public void CallingColumnAddsColumnNameToList()
         {
@@ -51,6 +73,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             Assert.That(expressionMock.Object.ColumnNames.ElementAt(1), Is.EqualTo("Bacon"));
         }
 
+        /// <summary>
+        /// Defines the test method CallingInSchemaSetsSchemaOnExpression.
+        /// </summary>
         [Test]
         public void CallingInSchemaSetsSchemaOnExpression()
         {

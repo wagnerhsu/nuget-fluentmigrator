@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.MySql
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MySqlColumn.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -19,20 +32,40 @@ using FluentMigrator.Runner.Generators.Base;
 
 namespace FluentMigrator.Runner.Generators.MySql
 {
+    /// <summary>
+    /// Class MySqlColumn.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.ColumnBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.ColumnBase" />
     internal class MySqlColumn : ColumnBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MySqlColumn"/> class.
+        /// </summary>
+        /// <param name="typeMap">The type map</param>
+        /// <param name="quoter">The quoter</param>
         public MySqlColumn(ITypeMap typeMap, IQuoter quoter)
             : base(typeMap, quoter)
         {
             ClauseOrder.Add(FormatDescription);
         }
 
+        /// <summary>
+        /// Formats the default value.
+        /// </summary>
+        /// <param name="defaultValue">The default value.</param>
+        /// <returns>System.String.</returns>
         internal string FormatDefaultValue(object defaultValue)
         {
             string formatDefaultValue = base.FormatDefaultValue(new ColumnDefinition { DefaultValue = defaultValue });
             return formatDefaultValue;
         }
 
+        /// <summary>
+        /// Formats the description.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         protected string FormatDescription(ColumnDefinition column)
         {
             return string.IsNullOrEmpty(column.ColumnDescription)

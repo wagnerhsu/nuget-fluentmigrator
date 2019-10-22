@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MySql4TableTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 
 using FluentMigrator.Runner.Generators.MySql;
@@ -8,17 +21,31 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.MySql4
 {
+    /// <summary>
+    /// Defines test class MySql4TableTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseTableTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseTableTests" />
     [TestFixture]
     public class MySql4TableTests : BaseTableTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected MySql4Generator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new MySql4Generator();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomColumnTypeWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomColumnTypeWithCustomSchema()
         {
@@ -32,6 +59,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` [timestamp] NOT NULL, PRIMARY KEY (`TestColumn1`)) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomColumnTypeWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomColumnTypeWithDefaultSchema()
         {
@@ -44,6 +74,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` [timestamp] NOT NULL, PRIMARY KEY (`TestColumn1`)) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomSchema()
         {
@@ -54,6 +87,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` INTEGER NOT NULL) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultSchema()
         {
@@ -63,6 +99,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` INTEGER NOT NULL) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueExplicitlySetToNullWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueExplicitlySetToNullWithCustomSchema()
         {
@@ -75,6 +114,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL DEFAULT NULL, `TestColumn2` INTEGER NOT NULL DEFAULT 0) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueExplicitlySetToNullWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueExplicitlySetToNullWithDefaultSchema()
         {
@@ -86,6 +128,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL DEFAULT NULL, `TestColumn2` INTEGER NOT NULL DEFAULT 0) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueWithCustomSchema()
         {
@@ -96,6 +141,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL DEFAULT 'Default', `TestColumn2` INTEGER NOT NULL DEFAULT 0) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueWithDefaultSchema()
         {
@@ -105,6 +153,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL DEFAULT 'Default', `TestColumn2` INTEGER NOT NULL DEFAULT 0) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithCustomSchema()
         {
@@ -115,6 +166,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` INTEGER NOT NULL AUTO_INCREMENT, `TestColumn2` INTEGER NOT NULL) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithDefaultSchema()
         {
@@ -124,6 +178,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` INTEGER NOT NULL AUTO_INCREMENT, `TestColumn2` INTEGER NOT NULL) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithMultiColumnPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithMultiColumnPrimaryKeyWithCustomSchema()
         {
@@ -134,6 +191,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` INTEGER NOT NULL, PRIMARY KEY (`TestColumn1`, `TestColumn2`)) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithMultiColumnPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithMultiColumnPrimaryKeyWithDefaultSchema()
         {
@@ -143,6 +203,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` INTEGER NOT NULL, PRIMARY KEY (`TestColumn1`, `TestColumn2`)) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedMultiColumnPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedMultiColumnPrimaryKeyWithCustomSchema()
         {
@@ -153,6 +216,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` INTEGER NOT NULL, CONSTRAINT `TestKey` PRIMARY KEY (`TestColumn1`, `TestColumn2`)) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedMultiColumnPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedMultiColumnPrimaryKeyWithDefaultSchema()
         {
@@ -162,6 +228,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` INTEGER NOT NULL, CONSTRAINT `TestKey` PRIMARY KEY (`TestColumn1`, `TestColumn2`)) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedPrimaryKeyWithCustomSchema()
         {
@@ -172,6 +241,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` INTEGER NOT NULL, CONSTRAINT `TestKey` PRIMARY KEY (`TestColumn1`)) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedPrimaryKeyWithDefaultSchema()
         {
@@ -181,6 +253,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` INTEGER NOT NULL, CONSTRAINT `TestKey` PRIMARY KEY (`TestColumn1`)) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNullableFieldWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNullableFieldWithCustomSchema()
         {
@@ -192,6 +267,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255), `TestColumn2` INTEGER NOT NULL) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNullableFieldWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNullableFieldWithDefaultSchema()
         {
@@ -202,6 +280,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255), `TestColumn2` INTEGER NOT NULL) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithPrimaryKeyWithCustomSchema()
         {
@@ -212,6 +293,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` INTEGER NOT NULL, PRIMARY KEY (`TestColumn1`)) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithPrimaryKeyWithDefaultSchema()
         {
@@ -221,6 +305,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) NOT NULL, `TestColumn2` INTEGER NOT NULL, PRIMARY KEY (`TestColumn1`)) ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropTableWithCustomSchema()
         {
@@ -231,6 +318,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("DROP TABLE `TestTable1`");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropTableWithDefaultSchema()
         {
@@ -240,6 +330,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("DROP TABLE `TestTable1`");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanRenameTableWithCustomSchema()
         {
@@ -250,6 +343,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("RENAME TABLE `TestTable1` TO `TestTable2`");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanRenameTableWithDefaultSchema()
         {
@@ -259,6 +355,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("RENAME TABLE `TestTable1` TO `TestTable2`");
         }
 
+        /// <summary>
+        /// Defines the test method CantCreateTableWithDescription.
+        /// </summary>
         [Test]
         public void CantCreateTableWithDescription()
         {
@@ -266,6 +365,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             Assert.Throws<ArgumentException>(() => Generator.Generate(expression));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDescriptionAndColumnDescriptions.
+        /// </summary>
         [Test]
         public void CanCreateTableWithDescriptionAndColumnDescriptions()
         {
@@ -275,6 +377,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("CREATE TABLE `TestTable1` (`TestColumn1` VARCHAR(255) COMMENT 'TestColumn1Description', `TestColumn2` INTEGER NOT NULL COMMENT 'TestColumn2Description') COMMENT 'TestDescription' ENGINE = INNODB");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterTableWithDescription.
+        /// </summary>
         [Test]
         public void CanAlterTableWithDescription()
         {

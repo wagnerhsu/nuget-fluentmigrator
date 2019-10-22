@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TestLogger.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,12 +35,12 @@ using NUnit.Framework;
 namespace FluentMigrator.Tests.Logging
 {
     /// <summary>
-    /// Logger writing the runner log messages to the <see cref="TestContext"/>
+    /// Logger writing the runner log messages to the <see cref="TestContext" />
     /// </summary>
     public class TestLogger : FluentMigratorRunnerLogger
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TestLogger"/> class.
+        /// Initializes a new instance of the <see cref="TestLogger" /> class.
         /// </summary>
         public TestLogger()
             : base(TestContext.Out, TestContext.Error, new FluentMigratorLoggerOptions() { ShowSql = true })

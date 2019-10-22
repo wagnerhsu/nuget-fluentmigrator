@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlScriptFluentMigratorLogger.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -21,16 +34,24 @@ using Microsoft.Extensions.Logging;
 namespace FluentMigrator.Runner.Logging
 {
     /// <summary>
-    /// The <see cref="ILogger"/> implementation for writing SQL scripts
+    /// The <see cref="ILogger" /> implementation for writing SQL scripts
     /// </summary>
     internal class SqlScriptFluentMigratorLogger : FluentMigratorLogger
     {
+        /// <summary>
+        /// The writer
+        /// </summary>
         private readonly SqlTextWriter _writer;
+        /// <summary>
+        /// The options
+        /// </summary>
         private readonly SqlScriptFluentMigratorLoggerOptions _options;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlScriptFluentMigratorLogger"/> class.
+        /// Initializes a new instance of the <see cref="SqlScriptFluentMigratorLogger" /> class.
         /// </summary>
+        /// <param name="writer">The writer.</param>
+        /// <param name="options">The options.</param>
         public SqlScriptFluentMigratorLogger(
             SqlTextWriter writer,
             SqlScriptFluentMigratorLoggerOptions options)

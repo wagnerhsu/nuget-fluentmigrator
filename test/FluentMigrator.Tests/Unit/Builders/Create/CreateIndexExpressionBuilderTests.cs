@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateIndexExpressionBuilderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -29,9 +42,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Builders.Create
 {
+    /// <summary>
+    /// Defines test class CreateIndexExpressionBuilderTests.
+    /// </summary>
     [TestFixture]
     public class CreateIndexExpressionBuilderTests
     {
+        /// <summary>
+        /// Defines the test method CallingOnTableSetsTableNameToSpecifiedValue.
+        /// </summary>
         [Test]
         public void CallingOnTableSetsTableNameToSpecifiedValue()
         {
@@ -48,6 +67,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             expressionMock.VerifyGet(e => e.Index);
         }
 
+        /// <summary>
+        /// Defines the test method CallingOnColumnAddsNewColumnToExpression.
+        /// </summary>
         [Test]
         public void CallingOnColumnAddsNewColumnToExpression()
         {
@@ -67,6 +89,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             expressionMock.VerifyGet(e => e.Index);
         }
 
+        /// <summary>
+        /// Defines the test method CallingAscendingSetsDirectionToAscending.
+        /// </summary>
         [Test]
         public void CallingAscendingSetsDirectionToAscending()
         {
@@ -81,6 +106,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             columnMock.VerifySet(c => c.Direction = Direction.Ascending);
         }
 
+        /// <summary>
+        /// Defines the test method CallingDescendingSetsDirectionToDescending.
+        /// </summary>
         [Test]
         public void CallingDescendingSetsDirectionToDescending()
         {
@@ -95,6 +123,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             columnMock.VerifySet(c => c.Direction = Direction.Descending);
         }
 
+        /// <summary>
+        /// Defines the test method CallingIncludeAddsNewIncludeToExpression.
+        /// </summary>
         [Test]
         public void CallingIncludeAddsNewIncludeToExpression()
         {

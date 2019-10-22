@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteForeignKeyExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -31,9 +44,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Expressions
 {
+    /// <summary>
+    /// Defines test class DeleteForeignKeyExpressionTests.
+    /// </summary>
     [TestFixture]
     public class DeleteForeignKeyExpressionTests
     {
+        /// <summary>
+        /// Defines the test method ToStringIsDescriptive.
+        /// </summary>
         [Test]
         public void ToStringIsDescriptive()
         {
@@ -50,6 +69,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             }.ToString().ShouldBe("DeleteForeignKey FK UserRoles (User_id) User (Id)");
         }
 
+        /// <summary>
+        /// Defines the test method CollectValidationErrorsShouldReturnErrorIfForeignTableNameIsEmpty.
+        /// </summary>
         [Test]
         public void CollectValidationErrorsShouldReturnErrorIfForeignTableNameIsEmpty()
         {
@@ -58,6 +80,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.ForeignTableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method CollectValidationErrorsShouldReturnErrorIfForeignTableNameIsNull.
+        /// </summary>
         [Test]
         public void CollectValidationErrorsShouldReturnErrorIfForeignTableNameIsNull()
         {
@@ -66,6 +91,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.ForeignTableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method CollectValidationErrorsShouldReturnNoErrorsIfForeignTableNameAndForeignKeyNameAreSet.
+        /// </summary>
         [Test]
         public void CollectValidationErrorsShouldReturnNoErrorsIfForeignTableNameAndForeignKeyNameAreSet()
         {
@@ -75,6 +103,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(errors.Count, Is.EqualTo(0));
         }
 
+        /// <summary>
+        /// Defines the test method CollectValidationErrorsShouldReturnErrorsIfForeignColumnsAreSetButNotPrimaryTable.
+        /// </summary>
         [Test]
         public void CollectValidationErrorsShouldReturnErrorsIfForeignColumnsAreSetButNotPrimaryTable()
         {
@@ -92,6 +123,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.PrimaryTableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method CollectValidationErrorsShouldReturnErrorsIfForeignColumnsAreSetButNotPrimaryColumns.
+        /// </summary>
         [Test]
         public void CollectValidationErrorsShouldReturnErrorsIfForeignColumnsAreSetButNotPrimaryColumns()
         {
@@ -110,6 +144,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.ForeignKeyMustHaveOneOrMorePrimaryColumns);
         }
 
+        /// <summary>
+        /// Defines the test method CollectValidationErrorsShouldReturnNoErrorsIfAllPropertiesAreSet.
+        /// </summary>
         [Test]
         public void CollectValidationErrorsShouldReturnNoErrorsIfAllPropertiesAreSet()
         {
@@ -129,6 +166,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(errors.Count, Is.EqualTo(0));
         }
 
+        /// <summary>
+        /// Defines the test method ReverseReturnsDeleteForeignKeyExpression.
+        /// </summary>
         [Test]
         public void ReverseReturnsDeleteForeignKeyExpression()
         {
@@ -147,6 +187,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             reverse.ShouldBeOfType<CreateForeignKeyExpression>();
         }
 
+        /// <summary>
+        /// Defines the test method ReverseReturnsDeleteForeignKeyExpressionAfterApplyingConventions.
+        /// </summary>
         [Test]
         public void ReverseReturnsDeleteForeignKeyExpressionAfterApplyingConventions()
         {
@@ -167,6 +210,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             reverse.ShouldBeOfType<CreateForeignKeyExpression>();
         }
 
+        /// <summary>
+        /// Defines the test method ReverseSetsForeignTableAndForeignColumnsAndPrimaryTableAndPrimaryColumnsAOnGeneratedExpression.
+        /// </summary>
         [Test]
         public void ReverseSetsForeignTableAndForeignColumnsAndPrimaryTableAndPrimaryColumnsAOnGeneratedExpression()
         {
@@ -188,6 +234,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             reverse.ForeignKey.PrimaryColumns.First().ShouldBe("ForeignId");
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull()
         {
@@ -199,6 +248,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.ForeignKey.PrimaryTableSchema, Is.Null);
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged()
         {
@@ -217,6 +269,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.ForeignKey.PrimaryTableSchema, Is.EqualTo("testschema"));
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema()
         {

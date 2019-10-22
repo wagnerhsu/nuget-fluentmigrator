@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="1_TenantATable.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -18,17 +31,31 @@
 
 namespace FluentMigrator.Tests.Integration.Migrations.Tagged
 {
+    /// <summary>
+    /// Class TenantATable.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Migrations.Tagged.TenantABaseMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Migrations.Tagged.TenantABaseMigration" />
     [Migration(1)]
     public class TenantATable : TenantABaseMigration
     {
+        /// <summary>
+        /// The table name
+        /// </summary>
         private const string TableName = "TenantATable";
 
+        /// <summary>
+        /// Ups this instance.
+        /// </summary>
         public override void Up()
         {
             Create.Table(TableName)
                 .WithColumn("Id").AsInt32();
         }
 
+        /// <summary>
+        /// Downs this instance.
+        /// </summary>
         public override void Down()
         {
             Delete.Table(TableName);

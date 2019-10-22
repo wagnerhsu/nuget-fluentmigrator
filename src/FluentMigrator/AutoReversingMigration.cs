@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AutoReversingMigration.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -25,9 +38,7 @@ namespace FluentMigrator
     /// <summary>
     /// A migration base class that will automatically generate the down expressions
     /// </summary>
-    /// <remarks>
-    /// This only works for some expressions like CREATE TABLE, but not for DROP TABLE.
-    /// </remarks>
+    /// <remarks>This only works for some expressions like CREATE TABLE, but not for DROP TABLE.</remarks>
     public abstract class AutoReversingMigration : MigrationBase
     {
         /// <inheritdoc />

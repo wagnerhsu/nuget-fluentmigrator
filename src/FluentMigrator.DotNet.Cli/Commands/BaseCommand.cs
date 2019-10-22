@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="BaseCommand.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -22,8 +35,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentMigrator.DotNet.Cli.Commands
 {
+    /// <summary>
+    /// Class BaseCommand.
+    /// </summary>
     public class BaseCommand
     {
+        /// <summary>
+        /// Executes the migrations.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        /// <param name="console">The console.</param>
+        /// <returns>System.Int32.</returns>
         protected int ExecuteMigrations(MigratorOptions options, IConsole console)
         {
             var serviceProvider = Setup.BuildServiceProvider(options, console);

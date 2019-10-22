@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AssemblySourceMigrationRunnerConventionsAccessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,17 +39,20 @@ using Microsoft.Extensions.DependencyInjection;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// Searches for a <see cref="IMigrationRunnerConventions"/> implementation in the given assemblies
+    /// Searches for a <see cref="IMigrationRunnerConventions" /> implementation in the given assemblies
     /// </summary>
     public class AssemblySourceMigrationRunnerConventionsAccessor : IMigrationRunnerConventionsAccessor
     {
+        /// <summary>
+        /// The lazy conventions
+        /// </summary>
         private readonly Lazy<IMigrationRunnerConventions> _lazyConventions;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssemblySourceMigrationRunnerConventionsAccessor"/> class.
+        /// Initializes a new instance of the <see cref="AssemblySourceMigrationRunnerConventionsAccessor" /> class.
         /// </summary>
-        /// <param name="serviceProvider">The service provider used to instantiate the found <see cref="IMigrationRunnerConventions"/> implementation</param>
-        /// <param name="assemblySource">The assemblies used to search for the <see cref="IMigrationRunnerConventions"/> implementation</param>
+        /// <param name="serviceProvider">The service provider used to instantiate the found <see cref="IMigrationRunnerConventions" /> implementation</param>
+        /// <param name="assemblySource">The assemblies used to search for the <see cref="IMigrationRunnerConventions" /> implementation</param>
         public AssemblySourceMigrationRunnerConventionsAccessor(
             [CanBeNull] IServiceProvider serviceProvider,
             [CanBeNull] IAssemblySource assemblySource = null)

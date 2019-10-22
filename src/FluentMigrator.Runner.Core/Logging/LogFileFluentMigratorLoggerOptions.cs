@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="LogFileFluentMigratorLoggerOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,13 +32,14 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Runner.Logging
 {
     /// <summary>
-    /// The configuration for a <see cref="LogFileFluentMigratorLoggerProvider"/>
+    /// The configuration for a <see cref="LogFileFluentMigratorLoggerProvider" />
     /// </summary>
     public class LogFileFluentMigratorLoggerOptions : SqlScriptFluentMigratorLoggerOptions
     {
         /// <summary>
         /// Gets or sets the full path to the output file name
         /// </summary>
+        /// <value>The name of the output file.</value>
         [CanBeNull]
         public string OutputFileName { get; set; }
     }

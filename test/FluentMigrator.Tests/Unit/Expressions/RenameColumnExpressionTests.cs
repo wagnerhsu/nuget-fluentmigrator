@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RenameColumnExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -26,9 +39,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Expressions
 {
+    /// <summary>
+    /// Defines test class RenameColumnExpressionTests.
+    /// </summary>
     [TestFixture]
     public class RenameColumnExpressionTests
     {
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenOldNameIsNull.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenOldNameIsNull()
         {
@@ -37,6 +56,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.OldColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenOldNameIsEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenOldNameIsEmptyString()
         {
@@ -45,6 +67,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.OldColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenOldNameIsNotNullEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenOldNameIsNotNullEmptyString()
         {
@@ -53,6 +78,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldNotContain(ErrorMessages.OldColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenNewNameIsNull.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenNewNameIsNull()
         {
@@ -61,6 +89,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.NewColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenNewNameIsEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenNewNameIsEmptyString()
         {
@@ -69,6 +100,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.NewColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenNewNameIsNotNullOrEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenNewNameIsNotNullOrEmptyString()
         {
@@ -77,6 +111,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldNotContain(ErrorMessages.NewColumnNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ReverseReturnsRenameColumnExpression.
+        /// </summary>
         [Test]
         public void ReverseReturnsRenameColumnExpression()
         {
@@ -85,6 +122,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             reverse.ShouldBeOfType<RenameColumnExpression>();
         }
 
+        /// <summary>
+        /// Defines the test method ReverseSetsTableNameOldNameAndNewNameOnGeneratedExpression.
+        /// </summary>
         [Test]
         public void ReverseSetsTableNameOldNameAndNewNameOnGeneratedExpression()
         {
@@ -96,6 +136,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             reverse.NewName.ShouldBe("BaconId");
         }
 
+        /// <summary>
+        /// Defines the test method ToStringIsDescriptive.
+        /// </summary>
         [Test]
         public void ToStringIsDescriptive()
         {
@@ -103,6 +146,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             expression.ToString().ShouldBe("RenameColumn Bacon BaconId to ChunkyBaconId");
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull()
         {
@@ -113,6 +159,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.SchemaName, Is.Null);
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged()
         {
@@ -123,6 +172,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.SchemaName, Is.EqualTo("testschema"));
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema()
         {

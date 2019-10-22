@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaTestDropPrimaryKey.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -18,11 +31,19 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd
 {
+    /// <summary>
+    /// Defines test class TestRollbackColumnCreation.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd.HanaEndToEndFixture" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd.HanaEndToEndFixture" />
     [TestFixture]
     [Category("Integration")]
     [Category("Hana")]
     public class TestRollbackColumnCreation : HanaEndToEndFixture
     {
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -30,6 +51,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd
                 Assert.Ignore();
         }
 
+        /// <summary>
+        /// Defines the test method Delete_ColumnCreateOnTableWithExplicitPk_ColumnShouldBeDropped.
+        /// </summary>
         [Test]
         public void Delete_ColumnCreateOnTableWithExplicitPk_ColumnShouldBeDropped()
         {
@@ -37,6 +61,10 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd
             Migrate(typeof(ImplicitlyCreatedFkForHana.CreateImplicitFk).Namespace);
         }
 
+        /// <summary>
+        /// Deletes the table if exists.
+        /// </summary>
+        /// <param name="tableNames">The table names.</param>
         private void DeleteTableIfExists(params string[] tableNames)
         {
             using (var sc = new ScopedConnection())
@@ -52,9 +80,17 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd
 
     namespace ImplicitlyCreatedFkForHana
     {
+        /// <summary>
+        /// Class CreateImplicitFk.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(1)]
         public class CreateImplicitFk : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
 
@@ -70,6 +106,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd
                 Delete.PrimaryKey("").FromTable("Teste");
             }
 
+            /// <summary>
+            /// Downs this instance.
+            /// </summary>
             public override void Down()
             {
                 Delete.Table("Teste");

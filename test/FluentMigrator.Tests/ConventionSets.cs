@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConventionSets.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -18,21 +31,52 @@ using FluentMigrator.Runner.Conventions;
 
 namespace FluentMigrator.Tests
 {
+    /// <summary>
+    /// Class ConventionSets.
+    /// </summary>
     public static class ConventionSets
     {
+        /// <summary>
+        /// The no schema name convention
+        /// </summary>
         private static readonly DefaultSchemaConvention _noSchemaNameConvention = new DefaultSchemaConvention();
+        /// <summary>
+        /// The test schema name convention
+        /// </summary>
         private static readonly DefaultSchemaConvention _testSchemaNameConvention = new DefaultSchemaConvention("testdefault");
 
+        /// <summary>
+        /// The no schema name
+        /// </summary>
         public static readonly IConventionSet NoSchemaName = CreateNoSchemaName(null);
 
+        /// <summary>
+        /// The with schema name
+        /// </summary>
         public static readonly IConventionSet WithSchemaName = CreateTestSchemaName(null);
 
+        /// <summary>
+        /// Creates the name of the no schema.
+        /// </summary>
+        /// <param name="rootPath">The root path.</param>
+        /// <returns>IConventionSet.</returns>
         public static IConventionSet CreateNoSchemaName(string rootPath)
             => Create(_noSchemaNameConvention, rootPath);
 
+        /// <summary>
+        /// Creates the name of the test schema.
+        /// </summary>
+        /// <param name="rootPath">The root path.</param>
+        /// <returns>IConventionSet.</returns>
         public static IConventionSet CreateTestSchemaName(string rootPath)
             => Create(_testSchemaNameConvention, rootPath);
 
+        /// <summary>
+        /// Creates the specified schema convention.
+        /// </summary>
+        /// <param name="schemaConvention">The schema convention.</param>
+        /// <param name="rootPath">The root path.</param>
+        /// <returns>IConventionSet.</returns>
         public static IConventionSet Create(DefaultSchemaConvention schemaConvention, string rootPath)
         {
             return new ConventionSet

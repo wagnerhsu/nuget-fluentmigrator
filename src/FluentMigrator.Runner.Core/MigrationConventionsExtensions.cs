@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationConventionsExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2019, FluentMigrator Project
 //
@@ -19,7 +32,7 @@ using System;
 namespace FluentMigrator.Runner
 {
     /// <summary>
-    /// Extension methods for <see cref="IMigrationRunnerConventions"/>.
+    /// Extension methods for <see cref="IMigrationRunnerConventions" />.
     /// </summary>
     public static class MigrationConventionsExtensions
     {
@@ -30,7 +43,7 @@ namespace FluentMigrator.Runner
         /// <param name="type">The type to validate.</param>
         /// <param name="tagsList">The list of tags to check against.</param>
         /// <param name="includeUntagged">Allow untagged entries.</param>
-        /// <returns><see langword="true"/> when the requested tags match the tags attached to the type.</returns>
+        /// <returns><see langword="true" /> when the requested tags match the tags attached to the type.</returns>
         public static bool HasRequestedTags(
             this IMigrationRunnerConventions conventions,
             Type type,

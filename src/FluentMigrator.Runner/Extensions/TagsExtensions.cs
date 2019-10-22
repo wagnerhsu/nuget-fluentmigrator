@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TagsExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,9 +33,17 @@ using System.Linq;
 
 namespace FluentMigrator.Runner.Extensions
 {
+    /// <summary>
+    /// Class TagsExtensions.
+    /// </summary>
     public static class TagsExtensions
     {
-         public static List<string> ToTags(this string tags)
+        /// <summary>
+        /// Converts to tags.
+        /// </summary>
+        /// <param name="tags">The tags.</param>
+        /// <returns>List&lt;System.String&gt;.</returns>
+        public static List<string> ToTags(this string tags)
          {
              if(string.IsNullOrEmpty(tags))
                  return new List<string>();

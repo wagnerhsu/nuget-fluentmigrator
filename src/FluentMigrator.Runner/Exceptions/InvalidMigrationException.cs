@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="InvalidMigrationException.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 // 
@@ -16,17 +29,37 @@
 
 namespace FluentMigrator.Runner.Exceptions
 {
+    /// <summary>
+    /// Class InvalidMigrationException.
+    /// Implements the <see cref="FluentMigrator.Runner.Exceptions.RunnerException" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Exceptions.RunnerException" />
     public class InvalidMigrationException : RunnerException
     {
+        /// <summary>
+        /// The migration
+        /// </summary>
         private readonly IMigration _migration;
+        /// <summary>
+        /// The errors
+        /// </summary>
         private readonly string _errors;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InvalidMigrationException"/> class.
+        /// </summary>
+        /// <param name="migration">The migration.</param>
+        /// <param name="errors">The errors.</param>
         public InvalidMigrationException(IMigration migration, string errors)
         {
             _migration = migration;
             _errors = errors;
         }
 
+        /// <summary>
+        /// Gets the message.
+        /// </summary>
+        /// <value>The message.</value>
         public override string Message
         {
             get

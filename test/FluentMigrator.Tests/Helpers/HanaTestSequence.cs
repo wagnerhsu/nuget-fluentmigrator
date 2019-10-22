@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaTestSequence.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -24,15 +37,48 @@ using Sap.Data.Hana;
 
 namespace FluentMigrator.Tests.Helpers
 {
+    /// <summary>
+    /// Class HanaTestSequence.
+    /// Implements the <see cref="System.IDisposable" />
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public class HanaTestSequence: IDisposable
     {
+        /// <summary>
+        /// The quoter
+        /// </summary>
         private readonly HanaQuoter _quoter = new HanaQuoter();
+        /// <summary>
+        /// The schema name
+        /// </summary>
         private readonly string _schemaName;
+        /// <summary>
+        /// Gets the connection.
+        /// </summary>
+        /// <value>The connection.</value>
         private HanaConnection Connection { get; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the name with schema.
+        /// </summary>
+        /// <value>The name with schema.</value>
         public string NameWithSchema { get; set; }
+        /// <summary>
+        /// Gets the transaction.
+        /// </summary>
+        /// <value>The transaction.</value>
         private HanaTransaction Transaction { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HanaTestSequence"/> class.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="sequenceName">Name of the sequence.</param>
         public HanaTestSequence(HanaProcessor processor, string schemaName, string sequenceName)
         {
             _schemaName = schemaName;
@@ -44,11 +90,17 @@ namespace FluentMigrator.Tests.Helpers
             Create();
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             Drop();
         }
 
+        /// <summary>
+        /// Creates this instance.
+        /// </summary>
         public void Create()
         {
             if (Connection.State != ConnectionState.Open)
@@ -65,6 +117,9 @@ namespace FluentMigrator.Tests.Helpers
                 command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Drops this instance.
+        /// </summary>
         public void Drop()
         {
             using (var command = new HanaCommand("DROP SEQUENCE " + NameWithSchema, Connection, Transaction))

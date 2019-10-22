@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SingleLineComment.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -24,11 +37,17 @@ namespace FluentMigrator.Runner.BatchParser.RangeSearchers
     /// </summary>
     public class SingleLineComment : IRangeSearcher
     {
+        /// <summary>
+        /// The only at beginning of line
+        /// </summary>
         private readonly bool _onlyAtBeginningOfLine;
+        /// <summary>
+        /// The start code regex
+        /// </summary>
         private readonly Regex _startCodeRegex;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SingleLineComment"/> class.
+        /// Initializes a new instance of the <see cref="SingleLineComment" /> class.
         /// </summary>
         /// <param name="startCode">The start code for the single line comment</param>
         public SingleLineComment(string startCode)
@@ -37,7 +56,7 @@ namespace FluentMigrator.Runner.BatchParser.RangeSearchers
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SingleLineComment"/> class.
+        /// Initializes a new instance of the <see cref="SingleLineComment" /> class.
         /// </summary>
         /// <param name="startCode">The start code for the single line comment</param>
         /// <param name="onlyAtBeginningOfLine">Find the start code only at the beginning of the line</param>

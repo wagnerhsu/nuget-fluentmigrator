@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationConventions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -24,23 +37,62 @@ using FluentMigrator.Runner.Infrastructure;
 
 namespace FluentMigrator.Runner
 {
+    /// <summary>
+    /// Class MigrationRunnerConventions.
+    /// Implements the <see cref="FluentMigrator.Runner.IMigrationRunnerConventions" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.IMigrationRunnerConventions" />
     public class MigrationRunnerConventions : IMigrationRunnerConventions
     {
+        /// <summary>
+        /// The default
+        /// </summary>
         private static readonly IMigrationRunnerConventions _default = DefaultMigrationRunnerConventions.Instance;
 
+        /// <summary>
+        /// Gets or sets the type is migration.
+        /// </summary>
+        /// <value>The type is migration.</value>
         public Func<Type, bool> TypeIsMigration { get; set; }
+        /// <summary>
+        /// Gets or sets the type is profile.
+        /// </summary>
+        /// <value>The type is profile.</value>
         public Func<Type, bool> TypeIsProfile { get; set; }
+        /// <summary>
+        /// Gets or sets the get maintenance stage.
+        /// </summary>
+        /// <value>The get maintenance stage.</value>
         public Func<Type, MigrationStage?> GetMaintenanceStage { get; set; }
+        /// <summary>
+        /// Gets or sets the type is version table meta data.
+        /// </summary>
+        /// <value>The type is version table meta data.</value>
         public Func<Type, bool> TypeIsVersionTableMetaData { get; set; }
 
+        /// <summary>
+        /// Gets or sets the get migration information.
+        /// </summary>
+        /// <value>The get migration information.</value>
         [Obsolete]
         public Func<Type, IMigrationInfo> GetMigrationInfo { get; set; }
 
         /// <inheritdoc />
         public Func<IMigration, IMigrationInfo> GetMigrationInfoForMigration { get; }
+        /// <summary>
+        /// Gets or sets the type has tags.
+        /// </summary>
+        /// <value>The type has tags.</value>
         public Func<Type, bool> TypeHasTags { get; set; }
+        /// <summary>
+        /// Gets or sets the type has matching tags.
+        /// </summary>
+        /// <value>The type has matching tags.</value>
         public Func<Type, IEnumerable<string>, bool> TypeHasMatchingTags { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MigrationRunnerConventions"/> class.
+        /// </summary>
         public MigrationRunnerConventions()
         {
             TypeIsMigration = _default.TypeIsMigration;

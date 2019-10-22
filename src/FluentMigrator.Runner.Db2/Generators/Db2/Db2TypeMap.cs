@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Db2
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Db2TypeMap.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Fluent Migrator Project
@@ -22,6 +35,11 @@ using FluentMigrator.Runner.Generators.Base;
 
 namespace FluentMigrator.Runner.Generators.DB2
 {
+    /// <summary>
+    /// Class Db2TypeMap.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
     internal class Db2TypeMap : TypeMapBase
     {
         #region Methods

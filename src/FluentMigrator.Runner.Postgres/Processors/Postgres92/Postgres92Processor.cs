@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Postgres
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Postgres92Processor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -29,12 +42,34 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Processors.Postgres92
 {
+    /// <summary>
+    /// Class Postgres92Processor.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.Postgres.PostgresProcessor" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.Postgres.PostgresProcessor" />
     public class Postgres92Processor : PostgresProcessor
     {
+        /// <summary>
+        /// Gets the database type
+        /// </summary>
+        /// <value>The type of the database.</value>
         public override string DatabaseType => "Postgres92";
 
+        /// <summary>
+        /// Gets the database type aliases
+        /// </summary>
+        /// <value>The database type aliases.</value>
         public override IList<string> DatabaseTypeAliases { get; } = new List<string> { "PostgreSQL92" };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Postgres92Processor"/> class.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
+        /// <param name="generator">The generator.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="connectionStringAccessor">The connection string accessor.</param>
+        /// <param name="pgOptions">The pg options.</param>
         public Postgres92Processor(
             [NotNull] PostgresDbFactory factory,
             [NotNull] Postgres92Generator generator,

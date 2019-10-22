@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RenameExpressionRoot.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -24,14 +37,17 @@ using FluentMigrator.Infrastructure;
 namespace FluentMigrator.Builders.Rename
 {
     /// <summary>
-    /// The implementation of the <see cref="IRenameExpressionRoot"/> interface.
+    /// The implementation of the <see cref="IRenameExpressionRoot" /> interface.
     /// </summary>
     public class RenameExpressionRoot : IRenameExpressionRoot
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly IMigrationContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RenameExpressionRoot"/> class.
+        /// Initializes a new instance of the <see cref="RenameExpressionRoot" /> class.
         /// </summary>
         /// <param name="context">The migration context</param>
         public RenameExpressionRoot(IMigrationContext context)

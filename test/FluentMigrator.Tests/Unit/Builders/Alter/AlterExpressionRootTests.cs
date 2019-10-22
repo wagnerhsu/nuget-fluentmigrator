@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AlterExpressionRootTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -29,9 +42,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Builders.Alter
 {
+    /// <summary>
+    /// Defines test class AlterExpressionRootTests.
+    /// </summary>
     [TestFixture]
     public class AlterExpressionRootTests
     {
+        /// <summary>
+        /// Defines the test method CallingTableAddsAlterTableExpressionToContextWithSpecifiedNameSet.
+        /// </summary>
         [Test]
         public void CallingTableAddsAlterTableExpressionToContextWithSpecifiedNameSet()
         {
@@ -49,6 +68,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingTableReturnsAlterTableExpressionBuilder.
+        /// </summary>
         [Test]
         public void CallingTableReturnsAlterTableExpressionBuilder()
         {
@@ -64,6 +86,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnAddsAlterColumnExpressionToContextWithSpecifiedNameSet.
+        /// </summary>
         [Test]
         public void CallingColumnAddsAlterColumnExpressionToContextWithSpecifiedNameSet()
         {
@@ -81,6 +106,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Alter
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnReturnsAlterColumnExpression.
+        /// </summary>
         [Test]
         public void CallingColumnReturnsAlterColumnExpression()
         {

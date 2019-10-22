@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationTraitAttribute.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -27,16 +40,16 @@ namespace FluentMigrator
     public class MigrationTraitAttribute : Attribute
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationTraitAttribute"/> class.
+        /// Initializes a new instance of the <see cref="MigrationTraitAttribute" /> class.
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">The name.</param>
         public MigrationTraitAttribute(string name)
             : this(name, null)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationTraitAttribute"/> class.
+        /// Initializes a new instance of the <see cref="MigrationTraitAttribute" /> class.
         /// </summary>
         /// <param name="name">The trait name</param>
         /// <param name="value">The trait value</param>
@@ -49,11 +62,13 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the trait name
         /// </summary>
+        /// <value>The name.</value>
         public string Name { get; }
 
         /// <summary>
         /// Gets the trait value
         /// </summary>
+        /// <value>The value.</value>
         public object Value { get; }
     }
 }

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MySql4QuoterTest.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -27,17 +40,29 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.MySql4
 {
+    /// <summary>
+    /// Defines test class MySql4QuoterTest.
+    /// </summary>
     [TestFixture]
     public class MySql4QuoterTest
     {
+        /// <summary>
+        /// The quoter
+        /// </summary>
         private IQuoter _quoter = default(MySqlQuoter);
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
             _quoter = new MySqlQuoter();
         }
 
+        /// <summary>
+        /// Defines the test method TimeSpanIsFormattedQuotes.
+        /// </summary>
         [Test]
         public void TimeSpanIsFormattedQuotes()
         {

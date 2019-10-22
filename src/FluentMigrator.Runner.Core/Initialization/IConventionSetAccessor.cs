@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IConventionSetAccessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2019, FluentMigrator Project
 //
@@ -21,7 +34,7 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// Accessor for an <see cref="IConventionSet"/>
+    /// Accessor for an <see cref="IConventionSet" />
     /// </summary>
     public interface IConventionSetAccessor
     {

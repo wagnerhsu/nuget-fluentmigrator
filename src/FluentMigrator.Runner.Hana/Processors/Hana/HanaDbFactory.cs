@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Hana
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -22,19 +35,35 @@ using System.Linq;
 
 namespace FluentMigrator.Runner.Processors.Hana
 {
+    /// <summary>
+    /// Class HanaDbFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
     public class HanaDbFactory : ReflectionBasedDbFactory
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HanaDbFactory"/> class.
+        /// </summary>
         [Obsolete]
         public HanaDbFactory()
             : base(GetTestEntries().ToArray())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HanaDbFactory"/> class.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
         public HanaDbFactory(IServiceProvider serviceProvider)
             : base(serviceProvider, GetTestEntries().ToArray())
         {
         }
 
+        /// <summary>
+        /// Gets the test entries.
+        /// </summary>
+        /// <returns>IEnumerable&lt;TestEntry&gt;.</returns>
         private static IEnumerable<TestEntry> GetTestEntries()
         {
             yield return new TestEntry("Sap.Data.Hana", "Sap.Data.Hana.HanaFactory");

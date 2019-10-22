@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IAlterTableColumnOptionOrAddColumnOrAlterColumnSyntax.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,6 +41,8 @@ namespace FluentMigrator.Builders.Alter.Table
         /// <summary>
         /// The value to set against existing rows for the new column.  Only used for creating columns, not altering them.
         /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>IAlterTableColumnOptionOrAddColumnOrAlterColumnSyntax.</returns>
         IAlterTableColumnOptionOrAddColumnOrAlterColumnSyntax SetExistingRowsTo(object value);
     }
 }

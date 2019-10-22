@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IQuoter.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -28,11 +41,15 @@ namespace FluentMigrator.Runner.Generators
         /// <summary>
         /// Returns a quoted string that has been correctly escaped
         /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>System.String.</returns>
         string Quote([CanBeNull] string name);
 
         /// <summary>
         /// Provides an unquoted, unescaped string
         /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         string UnQuote(string value);
 
         /// <summary>
@@ -45,31 +62,47 @@ namespace FluentMigrator.Runner.Generators
         /// <summary>
         /// Returns true is the value starts and ends with a close quote
         /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns><c>true</c> if the specified value is quoted; otherwise, <c>false</c>.</returns>
         bool IsQuoted(string value);
 
         /// <summary>
         /// Quotes a column name
         /// </summary>
+        /// <param name="columnName">Name of the column.</param>
+        /// <returns>System.String.</returns>
         string QuoteColumnName(string columnName);
 
         /// <summary>
         /// Quotes a Table name
         /// </summary>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns>System.String.</returns>
         string QuoteTableName(string tableName, string schemaName = null);
 
         /// <summary>
         /// Quote an index name
         /// </summary>
+        /// <param name="indexName">Name of the index.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns>System.String.</returns>
         string QuoteIndexName(string indexName, string schemaName = null);
 
         /// <summary>
         /// Quotes a constraint name
         /// </summary>
+        /// <param name="contraintName">Name of the contraint.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns>System.String.</returns>
         string QuoteConstraintName(string contraintName, string schemaName = null);
 
         /// <summary>
         /// Quotes a Sequence name
         /// </summary>
+        /// <param name="sequenceName">Name of the sequence.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns>System.String.</returns>
         string QuoteSequenceName(string sequenceName, string schemaName = null);
 
         /// <summary>

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IVersionLoader.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -26,11 +39,13 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Gets a value indicating whether the schema for the version table has been created (or already exited)
         /// </summary>
+        /// <value><c>true</c> if [already created version schema]; otherwise, <c>false</c>.</value>
         bool AlreadyCreatedVersionSchema { get; }
 
         /// <summary>
         /// Gets a value indicating whether the version table has been created (or already exited)
         /// </summary>
+        /// <value><c>true</c> if [already created version table]; otherwise, <c>false</c>.</value>
         bool AlreadyCreatedVersionTable { get; }
 
         /// <summary>
@@ -58,6 +73,7 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// The runner this version loader belongs to
         /// </summary>
+        /// <value>The runner.</value>
         IMigrationRunner Runner { get; set; }
 
         /// <summary>
@@ -76,11 +92,13 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Gets an interface to query/update the status of migrations
         /// </summary>
+        /// <value>The version information.</value>
         Versioning.IVersionInfo VersionInfo { get; set; }
 
         /// <summary>
         /// Gets the version table meta data
         /// </summary>
+        /// <value>The version table meta data.</value>
         VersionTableInfo.IVersionTableMetaData VersionTableMetaData { get; }
     }
 }

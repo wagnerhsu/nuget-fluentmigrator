@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SequenceDefinition.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -36,45 +49,51 @@ namespace FluentMigrator.Model
         /// <summary>
         /// Gets or sets the sequence name
         /// </summary>
+        /// <value>The name.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.SequenceNameCannotBeNullOrEmpty))]
         public virtual string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the schema name
         /// </summary>
+        /// <value>The name of the schema.</value>
         public virtual string SchemaName { get; set; }
 
         /// <summary>
         /// Gets or sets the increment of the sequence
         /// </summary>
+        /// <value>The increment.</value>
         public virtual long? Increment { get; set; }
 
         /// <summary>
         /// Gets or sets the minimum value of the sequence (inclusive)
         /// </summary>
+        /// <value>The minimum value.</value>
         public virtual long? MinValue { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum value of the sequence (inclusive)
         /// </summary>
+        /// <value>The maximum value.</value>
         public virtual long? MaxValue { get; set; }
 
         /// <summary>
         /// Gets or sets the start value of the sequence
         /// </summary>
+        /// <value>The start with.</value>
         public virtual long? StartWith { get; set; }
 
         /// <summary>
         /// Gets or sets the number of cached sequence values
         /// </summary>
-        /// <remarks>
-        /// Normally used together with <see cref="Increment"/>.
-        /// </remarks>
+        /// <value>The cache.</value>
+        /// <remarks>Normally used together with <see cref="Increment" />.</remarks>
         public virtual long? Cache { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the sequence should start with <see cref="MinValue"/> for the next value after <see cref="MaxValue"/>
+        /// Gets or sets a value indicating whether the sequence should start with <see cref="MinValue" /> for the next value after <see cref="MaxValue" />
         /// </summary>
+        /// <value><c>true</c> if cycle; otherwise, <c>false</c>.</value>
         public virtual bool Cycle { get; set; }
 
         /// <inheritdoc />

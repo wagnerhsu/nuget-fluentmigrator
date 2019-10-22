@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SQLiteGeneratorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -31,18 +44,30 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SQLite
 {
+    /// <summary>
+    /// Defines test class SQLiteGeneratorTests.
+    /// </summary>
     [TestFixture]
     // ReSharper disable once InconsistentNaming
     public class SQLiteGeneratorTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected SQLiteGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new SQLiteGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnInStrictMode.
+        /// </summary>
         [Test]
         public void CanAlterColumnInStrictMode()
         {
@@ -52,6 +77,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(expression));
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterSchemaInStrictMode.
+        /// </summary>
         [Test]
         public void CanAlterSchemaInStrictMode()
         {
@@ -60,6 +88,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(new CreateSchemaExpression()));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateForeignKeyInStrictMode.
+        /// </summary>
         [Test]
         public void CanCreateForeignKeyInStrictMode()
         {
@@ -68,6 +99,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(GeneratorTestHelper.GetCreateNamedForeignKeyExpression()));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateMulitColumnForeignKeyInStrictMode.
+        /// </summary>
         [Test]
         public void CanCreateMulitColumnForeignKeyInStrictMode()
         {
@@ -76,6 +110,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(GeneratorTestHelper.GetCreateNamedMultiColumnForeignKeyExpression()));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSchemaInStrictMode.
+        /// </summary>
         [Test]
         public void CanCreateSchemaInStrictMode()
         {
@@ -84,6 +121,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(new CreateSchemaExpression()));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithSeededIdentityAndLooseCompatibility.
+        /// </summary>
         [Test]
         public void CanCreateTableWithSeededIdentityAndLooseCompatibility()
         {
@@ -97,6 +137,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             result.ShouldBe("CREATE TABLE \"TestTable1\" (\"TestColumn1\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, \"TestColumn2\" INTEGER NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropForeignKeyInStrictMode.
+        /// </summary>
         [Test]
         public void CanDropForeignKeyInStrictMode()
         {
@@ -106,6 +149,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(expression));
         }
 
+        /// <summary>
+        /// Defines the test method CanDropSchemaInStrictMode.
+        /// </summary>
         [Test]
         public void CanDropSchemaInStrictMode()
         {
@@ -114,6 +160,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(new DeleteSchemaExpression()));
         }
 
+        /// <summary>
+        /// Defines the test method CanNotCreateTableWithSeededIdentityAndStrictCompatibility.
+        /// </summary>
         [Test]
         public void CanNotCreateTableWithSeededIdentityAndStrictCompatibility()
         {
@@ -126,6 +175,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(expression));
         }
 
+        /// <summary>
+        /// Defines the test method CanUseSystemMethodCurrentDateTimeAsADefaultValueForAColumn.
+        /// </summary>
         [Test]
         public void CanUseSystemMethodCurrentDateTimeAsADefaultValueForAColumn()
         {
@@ -136,6 +188,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             result.ShouldBe("CREATE TABLE \"TestTable1\" (\"DateTimeCol\" DATETIME NOT NULL DEFAULT (datetime('now','localtime')))");
         }
 
+        /// <summary>
+        /// Defines the test method CanUseSystemMethodCurrentUTCDateTimeAsDefaultValueForColumn.
+        /// </summary>
         [Test]
         public void CanUseSystemMethodCurrentUTCDateTimeAsDefaultValueForColumn()
         {
@@ -145,6 +200,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             var result = Generator.Generate(expression);
             result.ShouldBe("CREATE TABLE \"TestTable1\" (\"DateTimeCol\" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)");
         }
+        /// <summary>
+        /// Defines the test method CanRenameColumnInStrictMode.
+        /// </summary>
         [Test]
         public void CanRenameColumnInStrictMode()
         {

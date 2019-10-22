@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AssemblyMigrationSourceItem.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -24,14 +37,17 @@ using System.Reflection;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// Implementation of <see cref="IMigrationSourceItem"/> that accepts a collection of assemnblies
+    /// Implementation of <see cref="IMigrationSourceItem" /> that accepts a collection of assemnblies
     /// </summary>
     public class AssemblyMigrationSourceItem : IMigrationSourceItem
     {
+        /// <summary>
+        /// The assemblies
+        /// </summary>
         private readonly IReadOnlyCollection<Assembly> _assemblies;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssemblyMigrationSourceItem"/> class.
+        /// Initializes a new instance of the <see cref="AssemblyMigrationSourceItem" /> class.
         /// </summary>
         /// <param name="assemblies">The assemblies to get the canididate types from</param>
         public AssemblyMigrationSourceItem(IReadOnlyCollection<Assembly> assemblies)

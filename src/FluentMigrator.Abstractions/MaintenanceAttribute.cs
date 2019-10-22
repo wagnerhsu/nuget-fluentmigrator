@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MaintenanceAttribute.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -23,18 +36,16 @@ namespace FluentMigrator
     /// <summary>
     /// Annotates migrations that should always be executed at a specified stage.
     /// </summary>
-    /// <remarks>
-    /// Migration annotated with <see cref="MaintenanceAttribute" /> will be always executed
+    /// <remarks>Migration annotated with <see cref="MaintenanceAttribute" /> will be always executed
     /// when migrating the database to the latest version. The execution stage in which it would
     /// be executed is defined by <see cref="Stage" />. The transaction behavior can also be defined
-    /// with the <see cref="TransactionBehavior"/>, which if not specified defaults to the default
-    /// transaction behavior.
-    /// </remarks>
+    /// with the <see cref="TransactionBehavior" />, which if not specified defaults to the default
+    /// transaction behavior.</remarks>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public class MaintenanceAttribute : Attribute
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MaintenanceAttribute"/> class
+        /// Initializes a new instance of the <see cref="MaintenanceAttribute" /> class
         /// </summary>
         /// <param name="stage">The migration stage when the migration should be applied</param>
         public MaintenanceAttribute(MigrationStage stage) : this(stage, TransactionBehavior.Default)
@@ -42,7 +53,7 @@ namespace FluentMigrator
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MaintenanceAttribute"/> class.
+        /// Initializes a new instance of the <see cref="MaintenanceAttribute" /> class.
         /// </summary>
         /// <param name="stage">The migration stage when the migration should be applied</param>
         /// <param name="transactionBehavior">The desired transaction behavior</param>
@@ -55,11 +66,13 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the migration stage when the migration should be applied
         /// </summary>
+        /// <value>The stage.</value>
         public MigrationStage Stage { get; }
 
         /// <summary>
         /// Gets the desired transaction behavior
         /// </summary>
+        /// <value>The transaction behavior.</value>
         public TransactionBehavior TransactionBehavior { get; }
     }
 }

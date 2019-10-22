@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateExpressionRootTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -34,9 +47,15 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
 {
     using FluentMigrator.Builders.Create.Sequence;
 
+    /// <summary>
+    /// Defines test class CreateExpressionRootTests.
+    /// </summary>
     [TestFixture]
     public class CreateExpressionRootTests
     {
+        /// <summary>
+        /// Defines the test method CallingTableAddsCreateTableExpressionToContextWithSpecifiedNameSet.
+        /// </summary>
         [Test]
         public void CallingTableAddsCreateTableExpressionToContextWithSpecifiedNameSet()
         {
@@ -52,6 +71,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingTableReturnsCreateTableExpressionBuilder.
+        /// </summary>
         [Test]
         public void CallingTableReturnsCreateTableExpressionBuilder()
         {
@@ -66,6 +88,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnAddsCreateColumnExpressionToContextWithSpecifiedNameSet.
+        /// </summary>
         [Test]
         public void CallingColumnAddsCreateColumnExpressionToContextWithSpecifiedNameSet()
         {
@@ -81,6 +106,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnReturnsCreateColumnExpression.
+        /// </summary>
         [Test]
         public void CallingColumnReturnsCreateColumnExpression()
         {
@@ -95,6 +123,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignKeyWithoutNameAddsCreateForeignKeyExpressionToContext.
+        /// </summary>
         [Test]
         public void CallingForeignKeyWithoutNameAddsCreateForeignKeyExpressionToContext()
         {
@@ -110,6 +141,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignKeyAddsCreateForeignKeyExpressionToContextWithSpecifiedNameSet.
+        /// </summary>
         [Test]
         public void CallingForeignKeyAddsCreateForeignKeyExpressionToContextWithSpecifiedNameSet()
         {
@@ -125,6 +159,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignKeyWithoutNameReturnsCreateForeignKeyExpression.
+        /// </summary>
         [Test]
         public void CallingForeignKeyWithoutNameReturnsCreateForeignKeyExpression()
         {
@@ -139,6 +176,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignKeyCreatesCreateForeignKeyExpression.
+        /// </summary>
         [Test]
         public void CallingForeignKeyCreatesCreateForeignKeyExpression()
         {
@@ -153,6 +193,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexWithoutNameAddsCreateIndexExpressionToContext.
+        /// </summary>
         [Test]
         public void CallingIndexWithoutNameAddsCreateIndexExpressionToContext()
         {
@@ -168,6 +211,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexAddsCreateIndexExpressionToContextWithSpecifiedNameSet.
+        /// </summary>
         [Test]
         public void CallingIndexAddsCreateIndexExpressionToContextWithSpecifiedNameSet()
         {
@@ -183,6 +229,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexWithoutNameReturnsCreateIndexExpression.
+        /// </summary>
         [Test]
         public void CallingIndexWithoutNameReturnsCreateIndexExpression()
         {
@@ -197,6 +246,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexCreatesCreateIndexExpression.
+        /// </summary>
         [Test]
         public void CallingIndexCreatesCreateIndexExpression()
         {
@@ -211,6 +263,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingPrimaryKeyAddsCreateColumnExpressionToContextWithSpecifiedNameSet.
+        /// </summary>
         [Test]
         public void CallingPrimaryKeyAddsCreateColumnExpressionToContextWithSpecifiedNameSet()
         {
@@ -229,6 +284,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingPrimaryKeyReturnsCreateColumnExpression.
+        /// </summary>
         [Test]
         public void CallingPrimaryKeyReturnsCreateColumnExpression()
         {
@@ -243,6 +301,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingSequenceAddsCreateSequenceExpressionToContextWithSpecifiedNameSet.
+        /// </summary>
         [Test]
         public void CallingSequenceAddsCreateSequenceExpressionToContextWithSpecifiedNameSet()
         {
@@ -258,6 +319,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingSequenceReturnsCreateSequenceExpression.
+        /// </summary>
         [Test]
         public void CallingSequenceReturnsCreateSequenceExpression()
         {
@@ -272,6 +336,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingUniqueConstraintCreateColumnExpressionToContextWithSpecifiedNameSet.
+        /// </summary>
         [Test]
         public void CallingUniqueConstraintCreateColumnExpressionToContextWithSpecifiedNameSet()
         {
@@ -290,6 +357,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingUniqueConstraintReturnsCreateColumnExpression.
+        /// </summary>
         [Test]
         public void CallingUniqueConstraintReturnsCreateColumnExpression()
         {

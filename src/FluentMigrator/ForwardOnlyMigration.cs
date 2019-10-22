@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ForwardOnlyMigration.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -23,9 +36,7 @@ namespace FluentMigrator
     /// <summary>
     /// A forward-only migration
     /// </summary>
-    /// <remarks>
-    /// A try to collect the <c>Down</c> expressions will result in an exception
-    /// </remarks>
+    /// <remarks>A try to collect the <c>Down</c> expressions will result in an exception</remarks>
     public abstract class ForwardOnlyMigration : Migration
     {
         /// <inheritdoc />

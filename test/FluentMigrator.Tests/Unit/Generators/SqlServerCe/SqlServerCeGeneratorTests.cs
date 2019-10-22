@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerCeGeneratorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -30,17 +43,29 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
 {
+    /// <summary>
+    /// Defines test class SqlServerCeGeneratorTests.
+    /// </summary>
     [TestFixture]
     public class SqlServerCeGeneratorTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected SqlServerCeGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new SqlServerCeGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method AlterDefaultConstraintThrowsNotSupportedException.
+        /// </summary>
         [Test]
         public void AlterDefaultConstraintThrowsNotSupportedException()
         {
@@ -49,6 +74,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(expression));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateClusteredIndexTreatedAsNonClustered.
+        /// </summary>
         [Test]
         public void CanCreateClusteredIndexTreatedAsNonClustered()
         {
@@ -59,6 +87,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE INDEX [TestIndex] ON [TestTable1] ([TestColumn1] ASC)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateMultiColumnClusteredIndexTreatedAsNonClustered.
+        /// </summary>
         [Test]
         public void CanCreateMultiColumnClusteredIndexTreatedAsNonClustered()
         {
@@ -69,6 +100,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE INDEX [TestIndex] ON [TestTable1] ([TestColumn1] ASC, [TestColumn2] DESC)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreatMultiColumnUniqueClusteredIndexTreatedAsNonClustered.
+        /// </summary>
         [Test]
         public void CanCreatMultiColumnUniqueClusteredIndexTreatedAsNonClustered()
         {
@@ -79,6 +113,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE UNIQUE INDEX [TestIndex] ON [TestTable1] ([TestColumn1] ASC, [TestColumn2] DESC)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateUniqueClusteredIndexTreatedAsNonClustered.
+        /// </summary>
         [Test]
         public void CanCreateUniqueClusteredIndexTreatedAsNonClustered()
         {
@@ -89,6 +126,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE UNIQUE INDEX [TestIndex] ON [TestTable1] ([TestColumn1] ASC)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNtextSizeUpTo536870911.
+        /// </summary>
         [Test]
         [Category("SqlServerCe"), Category("Generator"), Category("Table")]
         public void CanCreateTableWithNtextSizeUpTo536870911()
@@ -101,6 +141,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NTEXT NOT NULL, [TestColumn2] INT NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithSeededIdentity.
+        /// </summary>
         [Test]
         [Category("SqlServerCe"), Category("Generator"), Category("Table")]
         public void CanCreateTableWithSeededIdentity()
@@ -113,6 +156,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] INT NOT NULL IDENTITY(45,23), [TestColumn2] INT NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateXmlColumn.
+        /// </summary>
         [Test]
         public void CanCreateXmlColumn()
         {
@@ -126,6 +172,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("ALTER TABLE [TestTable1] ADD [TestColumn1] NTEXT NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanNotDropMultipleColumns.
+        /// </summary>
         [Test]
         public void CanNotDropMultipleColumns()
         {
@@ -135,6 +184,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(expression));
         }
 
+        /// <summary>
+        /// Defines the test method GenerateNecessaryStatementsForADeleteDefaultExpressionIsThrowsException.
+        /// </summary>
         [Test]
         public void GenerateNecessaryStatementsForADeleteDefaultExpressionIsThrowsException()
         {

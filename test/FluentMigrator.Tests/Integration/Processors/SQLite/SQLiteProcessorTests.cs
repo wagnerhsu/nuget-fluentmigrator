@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SQLiteProcessorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -40,21 +53,51 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.SQLite
 {
+    /// <summary>
+    /// Defines test class SQLiteProcessorTests.
+    /// </summary>
     [TestFixture]
     [Category("Integration")]
     [Category("SQLite")]
     // ReSharper disable once InconsistentNaming
     public class SQLiteProcessorTests
     {
+        /// <summary>
+        /// The column
+        /// </summary>
         private Mock<ColumnDefinition> _column;
+        /// <summary>
+        /// The column name
+        /// </summary>
         private string _columnName;
+        /// <summary>
+        /// The table name
+        /// </summary>
         private string _tableName;
+        /// <summary>
+        /// The table name that must be escaped
+        /// </summary>
         private string _tableNameThatMustBeEscaped;
 
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private SQLiteProcessor Processor { get; set; }
 
+        /// <summary>
+        /// Defines the test method CanDefaultAutoIncrementColumnTypeToInteger.
+        /// </summary>
         [Test]
         public void CanDefaultAutoIncrementColumnTypeToInteger()
         {
@@ -75,6 +118,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SQLite
             Processor.ColumnExists(null, _tableName, "Id").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableExpression.
+        /// </summary>
         [Test]
         public void CanCreateTableExpression()
         {
@@ -86,6 +132,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SQLite
             Processor.ColumnExists(null, _tableName, _columnName).ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method IsEscapingTableNameCorrectlyOnTableCreate.
+        /// </summary>
         [Test]
         public void IsEscapingTableNameCorrectlyOnTableCreate()
         {
@@ -95,6 +144,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SQLite
             Processor.Process(expression);
         }
 
+        /// <summary>
+        /// Defines the test method IsEscapingTableNameCorrectlyOnReadTableData.
+        /// </summary>
         [Test]
         public void IsEscapingTableNameCorrectlyOnReadTableData()
         {
@@ -104,6 +156,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SQLite
             Processor.ReadTableData(null, _tableNameThatMustBeEscaped).Tables.Count.ShouldBe(1);
         }
 
+        /// <summary>
+        /// Defines the test method IsEscapingTableNameCorrectlyOnTableExists.
+        /// </summary>
         [Test]
         public void IsEscapingTableNameCorrectlyOnTableExists()
         {
@@ -113,6 +168,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SQLite
             Processor.TableExists(null, _tableNameThatMustBeEscaped).ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method IsEscapingTableNameCorrectlyOnColumnExists.
+        /// </summary>
         [Test]
         public void IsEscapingTableNameCorrectlyOnColumnExists()
         {
@@ -125,6 +183,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SQLite
             Processor.ColumnExists(null, _tableNameThatMustBeEscaped, columnName).ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingProcessWithPerformDBOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges.
+        /// </summary>
         [Test]
         public void CallingProcessWithPerformDBOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges()
         {
@@ -173,6 +234,11 @@ namespace FluentMigrator.Tests.Integration.Processors.SQLite
             Assert.That(output.ToString(), Does.Contain(@"/* Performing DB Operation */"));
         }
 
+        /// <summary>
+        /// Creates the processor services.
+        /// </summary>
+        /// <param name="initAction">The initialize action.</param>
+        /// <returns>ServiceProvider.</returns>
         private ServiceProvider CreateProcessorServices([CanBeNull] Action<IServiceCollection> initAction)
         {
             if (!IntegrationTestOptions.SQLite.IsEnabled)
@@ -188,6 +254,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SQLite
             return serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
@@ -202,12 +271,18 @@ namespace FluentMigrator.Tests.Integration.Processors.SQLite
             _column.SetupGet(c => c.Type).Returns(DbType.Int32);
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -215,6 +290,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SQLite
             Processor = ServiceScope.ServiceProvider.GetRequiredService<SQLiteProcessor>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

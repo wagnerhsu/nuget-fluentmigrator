@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SearchContext.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,12 +36,12 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Runner.BatchParser
 {
     /// <summary>
-    /// Represents the context for the <see cref="SearchStatus"/> operation
+    /// Represents the context for the <see cref="SearchStatus" /> operation
     /// </summary>
     internal sealed class SearchContext
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SearchContext"/> class.
+        /// Initializes a new instance of the <see cref="SearchContext" /> class.
         /// </summary>
         /// <param name="rangeSearchers">The range searchers</param>
         /// <param name="specialTokenSearchers">The special token searchers</param>
@@ -46,18 +59,21 @@ namespace FluentMigrator.Runner.BatchParser
         /// <summary>
         /// Gets the special token searchers
         /// </summary>
+        /// <value>The special token searchers.</value>
         [NotNull, ItemNotNull]
         public IList<ISpecialTokenSearcher> SpecialTokenSearchers { get; }
 
         /// <summary>
         /// Gets the range searchers
         /// </summary>
+        /// <value>The range searchers.</value>
         [NotNull, ItemNotNull]
         public IList<IRangeSearcher> RangeSearchers { get; }
 
         /// <summary>
         /// Gets a value indicating whether the comments should be stripped
         /// </summary>
+        /// <value><c>true</c> if [strip comments]; otherwise, <c>false</c>.</value>
         public bool StripComments { get; }
 
         /// <summary>
@@ -70,11 +86,19 @@ namespace FluentMigrator.Runner.BatchParser
         /// </summary>
         public event EventHandler<SpecialTokenEventArgs> SpecialToken;
 
+        /// <summary>
+        /// Handles the <see cref="E:BatchSql" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="SqlBatchCollectorEventArgs"/> instance containing the event data.</param>
         internal void OnBatchSql([NotNull] SqlBatchCollectorEventArgs e)
         {
             BatchSql?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Handles the <see cref="E:SpecialToken" /> event.
+        /// </summary>
+        /// <param name="e">The <see cref="SpecialTokenEventArgs"/> instance containing the event data.</param>
         internal void OnSpecialToken([NotNull] SpecialTokenEventArgs e)
         {
             SpecialToken?.Invoke(this, e);

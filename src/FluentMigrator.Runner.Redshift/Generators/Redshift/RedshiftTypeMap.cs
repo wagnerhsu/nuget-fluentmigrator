@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Redshift
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RedshiftTypeMap.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -22,11 +35,25 @@ using FluentMigrator.Runner.Generators.Base;
 
 namespace FluentMigrator.Runner.Generators.Redshift
 {
+    /// <summary>
+    /// Class RedshiftTypeMap.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
     internal class RedshiftTypeMap : TypeMapBase
     {
+        /// <summary>
+        /// The decimal capacity
+        /// </summary>
         private const int DecimalCapacity = 1000;
+        /// <summary>
+        /// The redshift maximum varchar size
+        /// </summary>
         private const int RedshiftMaxVarcharSize = 10485760;
 
+        /// <summary>
+        /// Setups the type maps.
+        /// </summary>
         protected override void SetupTypeMaps()
         {
             SetTypeMap(DbType.AnsiStringFixedLength, "char(255)");

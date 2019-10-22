@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Postgres
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Postgres92TypeMap.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2019, FluentMigrator Project
 //
@@ -20,6 +33,11 @@ using FluentMigrator.Runner.Generators.Postgres;
 
 namespace FluentMigrator.Runner.Generators.Postgres92
 {
+    /// <summary>
+    /// Class Postgres92TypeMap.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Postgres.PostgresTypeMap" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Postgres.PostgresTypeMap" />
     internal class Postgres92TypeMap : PostgresTypeMap
     {
         /// <inheritdoc />

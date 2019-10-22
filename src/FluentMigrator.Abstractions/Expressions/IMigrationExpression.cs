@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IMigrationExpression.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,7 +41,7 @@ namespace FluentMigrator.Expressions
 #pragma warning restore 618
     {
         /// <summary>
-        /// Execute the expression with the given <paramref name="processor"/>
+        /// Execute the expression with the given <paramref name="processor" />
         /// </summary>
         /// <param name="processor">The processor to execute the expression with</param>
         void ExecuteWith(IMigrationProcessor processor);

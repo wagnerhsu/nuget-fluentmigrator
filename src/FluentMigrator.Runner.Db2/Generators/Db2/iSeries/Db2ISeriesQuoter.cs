@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Db2
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Db2ISeriesQuoter.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -16,8 +29,20 @@
 
 namespace FluentMigrator.Runner.Generators.DB2.iSeries
 {
+    /// <summary>
+    /// Class Db2ISeriesQuoter.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.DB2.Db2Quoter" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.DB2.Db2Quoter" />
     public class Db2ISeriesQuoter : Db2Quoter
     {
+        /// <summary>
+        /// Quotes the name of the constraint.
+        /// </summary>
+        /// <param name="constraintName">Name of the constraint.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns>System.String.</returns>
+        /// <inheritdoc />
         public override string QuoteConstraintName(string constraintName, string schemaName = null)
         {
             return CreateSchemaPrefixedQuotedIdentifier(
@@ -25,6 +50,12 @@ namespace FluentMigrator.Runner.Generators.DB2.iSeries
                 IsQuoted(constraintName) ? constraintName : Quote(constraintName));
         }
 
+        /// <summary>
+        /// Quotes the name of the index.
+        /// </summary>
+        /// <param name="indexName">Name of the index.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns>System.String.</returns>
         public override string QuoteIndexName(string indexName, string schemaName)
         {
             return CreateSchemaPrefixedQuotedIdentifier(

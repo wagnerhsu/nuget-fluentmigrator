@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Db2ISeriesTestTable.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -26,12 +39,29 @@ using FluentMigrator.Runner.Processors.DB2.iSeries;
 
 namespace FluentMigrator.Tests.Helpers
 {
+    /// <summary>
+    /// Class Db2ISeriesTestTable.
+    /// Implements the <see cref="System.IDisposable" />
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public class Db2ISeriesTestTable : IDisposable
     {
+        /// <summary>
+        /// The quoter
+        /// </summary>
         private readonly IQuoter _quoter = new Db2ISeriesQuoter();
 
+        /// <summary>
+        /// The schema
+        /// </summary>
         private readonly string _schema;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Db2ISeriesTestTable"/> class.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="schema">The schema.</param>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public Db2ISeriesTestTable(Db2ISeriesProcessor processor, string schema, params string[] columnDefinitions)
         {
             Processor = processor;
@@ -45,6 +75,13 @@ namespace FluentMigrator.Tests.Helpers
             Create(columnDefinitions);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Db2ISeriesTestTable"/> class.
+        /// </summary>
+        /// <param name="table">The table.</param>
+        /// <param name="processor">The processor.</param>
+        /// <param name="schema">The schema.</param>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public Db2ISeriesTestTable(string table, Db2ISeriesProcessor processor, string schema, params string[] columnDefinitions)
         {
             Processor = processor;
@@ -58,20 +95,36 @@ namespace FluentMigrator.Tests.Helpers
             Create(columnDefinitions);
         }
 
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the name with schema.
+        /// </summary>
+        /// <value>The name with schema.</value>
         public string NameWithSchema
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Gets the connection.
+        /// </summary>
+        /// <value>The connection.</value>
         private IDbConnection Connection => Processor.Connection;
 
+        /// <summary>
+        /// Creates the specified column definitions.
+        /// </summary>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public void Create(string[] columnDefinitions)
         {
             var sb = new StringBuilder();
@@ -87,11 +140,17 @@ namespace FluentMigrator.Tests.Helpers
             Processor.Execute(sb.ToString());
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             Drop();
         }
 
+        /// <summary>
+        /// Drops this instance.
+        /// </summary>
         public void Drop()
         {
             var tableCommand = string.Format("DROP TABLE {0}", NameWithSchema);
@@ -105,6 +164,11 @@ namespace FluentMigrator.Tests.Helpers
             }
         }
 
+        /// <summary>
+        /// Withes the index on.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="name">The name.</param>
         public void WithIndexOn(string column, string name)
         {
             var query = string.Format("CREATE UNIQUE INDEX {0} ON {1} ({2})",
@@ -116,6 +180,11 @@ namespace FluentMigrator.Tests.Helpers
             Processor.Execute(query);
         }
 
+        /// <summary>
+        /// Withes the unique constraint on.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="name">The name.</param>
         public void WithUniqueConstraintOn(string column, string name)
         {
             var constraintName = _quoter.QuoteConstraintName(name, _schema);
@@ -129,6 +198,10 @@ namespace FluentMigrator.Tests.Helpers
             Processor.Execute(query);
         }
 
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         public Db2ISeriesProcessor Processor { get; set; }
     }
 }

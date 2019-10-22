@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TaskExecutorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -38,17 +51,35 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit
 {
+    /// <summary>
+    /// Defines test class TaskExecutorTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.IntegrationTestBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.IntegrationTestBase" />
     [TestFixture]
     public class TaskExecutorTests : IntegrationTestBase
     {
+        /// <summary>
+        /// The migration runner
+        /// </summary>
         private Mock<IMigrationRunner> _migrationRunner;
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
             _migrationRunner = new Mock<IMigrationRunner>();
         }
 
+        /// <summary>
+        /// Verifies the specified function.
+        /// </summary>
+        /// <param name="func">The function.</param>
+        /// <param name="task">The task.</param>
+        /// <param name="version">The version.</param>
+        /// <param name="steps">The steps.</param>
         private void Verify(Expression<Action<IMigrationRunner>> func, string task, long version, int steps)
         {
             _migrationRunner.Setup(func).Verifiable();
@@ -88,6 +119,9 @@ namespace FluentMigrator.Tests.Unit
             _migrationRunner.VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method InvalidProviderNameShouldThrowArgumentException.
+        /// </summary>
         [Test]
         public void InvalidProviderNameShouldThrowArgumentException()
         {
@@ -105,12 +139,18 @@ namespace FluentMigrator.Tests.Unit
             Assert.Throws<ProcessorFactoryNotFoundException>(() => taskExecutor.Execute());
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallMigrateDownIfSpecified.
+        /// </summary>
         [Test]
         public void ShouldCallMigrateDownIfSpecified()
         {
             Verify(x => x.MigrateDown(It.Is<long>(c => c == 20)), "migrate:down", 20, 0);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallMigrateUpByDefault.
+        /// </summary>
         [Test]
         public void ShouldCallMigrateUpByDefault()
         {
@@ -118,6 +158,9 @@ namespace FluentMigrator.Tests.Unit
             Verify(x => x.MigrateUp(), "", 0, 0);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallMigrateUpIfSpecified.
+        /// </summary>
         [Test]
         public void ShouldCallMigrateUpIfSpecified()
         {
@@ -125,6 +168,9 @@ namespace FluentMigrator.Tests.Unit
             Verify(x => x.MigrateUp(), "migrate:up", 0, 0);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallMigrateUpWithVersionIfSpecified.
+        /// </summary>
         [Test]
         public void ShouldCallMigrateUpWithVersionIfSpecified()
         {
@@ -132,84 +178,129 @@ namespace FluentMigrator.Tests.Unit
             Verify(x => x.MigrateUp(It.Is<long>(c => c == 1)), "migrate:up", 1, 0);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallRollbackIfSpecified.
+        /// </summary>
         [Test]
         public void ShouldCallRollbackIfSpecified()
         {
             Verify(x => x.Rollback(It.Is<int>(c => c == 2)), "rollback", 0, 2);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallRollbackIfSpecifiedAndDefaultTo1Step.
+        /// </summary>
         [Test]
         public void ShouldCallRollbackIfSpecifiedAndDefaultTo1Step()
         {
             Verify(x => x.Rollback(It.Is<int>(c => c == 1)), "rollback", 0, 0);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallValidateVersionOrder.
+        /// </summary>
         [Test]
         public void ShouldCallValidateVersionOrder()
         {
             Verify(x => x.ValidateVersionOrder(), "validateversionorder", 0, 0);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallHasMigrationsToApplyUpWithNullVersionOnNoTask.
+        /// </summary>
         [Test]
         public void ShouldCallHasMigrationsToApplyUpWithNullVersionOnNoTask()
         {
             VerifyHasMigrationsToApply(x => x.HasMigrationsToApplyUp(It.Is<long?>(version => !version.HasValue)), "", 0);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallHasMigrationsToApplyUpWithVersionOnNoTask.
+        /// </summary>
         [Test]
         public void ShouldCallHasMigrationsToApplyUpWithVersionOnNoTask()
         {
             VerifyHasMigrationsToApply(x => x.HasMigrationsToApplyUp(It.Is<long?>(version => version.GetValueOrDefault() == 1)), "", 1);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallHasMigrationsToApplyUpWithNullVersionOnMigrate.
+        /// </summary>
         [Test]
         public void ShouldCallHasMigrationsToApplyUpWithNullVersionOnMigrate()
         {
             VerifyHasMigrationsToApply(x => x.HasMigrationsToApplyUp(It.Is<long?>(version => !version.HasValue)), "migrate", 0);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallHasMigrationsToApplyUpWithVersionOnMigrate.
+        /// </summary>
         [Test]
         public void ShouldCallHasMigrationsToApplyUpWithVersionOnMigrate()
         {
             VerifyHasMigrationsToApply(x => x.HasMigrationsToApplyUp(It.Is<long?>(version => version.GetValueOrDefault() == 1)), "migrate", 1);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallHasMigrationsToApplyUpWithNullVersionOnMigrateUp.
+        /// </summary>
         [Test]
         public void ShouldCallHasMigrationsToApplyUpWithNullVersionOnMigrateUp()
         {
             VerifyHasMigrationsToApply(x => x.HasMigrationsToApplyUp(It.Is<long?>(version => !version.HasValue)), "migrate:up", 0);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallHasMigrationsToApplyUpWithVersionOnMigrateUp.
+        /// </summary>
         [Test]
         public void ShouldCallHasMigrationsToApplyUpWithVersionOnMigrateUp()
         {
             VerifyHasMigrationsToApply(x => x.HasMigrationsToApplyUp(It.Is<long?>(version => version.GetValueOrDefault() == 1)), "migrate:up", 1);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallHasMigrationsToApplyRollbackOnRollback.
+        /// </summary>
         [Test]
         public void ShouldCallHasMigrationsToApplyRollbackOnRollback()
         {
             VerifyHasMigrationsToApply(x => x.HasMigrationsToApplyRollback(), "rollback", 0);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallHasMigrationsToApplyRollbackOnRollbackAll.
+        /// </summary>
         [Test]
         public void ShouldCallHasMigrationsToApplyRollbackOnRollbackAll()
         {
             VerifyHasMigrationsToApply(x => x.HasMigrationsToApplyRollback(), "rollback:all", 0);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallHasMigrationsToApplyDownOnRollbackToVersion.
+        /// </summary>
         [Test]
         public void ShouldCallHasMigrationsToApplyDownOnRollbackToVersion()
         {
             VerifyHasMigrationsToApply(x => x.HasMigrationsToApplyDown(It.Is<long>(version => version == 2)), "rollback:toversion", 2);
         }
 
+        /// <summary>
+        /// Defines the test method ShouldCallHasMigrationsToApplyDownOnMigrateDown.
+        /// </summary>
         [Test]
         public void ShouldCallHasMigrationsToApplyDownOnMigrateDown()
         {
             VerifyHasMigrationsToApply(x => x.HasMigrationsToApplyDown(It.Is<long>(version => version == 2)), "migrate:down", 2);
         }
 
+        /// <summary>
+        /// Verifies the has migrations to apply.
+        /// </summary>
+        /// <param name="func">The function.</param>
+        /// <param name="task">The task.</param>
+        /// <param name="version">The version.</param>
         private void VerifyHasMigrationsToApply(Expression<Func<IMigrationRunner, bool>> func, string task, long version)
         {
             _migrationRunner.Setup(func).Verifiable();
@@ -242,8 +333,20 @@ namespace FluentMigrator.Tests.Unit
             _migrationRunner.Verify(func, Times.Once());
         }
 
+        /// <summary>
+        /// Class FakeTaskExecutor.
+        /// Implements the <see cref="FluentMigrator.Runner.Initialization.TaskExecutor" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Initialization.TaskExecutor" />
         internal class FakeTaskExecutor : TaskExecutor
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="FakeTaskExecutor"/> class.
+            /// </summary>
+            /// <param name="logger">The logger.</param>
+            /// <param name="assemblySource">The assembly source.</param>
+            /// <param name="runnerOptions">The runner options.</param>
+            /// <param name="serviceProvider">The service provider.</param>
             public FakeTaskExecutor(
                 [NotNull] ILogger<TaskExecutor> logger,
                 [NotNull] IAssemblySource assemblySource,

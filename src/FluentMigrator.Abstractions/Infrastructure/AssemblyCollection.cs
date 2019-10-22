@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AssemblyCollection.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -28,9 +41,10 @@ namespace FluentMigrator.Infrastructure
     public class AssemblyCollection : IAssemblyCollection
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssemblyCollection"/> class.
+        /// Initializes a new instance of the <see cref="AssemblyCollection" /> class.
         /// </summary>
         /// <param name="assemblies">The assemblies for the collection</param>
+        /// <exception cref="ArgumentNullException">assemblies</exception>
         public AssemblyCollection(IEnumerable<Assembly> assemblies)
         {
             if (assemblies == null)

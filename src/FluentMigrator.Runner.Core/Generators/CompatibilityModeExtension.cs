@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CompatibilityModeExtension.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -21,7 +34,7 @@ using FluentMigrator.Exceptions;
 namespace FluentMigrator.Runner.Generators
 {
     /// <summary>
-    /// Extension methods for <see cref="CompatibilityMode"/>
+    /// Extension methods for <see cref="CompatibilityMode" />
     /// </summary>
     public static class CompatibilityModeExtension
     {
@@ -31,7 +44,7 @@ namespace FluentMigrator.Runner.Generators
         /// <param name="mode">The compatibility modee</param>
         /// <param name="message">The exception message (if any gets thrown)</param>
         /// <returns>The string to be returned (if no exception was thrown)</returns>
-        /// <exception cref="DatabaseOperationNotSupportedException">The exception to be thrown</exception>
+        /// <exception cref="DatabaseOperationNotSupportedException"></exception>
         public static string HandleCompatibilty(this CompatibilityMode mode, string message)
         {
             if (CompatibilityMode.STRICT == mode)

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Redshift
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RedshiftDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -20,19 +33,34 @@ using System;
 
 namespace FluentMigrator.Runner.Processors.Redshift
 {
+    /// <summary>
+    /// Class RedshiftDbFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
     public class RedshiftDbFactory : ReflectionBasedDbFactory
     {
+        /// <summary>
+        /// The entries
+        /// </summary>
         private static readonly TestEntry[] _entries =
         {
             new TestEntry("Npgsql", "Npgsql.NpgsqlFactory"),
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RedshiftDbFactory"/> class.
+        /// </summary>
         [Obsolete]
         public RedshiftDbFactory()
             : this(null)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RedshiftDbFactory"/> class.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
         public RedshiftDbFactory(IServiceProvider serviceProvider)
             : base(serviceProvider, _entries)
         {

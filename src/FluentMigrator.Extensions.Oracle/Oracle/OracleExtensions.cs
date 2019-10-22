@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Extensions.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -24,14 +37,43 @@ using FluentMigrator.Infrastructure;
 
 namespace FluentMigrator.Oracle
 {
+    /// <summary>
+    /// Class OracleExtensions.
+    /// </summary>
     public static class OracleExtensions
     {
+        /// <summary>
+        /// Gets the identity generation.
+        /// </summary>
+        /// <value>The identity generation.</value>
         public static string IdentityGeneration => "OracleIdentityGeneration";
+        /// <summary>
+        /// Gets the identity start with.
+        /// </summary>
+        /// <value>The identity start with.</value>
         public static string IdentityStartWith => "OracleIdentityStartWith";
+        /// <summary>
+        /// Gets the identity increment by.
+        /// </summary>
+        /// <value>The identity increment by.</value>
         public static string IdentityIncrementBy => "OracleIdentityIncrementBy";
+        /// <summary>
+        /// Gets the identity minimum value.
+        /// </summary>
+        /// <value>The identity minimum value.</value>
         public static string IdentityMinValue => "OracleIdentityMinValue";
+        /// <summary>
+        /// Gets the identity maximum value.
+        /// </summary>
+        /// <value>The identity maximum value.</value>
         public static string IdentityMaxValue => "OracleIdentityMaxValue";
 
+        /// <summary>
+        /// Unsupporteds the method message.
+        /// </summary>
+        /// <param name="methodName">Name of the method.</param>
+        /// <param name="interfaceName">Name of the interface.</param>
+        /// <returns>System.String.</returns>
         private static string UnsupportedMethodMessage(object methodName, string interfaceName)
         {
             var msg = string.Format(ErrorMessages.MethodXMustBeCalledOnObjectImplementingY, methodName, interfaceName);
@@ -41,9 +83,11 @@ namespace FluentMigrator.Oracle
         /// <summary>
         /// Makes a column an Identity column using the specified generation type.
         /// </summary>
+        /// <typeparam name="TNext">The type of the t next.</typeparam>
+        /// <typeparam name="TNextFk">The type of the t next fk.</typeparam>
         /// <param name="expression">Column on which to apply the identity.</param>
         /// <param name="generation">The generation type</param>
-        /// <returns></returns>
+        /// <returns>TNext.</returns>
         public static TNext Identity<TNext, TNextFk>(
             this IColumnOptionSyntax<TNext, TNextFk> expression,
             OracleGenerationType generation)
@@ -56,11 +100,13 @@ namespace FluentMigrator.Oracle
         /// <summary>
         /// Makes a column an Identity column using the specified generation type, seed and increment values.
         /// </summary>
+        /// <typeparam name="TNext">The type of the t next.</typeparam>
+        /// <typeparam name="TNextFk">The type of the t next fk.</typeparam>
         /// <param name="expression">Column on which to apply the identity.</param>
         /// <param name="generation">The generation type</param>
         /// <param name="startWith">Starting value of the identity.</param>
         /// <param name="incrementBy">Increment value of the identity.</param>
-        /// <returns></returns>
+        /// <returns>TNext.</returns>
         public static TNext Identity<TNext, TNextFk>(
             this IColumnOptionSyntax<TNext, TNextFk> expression,
             OracleGenerationType generation,
@@ -75,11 +121,13 @@ namespace FluentMigrator.Oracle
         /// <summary>
         /// Makes a column an Identity column using the specified generation type, seed and increment values with bigint support.
         /// </summary>
+        /// <typeparam name="TNext">The type of the t next.</typeparam>
+        /// <typeparam name="TNextFk">The type of the t next fk.</typeparam>
         /// <param name="expression">Column on which to apply the identity.</param>
         /// <param name="generation">The generation type</param>
         /// <param name="startWith">Starting value of the identity.</param>
         /// <param name="incrementBy">Increment value of the identity.</param>
-        /// <returns></returns>
+        /// <returns>TNext.</returns>
         public static TNext Identity<TNext, TNextFk>(
             this IColumnOptionSyntax<TNext, TNextFk> expression,
             OracleGenerationType generation,
@@ -94,13 +142,15 @@ namespace FluentMigrator.Oracle
         /// <summary>
         /// Makes a column an Identity column using the specified generation type, startWith, increment, minValue and maxValue with bigint support.
         /// </summary>
+        /// <typeparam name="TNext">The type of the t next.</typeparam>
+        /// <typeparam name="TNextFk">The type of the t next fk.</typeparam>
         /// <param name="expression">Column on which to apply the identity.</param>
         /// <param name="generation">The generation type</param>
         /// <param name="startWith">Starting value of the identity.</param>
         /// <param name="incrementBy">Increment value of the identity.</param>
         /// <param name="minValue">Min value of the identity.</param>
         /// <param name="maxValue">Max value of the identity.</param>
-        /// <returns></returns>
+        /// <returns>TNext.</returns>
         public static TNext Identity<TNext, TNextFk>(
             this IColumnOptionSyntax<TNext, TNextFk> expression,
             OracleGenerationType generation,
@@ -114,6 +164,19 @@ namespace FluentMigrator.Oracle
             return SetIdentity(expression, generation, startWith, incrementBy, minValue, maxValue, castColumn);
         }
 
+        /// <summary>
+        /// Sets the identity.
+        /// </summary>
+        /// <typeparam name="TNext">The type of the t next.</typeparam>
+        /// <typeparam name="TNextFk">The type of the t next fk.</typeparam>
+        /// <param name="expression">The expression.</param>
+        /// <param name="generation">The generation.</param>
+        /// <param name="startWith">The start with.</param>
+        /// <param name="incrementBy">The increment by.</param>
+        /// <param name="minValue">The minimum value.</param>
+        /// <param name="maxValue">The maximum value.</param>
+        /// <param name="castColumn">The cast column.</param>
+        /// <returns>TNext.</returns>
         private static TNext SetIdentity<TNext, TNextFk>(
             IColumnOptionSyntax<TNext, TNextFk> expression,
             OracleGenerationType generation,
@@ -132,6 +195,14 @@ namespace FluentMigrator.Oracle
             return expression.Identity();
         }
 
+        /// <summary>
+        /// Gets the column.
+        /// </summary>
+        /// <typeparam name="TNext">The type of the t next.</typeparam>
+        /// <typeparam name="TNextFk">The type of the t next fk.</typeparam>
+        /// <param name="expression">The expression.</param>
+        /// <returns>ISupportAdditionalFeatures.</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         private static ISupportAdditionalFeatures GetColumn<TNext, TNextFk>(IColumnOptionSyntax<TNext, TNextFk> expression) where TNext : IFluentSyntax where TNextFk : IFluentSyntax
         {
             if (expression is IColumnExpressionBuilder cast1)

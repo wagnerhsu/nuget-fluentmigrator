@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2000GeneratorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -31,17 +44,29 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
 {
+    /// <summary>
+    /// Defines test class SqlServer2000GeneratorTests.
+    /// </summary>
     [TestFixture]
     public class SqlServer2000GeneratorTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected SqlServer2000Generator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new SqlServer2000Generator();
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnWithDefaultValue.
+        /// </summary>
         [Test]
         public void CanAlterColumnWithDefaultValue()
         {
@@ -53,6 +78,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             result.ShouldBe("ALTER TABLE [TestTable1] ALTER COLUMN [TestColumn1] NVARCHAR(20) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraint.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraint()
         {
@@ -80,6 +108,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterSchemaInStrictMode.
+        /// </summary>
         [Test]
         public void CanAlterSchemaInStrictMode()
         {
@@ -88,6 +119,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(new CreateSchemaExpression()));
         }
 
+        /// <summary>
+        /// Defines the test method CanAddColumnWithGetDateDefault.
+        /// </summary>
         [Test]
         public void CanAddColumnWithGetDateDefault()
         {
@@ -104,6 +138,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             result.ShouldBe("ALTER TABLE [TestTable1] ADD [TestColumn1] NVARCHAR(5) NOT NULL DEFAULT GetDate()");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSchemaInStrictMode.
+        /// </summary>
         [Test]
         public void CanCreateSchemaInStrictMode()
         {
@@ -112,6 +149,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(new CreateSchemaExpression()));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithGetDateDefault.
+        /// </summary>
         [Test]
         public void CanCreateTableWithGetDateDefault()
         {
@@ -129,6 +169,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] NVARCHAR(5) NOT NULL DEFAULT GetDate())");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithSeededIdentity.
+        /// </summary>
         [Test]
         public void CanCreateTableWithSeededIdentity()
         {
@@ -140,6 +183,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             result.ShouldBe("CREATE TABLE [TestTable1] ([TestColumn1] INT NOT NULL IDENTITY(45,23), [TestColumn2] INT NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropSchemaInStrictMode.
+        /// </summary>
         [Test]
         public void CanDropSchemaInStrictMode()
         {
@@ -148,6 +194,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(new DeleteSchemaExpression()));
         }
 
+        /// <summary>
+        /// Defines the test method CanGenerateNecessaryStatementsForADeleteDefaultExpression.
+        /// </summary>
         [Test]
         public void CanGenerateNecessaryStatementsForADeleteDefaultExpression()
         {

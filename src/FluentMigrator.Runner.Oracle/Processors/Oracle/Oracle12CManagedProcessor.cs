@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Oracle12CManagedProcessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -32,7 +45,7 @@ namespace FluentMigrator.Runner.Processors.Oracle
     public class Oracle12CManagedProcessor : OracleManagedProcessor
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Oracle12CManagedProcessor"/> class.
+        /// Initializes a new instance of the <see cref="Oracle12CManagedProcessor" /> class.
         /// </summary>
         /// <param name="factory">The DB object factory</param>
         /// <param name="generator">The SQL generator</param>

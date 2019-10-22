@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PassThroughMigrationRunnerConventionsAccessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,12 +34,12 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// Implementation of <see cref="IMigrationRunnerConventionsAccessor"/> that just passes through the given <see cref="IMigrationRunnerConventions"/>
+    /// Implementation of <see cref="IMigrationRunnerConventionsAccessor" /> that just passes through the given <see cref="IMigrationRunnerConventions" />
     /// </summary>
     public class PassThroughMigrationRunnerConventionsAccessor : IMigrationRunnerConventionsAccessor
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PassThroughMigrationRunnerConventionsAccessor"/> class.
+        /// Initializes a new instance of the <see cref="PassThroughMigrationRunnerConventionsAccessor" /> class.
         /// </summary>
         /// <param name="conventions">The conventions to return</param>
         public PassThroughMigrationRunnerConventionsAccessor([CanBeNull] IMigrationRunnerConventions conventions = null)

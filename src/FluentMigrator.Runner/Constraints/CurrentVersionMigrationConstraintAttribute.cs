@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CurrentVersionMigrationConstraintAttribute.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2019, Fluent Migrator Project
@@ -23,7 +36,7 @@ namespace FluentMigrator.Runner.Constraints
     public class CurrentVersionMigrationConstraintAttribute : MigrationConstraintAttribute
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CurrentVersionMigrationConstraintAttribute"/> class.
+        /// Initializes a new instance of the <see cref="CurrentVersionMigrationConstraintAttribute" /> class.
         /// </summary>
         /// <param name="minimumVersionToRunAgainst">The schema must equal or greater to this value for this migration to be run.</param>
         public CurrentVersionMigrationConstraintAttribute(long minimumVersionToRunAgainst)

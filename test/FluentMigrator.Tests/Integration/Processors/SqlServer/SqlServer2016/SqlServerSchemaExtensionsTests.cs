@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerSchemaExtensionsTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -30,16 +43,40 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
 {
+    /// <summary>
+    /// Defines test class SqlServerSchemaExtensionsTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.BaseSchemaExtensionsTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.BaseSchemaExtensionsTests" />
     [TestFixture]
     [Category("Integration")]
     [Category("SqlServer2016")]
     public class SqlServerSchemaExtensionsTests : BaseSchemaExtensionsTests
     {
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private SqlServer2016Processor Processor { get; set; }
+        /// <summary>
+        /// Gets or sets the quoter.
+        /// </summary>
+        /// <value>The quoter.</value>
         private SqlServer2008Quoter Quoter { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsCanAcceptSchemaNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsCanAcceptSchemaNameWithSingleQuote()
         {
@@ -47,6 +84,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.ColumnExists("test'schema", table.Name, "id").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingConstraintExistsCanAcceptSchemaNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingConstraintExistsCanAcceptSchemaNameWithSingleQuote()
         {
@@ -54,6 +94,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.ConstraintExists("test'schema", table.Name, "c1").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsCanAcceptSchemaNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsCanAcceptSchemaNameWithSingleQuote()
         {
@@ -64,6 +107,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingSchemaExistsCanAcceptSchemaNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingSchemaExistsCanAcceptSchemaNameWithSingleQuote()
         {
@@ -71,6 +117,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.SchemaExists("test'schema").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingTableExistsCanAcceptSchemaNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingTableExistsCanAcceptSchemaNameWithSingleQuote()
         {
@@ -78,6 +127,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
                 Processor.TableExists("test'schema", table.Name).ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingDefaultValueExistsCanAcceptSchemaNameWithSingleQuote.
+        /// </summary>
         [Test]
         public void CallingDefaultValueExistsCanAcceptSchemaNameWithSingleQuote()
         {
@@ -88,6 +140,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
             }
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
@@ -101,12 +156,18 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
             ServiceProvider = serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -115,6 +176,9 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
             Quoter = ServiceScope.ServiceProvider.GetRequiredService<SqlServer2008Quoter>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

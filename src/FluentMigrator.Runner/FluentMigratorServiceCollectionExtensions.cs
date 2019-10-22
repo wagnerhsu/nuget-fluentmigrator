@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FluentMigratorServiceCollectionExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -38,15 +51,16 @@ using Microsoft.Extensions.Options;
 namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
-    /// Extension methods for setting up the migration runner services in an <see cref="IServiceCollection"/>.
+    /// Extension methods for setting up the migration runner services in an <see cref="IServiceCollection" />.
     /// </summary>
     public static class FluentMigratorServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds migration runner (except the DB processor specific) services to the specified <see cref="IServiceCollection"/>.
+        /// Adds migration runner (except the DB processor specific) services to the specified <see cref="IServiceCollection" />.
         /// </summary>
         /// <param name="services">The <see cref="IServiceCollection" /> to add services to.</param>
         /// <returns>The updated service collection</returns>
+        /// <exception cref="ArgumentNullException">services</exception>
         [NotNull]
         public static IServiceCollection AddFluentMigratorCore(
             [NotNull] this IServiceCollection services)
@@ -181,7 +195,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Configures the migration runner
         /// </summary>
         /// <param name="services">The <see cref="IServiceCollection" /> to add services to.</param>
-        /// <param name="configure">The <see cref="IMigrationRunnerBuilder"/> configuration delegate.</param>
+        /// <param name="configure">The <see cref="IMigrationRunnerBuilder" /> configuration delegate.</param>
         /// <returns>The updated service collection</returns>
         public static IServiceCollection ConfigureRunner(
             [NotNull] this IServiceCollection services,
@@ -289,8 +303,17 @@ namespace Microsoft.Extensions.DependencyInjection
                         .AddSqlServerCe());
         }
 
+        /// <summary>
+        /// Class MigrationRunnerBuilder.
+        /// Implements the <see cref="FluentMigrator.Runner.IMigrationRunnerBuilder" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.IMigrationRunnerBuilder" />
         private class MigrationRunnerBuilder : IMigrationRunnerBuilder
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="MigrationRunnerBuilder"/> class.
+            /// </summary>
+            /// <param name="services">The services.</param>
             public MigrationRunnerBuilder(IServiceCollection services)
             {
                 Services = services;
@@ -304,9 +327,18 @@ namespace Microsoft.Extensions.DependencyInjection
             public IAssemblySourceItem DanglingAssemblySourceItem { get; set; }
         }
 
+        /// <summary>
+        /// Class ConnectionlessProcessorAccessor.
+        /// Implements the <see cref="FluentMigrator.Runner.Processors.IProcessorAccessor" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Processors.IProcessorAccessor" />
         [UsedImplicitly]
         private class ConnectionlessProcessorAccessor : IProcessorAccessor
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ConnectionlessProcessorAccessor"/> class.
+            /// </summary>
+            /// <param name="serviceProvider">The service provider.</param>
             public ConnectionlessProcessorAccessor(IServiceProvider serviceProvider)
             {
                 Processor = ActivatorUtilities.CreateInstance<ConnectionlessProcessor>(serviceProvider);

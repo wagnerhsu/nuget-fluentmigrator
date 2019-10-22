@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -20,19 +33,34 @@ using System;
 
 namespace FluentMigrator.Runner.Processors.Oracle
 {
+    /// <summary>
+    /// Class OracleDbFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.Oracle.OracleBaseDbFactory" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.Oracle.OracleBaseDbFactory" />
     public class OracleDbFactory : OracleBaseDbFactory
     {
+        /// <summary>
+        /// The test entries
+        /// </summary>
         private static readonly TestEntry[] _testEntries =
         {
             new TestEntry("Oracle.DataAccess", "Oracle.DataAccess.Client.OracleClientFactory"),
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleDbFactory"/> class.
+        /// </summary>
         [Obsolete]
         public OracleDbFactory()
             : this(serviceProvider: null)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleDbFactory"/> class.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
         public OracleDbFactory(IServiceProvider serviceProvider)
             : base(serviceProvider, _testEntries)
         {

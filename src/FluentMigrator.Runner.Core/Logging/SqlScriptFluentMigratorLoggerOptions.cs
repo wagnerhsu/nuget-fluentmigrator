@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlScriptFluentMigratorLoggerOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -17,12 +30,12 @@
 namespace FluentMigrator.Runner.Logging
 {
     /// <summary>
-    /// The configuration for a <see cref="SqlScriptFluentMigratorLoggerProvider"/>
+    /// The configuration for a <see cref="SqlScriptFluentMigratorLoggerProvider" />
     /// </summary>
     public class SqlScriptFluentMigratorLoggerOptions : FluentMigratorLoggerOptions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlScriptFluentMigratorLoggerOptions"/> class.
+        /// Initializes a new instance of the <see cref="SqlScriptFluentMigratorLoggerOptions" /> class.
         /// </summary>
         public SqlScriptFluentMigratorLoggerOptions()
         {
@@ -32,6 +45,7 @@ namespace FluentMigrator.Runner.Logging
         /// <summary>
         /// Gets or sets a value indicating whether a GO statement should be output between the SQL statements
         /// </summary>
+        /// <value><c>true</c> if [output go between statements]; otherwise, <c>false</c>.</value>
         public bool OutputGoBetweenStatements { get; set; }
     }
 }

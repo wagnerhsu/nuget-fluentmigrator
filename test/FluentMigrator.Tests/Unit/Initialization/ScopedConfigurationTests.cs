@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ScopedConfigurationTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -35,10 +48,16 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Initialization
 {
+    /// <summary>
+    /// Class ScopedConfigurationTests.
+    /// </summary>
     [Parallelizable(ParallelScope.All)]
     [Category("Initialization")]
     public class ScopedConfigurationTests
     {
+        /// <summary>
+        /// Defines the test method TestConfiguredProcessorOptions.
+        /// </summary>
         [Test]
         public void TestConfiguredProcessorOptions()
         {
@@ -63,6 +82,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Defines the test method TestReconfiguredProcessorOptions.
+        /// </summary>
         [Test]
         public void TestReconfiguredProcessorOptions()
         {
@@ -122,6 +144,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Defines the test method TestConfiguredProcessorOptionsUsingConnectionName.
+        /// </summary>
         [Test]
         public void TestConfiguredProcessorOptionsUsingConnectionName()
         {
@@ -173,6 +198,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Defines the test method TestReconfiguredProcessorOptionsUsingConnectionName.
+        /// </summary>
         [Test]
         public void TestReconfiguredProcessorOptionsUsingConnectionName()
         {
@@ -237,6 +265,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Defines the test method TestReconfiguredProcessorId.
+        /// </summary>
         [Test]
         public void TestReconfiguredProcessorId()
         {
@@ -303,6 +334,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanUseMigrationWithScopedService.
+        /// </summary>
         [Test]
         public void CanUseMigrationWithScopedService()
         {
@@ -320,6 +354,11 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Saves the configuration file.
+        /// </summary>
+        /// <param name="jsonFileName">Name of the json file.</param>
+        /// <param name="config">The configuration.</param>
         private static void SaveConfigFile(string jsonFileName, CustomConfig config)
         {
             var serializer = new JsonSerializer()
@@ -337,6 +376,11 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Ensures the reloaded configuration.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
+        /// <param name="configChangeAction">The configuration change action.</param>
         private static void EnsureReloadedConfiguration(IConfigurationRoot configuration, Action configChangeAction)
         {
             using (var sem = new SemaphoreSlim(initialCount: 0))
@@ -363,11 +407,26 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Class CustomConfig.
+        /// </summary>
         private class CustomConfig
         {
+            /// <summary>
+            /// Gets or sets the processor options.
+            /// </summary>
+            /// <value>The processor options.</value>
             public ProcessorOptions ProcessorOptions { get; set; }
+            /// <summary>
+            /// Gets or sets the processor selector options.
+            /// </summary>
+            /// <value>The processor selector options.</value>
             public SelectingProcessorAccessorOptions ProcessorSelectorOptions { get; set; }
             // ReSharper disable once CollectionNeverQueried.Local
+            /// <summary>
+            /// Gets or sets the connection strings.
+            /// </summary>
+            /// <value>The connection strings.</value>
             public IDictionary<string, string> ConnectionStrings { get; set; }
         }
     }

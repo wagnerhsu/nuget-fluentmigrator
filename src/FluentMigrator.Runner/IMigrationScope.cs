@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IMigrationScope.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,25 +41,20 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Gets a value indicating whether the migration scope is active?
         /// </summary>
-        /// <remarks>
-        /// A migration scope is considered active when it is the outmost scope.
-        /// </remarks>
+        /// <value><c>true</c> if this instance is active; otherwise, <c>false</c>.</value>
+        /// <remarks>A migration scope is considered active when it is the outmost scope.</remarks>
         bool IsActive { get; }
 
         /// <summary>
         /// Marks the scope as complete.
         /// </summary>
-        /// <remarks>
-        /// This usually involves the commit a transaction.
-        /// </remarks>
+        /// <remarks>This usually involves the commit a transaction.</remarks>
         void Complete();
 
         /// <summary>
         /// Marks the scope as cancelled.
         /// </summary>
-        /// <remarks>
-        /// This usually involves the rollback of a transaction.
-        /// </remarks>
+        /// <remarks>This usually involves the rollback of a transaction.</remarks>
         void Cancel();
     }
 }

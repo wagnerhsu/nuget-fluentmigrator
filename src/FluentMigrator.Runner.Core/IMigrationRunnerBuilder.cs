@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IMigrationRunnerBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -30,14 +43,16 @@ namespace FluentMigrator.Runner
     public interface IMigrationRunnerBuilder
     {
         /// <summary>
-        /// Gets the <see cref="IServiceCollection"/> where the migration runner services are configured
+        /// Gets the <see cref="IServiceCollection" /> where the migration runner services are configured
         /// </summary>
+        /// <value>The services.</value>
         [NotNull]
         IServiceCollection Services { get; }
 
         /// <summary>
         /// Gets the dangling assembly source item (when no usage was specified)
         /// </summary>
+        /// <value>The dangling assembly source item.</value>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [CanBeNull]
         IAssemblySourceItem DanglingAssemblySourceItem { get; set; }

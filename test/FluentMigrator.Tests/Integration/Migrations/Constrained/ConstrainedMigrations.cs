@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConstrainedMigrations.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2019, Fluent Migrator Project
@@ -21,67 +34,138 @@ namespace FluentMigrator.Tests.Integration.Migrations.Constrained
 {
     namespace Constraints
     {
+        /// <summary>
+        /// Class Step1Migration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(1)]
         public class Step1Migration : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up() { }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down() { }
         }
 
+        /// <summary>
+        /// Class Step2Migration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(2)]
         [CurrentVersionMigrationConstraint(1)]
         public class Step2Migration : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up() { }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down() { }
         }
 
+        /// <summary>
+        /// Class Step2Migration2.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(3)]
         [CurrentVersionMigrationConstraint(1)]
         public class Step2Migration2 : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up() { }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down() { }
         }
     }
     namespace ConstraintsMultiple
     {
+        /// <summary>
+        /// Class AlwaysFalseConstraint.
+        /// Implements the <see cref="FluentMigrator.Runner.Constraints.MigrationConstraintAttribute" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Constraints.MigrationConstraintAttribute" />
         public class AlwaysFalseConstraint : MigrationConstraintAttribute
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="AlwaysFalseConstraint"/> class.
+            /// </summary>
             public AlwaysFalseConstraint() : base(opts => false)
             {
 
             }
         }
+        /// <summary>
+        /// Class AlwaysTrueConstraint.
+        /// Implements the <see cref="FluentMigrator.Runner.Constraints.MigrationConstraintAttribute" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Constraints.MigrationConstraintAttribute" />
         public class AlwaysTrueConstraint : MigrationConstraintAttribute
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="AlwaysTrueConstraint"/> class.
+            /// </summary>
             public AlwaysTrueConstraint() : base(opts => true)
             {
 
             }
         }
+        /// <summary>
+        /// Class MultipleConstraintsMigration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(1)]
         [AlwaysTrueConstraint]
         [AlwaysFalseConstraint]
         public class MultipleConstraintsMigration : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up() { }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down() { }
         }
     }
 
     namespace ConstraintsSuccess
     {
+        /// <summary>
+        /// Class ConstrainedMigrationSuccess.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(1)]
         [ConstraintsMultiple.AlwaysTrueConstraint]
         public class ConstrainedMigrationSuccess : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up() { }
 
+            /// <summary>
+            /// Downs this instance.
+            /// </summary>
             public override void Down() { }
         }
     }

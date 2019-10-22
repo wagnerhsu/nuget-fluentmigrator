@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AlterTableExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -25,7 +38,7 @@ using FluentMigrator.Model;
 namespace FluentMigrator.Builders.Alter.Table
 {
     /// <summary>
-    /// An expression builder for a <see cref="AlterTableExpression"/>
+    /// An expression builder for a <see cref="AlterTableExpression" />
     /// </summary>
     public class AlterTableExpressionBuilder : ExpressionBuilderWithColumnTypesBase<AlterTableExpression, IAlterTableColumnOptionOrAddColumnOrAlterColumnSyntax>,
                                                IAlterTableAddColumnOrAlterColumnOrSchemaOrDescriptionSyntax,
@@ -33,10 +46,13 @@ namespace FluentMigrator.Builders.Alter.Table
                                                IAlterTableColumnOptionOrAddColumnOrAlterColumnOrForeignKeyCascadeSyntax,
                                                IColumnExpressionBuilder
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly IMigrationContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AlterTableExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="AlterTableExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         /// <param name="context">The migration context</param>
@@ -50,16 +66,19 @@ namespace FluentMigrator.Builders.Alter.Table
         /// <summary>
         /// Gets or sets the current column definition
         /// </summary>
+        /// <value>The current column.</value>
         public ColumnDefinition CurrentColumn { get; set; }
 
         /// <summary>
         /// Gets or sets the current foreign key
         /// </summary>
+        /// <value>The current foreign key.</value>
         public ForeignKeyDefinition CurrentForeignKey { get; set; }
 
         /// <summary>
         /// Gets or sets a column expression builder helper
         /// </summary>
+        /// <value>The column helper.</value>
         public ColumnExpressionBuilderHelper ColumnHelper { get; set; }
 
         /// <inheritdoc />

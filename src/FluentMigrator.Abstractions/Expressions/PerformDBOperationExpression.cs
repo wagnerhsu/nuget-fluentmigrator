@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PerformDBOperationExpression.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -32,6 +45,7 @@ namespace FluentMigrator.Expressions
         /// <summary>
         /// Gets or sets the operation to be executed for a given database connection
         /// </summary>
+        /// <value>The operation.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.OperationCannotBeNull))]
         public Action<IDbConnection, IDbTransaction> Operation { get; set; }
 

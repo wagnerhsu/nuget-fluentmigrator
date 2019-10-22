@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdLibraryProber.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -22,24 +35,53 @@ using FirebirdSql.Data.FirebirdClient;
 
 namespace FluentMigrator.Tests.Integration.Processors.Firebird
 {
+    /// <summary>
+    /// Class FirebirdLibraryProber.
+    /// </summary>
     public class FirebirdLibraryProber
     {
+        /// <summary>
+        /// The synchronize
+        /// </summary>
         private readonly object _sync = new object();
+        /// <summary>
+        /// The client libraries
+        /// </summary>
         private readonly IReadOnlyCollection<string> _clientLibraries;
+        /// <summary>
+        /// The probe exception
+        /// </summary>
         private Exception _probeException;
+        /// <summary>
+        /// The found client library
+        /// </summary>
         private bool _foundClientLibrary;
+        /// <summary>
+        /// The client library
+        /// </summary>
         private string _clientLibrary;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FirebirdLibraryProber"/> class.
+        /// </summary>
         public FirebirdLibraryProber()
             : this(DefaultLibraries)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FirebirdLibraryProber"/> class.
+        /// </summary>
+        /// <param name="clientLibraries">The client libraries.</param>
         public FirebirdLibraryProber(IEnumerable<string> clientLibraries)
         {
             _clientLibraries = clientLibraries.ToList();
         }
 
+        /// <summary>
+        /// Gets the default libraries.
+        /// </summary>
+        /// <value>The default libraries.</value>
         public static IEnumerable<string> DefaultLibraries
         {
             get
@@ -77,6 +119,12 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Creates the database.
+        /// </summary>
+        /// <param name="csb">The CSB.</param>
+        /// <returns>System.String.</returns>
+        /// <exception cref="Exception">Failed to find suitable client library</exception>
         public string CreateDb(FbConnectionStringBuilder csb)
         {
             if (!_foundClientLibrary)

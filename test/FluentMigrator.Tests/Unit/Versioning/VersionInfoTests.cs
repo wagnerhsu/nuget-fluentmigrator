@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="VersionInfoTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -24,17 +37,29 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Versioning
 {
+    /// <summary>
+    /// Defines test class VersionInfoTests.
+    /// </summary>
     [TestFixture]
     public class VersionInfoTests
     {
+        /// <summary>
+        /// The version information
+        /// </summary>
         private VersionInfo _versionInfo;
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
             _versionInfo = new VersionInfo();
         }
 
+        /// <summary>
+        /// Defines the test method CanAddAppliedMigration.
+        /// </summary>
         [Test]
         public void CanAddAppliedMigration()
         {
@@ -42,6 +67,9 @@ namespace FluentMigrator.Tests.Unit.Versioning
             _versionInfo.HasAppliedMigration(200909060953).ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CanGetLatestMigration.
+        /// </summary>
         [Test]
         public void CanGetLatestMigration()
         {
@@ -50,6 +78,9 @@ namespace FluentMigrator.Tests.Unit.Versioning
             _versionInfo.Latest().ShouldBe(200909060953);
         }
 
+        /// <summary>
+        /// Defines the test method CanGetAppliedMigrationsLatestFirst.
+        /// </summary>
         [Test]
         public void CanGetAppliedMigrationsLatestFirst()
         {

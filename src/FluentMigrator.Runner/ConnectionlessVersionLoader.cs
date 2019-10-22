@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConnectionlessVersionLoader.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -34,16 +47,39 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner
 {
+    /// <summary>
+    /// Class ConnectionlessVersionLoader.
+    /// Implements the <see cref="FluentMigrator.Runner.IVersionLoader" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.IVersionLoader" />
     public class ConnectionlessVersionLoader : IVersionLoader
     {
+        /// <summary>
+        /// The processor
+        /// </summary>
         [NotNull]
         private readonly IMigrationProcessor _processor;
 
+        /// <summary>
+        /// The migration information loader
+        /// </summary>
         [NotNull]
         private readonly IMigrationInformationLoader _migrationInformationLoader;
 
+        /// <summary>
+        /// The versions loaded
+        /// </summary>
         private bool _versionsLoaded;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectionlessVersionLoader"/> class.
+        /// </summary>
+        /// <param name="runner">The runner.</param>
+        /// <param name="assemblies">The assemblies.</param>
+        /// <param name="conventionSet">The convention set.</param>
+        /// <param name="conventions">The conventions.</param>
+        /// <param name="runnerContext">The runner context.</param>
+        /// <param name="versionTableMetaData">The version table meta data.</param>
         [Obsolete]
         internal ConnectionlessVersionLoader(
             IMigrationRunner runner,
@@ -79,6 +115,14 @@ namespace FluentMigrator.Runner
             LoadVersionInfo();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectionlessVersionLoader"/> class.
+        /// </summary>
+        /// <param name="processorAccessor">The processor accessor.</param>
+        /// <param name="conventions">The conventions.</param>
+        /// <param name="runnerOptions">The runner options.</param>
+        /// <param name="migrationInformationLoader">The migration information loader.</param>
+        /// <param name="versionTableMetaData">The version table meta data.</param>
         public ConnectionlessVersionLoader(
             [NotNull] IProcessorAccessor processorAccessor,
             [NotNull] IMigrationRunnerConventions conventions,
@@ -102,24 +146,72 @@ namespace FluentMigrator.Runner
             LoadVersionInfo();
         }
 
+        /// <summary>
+        /// Gets or sets the assemblies.
+        /// </summary>
+        /// <value>The assemblies.</value>
         [Obsolete]
         [CanBeNull]
         protected IAssemblyCollection Assemblies { get; set; }
 
+        /// <summary>
+        /// Gets or sets the conventions.
+        /// </summary>
+        /// <value>The conventions.</value>
         public IMigrationRunnerConventions Conventions { get; set; }
+        /// <summary>
+        /// Gets or sets the start version.
+        /// </summary>
+        /// <value>The start version.</value>
         public long StartVersion { get; set; }
+        /// <summary>
+        /// Gets or sets the target version.
+        /// </summary>
+        /// <value>The target version.</value>
         public long TargetVersion { get; set; }
+        /// <summary>
+        /// Gets the version schema migration.
+        /// </summary>
+        /// <value>The version schema migration.</value>
         public VersionSchemaMigration VersionSchemaMigration { get; }
+        /// <summary>
+        /// Gets the version migration.
+        /// </summary>
+        /// <value>The version migration.</value>
         public IMigration VersionMigration { get; }
+        /// <summary>
+        /// Gets the version unique migration.
+        /// </summary>
+        /// <value>The version unique migration.</value>
         public IMigration VersionUniqueMigration { get; }
+        /// <summary>
+        /// Gets the version description migration.
+        /// </summary>
+        /// <value>The version description migration.</value>
         public IMigration VersionDescriptionMigration { get; }
 
+        /// <summary>
+        /// The runner this version loader belongs to
+        /// </summary>
+        /// <value>The runner.</value>
         [Obsolete]
         [CanBeNull]
         public IMigrationRunner Runner { get; set; }
+        /// <summary>
+        /// Gets an interface to query/update the status of migrations
+        /// </summary>
+        /// <value>The version information.</value>
         public IVersionInfo VersionInfo { get; set; }
+        /// <summary>
+        /// Gets or sets the version table meta data.
+        /// </summary>
+        /// <value>The version table meta data.</value>
         public IVersionTableMetaData VersionTableMetaData { get; set; }
 
+        /// <summary>
+        /// Gets a value indicating whether the schema for the version table has been created (or already exited)
+        /// </summary>
+        /// <value><c>true</c> if [already created version schema]; otherwise, <c>false</c>.</value>
         public bool AlreadyCreatedVersionSchema
         {
             get
@@ -129,11 +221,19 @@ namespace FluentMigrator.Runner
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the version table has been created (or already exited)
+        /// </summary>
+        /// <value><c>true</c> if [already created version table]; otherwise, <c>false</c>.</value>
         public bool AlreadyCreatedVersionTable
         {
             get { return _processor.TableExists(VersionTableMetaData.SchemaName, VersionTableMetaData.TableName); }
         }
 
+        /// <summary>
+        /// Deletes a version from the version table
+        /// </summary>
+        /// <param name="version">The version to delete from the version table</param>
         public void DeleteVersion(long version)
         {
             var expression = new DeleteDataExpression {TableName = VersionTableMetaData.TableName, SchemaName = VersionTableMetaData.SchemaName};
@@ -144,11 +244,18 @@ namespace FluentMigrator.Runner
             expression.ExecuteWith(_processor);
         }
 
+        /// <summary>
+        /// Get the version table metadata
+        /// </summary>
+        /// <returns>The version table metadata</returns>
         public IVersionTableMetaData GetVersionTableMetaData()
         {
             return VersionTableMetaData;
         }
 
+        /// <summary>
+        /// Loads all version data stored in the version table
+        /// </summary>
         public void LoadVersionInfo()
         {
             if (_versionsLoaded)
@@ -167,6 +274,9 @@ namespace FluentMigrator.Runner
             _versionsLoaded = true;
         }
 
+        /// <summary>
+        /// Removes the version table
+        /// </summary>
         public void RemoveVersionTable()
         {
             var expression = new DeleteTableExpression {TableName = VersionTableMetaData.TableName, SchemaName = VersionTableMetaData.SchemaName};
@@ -179,11 +289,20 @@ namespace FluentMigrator.Runner
             }
         }
 
+        /// <summary>
+        /// Adds the version information
+        /// </summary>
+        /// <param name="version">The version number</param>
         public void UpdateVersionInfo(long version)
         {
             UpdateVersionInfo(version, null);
         }
 
+        /// <summary>
+        /// Adds the version information
+        /// </summary>
+        /// <param name="version">The version number</param>
+        /// <param name="description">The version description</param>
         public void UpdateVersionInfo(long version, string description)
         {
             var dataExpression = new InsertDataExpression();
@@ -194,6 +313,12 @@ namespace FluentMigrator.Runner
             dataExpression.ExecuteWith(_processor);
         }
 
+        /// <summary>
+        /// Creates the version information insertion data.
+        /// </summary>
+        /// <param name="version">The version.</param>
+        /// <param name="description">The description.</param>
+        /// <returns>InsertionDataDefinition.</returns>
         protected virtual InsertionDataDefinition CreateVersionInfoInsertionData(long version, string description)
         {
             return new InsertionDataDefinition

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SchemaTableQuery.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -24,16 +37,25 @@ using FluentMigrator.Builders.Schema.Index;
 namespace FluentMigrator.Builders.Schema.Table
 {
     /// <summary>
-    /// The implementation of the <see cref="ISchemaTableSyntax"/> interface.
+    /// The implementation of the <see cref="ISchemaTableSyntax" /> interface.
     /// </summary>
     public class SchemaTableQuery : ISchemaTableSyntax
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly IMigrationContext _context;
+        /// <summary>
+        /// The schema name
+        /// </summary>
         private readonly string _schemaName;
+        /// <summary>
+        /// The table name
+        /// </summary>
         private readonly string _tableName;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SchemaTableQuery"/> class.
+        /// Initializes a new instance of the <see cref="SchemaTableQuery" /> class.
         /// </summary>
         /// <param name="context">The migration context</param>
         /// <param name="schemaName">The schema name</param>

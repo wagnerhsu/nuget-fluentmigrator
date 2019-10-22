@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HostUtilities.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -24,11 +37,25 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests
 {
+    /// <summary>
+    /// Class HostUtilities.
+    /// </summary>
     public static class HostUtilities
     {
+        /// <summary>
+        /// The data directory macro
+        /// </summary>
         private const string DataDirectoryMacro = "|DataDirectory|";
+        /// <summary>
+        /// The data directory
+        /// </summary>
         private const string DataDirectory = "DataDirectory";
 
+        /// <summary>
+        /// Replaces the data directory.
+        /// </summary>
+        /// <param name="inputString">The input string.</param>
+        /// <returns>System.String.</returns>
         public static string ReplaceDataDirectory(string inputString)
         {
             string str = inputString.Trim();
@@ -49,12 +76,21 @@ namespace FluentMigrator.Tests
             return str;
         }
 
+        /// <summary>
+        /// Tries the type of the get jet catalog.
+        /// </summary>
+        /// <param name="jetCatalogType">Type of the jet catalog.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         public static bool TryGetJetCatalogType(out Type jetCatalogType)
         {
             jetCatalogType = Type.GetTypeFromProgID("ADOX.Catalog", false);
             return jetCatalogType != null;
         }
 
+        /// <summary>
+        /// Probes the SQL server ce behavior.
+        /// </summary>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         public static bool ProbeSqlServerCeBehavior()
         {
             var asm = typeof(SqlCeConnection).Assembly;
@@ -73,6 +109,11 @@ namespace FluentMigrator.Tests
             }
         }
 
+        /// <summary>
+        /// SQLs the server ce load binaries.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool SqlServerCeLoadBinaries(Type type)
         {
             var method = type.GetMethod("LoadNativeBinariesFromPrivateFolder", BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Static);
@@ -81,6 +122,11 @@ namespace FluentMigrator.Tests
             return result;
         }
 
+        /// <summary>
+        /// SQLs the server ce can find its libraries.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool SqlServerCeCanFindItsLibraries(Type type)
         {
             var method = type.GetMethod("LoadNativeBinaries", BindingFlags.NonPublic | BindingFlags.InvokeMethod | BindingFlags.Static);

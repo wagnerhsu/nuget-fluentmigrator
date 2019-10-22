@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SchemaColumnQuery.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -21,17 +34,29 @@ using FluentMigrator.Infrastructure;
 namespace FluentMigrator.Builders.Schema.Column
 {
     /// <summary>
-    /// The implementation of the <see cref="ISchemaColumnSyntax"/> interface
+    /// The implementation of the <see cref="ISchemaColumnSyntax" /> interface
     /// </summary>
     public class SchemaColumnQuery : ISchemaColumnSyntax
     {
+        /// <summary>
+        /// The schema name
+        /// </summary>
         private readonly string _schemaName;
+        /// <summary>
+        /// The table name
+        /// </summary>
         private readonly string _tableName;
+        /// <summary>
+        /// The column name
+        /// </summary>
         private readonly string _columnName;
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly IMigrationContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SchemaColumnQuery"/> class.
+        /// Initializes a new instance of the <see cref="SchemaColumnQuery" /> class.
         /// </summary>
         /// <param name="schemaName">The schema name</param>
         /// <param name="tableName">The table name</param>

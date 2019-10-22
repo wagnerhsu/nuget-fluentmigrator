@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PassThroughVersionTableMetaDataAccessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,9 +37,9 @@ namespace FluentMigrator.Runner.Initialization
     public class PassThroughVersionTableMetaDataAccessor : IVersionTableMetaDataAccessor
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PassThroughVersionTableMetaDataAccessor"/> class.
+        /// Initializes a new instance of the <see cref="PassThroughVersionTableMetaDataAccessor" /> class.
         /// </summary>
-        /// <param name="versionTableMetaData"></param>
+        /// <param name="versionTableMetaData">The version table meta data.</param>
         public PassThroughVersionTableMetaDataAccessor(IVersionTableMetaData versionTableMetaData)
         {
             VersionTableMetaData = versionTableMetaData;

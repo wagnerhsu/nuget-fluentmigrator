@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IAutoNameExpression.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,26 +40,31 @@ namespace FluentMigrator.Expressions
         /// <summary>
         /// Gets or sets the automatically generated names
         /// </summary>
+        /// <value>The automatic names.</value>
         IList<string> AutoNames { get; set; }
 
         /// <summary>
         /// Gets or sets the context in which the automatically generated name gets used
         /// </summary>
+        /// <value>The automatic name context.</value>
         AutoNameContext AutoNameContext { get; }
 
         /// <summary>
         /// Gets the type of the migration object
         /// </summary>
+        /// <value>The type of the migration.</value>
         Type MigrationType { get; }
 
         /// <summary>
         /// Gets the database names
         /// </summary>
+        /// <value>The database names.</value>
         IList<string> DatabaseNames { get; }
 
         /// <summary>
         /// Gets the direction of the migration
         /// </summary>
+        /// <value>The direction.</value>
         MigrationDirection Direction { get; }
     }
 }

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RollbackBy.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -23,16 +36,34 @@ using McMaster.Extensions.CommandLineUtils;
 
 namespace FluentMigrator.DotNet.Cli.Commands
 {
+    /// <summary>
+    /// Class RollbackBy.
+    /// Implements the <see cref="FluentMigrator.DotNet.Cli.Commands.BaseCommand" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.DotNet.Cli.Commands.BaseCommand" />
     [HelpOption]
     [Command("by", Description = "Rollback migrations")]
     public class RollbackBy : BaseCommand
     {
+        /// <summary>
+        /// Gets the parent.
+        /// </summary>
+        /// <value>The parent.</value>
         public Rollback Parent { get; }
 
+        /// <summary>
+        /// Gets the steps.
+        /// </summary>
+        /// <value>The steps.</value>
         [Argument(0, "steps", "The number of versions to rollback.")]
         [Required]
         public int Steps { get; }
 
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <returns>System.Int32.</returns>
         private int OnExecute(IConsole console)
         {
             var options = MigratorOptions.CreateRollbackBy(Parent, Steps);

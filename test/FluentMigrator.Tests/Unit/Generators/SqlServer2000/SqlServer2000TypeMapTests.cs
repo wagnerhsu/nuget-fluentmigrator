@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2000TypeMapTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -24,23 +37,41 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
 {
+    /// <summary>
+    /// Defines test class SqlServer2000TypeMapTests.
+    /// </summary>
     [TestFixture]
     [Category("SqlServer2000")]
     [Category("Generator")]
     [Category("TypeMap")]
     public abstract class SqlServer2000TypeMapTests
     {
+        /// <summary>
+        /// Gets or sets the type map.
+        /// </summary>
+        /// <value>The type map.</value>
         private SqlServer2000TypeMap TypeMap { get; set; }
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             TypeMap = new SqlServer2000TypeMap();
         }
 
+        /// <summary>
+        /// Defines test class AnsistringTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
         [TestFixture]
         public class AnsistringTests : SqlServer2000TypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsAnsistringByDefaultToVarchar255.
+            /// </summary>
             [Test]
             public void ItMapsAnsistringByDefaultToVarchar255()
             {
@@ -49,6 +80,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("VARCHAR(255)");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsAnsistringWithSizeToVarcharOfSize.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(1)]
             [TestCase(4000)]
@@ -60,6 +95,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe($"VARCHAR({size})");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsAnsistringWithSizeAbove8000ToText.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(8001)]
             [TestCase(2147483647)]
@@ -71,9 +110,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             }
         }
 
+        /// <summary>
+        /// Defines test class AnsistringFixedLengthTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
         [TestFixture]
         public class AnsistringFixedLengthTests : SqlServer2000TypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsAnsistringFixedLengthByDefaultToChar255.
+            /// </summary>
             [Test]
             public void ItMapsAnsistringFixedLengthByDefaultToChar255()
             {
@@ -82,6 +129,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("CHAR(255)");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsAnsistringFixedLengthWithSizeToCharOfSize.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(1)]
             [TestCase(4000)]
@@ -93,6 +144,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe($"CHAR({size})");
             }
 
+            /// <summary>
+            /// Defines the test method ItThrowsIfAnsistringFixedLengthHasSizeAbove8000.
+            /// </summary>
             [Test]
             public void ItThrowsIfAnsistringFixedLengthHasSizeAbove8000()
             {
@@ -101,9 +155,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             }
         }
 
+        /// <summary>
+        /// Defines test class StringTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
         [TestFixture]
         public class StringTests : SqlServer2000TypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsStringByDefaultToNvarchar255.
+            /// </summary>
             [Test]
             public void ItMapsStringByDefaultToNvarchar255()
             {
@@ -112,6 +174,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("NVARCHAR(255)");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsStringWithSizeToNvarcharOfSize.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(1)]
             [TestCase(4000)]
@@ -122,6 +188,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe($"NVARCHAR({size})");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsStringWithSizeAbove4000ToNtext.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(4001)]
             [TestCase(1073741823)]
@@ -132,6 +202,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("NTEXT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsStringWithSizeAbove1073741823ToNtextToAllowIntMaxvalueConvention.
+            /// </summary>
             [Test]
             public void ItMapsStringWithSizeAbove1073741823ToNtextToAllowIntMaxvalueConvention()
             {
@@ -141,9 +214,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             }
         }
 
+        /// <summary>
+        /// Defines test class StringFixedLengthTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
         [TestFixture]
         public class StringFixedLengthTests : SqlServer2000TypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsStringFixedLengthByDefaultToNchar255.
+            /// </summary>
             [Test]
             public void ItMapsStringFixedLengthByDefaultToNchar255()
             {
@@ -153,6 +234,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             }
 
 
+            /// <summary>
+            /// Defines the test method ItMapsStringFixedLengthWithSizeToNcharOfSize.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(1)]
             [TestCase(4000)]
@@ -163,6 +248,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe($"NCHAR({size})");
             }
 
+            /// <summary>
+            /// Defines the test method ItThrowsIfStringFixedLengthHasSizeAbove4000.
+            /// </summary>
             [Test]
             public void ItThrowsIfStringFixedLengthHasSizeAbove4000()
             {
@@ -171,9 +259,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             }
         }
 
+        /// <summary>
+        /// Defines test class BinaryTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
         [TestFixture]
         public class BinaryTests : SqlServer2000TypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsBinaryByDefaultToVarbinary8000.
+            /// </summary>
             [Test]
             public void ItMapsBinaryByDefaultToVarbinary8000()
             {
@@ -182,6 +278,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("VARBINARY(8000)");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsBinaryWithSizeToVarbinaryOfSize.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(1)]
             [TestCase(4000)]
@@ -193,6 +293,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe($"VARBINARY({size})");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsBinaryWithSizeAbove8000ToImage.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(8001)]
             [TestCase(int.MaxValue)]
@@ -204,9 +308,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             }
         }
 
+        /// <summary>
+        /// Defines test class NumericTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
         [TestFixture]
         public class NumericTests : SqlServer2000TypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsBooleanToBit.
+            /// </summary>
             [Test]
             public void ItMapsBooleanToBit()
             {
@@ -215,6 +327,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("BIT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsByteToTinyint.
+            /// </summary>
             [Test]
             public void ItMapsByteToTinyint()
             {
@@ -223,6 +338,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("TINYINT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsInt16ToSmallint.
+            /// </summary>
             [Test]
             public void ItMapsInt16ToSmallint()
             {
@@ -231,6 +349,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("SMALLINT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsInt32ToInt.
+            /// </summary>
             [Test]
             public void ItMapsInt32ToInt()
             {
@@ -239,6 +360,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("INT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsInt64ToBigint.
+            /// </summary>
             [Test]
             public void ItMapsInt64ToBigint()
             {
@@ -247,6 +371,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("BIGINT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsSingleToReal.
+            /// </summary>
             [Test]
             public void ItMapsSingleToReal()
             {
@@ -255,6 +382,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("REAL");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDoubleToDoublePrecision.
+            /// </summary>
             [Test]
             public void ItMapsDoubleToDoublePrecision()
             {
@@ -263,6 +393,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("DOUBLE PRECISION");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsCurrencyToMoney.
+            /// </summary>
             [Test]
             public void ItMapsCurrencyToMoney()
             {
@@ -271,6 +404,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("MONEY");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDecimalByDefaultToDecimal195.
+            /// </summary>
             [Test]
             public void ItMapsDecimalByDefaultToDecimal195()
             {
@@ -279,6 +415,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("DECIMAL(19,5)");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDecimalWithPrecisionToDecimal.
+            /// </summary>
+            /// <param name="precision">The precision.</param>
             [Test]
             [TestCase(1)]
             [TestCase(20)]
@@ -290,6 +430,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe($"DECIMAL({precision},1)");
             }
 
+            /// <summary>
+            /// Defines the test method ItThrowsIfDecimalPrecisionIsAbove38.
+            /// </summary>
             [Test]
             public void ItThrowsIfDecimalPrecisionIsAbove38()
             {
@@ -298,9 +441,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             }
         }
 
+        /// <summary>
+        /// Defines test class GuidTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
         [TestFixture]
         public class GuidTests : SqlServer2000TypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsGUIDToUniqueidentifier.
+            /// </summary>
             [Test]
             public void ItMapsGUIDToUniqueidentifier()
             {
@@ -310,9 +461,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
             }
         }
 
+        /// <summary>
+        /// Defines test class DateTimeTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServer2000.SqlServer2000TypeMapTests" />
         [TestFixture]
         public class DateTimeTests : SqlServer2000TypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsTimeToDatetime.
+            /// </summary>
             [Test]
             public void ItMapsTimeToDatetime()
             {
@@ -321,6 +480,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("DATETIME");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDateToDatetime.
+            /// </summary>
             [Test]
             public void ItMapsDateToDatetime()
             {
@@ -329,6 +491,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2000
                 template.ShouldBe("DATETIME");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDatetimeToDatetime.
+            /// </summary>
             [Test]
             public void ItMapsDatetimeToDatetime()
             {

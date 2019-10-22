@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ObsoleteVersionLoaderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -34,10 +47,16 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit
 {
+    /// <summary>
+    /// Defines test class ObsoleteVersionLoaderTests.
+    /// </summary>
     [TestFixture]
     [Obsolete]
     public class ObsoleteVersionLoaderTests
     {
+        /// <summary>
+        /// Defines the test method CanLoadCustomVersionTableMetaData.
+        /// </summary>
         [Test]
         public void CanLoadCustomVersionTableMetaData()
         {
@@ -55,6 +74,9 @@ namespace FluentMigrator.Tests.Unit
             versionTableMetaData.ShouldBeOfType<TestVersionTableMetaData>();
         }
 
+        /// <summary>
+        /// Defines the test method CanLoadDefaultVersionTableMetaData.
+        /// </summary>
         [Test]
         public void CanLoadDefaultVersionTableMetaData()
         {
@@ -72,6 +94,9 @@ namespace FluentMigrator.Tests.Unit
             versionTableMetaData.ShouldBeOfType<DefaultVersionTableMetaData>();
         }
 
+        /// <summary>
+        /// Defines the test method CanSetupApplicationContext.
+        /// </summary>
         [Test]
         public void CanSetupApplicationContext()
         {
@@ -92,6 +117,9 @@ namespace FluentMigrator.Tests.Unit
             versionTableMetaData.ApplicationContext.ShouldBe(applicationContext);
         }
 
+        /// <summary>
+        /// Defines the test method DeleteVersionShouldExecuteDeleteDataExpression.
+        /// </summary>
         [Test]
         public void DeleteVersionShouldExecuteDeleteDataExpression()
         {
@@ -121,6 +149,9 @@ namespace FluentMigrator.Tests.Unit
             processor.VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method RemoveVersionTableShouldBehaveAsExpected.
+        /// </summary>
         [Test]
         public void RemoveVersionTableShouldBehaveAsExpected()
         {
@@ -148,6 +179,9 @@ namespace FluentMigrator.Tests.Unit
             processor.VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method RemoveVersionTableShouldNotRemoveSchemaIfItDidNotOwnTheSchema.
+        /// </summary>
         [Test]
         public void RemoveVersionTableShouldNotRemoveSchemaIfItDidNotOwnTheSchema()
         {
@@ -173,6 +207,9 @@ namespace FluentMigrator.Tests.Unit
             processor.Verify(p => p.Process(It.IsAny<DeleteSchemaExpression>()), Times.Never());
         }
 
+        /// <summary>
+        /// Defines the test method UpdateVersionShouldExecuteInsertDataExpression.
+        /// </summary>
         [Test]
         public void UpdateVersionShouldExecuteInsertDataExpression()
         {
@@ -201,6 +238,9 @@ namespace FluentMigrator.Tests.Unit
             processor.VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method VersionSchemaMigrationOnlyRunOnceEvenIfExistenceChecksReturnFalse.
+        /// </summary>
         [Test]
         public void VersionSchemaMigrationOnlyRunOnceEvenIfExistenceChecksReturnFalse()
         {
@@ -222,6 +262,9 @@ namespace FluentMigrator.Tests.Unit
             runner.Verify(r => r.Up(loader.VersionSchemaMigration), Times.Once());
         }
 
+        /// <summary>
+        /// Defines the test method VersionMigrationOnlyRunOnceEvenIfExistenceChecksReturnFalse.
+        /// </summary>
         [Test]
         public void VersionMigrationOnlyRunOnceEvenIfExistenceChecksReturnFalse()
         {
@@ -243,6 +286,9 @@ namespace FluentMigrator.Tests.Unit
             runner.Verify(r => r.Up(loader.VersionMigration), Times.Once());
         }
 
+        /// <summary>
+        /// Defines the test method VersionUniqueMigrationOnlyRunOnceEvenIfExistenceChecksReturnFalse.
+        /// </summary>
         [Test]
         public void VersionUniqueMigrationOnlyRunOnceEvenIfExistenceChecksReturnFalse()
         {
@@ -264,6 +310,9 @@ namespace FluentMigrator.Tests.Unit
             runner.Verify(r => r.Up(loader.VersionUniqueMigration), Times.Once());
         }
 
+        /// <summary>
+        /// Defines the test method VersionDescriptionMigrationOnlyRunOnceEvenIfExistenceChecksReturnFalse.
+        /// </summary>
         [Test]
         public void VersionDescriptionMigrationOnlyRunOnceEvenIfExistenceChecksReturnFalse()
         {

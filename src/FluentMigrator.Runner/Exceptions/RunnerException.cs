@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RunnerException.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -21,20 +34,42 @@ using FluentMigrator.Exceptions;
 
 namespace FluentMigrator.Runner.Exceptions
 {
+    /// <summary>
+    /// Class RunnerException.
+    /// Implements the <see cref="FluentMigrator.Exceptions.FluentMigratorException" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Exceptions.FluentMigratorException" />
     public class RunnerException : FluentMigratorException
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunnerException"/> class.
+        /// </summary>
         protected RunnerException()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunnerException"/> class.
+        /// </summary>
+        /// <param name="message">The exception message</param>
         protected RunnerException(string message) : base(message)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunnerException"/> class.
+        /// </summary>
+        /// <param name="message">The exception message</param>
+        /// <param name="innerException">The inner exception</param>
         protected RunnerException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RunnerException"/> class.
+        /// </summary>
+        /// <param name="info">The information.</param>
+        /// <param name="context">The context.</param>
         protected RunnerException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

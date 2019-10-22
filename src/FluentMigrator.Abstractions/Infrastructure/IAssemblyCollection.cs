@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IAssemblyCollection.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -30,6 +43,7 @@ namespace FluentMigrator.Infrastructure
         /// <summary>
         /// Gets the Assemblies contained in this collection
         /// </summary>
+        /// <value>The assemblies.</value>
         [Obsolete]
         Assembly[] Assemblies { get; }
 

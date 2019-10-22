@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrateUp.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -21,15 +34,33 @@ using McMaster.Extensions.CommandLineUtils;
 
 namespace FluentMigrator.DotNet.Cli.Commands
 {
+    /// <summary>
+    /// Class MigrateUp.
+    /// Implements the <see cref="FluentMigrator.DotNet.Cli.Commands.BaseCommand" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.DotNet.Cli.Commands.BaseCommand" />
     [HelpOption]
     [Command("up", Description = "Apply migrations")]
     public class MigrateUp : BaseCommand
     {
+        /// <summary>
+        /// Gets the parent.
+        /// </summary>
+        /// <value>The parent.</value>
         public Migrate Parent { get; }
 
+        /// <summary>
+        /// Gets the target version.
+        /// </summary>
+        /// <value>The target version.</value>
         [Option("-t|--target <TARGET_VERSION>", Description = "The specific version to migrate.")]
         public long? TargetVersion { get; }
 
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <returns>System.Int32.</returns>
         private int OnExecute(IConsole console)
         {
             var options = MigratorOptions.CreateMigrateUp(Parent, TargetVersion);

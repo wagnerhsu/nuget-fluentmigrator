@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MaintenanceLoader.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -31,10 +44,24 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner
 {
+    /// <summary>
+    /// Class MaintenanceLoader.
+    /// Implements the <see cref="FluentMigrator.Runner.IMaintenanceLoader" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.IMaintenanceLoader" />
     public class MaintenanceLoader : IMaintenanceLoader
     {
+        /// <summary>
+        /// The maintenance
+        /// </summary>
         private readonly IDictionary<MigrationStage, IList<IMigration>> _maintenance;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MaintenanceLoader"/> class.
+        /// </summary>
+        /// <param name="assemblyCollection">The assembly collection.</param>
+        /// <param name="tags">The tags.</param>
+        /// <param name="conventions">The conventions.</param>
         [Obsolete]
         public MaintenanceLoader(IAssemblyCollection assemblyCollection, IEnumerable<string> tags, IMigrationRunnerConventions conventions)
         {
@@ -54,6 +81,13 @@ namespace FluentMigrator.Runner
             );
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MaintenanceLoader"/> class.
+        /// </summary>
+        /// <param name="assemblySource">The assembly source.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="conventions">The conventions.</param>
+        /// <param name="serviceProvider">The service provider.</param>
         public MaintenanceLoader(
             [NotNull] IAssemblySource assemblySource,
             [NotNull] IOptions<RunnerOptions> options,
@@ -77,6 +111,11 @@ namespace FluentMigrator.Runner
             );
         }
 
+        /// <summary>
+        /// Loads the maintenance.
+        /// </summary>
+        /// <param name="stage">The stage.</param>
+        /// <returns>IList&lt;IMigrationInfo&gt;.</returns>
         public IList<IMigrationInfo> LoadMaintenance(MigrationStage stage)
         {
             IList<IMigrationInfo> migrationInfos = new List<IMigrationInfo>();

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ExecuteSqlScriptExpression.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,13 +41,23 @@ namespace FluentMigrator.Expressions
     /// </summary>
     public class ExecuteSqlScriptExpression : ExecuteSqlScriptExpressionBase, IFileSystemExpression
     {
+        /// <summary>
+        /// The root path
+        /// </summary>
         private string _rootPath;
+        /// <summary>
+        /// The SQL script
+        /// </summary>
         private string _sqlScript;
+        /// <summary>
+        /// The unchanged SQL script
+        /// </summary>
         private string _unchangedSqlScript;
 
         /// <summary>
         /// Gets or sets the SQL script to be executed
         /// </summary>
+        /// <value>The SQL script.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.SqlScriptCannotBeNullOrEmpty))]
         public string SqlScript
         {
@@ -49,6 +72,7 @@ namespace FluentMigrator.Expressions
         /// <summary>
         /// Gets or sets the root path where the SQL script file should be loaded from
         /// </summary>
+        /// <value>The root path.</value>
         public string RootPath
         {
             get => _rootPath;
@@ -77,6 +101,9 @@ namespace FluentMigrator.Expressions
             return base.ToString() + SqlScript;
         }
 
+        /// <summary>
+        /// Updates the SQL script.
+        /// </summary>
         private void UpdateSqlScript()
         {
             if (!string.IsNullOrEmpty(_rootPath) && !string.IsNullOrEmpty(_unchangedSqlScript))

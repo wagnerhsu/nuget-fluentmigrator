@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -41,6 +54,9 @@ namespace FluentMigrator
         // ReSharper disable once MemberCanBePrivate.Global
         internal IMigrationContext _context;
 
+        /// <summary>
+        /// The mutex
+        /// </summary>
         private readonly object _mutex = new object();
 
         /// <inheritdoc />
@@ -52,6 +68,8 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the migration context
         /// </summary>
+        /// <value>The context.</value>
+        /// <exception cref="InvalidOperationException">The context is not set</exception>
 #pragma warning disable 618
         internal IMigrationContext Context => _context ?? throw new InvalidOperationException("The context is not set");
 #pragma warning restore 618
@@ -107,6 +125,7 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the starting point for alterations
         /// </summary>
+        /// <value>The alter.</value>
         public IAlterExpressionRoot Alter
         {
             get { return new AlterExpressionRoot(Context); }
@@ -115,6 +134,7 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the starting point for creating database objects
         /// </summary>
+        /// <value>The create.</value>
         public ICreateExpressionRoot Create
         {
             get { return new CreateExpressionRoot(Context); }
@@ -123,6 +143,7 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the starting point for renaming database objects
         /// </summary>
+        /// <value>The rename.</value>
         public IRenameExpressionRoot Rename
         {
             get { return new RenameExpressionRoot(Context); }
@@ -131,6 +152,7 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the starting point for data insertion
         /// </summary>
+        /// <value>The insert.</value>
         public IInsertExpressionRoot Insert
         {
             get { return new InsertExpressionRoot(Context); }
@@ -139,6 +161,7 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the starting point for schema-rooted expressions
         /// </summary>
+        /// <value>The schema.</value>
         public ISchemaExpressionRoot Schema
         {
             get { return new SchemaExpressionRoot(Context); }

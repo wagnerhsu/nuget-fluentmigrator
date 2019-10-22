@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Setup.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -32,8 +45,17 @@ using Microsoft.Extensions.Logging;
 
 namespace FluentMigrator.DotNet.Cli
 {
+    /// <summary>
+    /// Class Setup.
+    /// </summary>
     public static class Setup
     {
+        /// <summary>
+        /// Builds the service provider.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        /// <param name="console">The console.</param>
+        /// <returns>IServiceProvider.</returns>
         public static IServiceProvider BuildServiceProvider(MigratorOptions options, IConsole console)
         {
             var serviceCollection = new ServiceCollection();
@@ -42,6 +64,13 @@ namespace FluentMigrator.DotNet.Cli
             return serviceProvider;
         }
 
+        /// <summary>
+        /// Configures the services.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="console">The console.</param>
+        /// <returns>IServiceProvider.</returns>
         private static IServiceProvider ConfigureServices(IServiceCollection services, MigratorOptions options, IConsole console)
         {
             var conventionSet = new DefaultConventionSet(defaultSchemaName: options.SchemaName, options.WorkingDirectory);
@@ -153,12 +182,20 @@ namespace FluentMigrator.DotNet.Cli
             return services.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Configures the specified logger factory.
+        /// </summary>
+        /// <param name="loggerFactory">The logger factory.</param>
         private static void Configure(ILoggerFactory loggerFactory)
         {
             loggerFactory
                 .AddDebug(LogLevel.Trace);
         }
 
+        /// <summary>
+        /// Configures the mapper.
+        /// </summary>
+        /// <returns>IMapper.</returns>
         private static IMapper ConfigureMapper()
         {
             var mapperConfig = new MapperConfiguration(cfg => cfg.CreateMap<MigratorOptions, MigratorOptions>());

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2005Generator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2010, Nathan Brown
@@ -33,8 +46,16 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Generators.SqlServer
 {
+    /// <summary>
+    /// Class SqlServer2005Generator.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2000Generator" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2000Generator" />
     public class SqlServer2005Generator : SqlServer2000Generator
     {
+        /// <summary>
+        /// The supported additional features
+        /// </summary>
         private static readonly HashSet<string> _supportedAdditionalFeatures = new HashSet<string>
         {
             SqlServerExtensions.IncludesList,
@@ -43,17 +64,29 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             SqlServerExtensions.SchemaAuthorization,
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2005Generator"/> class.
+        /// </summary>
         public SqlServer2005Generator()
             : this(new SqlServer2005Quoter())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2005Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
         public SqlServer2005Generator(
             [NotNull] SqlServer2005Quoter quoter)
             : this(quoter, new OptionsWrapper<GeneratorOptions>(new GeneratorOptions()))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2005Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         public SqlServer2005Generator(
             [NotNull] SqlServer2005Quoter quoter,
             [NotNull] IOptions<GeneratorOptions> generatorOptions)
@@ -65,6 +98,13 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2005Generator"/> class.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="descriptionGenerator">The description generator.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         protected SqlServer2005Generator(
             [NotNull] IColumn column,
             [NotNull] IQuoter quoter,
@@ -74,23 +114,57 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         {
         }
 
+        /// <summary>
+        /// Gets the add column.
+        /// </summary>
+        /// <value>The add column.</value>
         public override string AddColumn { get { return "ALTER TABLE {0} ADD {1}"; } }
 
+        /// <summary>
+        /// Gets the create schema.
+        /// </summary>
+        /// <value>The create schema.</value>
         public override string CreateSchema { get { return "CREATE SCHEMA {0}{1}"; } }
 
+        /// <summary>
+        /// Gets the index of the create.
+        /// </summary>
+        /// <value>The index of the create.</value>
         public override string CreateIndex { get { return "CREATE {0}{1}INDEX {2} ON {3} ({4}{5}{6}){7}"; } }
+        /// <summary>
+        /// Gets the index of the drop.
+        /// </summary>
+        /// <value>The index of the drop.</value>
         public override string DropIndex { get { return "DROP INDEX {0} ON {1}{2}"; } }
 
+        /// <summary>
+        /// Gets the identity insert.
+        /// </summary>
+        /// <value>The identity insert.</value>
         public override string IdentityInsert { get { return "SET IDENTITY_INSERT {0} {1}"; } }
 
+        /// <summary>
+        /// Gets the create foreign key constraint.
+        /// </summary>
+        /// <value>The create foreign key constraint.</value>
         public override string CreateForeignKeyConstraint { get { return "ALTER TABLE {0} ADD CONSTRAINT {1} FOREIGN KEY ({2}) REFERENCES {3} ({4}){5}{6}"; } }
 
+        /// <summary>
+        /// Gets the include string.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         public virtual string GetIncludeString(CreateIndexExpression column)
         {
             var includes = column.GetAdditionalFeature<IList<IndexIncludeDefinition>>(SqlServerExtensions.IncludesList);
             return includes?.Count > 0 ? ") INCLUDE (" : string.Empty;
         }
 
+        /// <summary>
+        /// Gets the with options.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public virtual string GetWithOptions(ISupportAdditionalFeatures expression)
         {
             var items = new List<string>();
@@ -103,12 +177,22 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return string.Join(", ", items);
         }
 
+        /// <summary>
+        /// Determines whether [is additional feature supported] [the specified feature].
+        /// </summary>
+        /// <param name="feature">The feature.</param>
+        /// <returns><c>true</c> if [is additional feature supported] [the specified feature]; otherwise, <c>false</c>.</returns>
         public override bool IsAdditionalFeatureSupported(string feature)
         {
             return _supportedAdditionalFeatures.Contains(feature)
              || base.IsAdditionalFeatureSupported(feature);
         }
 
+        /// <summary>
+        /// Outputs a create table string
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateTableExpression expression)
         {
             var descriptionStatements = DescriptionGenerator.GenerateDescriptionStatements(expression);
@@ -121,6 +205,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return ComposeStatements(createTableStatement, descriptionStatementsArray);
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterTableExpression expression)
         {
             var descriptionStatement = DescriptionGenerator.GenerateDescriptionStatement(expression);
@@ -131,6 +220,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return descriptionStatement;
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE ADD COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateColumnExpression expression)
         {
             var alterTableStatement = base.Generate(expression);
@@ -142,6 +236,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return ComposeStatements(alterTableStatement, new[] { descriptionStatement });
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE ALTER COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterColumnExpression expression)
         {
             var alterTableStatement = base.Generate(expression);
@@ -153,6 +252,12 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return ComposeStatements(alterTableStatement, new[] { descriptionStatement });
         }
 
+        /// <summary>
+        /// Generates an SQL statement to create a foreign key
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
+        /// <exception cref="ArgumentException">Number of primary columns and secondary columns must be equal</exception>
         public override string Generate(CreateForeignKeyExpression expression)
         {
             if (expression.ForeignKey.PrimaryColumns.Count != expression.ForeignKey.ForeignColumns.Count)
@@ -183,6 +288,12 @@ namespace FluentMigrator.Runner.Generators.SqlServer
                 );
         }
 
+        /// <summary>
+        /// Generates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
+        /// <inheritdoc />
         public override string Generate(CreateIndexExpression expression)
         {
             string[] indexColumns = new string[expression.Index.Columns.Count];
@@ -233,6 +344,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return result;
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop an index
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteIndexExpression expression)
         {
             var withParts = GetWithOptions(expression);
@@ -247,6 +363,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
                 withPart);
         }
 
+        /// <summary>
+        /// Generates an SQL statement to create a constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateConstraintExpression expression)
         {
             var withParts = GetWithOptions(expression);
@@ -257,6 +378,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return $"{base.Generate(expression)}{withPart}";
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop a default constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteDefaultConstraintExpression expression)
         {
             string sql =
@@ -278,6 +404,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return string.Format(sql, Quoter.QuoteTableName(expression.TableName, expression.SchemaName), expression.ColumnName);
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop a constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteConstraintExpression expression)
         {
             var withParts = GetWithOptions(expression);
@@ -288,6 +419,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return $"{base.Generate(expression)}{withPart}";
         }
 
+        /// <summary>
+        /// Generates a <c>CREATE SCHEMA</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateSchemaExpression expression)
         {
             string authFragment;
@@ -303,16 +439,32 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return string.Format(CreateSchema, Quoter.QuoteSchemaName(expression.SchemaName), authFragment);
         }
 
+        /// <summary>
+        /// Generates a <c>DROP SCHEMA</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteSchemaExpression expression)
         {
             return string.Format(DropSchema, Quoter.QuoteSchemaName(expression.SchemaName));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to move a table from one schema to another
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterSchemaExpression expression)
         {
             return string.Format(AlterSchema, Quoter.QuoteSchemaName(expression.DestinationSchemaName), Quoter.QuoteTableName(expression.TableName, expression.SourceSchemaName));
         }
 
+        /// <summary>
+        /// Composes the statements.
+        /// </summary>
+        /// <param name="ddlStatement">The DDL statement.</param>
+        /// <param name="otherStatements">The other statements.</param>
+        /// <returns>System.String.</returns>
         private string ComposeStatements(string ddlStatement, IEnumerable<string> otherStatements)
         {
             var otherStatementsArray = otherStatements.ToArray();

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TemporaryDatabase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -23,10 +36,23 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration.Processors.Firebird
 {
+    /// <summary>
+    /// Class TemporaryDatabase.
+    /// Implements the <see cref="System.IDisposable" />
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public class TemporaryDatabase : IDisposable
     {
+        /// <summary>
+        /// The connection string
+        /// </summary>
         private readonly Lazy<string> _connectionString;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TemporaryDatabase"/> class.
+        /// </summary>
+        /// <param name="connectionOptions">The connection options.</param>
+        /// <param name="prober">The prober.</param>
         public TemporaryDatabase(IntegrationTestOptions.DatabaseServerOptions connectionOptions, FirebirdLibraryProber prober)
         {
             if (!connectionOptions.IsEnabled)
@@ -45,10 +71,21 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             });
         }
 
+        /// <summary>
+        /// Gets the name of the database file.
+        /// </summary>
+        /// <value>The name of the database file.</value>
         public string DbFileName { get; }
 
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <value>The connection string.</value>
         public string ConnectionString => _connectionString.Value;
 
+        /// <summary>
+        /// Disposes this instance.
+        /// </summary>
         public void Dispose()
         {
             try

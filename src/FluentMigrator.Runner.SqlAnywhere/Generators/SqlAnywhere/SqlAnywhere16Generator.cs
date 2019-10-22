@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlAnywhere
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlAnywhere16Generator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -33,19 +46,36 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Generators.SqlAnywhere
 {
+    /// <summary>
+    /// Class SqlAnywhere16Generator.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Generic.GenericGenerator" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Generic.GenericGenerator" />
     public class SqlAnywhere16Generator : GenericGenerator
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlAnywhere16Generator"/> class.
+        /// </summary>
         public SqlAnywhere16Generator()
             : this(new SqlAnywhereQuoter())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlAnywhere16Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
         public SqlAnywhere16Generator(
             [NotNull] SqlAnywhereQuoter quoter)
             : this(quoter, new OptionsWrapper<GeneratorOptions>(new GeneratorOptions()))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlAnywhere16Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         public SqlAnywhere16Generator(
             [NotNull] SqlAnywhereQuoter quoter,
             [NotNull] IOptions<GeneratorOptions> generatorOptions)
@@ -53,6 +83,13 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlAnywhere16Generator"/> class.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="descriptionGenerator">The description generator.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         protected SqlAnywhere16Generator(
             [NotNull] IColumn column,
             [NotNull] IQuoter quoter,
@@ -62,34 +99,88 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
         {
         }
 
+        /// <summary>
+        /// Gets the create schema.
+        /// </summary>
+        /// <value>The create schema.</value>
         public override string CreateSchema => "CREATE SCHEMA AUTHORIZATION {0}";
 
+        /// <summary>
+        /// Gets the drop schema.
+        /// </summary>
+        /// <value>The drop schema.</value>
         public override string DropSchema => "DROP USER {0}";
 
+        /// <summary>
+        /// Gets the rename table.
+        /// </summary>
+        /// <value>The rename table.</value>
         public override string RenameTable => "ALTER TABLE {0} RENAME {1}";
 
+        /// <summary>
+        /// Gets the index of the create.
+        /// </summary>
+        /// <value>The index of the create.</value>
         public override string CreateIndex => "CREATE {0}{1}INDEX {2} ON {3} ({4}){5}";
 
+        /// <summary>
+        /// Gets the index of the drop.
+        /// </summary>
+        /// <value>The index of the drop.</value>
         public override string DropIndex => "DROP INDEX {0}.{1}";
 
+        /// <summary>
+        /// Gets the add column.
+        /// </summary>
+        /// <value>The add column.</value>
         public override string AddColumn => "ALTER TABLE {0} ADD {1}";
 
+        /// <summary>
+        /// Gets the drop column.
+        /// </summary>
+        /// <value>The drop column.</value>
         public override string DropColumn => "ALTER TABLE {0} DROP {1}";
 
+        /// <summary>
+        /// Gets the alter column.
+        /// </summary>
+        /// <value>The alter column.</value>
         public override string AlterColumn => "ALTER TABLE {0} ALTER {1}";
 
+        /// <summary>
+        /// Gets the rename column.
+        /// </summary>
+        /// <value>The rename column.</value>
         public override string RenameColumn => "ALTER TABLE {0} RENAME {1} TO {2}";
 
+        /// <summary>
+        /// Gets the create foreign key constraint.
+        /// </summary>
+        /// <value>The create foreign key constraint.</value>
         public override string CreateForeignKeyConstraint => "ALTER TABLE {0} ADD CONSTRAINT {1} FOREIGN KEY ({2}) REFERENCES {3} ({4}){5}{6}";
 
+        /// <summary>
+        /// Gets the create constraint.
+        /// </summary>
+        /// <value>The create constraint.</value>
         public override string CreateConstraint => "ALTER TABLE {0} ADD CONSTRAINT {1} {2}{3} ({4})";
 
         //Not need for the nonclusted keyword as it is the default mode
+        /// <summary>
+        /// Gets the cluster type string.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         public override string GetClusterTypeString(CreateIndexExpression column)
         {
             return column.Index.IsClustered ? "CLUSTERED " : string.Empty;
         }
 
+        /// <summary>
+        /// Gets the constraint clustering string.
+        /// </summary>
+        /// <param name="constraint">The constraint.</param>
+        /// <returns>System.String.</returns>
         protected string GetConstraintClusteringString(CreateConstraintExpression constraint)
         {
             if (!constraint.Constraint.AdditionalFeatures.TryGetValue(
@@ -98,6 +189,11 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
             return (indexType.Equals(SqlAnywhereConstraintType.Clustered)) ? " CLUSTERED" : " NONCLUSTERED";
         }
 
+        /// <summary>
+        /// Outputs a create table string
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateTableExpression expression)
         {
             var descriptionStatements = DescriptionGenerator.GenerateDescriptionStatements(expression);
@@ -110,6 +206,11 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
             return ComposeStatements(createTableStatement, descriptionStatementsArray);
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE ADD COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateColumnExpression expression)
         {
             var alterTableStatement = base.Generate(expression);
@@ -121,6 +222,11 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
             return ComposeStatements(alterTableStatement, new[] { descriptionStatement });
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE ALTER COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterColumnExpression expression)
         {
             var alterTableStatement = base.Generate(expression);
@@ -132,6 +238,11 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
             return ComposeStatements(alterTableStatement, new[] { descriptionStatement });
         }
 
+        /// <summary>
+        /// Generates an SQL statement to create a constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateConstraintExpression expression)
         {
             var constraintType = (expression.Constraint.IsPrimaryKeyConstraint) ? "PRIMARY KEY" : "UNIQUE";
@@ -149,6 +260,11 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
                 columns);
         }
 
+        /// <summary>
+        /// Generates an SQL statement to alter a DEFAULT constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterDefaultConstraintExpression expression)
         {
             // before we alter a default constraint on a column, we have to drop any default value constraints in SQL Anywhere
@@ -169,6 +285,12 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Generates an SQL statement to create a foreign key
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
+        /// <exception cref="ArgumentException">Number of primary columns and secondary columns must be equal</exception>
         public override string Generate(CreateForeignKeyExpression expression)
         {
             if (expression.ForeignKey.PrimaryColumns.Count != expression.ForeignKey.ForeignColumns.Count)
@@ -200,6 +322,12 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
                 );
         }
 
+        /// <summary>
+        /// Generates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
+        /// <inheritdoc />
         public override string Generate(CreateIndexExpression expression)
         {
             string[] indexColumns = new string[expression.Index.Columns.Count];
@@ -226,36 +354,71 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
                 , GetWithNullsDistinctString(expression.Index));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop an index
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteIndexExpression expression)
         {
             return string.Format(DropIndex, Quoter.QuoteTableName(expression.Index.TableName, expression.Index.SchemaName), Quoter.QuoteIndexName(expression.Index.Name));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to move a table from one schema to another
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(AlterSchemaExpression expression)
         {
             return CompatibilityMode.HandleCompatibilty("AlterSchema is not supported in SqlAnywhere");
         }
 
+        /// <summary>
+        /// Generates a <c>CREATE SCHEMA</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateSchemaExpression expression)
         {
             return string.Format(CreateSchema, Quoter.QuoteSchemaName(expression.SchemaName));
         }
 
+        /// <summary>
+        /// Generates a <c>DROP SCHEMA</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteSchemaExpression expression)
         {
             return string.Format(DropSchema, Quoter.QuoteSchemaName(expression.SchemaName));
         }
 
+        /// <summary>
+        /// Generates a <c>CREATE SEQUENCE</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(CreateSequenceExpression expression)
         {
             return CompatibilityMode.HandleCompatibilty("Sequences are not supported in SqlAnywhere");
         }
 
+        /// <summary>
+        /// Generates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public override string Generate(DeleteSequenceExpression expression)
         {
             return CompatibilityMode.HandleCompatibilty("Sequences are not supported in SqlAnywhere");
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop a default constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(DeleteDefaultConstraintExpression expression)
         {
             string sql = "ALTER TABLE {0} ALTER {1} DROP DEFAULT";
@@ -263,11 +426,21 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
             return string.Format(sql, schemaAndTable, Quoter.QuoteColumnName(expression.ColumnName));
         }
 
+        /// <summary>
+        /// Determines whether [is additional feature supported] [the specified feature].
+        /// </summary>
+        /// <param name="feature">The feature.</param>
+        /// <returns><c>true</c> if [is additional feature supported] [the specified feature]; otherwise, <c>false</c>.</returns>
         public override bool IsAdditionalFeatureSupported(string feature)
         {
             return _supportedAdditionalFeatures.Any(x => x == feature);
         }
 
+        /// <summary>
+        /// Gets the with nulls distinct string.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns>System.String.</returns>
         protected virtual string GetWithNullsDistinctString(IndexDefinition index)
         {
             var indexNullsDistinct = index.GetAdditionalFeature(SqlAnywhereExtensions.WithNullsDistinct, (bool?)null);
@@ -283,6 +456,9 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
             return " WITH NULLS NOT DISTINCT";
         }
 
+        /// <summary>
+        /// The supported additional features
+        /// </summary>
         private readonly IEnumerable<string> _supportedAdditionalFeatures = new List<string>
         {
             SqlAnywhereExtensions.ConstraintType,
@@ -290,6 +466,12 @@ namespace FluentMigrator.Runner.Generators.SqlAnywhere
             SqlAnywhereExtensions.WithNullsDistinct,
         };
 
+        /// <summary>
+        /// Composes the statements.
+        /// </summary>
+        /// <param name="ddlStatement">The DDL statement.</param>
+        /// <param name="otherStatements">The other statements.</param>
+        /// <returns>System.String.</returns>
         private string ComposeStatements(string ddlStatement, IEnumerable<string> otherStatements)
         {
             var otherStatementsArray = otherStatements.ToArray();

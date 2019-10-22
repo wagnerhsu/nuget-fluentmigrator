@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ProfileLoader.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -33,23 +46,32 @@ using Microsoft.Extensions.Options;
 namespace FluentMigrator.Runner
 {
     /// <summary>
-    /// The default implementation of the <see cref="IProfileLoader"/>
+    /// The default implementation of the <see cref="IProfileLoader" />
     /// </summary>
     public class ProfileLoader : IProfileLoader
     {
+        /// <summary>
+        /// The service provider
+        /// </summary>
         [CanBeNull]
         private readonly IServiceProvider _serviceProvider;
 
+        /// <summary>
+        /// The runner
+        /// </summary>
         [Obsolete]
         [CanBeNull]
         private readonly IMigrationRunner _runner;
 
+        /// <summary>
+        /// The conventions
+        /// </summary>
         [Obsolete]
         [CanBeNull]
         private readonly IMigrationRunnerConventions _conventions;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProfileLoader"/> class.
+        /// Initializes a new instance of the <see cref="ProfileLoader" /> class.
         /// </summary>
         /// <param name="options">The runner options</param>
         /// <param name="source">The profile source</param>
@@ -64,7 +86,7 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProfileLoader"/> class.
+        /// Initializes a new instance of the <see cref="ProfileLoader" /> class.
         /// </summary>
         /// <param name="runnerContext">The migration runner context</param>
         /// <param name="runner">The migration runner</param>
@@ -100,6 +122,7 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Gets all found profiles
         /// </summary>
+        /// <value>The profiles.</value>
         public IEnumerable<IMigration> Profiles { get; }
 
         /// <inheritdoc />

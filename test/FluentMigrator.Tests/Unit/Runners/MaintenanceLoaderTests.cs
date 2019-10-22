@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MaintenanceLoaderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -31,17 +44,41 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Runners
 {
+    /// <summary>
+    /// Defines test class MaintenanceLoaderTests.
+    /// </summary>
     [TestFixture]
     public class MaintenanceLoaderTests
     {
+        /// <summary>
+        /// The tag1
+        /// </summary>
         public const string Tag1 = "MaintenanceTestTag1";
+        /// <summary>
+        /// The tag2
+        /// </summary>
         public const string Tag2 = "MaintenanceTestTag2";
+        /// <summary>
+        /// The tags
+        /// </summary>
         private readonly string[] _tags = {Tag1, Tag2};
 
+        /// <summary>
+        /// The migration conventions
+        /// </summary>
         private Mock<IMigrationRunnerConventions> _migrationConventions;
+        /// <summary>
+        /// The maintenance loader
+        /// </summary>
         private IMaintenanceLoader _maintenanceLoader;
+        /// <summary>
+        /// The maintenance loader no tags
+        /// </summary>
         private IMaintenanceLoader _maintenanceLoaderNoTags;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -63,6 +100,9 @@ namespace FluentMigrator.Tests.Unit.Runners
                 .GetRequiredService<IMaintenanceLoader>();
         }
 
+        /// <summary>
+        /// Defines the test method LoadsMigrationsForCorrectStage.
+        /// </summary>
         [Test]
         public void LoadsMigrationsForCorrectStage()
         {
@@ -83,6 +123,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             }
         }
 
+        /// <summary>
+        /// Defines the test method LoadsMigrationsFilteredByTag.
+        /// </summary>
         [Test]
         public void LoadsMigrationsFilteredByTag()
         {
@@ -102,6 +145,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             }
         }
 
+        /// <summary>
+        /// Defines the test method MigrationInfoIsAttributedIsFalse.
+        /// </summary>
         [Test]
         public void MigrationInfoIsAttributedIsFalse()
         {
@@ -114,6 +160,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             }
         }
 
+        /// <summary>
+        /// Defines the test method SetsTransactionBehaviorToSameAsMaintenanceAttribute.
+        /// </summary>
         [Test]
         public void SetsTransactionBehaviorToSameAsMaintenanceAttribute()
         {
@@ -130,6 +179,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             }
         }
 
+        /// <summary>
+        /// Defines the test method LoadsMigrationsNoTag.
+        /// </summary>
         [Test]
         public void LoadsMigrationsNoTag()
         {
@@ -158,43 +210,98 @@ namespace FluentMigrator.Tests.Unit.Runners
         }
     }
 
+    /// <summary>
+    /// Class MaintenanceBeforeEach.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     [Tags(MaintenanceLoaderTests.Tag1, MaintenanceLoaderTests.Tag2)]
     [Maintenance(MigrationStage.BeforeEach)]
     public class MaintenanceBeforeEach : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up() { }
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down() { }
     }
 
+    /// <summary>
+    /// Class MaintenanceBeforeEachWithNonTransactionBehavior.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     [Tags(MaintenanceLoaderTests.Tag1)]
     [Tags(MaintenanceLoaderTests.Tag2)]
     [Maintenance(MigrationStage.BeforeEach, TransactionBehavior.None)]
     public class MaintenanceBeforeEachWithNonTransactionBehavior : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up() { }
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down() { }
     }
 
+    /// <summary>
+    /// Class MaintenanceBeforeEachWithoutTestTag.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     [Tags("NonSpecifiedMaintenanceTestTag1")]
     [Maintenance(MigrationStage.BeforeEach)]
     public class MaintenanceBeforeEachWithoutTestTag : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up() { }
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down() { }
     }
 
+    /// <summary>
+    /// Class MaintenanceAfterAllWithNoneTransactionBehavior.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     [Tags(MaintenanceLoaderTests.Tag1)]
     [Maintenance(MigrationStage.AfterAll, TransactionBehavior.None)]
     public class MaintenanceAfterAllWithNoneTransactionBehavior : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up() { }
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down() { }
     }
 
+    /// <summary>
+    /// Class MaintenanceBeforeEachNoTag.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     [Maintenance(MigrationStage.BeforeEach)]
     public class MaintenanceBeforeEachNoTag : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up() { }
+        /// <summary>
+        /// Downs this instance.
+        /// </summary>
         public override void Down() { }
     }
 }

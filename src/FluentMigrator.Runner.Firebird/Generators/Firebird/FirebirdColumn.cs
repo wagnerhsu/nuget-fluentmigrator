@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Firebird
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdColumn.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -28,8 +41,17 @@ using JetBrains.Annotations;
 
 namespace FluentMigrator.Runner.Generators.Firebird
 {
+    /// <summary>
+    /// Class FirebirdColumn.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.ColumnBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.ColumnBase" />
     internal class FirebirdColumn : ColumnBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FirebirdColumn"/> class.
+        /// </summary>
+        /// <param name="fbOptions">The fb options.</param>
         public FirebirdColumn([NotNull] FirebirdOptions fbOptions) : base(new FirebirdTypeMap(), new FirebirdQuoter(fbOptions.ForceQuote))
         {
             FBOptions = fbOptions;
@@ -38,14 +60,30 @@ namespace FluentMigrator.Runner.Generators.Firebird
             ClauseOrder = new List<Func<ColumnDefinition, string>> { FormatString, FormatType, FormatDefaultValue, FormatNullable, FormatPrimaryKey, FormatIdentity };
         }
 
+        /// <summary>
+        /// Gets the fb options.
+        /// </summary>
+        /// <value>The fb options.</value>
         protected FirebirdOptions FBOptions { get; }
 
+        /// <summary>
+        /// Formats the identity SQL fragment
+        /// </summary>
+        /// <param name="column">The column definition</param>
+        /// <returns>The formatted identity SQL fragment</returns>
         protected override string FormatIdentity(ColumnDefinition column)
         {
             //Identity not supported
            return string.Empty;
         }
 
+        /// <summary>
+        /// Gets the name of the primary key constraint. Some Generators may need to override if the constraint name is limited
+        /// </summary>
+        /// <param name="primaryKeyColumns">The primary key columns</param>
+        /// <param name="tableName">The table name</param>
+        /// <returns>The constraint clause</returns>
+        /// <exception cref="ArgumentException">Name too long: {primaryKeyName}</exception>
         protected override string GetPrimaryKeyConstraintName(IEnumerable<ColumnDefinition> primaryKeyColumns, string tableName)
         {
             string primaryKeyName = primaryKeyColumns.Select(x => x.PrimaryKeyName).FirstOrDefault();
@@ -64,11 +102,21 @@ namespace FluentMigrator.Runner.Generators.Firebird
             return $"CONSTRAINT {Quoter.QuoteIndexName(primaryKeyName)} ";
         }
 
+        /// <summary>
+        /// Generates for type alter.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         public virtual string GenerateForTypeAlter(ColumnDefinition column)
         {
             return FormatType(column);
         }
 
+        /// <summary>
+        /// Generates for default alter.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         public virtual string GenerateForDefaultAlter(ColumnDefinition column)
         {
             return FormatDefaultValue(column);

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Db2IndexTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -31,20 +44,43 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Db2
 {
+    /// <summary>
+    /// Defines test class Db2IndexTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.BaseIndexTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.BaseIndexTests" />
     [TestFixture]
     [Category("Integration")]
     [Category("Db2")]
     public class Db2IndexTests : BaseIndexTests
     {
+        /// <summary>
+        /// Initializes static members of the <see cref="Db2IndexTests"/> class.
+        /// </summary>
         static Db2IndexTests()
         {
             try { EnsureReference(); } catch { /* ignore */ }
         }
 
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private Db2Processor Processor { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsCanAcceptIndexNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsCanAcceptIndexNameWithSingleQuote()
         {
@@ -55,6 +91,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Db2
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsCanAcceptTableNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsCanAcceptTableNameWithSingleQuote()
         {
@@ -65,6 +104,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Db2
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsFalseIfIndexDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsFalseIfIndexDoesNotExist()
         {
@@ -74,6 +116,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Db2
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsFalseIfIndexDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsFalseIfIndexDoesNotExistWithSchema()
         {
@@ -83,18 +128,27 @@ namespace FluentMigrator.Tests.Integration.Processors.Db2
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsFalseIfTableDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsFalseIfTableDoesNotExist()
         {
             Processor.IndexExists(null, "DoesNotExist", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsFalseIfTableDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsFalseIfTableDoesNotExistWithSchema()
         {
             Processor.IndexExists("TstSchma", "DoesNotExist", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsTrueIfIndexExists.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsTrueIfIndexExists()
         {
@@ -105,6 +159,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Db2
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingIndexExistsReturnsTrueIfIndexExistsWithSchema.
+        /// </summary>
         [Test]
         public override void CallingIndexExistsReturnsTrueIfIndexExistsWithSchema()
         {
@@ -115,6 +172,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Db2
             }
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
@@ -128,12 +188,18 @@ namespace FluentMigrator.Tests.Integration.Processors.Db2
             ServiceProvider = serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -141,12 +207,18 @@ namespace FluentMigrator.Tests.Integration.Processors.Db2
             Processor = ServiceScope.ServiceProvider.GetRequiredService<Db2Processor>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {
             ServiceScope?.Dispose();
         }
 
+        /// <summary>
+        /// Ensures the reference.
+        /// </summary>
         private static void EnsureReference()
         {
             // This is here to avoid the removal of the referenced assembly

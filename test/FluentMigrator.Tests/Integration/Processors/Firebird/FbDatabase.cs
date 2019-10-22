@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FbDatabase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -23,8 +36,15 @@ using FirebirdSql.Data.FirebirdClient;
 
 namespace FluentMigrator.Tests.Integration.Processors.Firebird
 {
+    /// <summary>
+    /// Class FbDatabase.
+    /// </summary>
     public class FbDatabase
     {
+        /// <summary>
+        /// Creates the database.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
         public static void CreateDatabase(string connectionString)
         {
             var connectionStringBuilder = new FbConnectionStringBuilder(connectionString);
@@ -34,6 +54,10 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             FbConnection.CreateDatabase(connectionString);
         }
 
+        /// <summary>
+        /// Drops the database.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
         public static void DropDatabase(string connectionString)
         {
             FbConnection.ClearAllPools();

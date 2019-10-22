@@ -1,4 +1,17 @@
-﻿namespace FluentMigrator.Runner.Versioning
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IVersionInfo.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+namespace FluentMigrator.Runner.Versioning
 {
     /// <summary>
     /// Interface to query/update migration information

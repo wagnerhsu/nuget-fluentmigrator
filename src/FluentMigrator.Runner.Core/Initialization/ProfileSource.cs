@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ProfileSource.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -23,18 +36,24 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// The default implementation of <see cref="IProfileSource"/>
+    /// The default implementation of <see cref="IProfileSource" />
     /// </summary>
     public class ProfileSource : IProfileSource
     {
+        /// <summary>
+        /// The source
+        /// </summary>
         [NotNull]
         private readonly IFilteringMigrationSource _source;
 
+        /// <summary>
+        /// The conventions
+        /// </summary>
         [NotNull]
         private readonly IMigrationRunnerConventions _conventions;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProfileSource"/> class.
+        /// Initializes a new instance of the <see cref="ProfileSource" /> class.
         /// </summary>
         /// <param name="source">The assembly source</param>
         /// <param name="conventions">The migration runner conventios</param>
@@ -50,6 +69,12 @@ namespace FluentMigrator.Runner.Initialization
         public IEnumerable<IMigration> GetProfiles(string profile) =>
             _source.GetMigrations(t => IsSelectedProfile(t, profile));
 
+        /// <summary>
+        /// Determines whether [is selected profile] [the specified type].
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="profile">The profile.</param>
+        /// <returns><c>true</c> if [is selected profile] [the specified type]; otherwise, <c>false</c>.</returns>
         private bool IsSelectedProfile(Type type, string profile)
         {
             if (!_conventions.TypeIsProfile(type))

@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerIdentifier.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +35,7 @@ namespace FluentMigrator.Runner.BatchParser.RangeSearchers
     public sealed class SqlServerIdentifier : CharWithEscapeByDuplication
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlServerIdentifier"/> class.
+        /// Initializes a new instance of the <see cref="SqlServerIdentifier" /> class.
         /// </summary>
         public SqlServerIdentifier()
             : base('[', ']')

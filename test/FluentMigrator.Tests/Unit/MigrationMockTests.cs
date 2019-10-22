@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationMockTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2019, FluentMigrator Project
 //
@@ -28,8 +41,14 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit
 {
+    /// <summary>
+    /// Class MigrationMockTests.
+    /// </summary>
     public class MigrationMockTests
     {
+        /// <summary>
+        /// Defines the test method TestMigrationWithMockedContext.
+        /// </summary>
         [Test]
         public void TestMigrationWithMockedContext()
         {
@@ -45,8 +64,17 @@ namespace FluentMigrator.Tests.Unit
             Assert.AreEqual("Something went wrong!", exception.Message);
         }
 
+        /// <summary>
+        /// Class TestMigration.
+        /// Implements the <see cref="FluentMigrator.ForwardOnlyMigration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.ForwardOnlyMigration" />
         private class TestMigration : ForwardOnlyMigration
         {
+            /// <summary>
+            /// Ups this instance.
+            /// </summary>
+            /// <exception cref="InvalidOperationException">Something went wrong!</exception>
             public override void Up()
             {
                 throw new InvalidOperationException("Something went wrong!");

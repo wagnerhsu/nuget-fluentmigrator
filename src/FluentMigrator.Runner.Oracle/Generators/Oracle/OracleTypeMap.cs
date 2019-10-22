@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleTypeMap.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -21,20 +34,52 @@ using FluentMigrator.Runner.Generators.Base;
 
 namespace FluentMigrator.Runner.Generators.Oracle
 {
+    /// <summary>
+    /// Class OracleTypeMap.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
     public class OracleTypeMap : TypeMapBase
     {
         // See https://docs.oracle.com/cd/B28359_01/server.111/b28320/limits001.htm#i287903
         // and http://docs.oracle.com/cd/B19306_01/server.102/b14220/datatype.htm#i13446
         // for limits in Oracle data types.
+        /// <summary>
+        /// The ANSI string capacity
+        /// </summary>
         public const int AnsiStringCapacity = 4000;
+        /// <summary>
+        /// The ANSI text capacity
+        /// </summary>
         public const int AnsiTextCapacity = int.MaxValue;
+        /// <summary>
+        /// The BLOB capacity
+        /// </summary>
         public const int BlobCapacity = int.MaxValue;
+        /// <summary>
+        /// The character string capacity
+        /// </summary>
         public const int CharStringCapacity = 2000;
+        /// <summary>
+        /// The decimal capacity
+        /// </summary>
         public const int DecimalCapacity = 38;
+        /// <summary>
+        /// The raw capacity
+        /// </summary>
         public const int RawCapacity = 2000;
+        /// <summary>
+        /// The unicode string capacity
+        /// </summary>
         public const int UnicodeStringCapacity = 4000;
+        /// <summary>
+        /// The unicode text capacity
+        /// </summary>
         public const int UnicodeTextCapacity = int.MaxValue;
 
+        /// <summary>
+        /// Setups the type maps.
+        /// </summary>
         protected override void SetupTypeMaps()
         {
             SetTypeMap(DbType.AnsiStringFixedLength, "CHAR(255 CHAR)");

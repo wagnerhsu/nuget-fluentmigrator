@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AssemblySource.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -31,10 +44,13 @@ namespace FluentMigrator.Runner.Initialization
     /// </summary>
     public class AssemblySource : IAssemblySource
     {
+        /// <summary>
+        /// The assemblies
+        /// </summary>
         private readonly Lazy<IReadOnlyCollection<Assembly>> _assemblies;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssemblySource"/> class.
+        /// Initializes a new instance of the <see cref="AssemblySource" /> class.
         /// </summary>
         /// <param name="options">The options</param>
         /// <param name="loadEngines">The assembly load engines</param>
@@ -47,7 +63,7 @@ namespace FluentMigrator.Runner.Initialization
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssemblySource"/> class.
+        /// Initializes a new instance of the <see cref="AssemblySource" /> class.
         /// </summary>
         /// <param name="assemblyCollectionFunc">Function to get the assembly collection</param>
         [Obsolete]
@@ -59,6 +75,13 @@ namespace FluentMigrator.Runner.Initialization
         /// <inheritdoc />
         public IReadOnlyCollection<Assembly> Assemblies => _assemblies.Value;
 
+        /// <summary>
+        /// Loads the assemblies.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        /// <param name="loadEngines">The load engines.</param>
+        /// <returns>IReadOnlyCollection&lt;Assembly&gt;.</returns>
+        /// <exception cref="AggregateException"></exception>
         private static IReadOnlyCollection<Assembly> LoadAssemblies(AssemblySourceOptions options, IReadOnlyCollection<IAssemblyLoadEngine> loadEngines)
         {
             var assemblyNames = options.AssemblyNames;

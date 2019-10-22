@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FluentMigratorConsoleLoggerProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,10 +39,13 @@ namespace FluentMigrator.Runner.Logging
     /// </summary>
     public class FluentMigratorConsoleLoggerProvider : ILoggerProvider
     {
+        /// <summary>
+        /// The options
+        /// </summary>
         private readonly FluentMigratorLoggerOptions _options;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FluentMigratorConsoleLoggerProvider"/> class.
+        /// Initializes a new instance of the <see cref="FluentMigratorConsoleLoggerProvider" /> class.
         /// </summary>
         /// <param name="options">The logger options</param>
         public FluentMigratorConsoleLoggerProvider(IOptions<FluentMigratorLoggerOptions> options)

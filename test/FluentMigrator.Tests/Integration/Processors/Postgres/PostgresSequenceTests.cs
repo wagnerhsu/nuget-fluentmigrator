@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PostgresSequenceTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -29,27 +42,53 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Postgres
 {
+    /// <summary>
+    /// Defines test class PostgresSequenceTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.BaseSequenceTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.BaseSequenceTests" />
     [TestFixture]
     [Category("Integration")]
     [Category("Postgres")]
     public class PostgresSequenceTests : BaseSequenceTests
     {
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private PostgresProcessor Processor { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingSequenceExistsReturnsFalseIfSequenceDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingSequenceExistsReturnsFalseIfSequenceDoesNotExist()
         {
             Processor.SequenceExists(null, "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingSequenceExistsReturnsFalseIfSequenceDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingSequenceExistsReturnsFalseIfSequenceDoesNotExistWithSchema()
         {
             Processor.SequenceExists("test_schema", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingSequenceExistsReturnsTrueIfSequenceExists.
+        /// </summary>
         [Test]
         public override void CallingSequenceExistsReturnsTrueIfSequenceExists()
         {
@@ -57,6 +96,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
                 Processor.SequenceExists(null, "test_sequence").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CallingSequenceExistsReturnsTrueIfSequenceExistsWithSchema.
+        /// </summary>
         [Test]
         public override void CallingSequenceExistsReturnsTrueIfSequenceExistsWithSchema()
         {
@@ -64,6 +106,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
                 Processor.SequenceExists("test_schema", "test_sequence").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
@@ -77,12 +122,18 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
             ServiceProvider = serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -90,6 +141,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Postgres
             Processor = ServiceScope.ServiceProvider.GetRequiredService<PostgresProcessor>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

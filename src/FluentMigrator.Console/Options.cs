@@ -1,30 +1,16 @@
+// ***********************************************************************
+// Assembly         : Migrate
+// Author           : eivin
+// Created          : 10-10-2019
 //
-// Options.cs
-//
-// Authors:
-//  Jonathan Pryor <jpryor@novell.com>
-//
-// Copyright (C) 2008 Novell (http://www.novell.com)
-//
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to
-// permit persons to whom the Software is furnished to do so, subject to
-// the following conditions:
-//
-// The above copyright notice and this permission notice shall be
-// included in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-// NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-// LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-// OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-// WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Options.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 
 // Compile With:
 //   gmcs -debug+ -r:System.Core Options.cs -o:NDesk.Options.dll
@@ -139,57 +125,183 @@ using System.Text.RegularExpressions;
 
 namespace Mono.Options
 {
+    /// <summary>
+    /// Class OptionValueCollection.
+    /// Implements the <see cref="System.Collections.IList" />
+    /// Implements the <see cref="System.Collections.Generic.IList{System.String}" />
+    /// </summary>
+    /// <seealso cref="System.Collections.IList" />
+    /// <seealso cref="System.Collections.Generic.IList{System.String}" />
     public class OptionValueCollection : IList, IList<string>
     {
 
+        /// <summary>
+        /// The values
+        /// </summary>
         List<string> values = new List<string>();
+        /// <summary>
+        /// The c
+        /// </summary>
         OptionContext c;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionValueCollection"/> class.
+        /// </summary>
+        /// <param name="c">The c.</param>
         internal OptionValueCollection(OptionContext c)
         {
             this.c = c;
         }
 
         #region ICollection
+        /// <summary>
+        /// Copies the elements of the <see cref="T:System.Collections.ICollection" /> to an <see cref="T:System.Array" />, starting at a particular <see cref="T:System.Array" /> index.
+        /// </summary>
+        /// <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from <see cref="T:System.Collections.ICollection" />. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
+        /// <param name="index">The zero-based index in <paramref name="array" /> at which copying begins.</param>
         void ICollection.CopyTo(Array array, int index) { (values as ICollection).CopyTo(array, index); }
+        /// <summary>
+        /// Gets a value indicating whether access to the <see cref="T:System.Collections.ICollection" /> is synchronized (thread safe).
+        /// </summary>
+        /// <value><c>true</c> if this instance is synchronized; otherwise, <c>false</c>.</value>
         bool ICollection.IsSynchronized { get { return (values as ICollection).IsSynchronized; } }
+        /// <summary>
+        /// Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection" />.
+        /// </summary>
+        /// <value>The synchronize root.</value>
         object ICollection.SyncRoot { get { return (values as ICollection).SyncRoot; } }
         #endregion
 
         #region ICollection<T>
+        /// <summary>
+        /// Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1" />.
+        /// </summary>
+        /// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
         public void Add(string item) { values.Add(item); }
+        /// <summary>
+        /// Removes all items from the <see cref="T:System.Collections.IList" />.
+        /// </summary>
         public void Clear() { values.Clear(); }
+        /// <summary>
+        /// Determines whether the <see cref="T:System.Collections.Generic.ICollection`1" /> contains a specific value.
+        /// </summary>
+        /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+        /// <returns><see langword="true" /> if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />.</returns>
         public bool Contains(string item) { return values.Contains(item); }
+        /// <summary>
+        /// Copies the elements of the <see cref="T:System.Collections.Generic.ICollection`1" /> to an <see cref="T:System.Array" />, starting at a particular <see cref="T:System.Array" /> index.
+        /// </summary>
+        /// <param name="array">The one-dimensional <see cref="T:System.Array" /> that is the destination of the elements copied from <see cref="T:System.Collections.Generic.ICollection`1" />. The <see cref="T:System.Array" /> must have zero-based indexing.</param>
+        /// <param name="arrayIndex">The zero-based index in <paramref name="array" /> at which copying begins.</param>
         public void CopyTo(string[] array, int arrayIndex) { values.CopyTo(array, arrayIndex); }
+        /// <summary>
+        /// Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1" />.
+        /// </summary>
+        /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+        /// <returns><see langword="true" /> if <paramref name="item" /> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
         public bool Remove(string item) { return values.Remove(item); }
+        /// <summary>
+        /// Gets the number of elements contained in the <see cref="T:System.Collections.ICollection" />.
+        /// </summary>
+        /// <value>The count.</value>
         public int Count { get { return values.Count; } }
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="T:System.Collections.IList" /> is read-only.
+        /// </summary>
+        /// <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
         public bool IsReadOnly { get { return false; } }
         #endregion
 
         #region IEnumerable
+        /// <summary>
+        /// Returns an enumerator that iterates through a collection.
+        /// </summary>
+        /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
         IEnumerator IEnumerable.GetEnumerator() { return values.GetEnumerator(); }
         #endregion
 
         #region IEnumerable<T>
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>An enumerator that can be used to iterate through the collection.</returns>
         public IEnumerator<string> GetEnumerator() { return values.GetEnumerator(); }
         #endregion
 
         #region IList
+        /// <summary>
+        /// Adds an item to the <see cref="T:System.Collections.IList" />.
+        /// </summary>
+        /// <param name="value">The object to add to the <see cref="T:System.Collections.IList" />.</param>
+        /// <returns>The position into which the new element was inserted, or -1 to indicate that the item was not inserted into the collection.</returns>
         int IList.Add(object value) { return (values as IList).Add(value); }
+        /// <summary>
+        /// Determines whether the <see cref="T:System.Collections.IList" /> contains a specific value.
+        /// </summary>
+        /// <param name="value">The object to locate in the <see cref="T:System.Collections.IList" />.</param>
+        /// <returns><see langword="true" /> if the <see cref="T:System.Object" /> is found in the <see cref="T:System.Collections.IList" />; otherwise, <see langword="false" />.</returns>
         bool IList.Contains(object value) { return (values as IList).Contains(value); }
+        /// <summary>
+        /// Determines the index of a specific item in the <see cref="T:System.Collections.IList" />.
+        /// </summary>
+        /// <param name="value">The object to locate in the <see cref="T:System.Collections.IList" />.</param>
+        /// <returns>The index of <paramref name="value" /> if found in the list; otherwise, -1.</returns>
         int IList.IndexOf(object value) { return (values as IList).IndexOf(value); }
+        /// <summary>
+        /// Inserts an item to the <see cref="T:System.Collections.IList" /> at the specified index.
+        /// </summary>
+        /// <param name="index">The zero-based index at which <paramref name="value" /> should be inserted.</param>
+        /// <param name="value">The object to insert into the <see cref="T:System.Collections.IList" />.</param>
         void IList.Insert(int index, object value) { (values as IList).Insert(index, value); }
+        /// <summary>
+        /// Removes the first occurrence of a specific object from the <see cref="T:System.Collections.IList" />.
+        /// </summary>
+        /// <param name="value">The object to remove from the <see cref="T:System.Collections.IList" />.</param>
         void IList.Remove(object value) { (values as IList).Remove(value); }
+        /// <summary>
+        /// Removes the <see cref="T:System.Collections.IList" /> item at the specified index.
+        /// </summary>
+        /// <param name="index">The zero-based index of the item to remove.</param>
         void IList.RemoveAt(int index) { (values as IList).RemoveAt(index); }
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="T:System.Collections.IList" /> has a fixed size.
+        /// </summary>
+        /// <value><c>true</c> if this instance is fixed size; otherwise, <c>false</c>.</value>
         bool IList.IsFixedSize { get { return false; } }
+        /// <summary>
+        /// Gets or sets the <see cref="System.Object"/> at the specified index.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns>System.Object.</returns>
         object IList.this[int index] { get { return this[index]; } set { (values as IList)[index] = value; } }
         #endregion
 
         #region IList<T>
+        /// <summary>
+        /// Determines the index of a specific item in the <see cref="T:System.Collections.Generic.IList`1" />.
+        /// </summary>
+        /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.IList`1" />.</param>
+        /// <returns>The index of <paramref name="item" /> if found in the list; otherwise, -1.</returns>
         public int IndexOf(string item) { return values.IndexOf(item); }
+        /// <summary>
+        /// Inserts an item to the <see cref="T:System.Collections.Generic.IList`1" /> at the specified index.
+        /// </summary>
+        /// <param name="index">The zero-based index at which <paramref name="item" /> should be inserted.</param>
+        /// <param name="item">The object to insert into the <see cref="T:System.Collections.Generic.IList`1" />.</param>
         public void Insert(int index, string item) { values.Insert(index, item); }
+        /// <summary>
+        /// Removes the <see cref="T:System.Collections.IList" /> item at the specified index.
+        /// </summary>
+        /// <param name="index">The zero-based index of the item to remove.</param>
         public void RemoveAt(int index) { values.RemoveAt(index); }
 
+        /// <summary>
+        /// Asserts the valid.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <exception cref="InvalidOperationException">OptionContext.Option is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">index</exception>
+        /// <exception cref="Mono.Options.OptionException"></exception>
         private void AssertValid(int index)
         {
             if (c.Option == null)
@@ -203,6 +315,11 @@ namespace Mono.Options
                         c.OptionName);
         }
 
+        /// <summary>
+        /// Gets or sets the <see cref="System.String"/> at the specified index.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns>System.String.</returns>
         public string this[int index]
         {
             get
@@ -217,85 +334,187 @@ namespace Mono.Options
         }
         #endregion
 
+        /// <summary>
+        /// Converts to list.
+        /// </summary>
+        /// <returns>List&lt;System.String&gt;.</returns>
         public List<string> ToList()
         {
             return new List<string>(values);
         }
 
+        /// <summary>
+        /// Converts to array.
+        /// </summary>
+        /// <returns>System.String[].</returns>
         public string[] ToArray()
         {
             return values.ToArray();
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
             return string.Join(", ", values.ToArray());
         }
     }
 
+    /// <summary>
+    /// Class OptionContext.
+    /// </summary>
     public class OptionContext
     {
+        /// <summary>
+        /// The option
+        /// </summary>
         private Option option;
+        /// <summary>
+        /// The name
+        /// </summary>
         private string name;
+        /// <summary>
+        /// The index
+        /// </summary>
         private int index;
+        /// <summary>
+        /// The set
+        /// </summary>
         private OptionSet set;
+        /// <summary>
+        /// The c
+        /// </summary>
         private OptionValueCollection c;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionContext"/> class.
+        /// </summary>
+        /// <param name="set">The set.</param>
         public OptionContext(OptionSet set)
         {
             this.set = set;
             this.c = new OptionValueCollection(this);
         }
 
+        /// <summary>
+        /// Gets or sets the option.
+        /// </summary>
+        /// <value>The option.</value>
         public Option Option
         {
             get { return option; }
             set { option = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the name of the option.
+        /// </summary>
+        /// <value>The name of the option.</value>
         public string OptionName
         {
             get { return name; }
             set { name = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the index of the option.
+        /// </summary>
+        /// <value>The index of the option.</value>
         public int OptionIndex
         {
             get { return index; }
             set { index = value; }
         }
 
+        /// <summary>
+        /// Gets the option set.
+        /// </summary>
+        /// <value>The option set.</value>
         public OptionSet OptionSet
         {
             get { return set; }
         }
 
+        /// <summary>
+        /// Gets the option values.
+        /// </summary>
+        /// <value>The option values.</value>
         public OptionValueCollection OptionValues
         {
             get { return c; }
         }
     }
 
+    /// <summary>
+    /// Enum OptionValueType
+    /// </summary>
     public enum OptionValueType
     {
+        /// <summary>
+        /// The none
+        /// </summary>
         None,
+        /// <summary>
+        /// The optional
+        /// </summary>
         Optional,
+        /// <summary>
+        /// The required
+        /// </summary>
         Required,
     }
 
+    /// <summary>
+    /// Class Option.
+    /// </summary>
     public abstract class Option
     {
+        /// <summary>
+        /// The prototype
+        /// </summary>
         string prototype, description;
+        /// <summary>
+        /// The names
+        /// </summary>
         string[] names;
+        /// <summary>
+        /// The type
+        /// </summary>
         OptionValueType type;
+        /// <summary>
+        /// The count
+        /// </summary>
         int count;
+        /// <summary>
+        /// The separators
+        /// </summary>
         string[] separators;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Option"/> class.
+        /// </summary>
+        /// <param name="prototype">The prototype.</param>
+        /// <param name="description">The description.</param>
         protected Option(string prototype, string description)
             : this(prototype, description, 1)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Option"/> class.
+        /// </summary>
+        /// <param name="prototype">The prototype.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="maxValueCount">The maximum value count.</param>
+        /// <exception cref="ArgumentNullException">prototype</exception>
+        /// <exception cref="ArgumentException">Cannot be the empty string. - prototype</exception>
+        /// <exception cref="ArgumentException">Cannot provide maxValueCount of 0 for OptionValueType.Required or " +
+        ///                             "OptionValueType.Optional. - maxValueCount</exception>
+        /// <exception cref="ArgumentException">maxValueCount</exception>
+        /// <exception cref="ArgumentException">The default option handler '<>' cannot require values. - prototype</exception>
+        /// <exception cref="ArgumentOutOfRangeException">maxValueCount</exception>
         protected Option(string prototype, string description, int maxValueCount)
         {
             if (prototype == null)
@@ -328,16 +547,40 @@ namespace Mono.Options
                         "prototype");
         }
 
+        /// <summary>
+        /// Gets the prototype.
+        /// </summary>
+        /// <value>The prototype.</value>
         public string Prototype { get { return prototype; } }
+        /// <summary>
+        /// Gets the description.
+        /// </summary>
+        /// <value>The description.</value>
         public string Description { get { return description; } }
+        /// <summary>
+        /// Gets the type of the option value.
+        /// </summary>
+        /// <value>The type of the option value.</value>
         public OptionValueType OptionValueType { get { return type; } }
+        /// <summary>
+        /// Gets the maximum value count.
+        /// </summary>
+        /// <value>The maximum value count.</value>
         public int MaxValueCount { get { return count; } }
 
+        /// <summary>
+        /// Gets the names.
+        /// </summary>
+        /// <returns>System.String[].</returns>
         public string[] GetNames()
         {
             return (string[])names.Clone();
         }
 
+        /// <summary>
+        /// Gets the value separators.
+        /// </summary>
+        /// <returns>System.String[].</returns>
         public string[] GetValueSeparators()
         {
             if (separators == null)
@@ -345,6 +588,14 @@ namespace Mono.Options
             return (string[])separators.Clone();
         }
 
+        /// <summary>
+        /// Parses the specified value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value">The value.</param>
+        /// <param name="c">The c.</param>
+        /// <returns>T.</returns>
+        /// <exception cref="Mono.Options.OptionException"></exception>
         protected static T Parse<T>(string value, OptionContext c)
         {
             Type tt = typeof(T);
@@ -370,11 +621,29 @@ namespace Mono.Options
             return t;
         }
 
+        /// <summary>
+        /// Gets the names.
+        /// </summary>
+        /// <value>The names.</value>
         internal string[] Names { get { return names; } }
+        /// <summary>
+        /// Gets the value separators.
+        /// </summary>
+        /// <value>The value separators.</value>
         internal string[] ValueSeparators { get { return separators; } }
 
+        /// <summary>
+        /// The name terminator
+        /// </summary>
         static readonly char[] NameTerminator = new char[] { '=', ':' };
 
+        /// <summary>
+        /// Parses the prototype.
+        /// </summary>
+        /// <returns>OptionValueType.</returns>
+        /// <exception cref="ArgumentException">Empty option names are not supported. - prototype</exception>
+        /// <exception cref="ArgumentException">prototype</exception>
+        /// <exception cref="ArgumentException">prototype</exception>
         private OptionValueType ParsePrototype()
         {
             char type = '\0';
@@ -418,6 +687,15 @@ namespace Mono.Options
             return type == '=' ? OptionValueType.Required : OptionValueType.Optional;
         }
 
+        /// <summary>
+        /// Adds the separators.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="end">The end.</param>
+        /// <param name="seps">The seps.</param>
+        /// <exception cref="ArgumentException">prototype</exception>
+        /// <exception cref="ArgumentException">prototype</exception>
+        /// <exception cref="ArgumentException">prototype</exception>
         private static void AddSeparators(string name, int end, ICollection<string> seps)
         {
             int start = -1;
@@ -452,6 +730,10 @@ namespace Mono.Options
                         "prototype");
         }
 
+        /// <summary>
+        /// Invokes the specified c.
+        /// </summary>
+        /// <param name="c">The c.</param>
         public void Invoke(OptionContext c)
         {
             OnParseComplete(c);
@@ -460,46 +742,90 @@ namespace Mono.Options
             c.OptionValues.Clear();
         }
 
+        /// <summary>
+        /// Called when [parse complete].
+        /// </summary>
+        /// <param name="c">The c.</param>
         protected abstract void OnParseComplete(OptionContext c);
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
             return Prototype;
         }
     }
 
+    /// <summary>
+    /// Class OptionException.
+    /// Implements the <see cref="System.Exception" />
+    /// </summary>
+    /// <seealso cref="System.Exception" />
     [Serializable]
     public class OptionException : Exception
     {
+        /// <summary>
+        /// The option
+        /// </summary>
         private string option;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionException"/> class.
+        /// </summary>
         public OptionException()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionException"/> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="optionName">Name of the option.</param>
         public OptionException(string message, string optionName)
             : base(message)
         {
             this.option = optionName;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionException"/> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="optionName">Name of the option.</param>
+        /// <param name="innerException">The inner exception.</param>
         public OptionException(string message, string optionName, Exception innerException)
             : base(message, innerException)
         {
             this.option = optionName;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionException"/> class.
+        /// </summary>
+        /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+        /// <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
         protected OptionException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
             this.option = info.GetString("OptionName");
         }
 
+        /// <summary>
+        /// Gets the name of the option.
+        /// </summary>
+        /// <value>The name of the option.</value>
         public string OptionName
         {
             get { return this.option; }
         }
 
+        /// <summary>
+        /// When overridden in a derived class, sets the <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with information about the exception.
+        /// </summary>
+        /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized object data about the exception being thrown.</param>
+        /// <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains contextual information about the source or destination.</param>
         [SecurityPermission(SecurityAction.LinkDemand, SerializationFormatter = true)]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
@@ -508,27 +834,60 @@ namespace Mono.Options
         }
     }
 
+    /// <summary>
+    /// Delegate OptionAction
+    /// </summary>
+    /// <typeparam name="TKey">The type of the t key.</typeparam>
+    /// <typeparam name="TValue">The type of the t value.</typeparam>
+    /// <param name="key">The key.</param>
+    /// <param name="value">The value.</param>
     public delegate void OptionAction<TKey, TValue>(TKey key, TValue value);
 
+    /// <summary>
+    /// Class OptionSet.
+    /// Implements the <see cref="System.Collections.ObjectModel.KeyedCollection{System.String, Mono.Options.Option}" />
+    /// </summary>
+    /// <seealso cref="System.Collections.ObjectModel.KeyedCollection{System.String, Mono.Options.Option}" />
     public class OptionSet : KeyedCollection<string, Option>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionSet"/> class.
+        /// </summary>
         public OptionSet()
             : this(delegate(string f) { return f; })
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OptionSet"/> class.
+        /// </summary>
+        /// <param name="localizer">The localizer.</param>
         public OptionSet(Converter<string, string> localizer)
         {
             this.localizer = localizer;
         }
 
+        /// <summary>
+        /// The localizer
+        /// </summary>
         Converter<string, string> localizer;
 
+        /// <summary>
+        /// Gets the message localizer.
+        /// </summary>
+        /// <value>The message localizer.</value>
         public Converter<string, string> MessageLocalizer
         {
             get { return localizer; }
         }
 
+        /// <summary>
+        /// When implemented in a derived class, extracts the key from the specified element.
+        /// </summary>
+        /// <param name="item">The element from which to extract the key.</param>
+        /// <returns>The key for the specified element.</returns>
+        /// <exception cref="ArgumentNullException">option</exception>
+        /// <exception cref="InvalidOperationException">Option has no names!</exception>
         protected override string GetKeyForItem(Option item)
         {
             if (item == null)
@@ -540,12 +899,21 @@ namespace Mono.Options
             throw new InvalidOperationException("Option has no names!");
         }
 
+        /// <summary>
+        /// Inserts an element into the <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> at the specified index.
+        /// </summary>
+        /// <param name="index">The zero-based index at which <paramref name="item" /> should be inserted.</param>
+        /// <param name="item">The object to insert.</param>
         protected override void InsertItem(int index, Option item)
         {
             base.InsertItem(index, item);
             AddImpl(item);
         }
 
+        /// <summary>
+        /// Removes the element at the specified index of the <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" />.
+        /// </summary>
+        /// <param name="index">The index of the element to remove.</param>
         protected override void RemoveItem(int index)
         {
             base.RemoveItem(index);
@@ -557,6 +925,11 @@ namespace Mono.Options
             }
         }
 
+        /// <summary>
+        /// Replaces the item at the specified index with the specified item.
+        /// </summary>
+        /// <param name="index">The zero-based index of the item to be replaced.</param>
+        /// <param name="item">The new item.</param>
         protected override void SetItem(int index, Option item)
         {
             base.SetItem(index, item);
@@ -564,6 +937,11 @@ namespace Mono.Options
             AddImpl(item);
         }
 
+        /// <summary>
+        /// Adds the implementation.
+        /// </summary>
+        /// <param name="option">The option.</param>
+        /// <exception cref="ArgumentNullException">option</exception>
         private void AddImpl(Option option)
         {
             if (option == null)
@@ -586,16 +964,37 @@ namespace Mono.Options
             }
         }
 
+        /// <summary>
+        /// Adds the specified option.
+        /// </summary>
+        /// <param name="option">The option.</param>
+        /// <returns>OptionSet.</returns>
         public new OptionSet Add(Option option)
         {
             base.Add(option);
             return this;
         }
 
+        /// <summary>
+        /// Class ActionOption. This class cannot be inherited.
+        /// Implements the <see cref="Mono.Options.Option" />
+        /// </summary>
+        /// <seealso cref="Mono.Options.Option" />
         sealed class ActionOption : Option
         {
+            /// <summary>
+            /// The action
+            /// </summary>
             Action<OptionValueCollection> action;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ActionOption"/> class.
+            /// </summary>
+            /// <param name="prototype">The prototype.</param>
+            /// <param name="description">The description.</param>
+            /// <param name="count">The count.</param>
+            /// <param name="action">The action.</param>
+            /// <exception cref="ArgumentNullException">action</exception>
             public ActionOption(string prototype, string description, int count, Action<OptionValueCollection> action)
                 : base(prototype, description, count)
             {
@@ -604,17 +1003,35 @@ namespace Mono.Options
                 this.action = action;
             }
 
+            /// <summary>
+            /// Called when [parse complete].
+            /// </summary>
+            /// <param name="c">The c.</param>
             protected override void OnParseComplete(OptionContext c)
             {
                 action(c.OptionValues);
             }
         }
 
+        /// <summary>
+        /// Adds the specified prototype.
+        /// </summary>
+        /// <param name="prototype">The prototype.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>OptionSet.</returns>
         public OptionSet Add(string prototype, Action<string> action)
         {
             return Add(prototype, null, action);
         }
 
+        /// <summary>
+        /// Adds the specified prototype.
+        /// </summary>
+        /// <param name="prototype">The prototype.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>OptionSet.</returns>
+        /// <exception cref="ArgumentNullException">action</exception>
         public OptionSet Add(string prototype, string description, Action<string> action)
         {
             if (action == null)
@@ -625,11 +1042,25 @@ namespace Mono.Options
             return this;
         }
 
+        /// <summary>
+        /// Adds the specified prototype.
+        /// </summary>
+        /// <param name="prototype">The prototype.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>OptionSet.</returns>
         public OptionSet Add(string prototype, OptionAction<string, string> action)
         {
             return Add(prototype, null, action);
         }
 
+        /// <summary>
+        /// Adds the specified prototype.
+        /// </summary>
+        /// <param name="prototype">The prototype.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>OptionSet.</returns>
+        /// <exception cref="ArgumentNullException">action</exception>
         public OptionSet Add(string prototype, string description, OptionAction<string, string> action)
         {
             if (action == null)
@@ -640,10 +1071,26 @@ namespace Mono.Options
             return this;
         }
 
+        /// <summary>
+        /// Class ActionOption. This class cannot be inherited.
+        /// Implements the <see cref="Mono.Options.Option" />
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <seealso cref="Mono.Options.Option" />
         sealed class ActionOption<T> : Option
         {
+            /// <summary>
+            /// The action
+            /// </summary>
             Action<T> action;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ActionOption{T}"/> class.
+            /// </summary>
+            /// <param name="prototype">The prototype.</param>
+            /// <param name="description">The description.</param>
+            /// <param name="action">The action.</param>
+            /// <exception cref="ArgumentNullException">action</exception>
             public ActionOption(string prototype, string description, Action<T> action)
                 : base(prototype, description, 1)
             {
@@ -652,16 +1099,37 @@ namespace Mono.Options
                 this.action = action;
             }
 
+            /// <summary>
+            /// Called when [parse complete].
+            /// </summary>
+            /// <param name="c">The c.</param>
             protected override void OnParseComplete(OptionContext c)
             {
                 action(Parse<T>(c.OptionValues[0], c));
             }
         }
 
+        /// <summary>
+        /// Class ActionOption. This class cannot be inherited.
+        /// Implements the <see cref="Mono.Options.Option" />
+        /// </summary>
+        /// <typeparam name="TKey">The type of the t key.</typeparam>
+        /// <typeparam name="TValue">The type of the t value.</typeparam>
+        /// <seealso cref="Mono.Options.Option" />
         sealed class ActionOption<TKey, TValue> : Option
         {
+            /// <summary>
+            /// The action
+            /// </summary>
             OptionAction<TKey, TValue> action;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ActionOption{TKey, TValue}"/> class.
+            /// </summary>
+            /// <param name="prototype">The prototype.</param>
+            /// <param name="description">The description.</param>
+            /// <param name="action">The action.</param>
+            /// <exception cref="ArgumentNullException">action</exception>
             public ActionOption(string prototype, string description, OptionAction<TKey, TValue> action)
                 : base(prototype, description, 2)
             {
@@ -670,6 +1138,10 @@ namespace Mono.Options
                 this.action = action;
             }
 
+            /// <summary>
+            /// Called when [parse complete].
+            /// </summary>
+            /// <param name="c">The c.</param>
             protected override void OnParseComplete(OptionContext c)
             {
                 action(
@@ -678,31 +1150,72 @@ namespace Mono.Options
             }
         }
 
+        /// <summary>
+        /// Adds the specified prototype.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="prototype">The prototype.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>OptionSet.</returns>
         public OptionSet Add<T>(string prototype, Action<T> action)
         {
             return Add(prototype, null, action);
         }
 
+        /// <summary>
+        /// Adds the specified prototype.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="prototype">The prototype.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>OptionSet.</returns>
         public OptionSet Add<T>(string prototype, string description, Action<T> action)
         {
             return Add(new ActionOption<T>(prototype, description, action));
         }
 
+        /// <summary>
+        /// Adds the specified prototype.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the t key.</typeparam>
+        /// <typeparam name="TValue">The type of the t value.</typeparam>
+        /// <param name="prototype">The prototype.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>OptionSet.</returns>
         public OptionSet Add<TKey, TValue>(string prototype, OptionAction<TKey, TValue> action)
         {
             return Add(prototype, null, action);
         }
 
+        /// <summary>
+        /// Adds the specified prototype.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the t key.</typeparam>
+        /// <typeparam name="TValue">The type of the t value.</typeparam>
+        /// <param name="prototype">The prototype.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>OptionSet.</returns>
         public OptionSet Add<TKey, TValue>(string prototype, string description, OptionAction<TKey, TValue> action)
         {
             return Add(new ActionOption<TKey, TValue>(prototype, description, action));
         }
 
+        /// <summary>
+        /// Creates the option context.
+        /// </summary>
+        /// <returns>OptionContext.</returns>
         protected virtual OptionContext CreateOptionContext()
         {
             return new OptionContext(this);
         }
 
+        /// <summary>
+        /// Parses the specified arguments.
+        /// </summary>
+        /// <param name="arguments">The arguments.</param>
+        /// <returns>List&lt;System.String&gt;.</returns>
         public List<string> Parse(IEnumerable<string> arguments)
         {
             OptionContext c = CreateOptionContext();
@@ -731,6 +1244,14 @@ namespace Mono.Options
             return unprocessed;
         }
 
+        /// <summary>
+        /// Unprocesseds the specified extra.
+        /// </summary>
+        /// <param name="extra">The extra.</param>
+        /// <param name="def">The definition.</param>
+        /// <param name="c">The c.</param>
+        /// <param name="argument">The argument.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool Unprocessed(ICollection<string> extra, Option def, OptionContext c, string argument)
         {
             if (def == null)
@@ -744,9 +1265,22 @@ namespace Mono.Options
             return false;
         }
 
+        /// <summary>
+        /// The value option
+        /// </summary>
         private readonly Regex ValueOption = new Regex(
             @"^(?<flag>--|-|/)(?<name>[^:=]+)((?<sep>[:=])(?<value>.*))?$");
 
+        /// <summary>
+        /// Gets the option parts.
+        /// </summary>
+        /// <param name="argument">The argument.</param>
+        /// <param name="flag">The flag.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="sep">The sep.</param>
+        /// <param name="value">The value.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        /// <exception cref="ArgumentNullException">argument</exception>
         protected bool GetOptionParts(string argument, out string flag, out string name, out string sep, out string value)
         {
             if (argument == null)
@@ -768,6 +1302,12 @@ namespace Mono.Options
             return true;
         }
 
+        /// <summary>
+        /// Parses the specified argument.
+        /// </summary>
+        /// <param name="argument">The argument.</param>
+        /// <param name="c">The c.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         protected virtual bool Parse(string argument, OptionContext c)
         {
             if (c.Option != null)
@@ -809,16 +1349,32 @@ namespace Mono.Options
             return false;
         }
 
+        /// <summary>
+        /// Determines whether the specified key contains key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns><c>true</c> if the specified key contains key; otherwise, <c>false</c>.</returns>
         private bool ContainsKey(string key)
         {
             return this.SelectMany(op => op.Names.Select(n => n.ToLower())).Contains(key.ToLower());
         }
 
+        /// <summary>
+        /// Gets the option for key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>Option.</returns>
         private Option GetOptionForKey(string key)
         {
             return this.SingleOrDefault(op => op.Names.Select(n => n.ToLower()).Contains(key.ToLower()));
         }
 
+        /// <summary>
+        /// Parses the value.
+        /// </summary>
+        /// <param name="option">The option.</param>
+        /// <param name="c">The c.</param>
+        /// <exception cref="Mono.Options.OptionException"></exception>
         private void ParseValue(string option, OptionContext c)
         {
             if (option != null)
@@ -840,6 +1396,13 @@ namespace Mono.Options
             }
         }
 
+        /// <summary>
+        /// Parses the bool.
+        /// </summary>
+        /// <param name="option">The option.</param>
+        /// <param name="n">The n.</param>
+        /// <param name="c">The c.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool ParseBool(string option, string n, OptionContext c)
         {
             Option p;
@@ -858,6 +1421,15 @@ namespace Mono.Options
             return false;
         }
 
+        /// <summary>
+        /// Parses the bundled value.
+        /// </summary>
+        /// <param name="f">The f.</param>
+        /// <param name="n">The n.</param>
+        /// <param name="c">The c.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        /// <exception cref="Mono.Options.OptionException"></exception>
+        /// <exception cref="InvalidOperationException">Unknown OptionValueType: " + p.OptionValueType</exception>
         private bool ParseBundledValue(string f, string n, OptionContext c)
         {
             if (f != "-")
@@ -896,6 +1468,13 @@ namespace Mono.Options
             return true;
         }
 
+        /// <summary>
+        /// Invokes the specified c.
+        /// </summary>
+        /// <param name="c">The c.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="option">The option.</param>
         private static void Invoke(OptionContext c, string name, string value, Option option)
         {
             c.OptionName = name;
@@ -904,8 +1483,15 @@ namespace Mono.Options
             option.Invoke(c);
         }
 
+        /// <summary>
+        /// The option width
+        /// </summary>
         private const int OptionWidth = 29;
 
+        /// <summary>
+        /// Writes the option descriptions.
+        /// </summary>
+        /// <param name="o">The o.</param>
         public void WriteOptionDescriptions(TextWriter o)
         {
             foreach (Option p in this)
@@ -934,6 +1520,13 @@ namespace Mono.Options
             }
         }
 
+        /// <summary>
+        /// Writes the option prototype.
+        /// </summary>
+        /// <param name="o">The o.</param>
+        /// <param name="p">The p.</param>
+        /// <param name="written">The written.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         bool WriteOptionPrototype(TextWriter o, Option p, ref int written)
         {
             string[] names = p.Names;
@@ -984,6 +1577,12 @@ namespace Mono.Options
             return true;
         }
 
+        /// <summary>
+        /// Gets the index of the next option.
+        /// </summary>
+        /// <param name="names">The names.</param>
+        /// <param name="i">The i.</param>
+        /// <returns>System.Int32.</returns>
         static int GetNextOptionIndex(string[] names, int i)
         {
             while (i < names.Length && names[i] == "<>")
@@ -993,12 +1592,25 @@ namespace Mono.Options
             return i;
         }
 
+        /// <summary>
+        /// Writes the specified o.
+        /// </summary>
+        /// <param name="o">The o.</param>
+        /// <param name="n">The n.</param>
+        /// <param name="s">The s.</param>
         static void Write(TextWriter o, ref int n, string s)
         {
             n += s.Length;
             o.Write(s);
         }
 
+        /// <summary>
+        /// Gets the name of the argument.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <param name="maxIndex">The maximum index.</param>
+        /// <param name="description">The description.</param>
+        /// <returns>System.String.</returns>
         private static string GetArgumentName(int index, int maxIndex, string description)
         {
             if (description == null)
@@ -1025,6 +1637,12 @@ namespace Mono.Options
             return maxIndex == 1 ? "VALUE" : "VALUE" + (index + 1);
         }
 
+        /// <summary>
+        /// Gets the description.
+        /// </summary>
+        /// <param name="description">The description.</param>
+        /// <returns>System.String.</returns>
+        /// <exception cref="InvalidOperationException">Invalid option description: " + description</exception>
         private static string GetDescription(string description)
         {
             if (description == null)
@@ -1072,6 +1690,11 @@ namespace Mono.Options
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Gets the lines.
+        /// </summary>
+        /// <param name="description">The description.</param>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         private static IEnumerable<string> GetLines(string description)
         {
             if (string.IsNullOrEmpty(description))
@@ -1098,11 +1721,23 @@ namespace Mono.Options
             } while (end < description.Length);
         }
 
+        /// <summary>
+        /// Determines whether [is eol character] [the specified c].
+        /// </summary>
+        /// <param name="c">The c.</param>
+        /// <returns><c>true</c> if [is eol character] [the specified c]; otherwise, <c>false</c>.</returns>
         private static bool IsEolChar(char c)
         {
             return !char.IsLetterOrDigit(c);
         }
 
+        /// <summary>
+        /// Gets the line end.
+        /// </summary>
+        /// <param name="start">The start.</param>
+        /// <param name="length">The length.</param>
+        /// <param name="description">The description.</param>
+        /// <returns>System.Int32.</returns>
         private static int GetLineEnd(int start, int length, string description)
         {
             int end = System.Math.Min(start + length, description.Length);

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationScopeHandler.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -22,11 +35,26 @@ using FluentMigrator.Runner.Processors;
 
 namespace FluentMigrator.Runner
 {
+    /// <summary>
+    /// Class MigrationScopeHandler.
+    /// Implements the <see cref="FluentMigrator.Runner.IMigrationScopeManager" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.IMigrationScopeManager" />
     public class MigrationScopeHandler : IMigrationScopeManager
     {
+        /// <summary>
+        /// The processor
+        /// </summary>
         private readonly IMigrationProcessor _processor;
+        /// <summary>
+        /// The preview only
+        /// </summary>
         private readonly bool _previewOnly;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MigrationScopeHandler"/> class.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
         [Obsolete]
         public MigrationScopeHandler(IMigrationProcessor processor)
         {
@@ -34,14 +62,27 @@ namespace FluentMigrator.Runner
             _previewOnly = processor.Options?.PreviewOnly ?? false;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MigrationScopeHandler"/> class.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="processorOptions">The processor options.</param>
         public MigrationScopeHandler(IMigrationProcessor processor, ProcessorOptions processorOptions)
         {
             _processor = processor;
             _previewOnly = processorOptions.PreviewOnly;
         }
 
+        /// <summary>
+        /// Gets or sets the current scope.
+        /// </summary>
+        /// <value>The current scope.</value>
         public IMigrationScope CurrentScope { get; set; }
 
+        /// <summary>
+        /// Creates new migration scope
+        /// </summary>
+        /// <returns>Newly created scope</returns>
         public IMigrationScope BeginScope()
         {
             GuardAgainstActiveMigrationScope();
@@ -49,6 +90,11 @@ namespace FluentMigrator.Runner
             return CurrentScope;
         }
 
+        /// <summary>
+        /// Creates new migrations scope or reuses existing one
+        /// </summary>
+        /// <param name="transactional">Defines if transactions should be used</param>
+        /// <returns>Migration scope</returns>
         public IMigrationScope CreateOrWrapMigrationScope(bool transactional = true)
         {
             // Prevent connection from being opened when --no-connection is specified in preview mode
@@ -62,11 +108,19 @@ namespace FluentMigrator.Runner
             return new NoOpMigrationScope();
         }
 
+        /// <summary>
+        /// Guards the against active migration scope.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">The runner is already in an active migration scope.</exception>
         private void GuardAgainstActiveMigrationScope()
         {
             if (HasActiveMigrationScope) throw new InvalidOperationException("The runner is already in an active migration scope.");
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has active migration scope.
+        /// </summary>
+        /// <value><c>true</c> if this instance has active migration scope; otherwise, <c>false</c>.</value>
         private bool HasActiveMigrationScope
         {
             get { return CurrentScope != null && CurrentScope.IsActive; }

@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RunnerBuilderConfigurationTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,9 +41,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Initialization
 {
+    /// <summary>
+    /// Defines test class RunnerBuilderConfigurationTests.
+    /// </summary>
     [TestFixture]
     public class RunnerBuilderConfigurationTests
     {
+        /// <summary>
+        /// Defines the test method TestScanIn.
+        /// </summary>
         [Test]
         public void TestScanIn()
         {
@@ -59,6 +78,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Defines the test method TestScanInForAll.
+        /// </summary>
         [Test]
         public void TestScanInForAll()
         {
@@ -87,6 +109,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Defines the test method TestScanInForMigration.
+        /// </summary>
         [Test]
         public void TestScanInForMigration()
         {
@@ -117,6 +142,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Defines the test method TestScanInForVersionTableMetaData.
+        /// </summary>
         [Test]
         public void TestScanInForVersionTableMetaData()
         {
@@ -147,6 +175,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Defines the test method TestScanInForEmbeddedResources.
+        /// </summary>
         [Test]
         public void TestScanInForEmbeddedResources()
         {
@@ -177,6 +208,9 @@ namespace FluentMigrator.Tests.Unit.Initialization
             }
         }
 
+        /// <summary>
+        /// Defines the test method TestScanInForMigrationsAndVersionTableMetaData.
+        /// </summary>
         [Test]
         public void TestScanInForMigrationsAndVersionTableMetaData()
         {

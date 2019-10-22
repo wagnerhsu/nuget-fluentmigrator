@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IMigrationProcessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -26,21 +39,21 @@ namespace FluentMigrator
     /// <summary>
     /// Interface for a migration processor
     /// </summary>
-    /// <remarks>
-    /// A migration processor generates the SQL statements using a <see cref="IMigrationGenerator"/>
-    /// and executes it using the given connection string.
-    /// </remarks>
+    /// <remarks>A migration processor generates the SQL statements using a <see cref="IMigrationGenerator" />
+    /// and executes it using the given connection string.</remarks>
     public interface IMigrationProcessor : IQuerySchema, IDisposable
     {
         /// <summary>
         /// Gets the migration processor options
         /// </summary>
+        /// <value>The options.</value>
         [Obsolete]
         IMigrationProcessorOptions Options { get; }
 
         /// <summary>
         /// Gets the connection string
         /// </summary>
+        /// <value>The connection string.</value>
         [Obsolete]
         string ConnectionString { get; }
 

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DefaultIndexNameConvention.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -22,11 +35,9 @@ using FluentMigrator.Model;
 namespace FluentMigrator.Runner.Conventions
 {
     /// <summary>
-    /// The default implementation of a <see cref="IIndexConvention"/>
+    /// The default implementation of a <see cref="IIndexConvention" />
     /// </summary>
-    /// <remarks>
-    /// It sets the default name of an index.
-    /// </remarks>
+    /// <remarks>It sets the default name of an index.</remarks>
     public class DefaultIndexNameConvention : IIndexConvention
     {
         /// <inheritdoc />
@@ -40,6 +51,11 @@ namespace FluentMigrator.Runner.Conventions
             return expression;
         }
 
+        /// <summary>
+        /// Gets the name of the index.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns>System.String.</returns>
         private static string GetIndexName(IndexDefinition index)
         {
             var sb = new StringBuilder();

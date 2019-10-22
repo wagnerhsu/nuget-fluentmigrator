@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ReflectionBasedDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Fluent Migrator Project
 //
@@ -28,19 +41,43 @@ namespace FluentMigrator.Runner.Processors
 {
     using System.Data.Common;
 
+    /// <summary>
+    /// Class ReflectionBasedDbFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.DbFactoryBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.DbFactoryBase" />
     public class ReflectionBasedDbFactory : DbFactoryBase
     {
+        /// <summary>
+        /// The service provider
+        /// </summary>
         private readonly IServiceProvider _serviceProvider;
+        /// <summary>
+        /// The test entries
+        /// </summary>
         private readonly TestEntry[] _testEntries;
 
+        /// <summary>
+        /// The instance
+        /// </summary>
         private DbProviderFactory _instance;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReflectionBasedDbFactory"/> class.
+        /// </summary>
+        /// <param name="assemblyName">Name of the assembly.</param>
+        /// <param name="dbProviderFactoryTypeName">Name of the database provider factory type.</param>
         [Obsolete]
         public ReflectionBasedDbFactory(string assemblyName, string dbProviderFactoryTypeName)
             : this(new TestEntry(assemblyName, dbProviderFactoryTypeName))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReflectionBasedDbFactory"/> class.
+        /// </summary>
+        /// <param name="testEntries">The test entries.</param>
+        /// <exception cref="ArgumentException">At least one test entry must be specified - testEntries</exception>
         [Obsolete]
         protected ReflectionBasedDbFactory(params TestEntry[] testEntries)
         {
@@ -52,6 +89,12 @@ namespace FluentMigrator.Runner.Processors
             _testEntries = testEntries;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReflectionBasedDbFactory"/> class.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
+        /// <param name="testEntries">The test entries.</param>
+        /// <exception cref="ArgumentException">At least one test entry must be specified - testEntries</exception>
         protected ReflectionBasedDbFactory(IServiceProvider serviceProvider, params TestEntry[] testEntries)
         {
             if (testEntries.Length == 0)
@@ -63,6 +106,11 @@ namespace FluentMigrator.Runner.Processors
             _testEntries = testEntries;
         }
 
+        /// <summary>
+        /// Creates the factory.
+        /// </summary>
+        /// <returns>DbProviderFactory.</returns>
+        /// <exception cref="AggregateException">Unable to load the driver. Attempted to load: {assemblyNames}, with {fullExceptionOutput}</exception>
         protected override DbProviderFactory CreateFactory()
         {
             if (_instance != null)
@@ -83,6 +131,13 @@ namespace FluentMigrator.Runner.Processors
             throw new AggregateException($"Unable to load the driver. Attempted to load: {assemblyNames}, with {fullExceptionOutput}", exceptions);
         }
 
+        /// <summary>
+        /// Tries the create factory.
+        /// </summary>
+        /// <param name="entries">The entries.</param>
+        /// <param name="exceptions">The exceptions.</param>
+        /// <param name="factory">The factory.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         [Obsolete]
         protected static bool TryCreateFactory(
             [NotNull, ItemNotNull] IEnumerable<TestEntry> entries,
@@ -92,6 +147,14 @@ namespace FluentMigrator.Runner.Processors
             return TryCreateFactory(serviceProvider: null, entries, exceptions, out factory);
         }
 
+        /// <summary>
+        /// Tries the create factory.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
+        /// <param name="entries">The entries.</param>
+        /// <param name="exceptions">The exceptions.</param>
+        /// <param name="factory">The factory.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         protected static bool TryCreateFactory(
             [CanBeNull] IServiceProvider serviceProvider,
             [NotNull, ItemNotNull] IEnumerable<TestEntry> entries,
@@ -136,6 +199,13 @@ namespace FluentMigrator.Runner.Processors
             return false;
         }
 
+        /// <summary>
+        /// Tries the create from application domain paths.
+        /// </summary>
+        /// <param name="entry">The entry.</param>
+        /// <param name="exceptions">The exceptions.</param>
+        /// <param name="factory">The factory.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         protected static bool TryCreateFromAppDomainPaths(
             [NotNull] TestEntry entry,
             [NotNull, ItemNotNull] ICollection<Exception> exceptions,
@@ -165,6 +235,13 @@ namespace FluentMigrator.Runner.Processors
             return false;
         }
 
+        /// <summary>
+        /// Tries the create factory from runtime host.
+        /// </summary>
+        /// <param name="entry">The entry.</param>
+        /// <param name="exceptions">The exceptions.</param>
+        /// <param name="factory">The factory.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         [Obsolete]
         protected static bool TryCreateFactoryFromRuntimeHost(
             [NotNull] TestEntry entry,
@@ -174,6 +251,14 @@ namespace FluentMigrator.Runner.Processors
             return TryCreateFactoryFromRuntimeHost(entry, exceptions, serviceProvider: null, out factory);
         }
 
+        /// <summary>
+        /// Tries the create factory from runtime host.
+        /// </summary>
+        /// <param name="entry">The entry.</param>
+        /// <param name="exceptions">The exceptions.</param>
+        /// <param name="serviceProvider">The service provider.</param>
+        /// <param name="factory">The factory.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         protected static bool TryCreateFactoryFromRuntimeHost(
             [NotNull] TestEntry entry,
             [NotNull, ItemNotNull] ICollection<Exception> exceptions,
@@ -198,6 +283,13 @@ namespace FluentMigrator.Runner.Processors
             return TryCreateFromCurrentDomain(entry, exceptions, out factory);
         }
 
+        /// <summary>
+        /// Tries the load assembly from application domain directories.
+        /// </summary>
+        /// <param name="assemblyName">Name of the assembly.</param>
+        /// <param name="exceptions">The exceptions.</param>
+        /// <param name="assembly">The assembly.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         protected static bool TryLoadAssemblyFromAppDomainDirectories(
             [NotNull] string assemblyName,
             [NotNull, ItemNotNull] ICollection<Exception> exceptions,
@@ -210,6 +302,14 @@ namespace FluentMigrator.Runner.Processors
                 out assembly);
         }
 
+        /// <summary>
+        /// Tries the load assembly from directories.
+        /// </summary>
+        /// <param name="directories">The directories.</param>
+        /// <param name="assemblyName">Name of the assembly.</param>
+        /// <param name="exceptions">The exceptions.</param>
+        /// <param name="assembly">The assembly.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         protected static bool TryLoadAssemblyFromDirectories(
             [NotNull, ItemNotNull] IEnumerable<string> directories,
             [NotNull] string assemblyName,
@@ -241,6 +341,13 @@ namespace FluentMigrator.Runner.Processors
             return false;
         }
 
+        /// <summary>
+        /// Tries the create from gac.
+        /// </summary>
+        /// <param name="entry">The entry.</param>
+        /// <param name="exceptions">The exceptions.</param>
+        /// <param name="factory">The factory.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool TryCreateFromGac(
             [NotNull] TestEntry entry,
             [NotNull, ItemNotNull] ICollection<Exception> exceptions,
@@ -275,6 +382,13 @@ namespace FluentMigrator.Runner.Processors
             }
         }
 
+        /// <summary>
+        /// Tries the create from current domain.
+        /// </summary>
+        /// <param name="entry">The entry.</param>
+        /// <param name="exceptions">The exceptions.</param>
+        /// <param name="factory">The factory.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool TryCreateFromCurrentDomain(
             [NotNull] TestEntry entry,
             [NotNull, ItemNotNull] ICollection<Exception> exceptions,
@@ -304,6 +418,13 @@ namespace FluentMigrator.Runner.Processors
             return false;
         }
 
+        /// <summary>
+        /// Tries the load assembly from current domain.
+        /// </summary>
+        /// <param name="assemblyName">Name of the assembly.</param>
+        /// <param name="exceptions">The exceptions.</param>
+        /// <param name="assembly">The assembly.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool TryLoadAssemblyFromCurrentDomain(
             [NotNull] string assemblyName,
             [NotNull, ItemNotNull] ICollection<Exception> exceptions,
@@ -322,6 +443,11 @@ namespace FluentMigrator.Runner.Processors
             }
         }
 
+        /// <summary>
+        /// Finds the assemblies in gac.
+        /// </summary>
+        /// <param name="names">The names.</param>
+        /// <returns>IEnumerable&lt;AssemblyName&gt;.</returns>
         [NotNull, ItemNotNull]
         private static IEnumerable<AssemblyName> FindAssembliesInGac([NotNull, ItemNotNull] params string[] names)
         {
@@ -334,6 +460,12 @@ namespace FluentMigrator.Runner.Processors
             }
         }
 
+        /// <summary>
+        /// Tries the get instance.
+        /// </summary>
+        /// <param name="factoryType">Type of the factory.</param>
+        /// <param name="factory">The factory.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool TryGetInstance(
             [NotNull] Type factoryType,
             out DbProviderFactory factory)
@@ -359,6 +491,12 @@ namespace FluentMigrator.Runner.Processors
             return false;
         }
 
+        /// <summary>
+        /// Tries the cast instance.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="factory">The factory.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool TryCastInstance(
             [NotNull] object value,
             out DbProviderFactory factory)
@@ -367,6 +505,10 @@ namespace FluentMigrator.Runner.Processors
             return factory != null;
         }
 
+        /// <summary>
+        /// Gets the paths from application domain.
+        /// </summary>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         [NotNull, ItemNotNull]
         private static IEnumerable<string> GetPathsFromAppDomain()
         {
@@ -391,8 +533,16 @@ namespace FluentMigrator.Runner.Processors
             }
         }
 
+        /// <summary>
+        /// Class TestEntry.
+        /// </summary>
         protected class TestEntry
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="TestEntry"/> class.
+            /// </summary>
+            /// <param name="assemblyName">Name of the assembly.</param>
+            /// <param name="dbProviderFactoryTypeName">Name of the database provider factory type.</param>
             public TestEntry(
                 [NotNull] string assemblyName,
                 [NotNull] string dbProviderFactoryTypeName)
@@ -401,9 +551,17 @@ namespace FluentMigrator.Runner.Processors
                 DBProviderFactoryTypeName = dbProviderFactoryTypeName;
             }
 
+            /// <summary>
+            /// Gets the name of the assembly.
+            /// </summary>
+            /// <value>The name of the assembly.</value>
             [NotNull]
             public string AssemblyName { get; }
 
+            /// <summary>
+            /// Gets the name of the database provider factory type.
+            /// </summary>
+            /// <value>The name of the database provider factory type.</value>
             [NotNull]
             public string DBProviderFactoryTypeName { get; }
         }

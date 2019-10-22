@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ManifestResourceNameWithAssembly.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -26,7 +39,7 @@ namespace FluentMigrator.Infrastructure
     public class ManifestResourceNameWithAssembly
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ManifestResourceNameWithAssembly"/> class.
+        /// Initializes a new instance of the <see cref="ManifestResourceNameWithAssembly" /> class.
         /// </summary>
         /// <param name="name">The ressource name</param>
         /// <param name="assembly">The assembly this ressource name belongs to</param>
@@ -37,13 +50,15 @@ namespace FluentMigrator.Infrastructure
         }
 
         /// <summary>
-        /// Gets the assembly the ressource <see cref="Name"/> belongs to
+        /// Gets the assembly the ressource <see cref="Name" /> belongs to
         /// </summary>
+        /// <value>The assembly.</value>
         public Assembly Assembly { get; }
 
         /// <summary>
         /// Gets the ressource name
         /// </summary>
+        /// <value>The name.</value>
         public string Name { get; }
     }
 }

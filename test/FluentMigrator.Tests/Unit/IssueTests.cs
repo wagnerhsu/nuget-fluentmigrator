@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IssueTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,9 +40,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit
 {
+    /// <summary>
+    /// Defines test class IssueTests.
+    /// </summary>
     [TestFixture]
     public class IssueTests
     {
+        /// <summary>
+        /// Defines the test method Issue882WithCustomConfigReader.
+        /// </summary>
         [Test]
         public void Issue882WithCustomConfigReader()
         {
@@ -58,6 +77,9 @@ namespace FluentMigrator.Tests.Unit
             }
         }
 
+        /// <summary>
+        /// Defines the test method Issue882WithAutofac.
+        /// </summary>
         [Test]
         public void Issue882WithAutofac()
         {
@@ -104,11 +126,17 @@ namespace FluentMigrator.Tests.Unit
             }
         }
 
+        /// <summary>
+        /// Class Issue882CustomConnectionStringReader.
+        /// Implements the <see cref="FluentMigrator.Runner.Initialization.IConnectionStringReader" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Initialization.IConnectionStringReader" />
         private class Issue882CustomConnectionStringReader : IConnectionStringReader
         {
             /// <summary>
             /// Gets or sets the connection string to be returned
             /// </summary>
+            /// <value>The connection string.</value>
             public string ConnectionString { get; set; }
 
             /// <inheritdoc />

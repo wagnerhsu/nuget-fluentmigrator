@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ObsoleteIntegrationTestBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -48,17 +61,38 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration
 {
+    /// <summary>
+    /// Class ObsoleteIntegrationTestBase.
+    /// </summary>
     [Obsolete]
     public class ObsoleteIntegrationTestBase
     {
+        /// <summary>
+        /// Delegate ExecuteTestDelegate
+        /// </summary>
+        /// <param name="test">The test.</param>
+        /// <param name="tryRollback">if set to <c>true</c> [try rollback].</param>
+        /// <param name="options">The options.</param>
         private delegate void ExecuteTestDelegate(Action<IMigrationProcessor> test, bool tryRollback, IntegrationTestOptions.DatabaseServerOptions options);
 
+        /// <summary>
+        /// The processors
+        /// </summary>
         private readonly List<(Type processorType, Func<IntegrationTestOptions.DatabaseServerOptions> getOptionsFunc, ExecuteTestDelegate executeTestDelegate)> _processors;
 
+        /// <summary>
+        /// The is first execute for firebird
+        /// </summary>
         private bool _isFirstExecuteForFirebird = true;
 
+        /// <summary>
+        /// The temporary data directory
+        /// </summary>
         private string _tempDataDirectory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ObsoleteIntegrationTestBase"/> class.
+        /// </summary>
         protected ObsoleteIntegrationTestBase()
         {
             _processors = new List<(Type, Func<IntegrationTestOptions.DatabaseServerOptions>, ExecuteTestDelegate)>
@@ -76,12 +110,18 @@ namespace FluentMigrator.Tests.Integration
             };
         }
 
+        /// <summary>
+        /// Sets up firebird.
+        /// </summary>
         [SetUp]
         public void SetUpFirebird()
         {
             _isFirstExecuteForFirebird = true;
         }
 
+        /// <summary>
+        /// Sets up data directory.
+        /// </summary>
         [SetUp]
         public void SetUpDataDirectory()
         {
@@ -90,6 +130,9 @@ namespace FluentMigrator.Tests.Integration
             AppDomain.CurrentDomain.SetData("DataDirectory", _tempDataDirectory);
         }
 
+        /// <summary>
+        /// Tears down data directory.
+        /// </summary>
         [TearDown]
         public void TearDownDataDirectory()
         {
@@ -99,6 +142,11 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Determines whether [is any server enabled] [the specified except processors].
+        /// </summary>
+        /// <param name="exceptProcessors">The except processors.</param>
+        /// <returns><c>true</c> if [is any server enabled] [the specified except processors]; otherwise, <c>false</c>.</returns>
         protected bool IsAnyServerEnabled(params Type[] exceptProcessors)
         {
             return IsAnyServerEnabled(procType => !exceptProcessors.Any(p => p.IsAssignableFrom(procType)));

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -21,12 +34,28 @@ using System.Data;
 
 namespace FluentMigrator.Runner.Processors
 {
+    /// <summary>
+    /// Interface IDbFactory
+    /// </summary>
     [Obsolete]
     public interface IDbFactory
     {
+        /// <summary>
+        /// Creates the connection.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <returns>IDbConnection.</returns>
         [Obsolete]
         IDbConnection CreateConnection(string connectionString);
 
+        /// <summary>
+        /// Creates the command.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="connection">The connection.</param>
+        /// <param name="transaction">The transaction.</param>
+        /// <param name="options">The options.</param>
+        /// <returns>IDbCommand.</returns>
         [Obsolete]
         IDbCommand CreateCommand(string commandText, IDbConnection connection, IDbTransaction transaction, IMigrationProcessorOptions options);
     }

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateForeignKeyExpressionBuilderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -26,9 +39,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Builders.Create
 {
+    /// <summary>
+    /// Defines test class CreateForeignKeyExpressionBuilderTests.
+    /// </summary>
     [TestFixture]
     public class CreateForeignKeyExpressionBuilderTests
     {
+        /// <summary>
+        /// Defines the test method CallingFromTableSetsForeignTableName.
+        /// </summary>
         [Test]
         public void CallingFromTableSetsForeignTableName()
         {
@@ -44,6 +63,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingToTableSetsPrimaryTableName.
+        /// </summary>
         [Test]
         public void CallingToTableSetsPrimaryTableName()
         {
@@ -59,6 +81,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignColumnAddsColumnNameToForeignColumnCollection.
+        /// </summary>
         [Test]
         public void CallingForeignColumnAddsColumnNameToForeignColumnCollection()
         {
@@ -78,6 +103,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignColumnsAddsColumnNamesToForeignColumnCollection.
+        /// </summary>
         [Test]
         public void CallingForeignColumnsAddsColumnNamesToForeignColumnCollection()
         {
@@ -98,6 +126,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingPrimaryColumnAddsColumnNameToPrimaryColumnCollection.
+        /// </summary>
         [Test]
         public void CallingPrimaryColumnAddsColumnNameToPrimaryColumnCollection()
         {
@@ -117,6 +148,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingPrimaryColumnsAddsColumnNamesToForeignColumnCollection.
+        /// </summary>
         [Test]
         public void CallingPrimaryColumnsAddsColumnNamesToForeignColumnCollection()
         {
@@ -137,6 +171,10 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingOnUpdateSetsOnUpdateToSpecifiedRule.
+        /// </summary>
+        /// <param name="rule">The rule.</param>
         [TestCase(Rule.Cascade), TestCase(Rule.SetDefault), TestCase(Rule.SetNull), TestCase(Rule.None)]
         public void CallingOnUpdateSetsOnUpdateToSpecifiedRule(Rule rule)
         {
@@ -147,6 +185,10 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             Assert.That(expression.ForeignKey.OnDelete, Is.EqualTo(Rule.None));
         }
 
+        /// <summary>
+        /// Defines the test method CallingOnDeleteSetsOnDeleteToSpecifiedRule.
+        /// </summary>
+        /// <param name="rule">The rule.</param>
         [TestCase(Rule.Cascade), TestCase(Rule.SetDefault), TestCase(Rule.SetNull), TestCase(Rule.None)]
         public void CallingOnDeleteSetsOnDeleteToSpecifiedRule(Rule rule)
         {
@@ -157,6 +199,10 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             Assert.That(expression.ForeignKey.OnDelete, Is.EqualTo(rule));
         }
 
+        /// <summary>
+        /// Defines the test method CallingOnDeleteOrUpdateSetsBothOnDeleteAndOnUpdateToSpecifiedRule.
+        /// </summary>
+        /// <param name="rule">The rule.</param>
         [TestCase(Rule.Cascade), TestCase(Rule.SetDefault), TestCase(Rule.SetNull), TestCase(Rule.None)]
         public void CallingOnDeleteOrUpdateSetsBothOnDeleteAndOnUpdateToSpecifiedRule(Rule rule)
         {

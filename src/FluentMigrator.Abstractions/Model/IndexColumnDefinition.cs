@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IndexColumnDefinition.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -38,12 +51,14 @@ namespace FluentMigrator.Model
         /// <summary>
         /// Gets or sets the column name
         /// </summary>
+        /// <value>The name.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.ColumnNameCannotBeNullOrEmpty))]
         public virtual string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the sort direction of the index column
         /// </summary>
+        /// <value>The direction.</value>
         public virtual Direction Direction { get; set; }
 
         /// <inheritdoc />

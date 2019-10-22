@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaTableTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -24,18 +37,32 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Hana
 {
+    /// <summary>
+    /// Defines test class HanaTableTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseTableTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseTableTests" />
     [TestFixture]
     [Category("Hana")]
     public class HanaTableTests : BaseTableTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected HanaGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new HanaGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomColumnTypeWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomColumnTypeWithCustomSchema()
         {
@@ -49,6 +76,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255), \"TestColumn2\" json, PRIMARY KEY (\"TestColumn1\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomColumnTypeWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomColumnTypeWithDefaultSchema()
         {
@@ -61,6 +91,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255), \"TestColumn2\" json, PRIMARY KEY (\"TestColumn1\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithCustomSchema()
         {
@@ -71,6 +104,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255), \"TestColumn2\" INTEGER);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultSchema()
         {
@@ -80,6 +116,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255), \"TestColumn2\" INTEGER);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueExplicitlySetToNullWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueExplicitlySetToNullWithCustomSchema()
         {
@@ -92,6 +131,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255) DEFAULT NULL, \"TestColumn2\" INTEGER DEFAULT 0);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueExplicitlySetToNullWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueExplicitlySetToNullWithDefaultSchema()
         {
@@ -104,6 +146,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
 
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueWithCustomSchema()
         {
@@ -114,6 +159,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255) DEFAULT N'Default', \"TestColumn2\" INTEGER DEFAULT 0);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithCustomSchema()
         {
@@ -124,6 +172,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" INTEGER GENERATED ALWAYS AS IDENTITY, \"TestColumn2\" INTEGER);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithDefaultSchema()
         {
@@ -133,6 +184,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" INTEGER GENERATED ALWAYS AS IDENTITY, \"TestColumn2\" INTEGER);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithDefaultValueWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithDefaultValueWithDefaultSchema()
         {
@@ -142,6 +196,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255) DEFAULT N'Default', \"TestColumn2\" INTEGER DEFAULT 0);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithMultiColumnPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithMultiColumnPrimaryKeyWithCustomSchema()
         {
@@ -152,6 +209,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255), \"TestColumn2\" INTEGER, PRIMARY KEY (\"TestColumn1\", \"TestColumn2\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithMultiColumnPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithMultiColumnPrimaryKeyWithDefaultSchema()
         {
@@ -162,6 +222,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
                             " PRIMARY KEY (\"TestColumn1\", \"TestColumn2\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedMultiColumnPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedMultiColumnPrimaryKeyWithCustomSchema()
         {
@@ -173,6 +236,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             // HANA doesn't support a contraint name for a composite primary key in a CREATE statement
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedMultiColumnPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedMultiColumnPrimaryKeyWithDefaultSchema()
         {
@@ -184,6 +250,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             // HANA doesn't support a contraint name for a composite primary key in a CREATE statement
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedPrimaryKeyWithCustomSchema()
         {
@@ -195,6 +264,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             // HANA doesn't support a contraint name for a primary key
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNamedPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNamedPrimaryKeyWithDefaultSchema()
         {
@@ -205,6 +277,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             // HANA doesn't support a contraint name for a primary key
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNullableFieldWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNullableFieldWithCustomSchema()
         {
@@ -215,6 +290,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255) NULL, \"TestColumn2\" INTEGER);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithNullableFieldWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithNullableFieldWithDefaultSchema()
         {
@@ -224,6 +302,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255) NULL, \"TestColumn2\" INTEGER);");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithPrimaryKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithPrimaryKeyWithCustomSchema()
         {
@@ -234,6 +315,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255), \"TestColumn2\" INTEGER, PRIMARY KEY (\"TestColumn1\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithPrimaryKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithPrimaryKeyWithDefaultSchema()
         {
@@ -243,6 +327,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("CREATE COLUMN TABLE \"TestTable1\" (\"TestColumn1\" NVARCHAR(255), \"TestColumn2\" INTEGER, PRIMARY KEY (\"TestColumn1\"));");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropTableWithCustomSchema()
         {
@@ -253,6 +340,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("DROP TABLE \"TestTable1\";");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropTableWithDefaultSchema()
         {
@@ -262,6 +352,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("DROP TABLE \"TestTable1\";");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameTableWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanRenameTableWithCustomSchema()
         {
@@ -272,6 +365,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Hana
             result.ShouldBe("RENAME TABLE \"TestTable1\" TO \"TestTable2\";");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameTableWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanRenameTableWithDefaultSchema()
         {

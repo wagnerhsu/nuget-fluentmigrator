@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateIndexExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -25,7 +38,7 @@ using FluentMigrator.Model;
 namespace FluentMigrator.Builders.Create.Index
 {
     /// <summary>
-    /// An expression builder for a <see cref="CreateIndexExpression"/>
+    /// An expression builder for a <see cref="CreateIndexExpression" />
     /// </summary>
     public class CreateIndexExpressionBuilder : ExpressionBuilderBase<CreateIndexExpression>,
         ICreateIndexForTableSyntax,
@@ -37,7 +50,7 @@ namespace FluentMigrator.Builders.Create.Index
         ICreateIndexMoreColumnOptionsSyntax
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateIndexExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="CreateIndexExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         public CreateIndexExpressionBuilder(CreateIndexExpression expression)
@@ -51,6 +64,7 @@ namespace FluentMigrator.Builders.Create.Index
         /// <summary>
         /// Gets or sets the current index column definition
         /// </summary>
+        /// <value>The current column.</value>
         public IndexColumnDefinition CurrentColumn { get; set; }
 
         /// <inheritdoc />

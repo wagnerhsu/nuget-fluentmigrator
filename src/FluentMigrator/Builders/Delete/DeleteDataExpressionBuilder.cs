@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteDataExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -25,14 +38,17 @@ using FluentMigrator.Model;
 namespace FluentMigrator.Builders.Delete
 {
     /// <summary>
-    /// An expression builder for a <see cref="DeleteDataExpression"/>
+    /// An expression builder for a <see cref="DeleteDataExpression" />
     /// </summary>
     public class DeleteDataExpressionBuilder : IDeleteDataOrInSchemaSyntax
     {
+        /// <summary>
+        /// The expression
+        /// </summary>
         private readonly DeleteDataExpression _expression;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeleteDataExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="DeleteDataExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         public DeleteDataExpressionBuilder(DeleteDataExpression expression)
@@ -69,6 +85,11 @@ namespace FluentMigrator.Builders.Delete
             _expression.IsAllRows = true;
         }
 
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <param name="dataAsAnonymousType">Type of the data as anonymous.</param>
+        /// <returns>DeletionDataDefinition.</returns>
         private static DeletionDataDefinition GetData(object dataAsAnonymousType)
         {
             var data = new DeletionDataDefinition();

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DefaultSchemaConvention.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -21,17 +34,18 @@ namespace FluentMigrator.Runner.Conventions
     /// <summary>
     /// The class handling the default schema name
     /// </summary>
-    /// <remarks>
-    /// This class handles all <see cref="ISchemaExpression"/> and additionally
+    /// <remarks>This class handles all <see cref="ISchemaExpression" /> and additionally
     /// implements other conventions that give access to schema names (e.g.
-    /// <see cref="IForeignKeyConvention"/>).
-    /// </remarks>
+    /// <see cref="IForeignKeyConvention" />).</remarks>
     public sealed class DefaultSchemaConvention : IForeignKeyConvention, IConstraintConvention, IIndexConvention, ISequenceConvention
     {
+        /// <summary>
+        /// The default schema name convention
+        /// </summary>
         private readonly IDefaultSchemaNameConvention _defaultSchemaNameConvention;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultSchemaConvention"/> class.
+        /// Initializes a new instance of the <see cref="DefaultSchemaConvention" /> class.
         /// </summary>
         public DefaultSchemaConvention()
             : this(new DefaultSchemaNameConvention(null))
@@ -39,7 +53,7 @@ namespace FluentMigrator.Runner.Conventions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultSchemaConvention"/> class.
+        /// Initializes a new instance of the <see cref="DefaultSchemaConvention" /> class.
         /// </summary>
         /// <param name="defaultSchemaName">The default schema name</param>
         public DefaultSchemaConvention(string defaultSchemaName)
@@ -48,7 +62,7 @@ namespace FluentMigrator.Runner.Conventions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultSchemaConvention"/> class.
+        /// Initializes a new instance of the <see cref="DefaultSchemaConvention" /> class.
         /// </summary>
         /// <param name="defaultSchemaNameConvention">The convention used to
         /// return the default schema name for a given original schema name.</param>
@@ -61,9 +75,9 @@ namespace FluentMigrator.Runner.Conventions
         /// Returns the default schema name depending on the original schema name
         /// </summary>
         /// <param name="originalSchemaName">The original schema name</param>
-        /// <returns>Returns the <paramref name="originalSchemaName"/> when the
+        /// <returns>Returns the <paramref name="originalSchemaName" /> when the
         /// default schema name is null or empty and returns the new default
-        /// schema name when the <paramref name="originalSchemaName"/> is null
+        /// schema name when the <paramref name="originalSchemaName" /> is null
         /// or empty</returns>
         string GetSchemaName(string originalSchemaName)
         {
@@ -71,7 +85,7 @@ namespace FluentMigrator.Runner.Conventions
         }
 
         /// <summary>
-        /// Applies a convention to a <see cref="ISchemaExpression"/>
+        /// Applies a convention to a <see cref="ISchemaExpression" />
         /// </summary>
         /// <param name="expression">The expression this convention should be applied to</param>
         /// <returns>The same or a new expression. The underlying type must stay the same.</returns>

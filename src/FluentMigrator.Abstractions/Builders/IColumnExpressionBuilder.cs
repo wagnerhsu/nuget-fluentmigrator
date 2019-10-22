@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IColumnExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -29,16 +42,19 @@ namespace FluentMigrator.Builders
         /// <summary>
         /// Gets the schema name
         /// </summary>
+        /// <value>The name of the schema.</value>
         string SchemaName { get; }
 
         /// <summary>
         /// Gets the table name
         /// </summary>
+        /// <value>The name of the table.</value>
         string TableName { get; }
 
         /// <summary>
         /// Gets the current column definition
         /// </summary>
+        /// <value>The column.</value>
         ColumnDefinition Column { get; }
     }
 }

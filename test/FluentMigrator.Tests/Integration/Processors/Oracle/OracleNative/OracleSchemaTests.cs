@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleSchemaTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -24,6 +37,11 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration.Processors.Oracle.OracleNative
 {
+    /// <summary>
+    /// Defines test class OracleSchemaTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.Oracle.OracleSchemaTestsBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.Oracle.OracleSchemaTestsBase" />
     [TestFixture]
     [Category("Oracle")]
     public class OracleSchemaTests : OracleSchemaTestsBase

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ServiceCollectionExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -31,8 +44,16 @@ using Moq;
 
 namespace FluentMigrator.Tests
 {
+    /// <summary>
+    /// Class ServiceCollectionExtensions.
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Creates the services.
+        /// </summary>
+        /// <param name="addAssemblySource">if set to <c>true</c> [add assembly source].</param>
+        /// <returns>IServiceCollection.</returns>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static IServiceCollection CreateServices(bool addAssemblySource = true)
         {
@@ -52,6 +73,13 @@ namespace FluentMigrator.Tests
             return services;
         }
 
+        /// <summary>
+        /// Withes the migrations in.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        /// <param name="namespace">The namespace.</param>
+        /// <param name="recursive">if set to <c>true</c> [recursive].</param>
+        /// <returns>IServiceCollection.</returns>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static IServiceCollection WithMigrationsIn(
             [NotNull] this IServiceCollection services,
@@ -68,6 +96,12 @@ namespace FluentMigrator.Tests
                 .ConfigureRunner(builder => builder.WithMigrationsIn(Assembly.GetExecutingAssembly()));
         }
 
+        /// <summary>
+        /// Withes the processor.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        /// <param name="processor">The processor.</param>
+        /// <returns>IServiceCollection.</returns>
         public static IServiceCollection WithProcessor(
             [NotNull] this IServiceCollection services,
             [NotNull] IMock<IMigrationProcessor> processor)
@@ -76,8 +110,17 @@ namespace FluentMigrator.Tests
                 .AddScoped<IProcessorAccessor>(_ => new PassThroughProcessorAccessor(processor.Object));
         }
 
+        /// <summary>
+        /// Class PassThroughProcessorAccessor.
+        /// Implements the <see cref="FluentMigrator.Runner.Processors.IProcessorAccessor" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Processors.IProcessorAccessor" />
         private class PassThroughProcessorAccessor : IProcessorAccessor
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PassThroughProcessorAccessor"/> class.
+            /// </summary>
+            /// <param name="processor">The processor.</param>
             public PassThroughProcessorAccessor(IMigrationProcessor processor)
             {
                 Processor = processor;

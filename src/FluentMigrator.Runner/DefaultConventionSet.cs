@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DefaultConventionSet.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -24,14 +37,26 @@ using JetBrains.Annotations;
 
 namespace FluentMigrator.Runner
 {
+    /// <summary>
+    /// Class DefaultConventionSet.
+    /// Implements the <see cref="FluentMigrator.Runner.Conventions.IConventionSet" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Conventions.IConventionSet" />
     public class DefaultConventionSet : IConventionSet
     {
         // ReSharper disable once UnusedMember.Global
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultConventionSet"/> class.
+        /// </summary>
         public DefaultConventionSet()
             : this(defaultSchemaName: null, workingDirectory: null)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultConventionSet"/> class.
+        /// </summary>
+        /// <param name="runnerContext">The runner context.</param>
         [Obsolete]
         public DefaultConventionSet([CanBeNull] IRunnerContext runnerContext)
             : this(runnerContext?.DefaultSchemaName, runnerContext?.WorkingDirectory)
@@ -39,6 +64,11 @@ namespace FluentMigrator.Runner
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultConventionSet"/> class.
+        /// </summary>
+        /// <param name="defaultSchemaName">Default name of the schema.</param>
+        /// <param name="workingDirectory">The working directory.</param>
         public DefaultConventionSet([CanBeNull] string defaultSchemaName, [CanBeNull] string workingDirectory)
         {
             var schemaConvention =

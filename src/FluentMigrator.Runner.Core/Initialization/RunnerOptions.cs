@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RunnerOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -27,14 +40,14 @@ namespace FluentMigrator.Runner.Initialization
     public class RunnerOptions
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RunnerOptions"/> class.
+        /// Initializes a new instance of the <see cref="RunnerOptions" /> class.
         /// </summary>
         public RunnerOptions()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RunnerOptions"/> class.
+        /// Initializes a new instance of the <see cref="RunnerOptions" /> class.
         /// </summary>
         /// <param name="runnerContext">The runner context</param>
         [Obsolete]
@@ -46,35 +59,41 @@ namespace FluentMigrator.Runner.Initialization
         /// <summary>
         /// Gets or sets the task to execute
         /// </summary>
+        /// <value>The task.</value>
         [CanBeNull]
         public string Task { get; set; }
 
         /// <summary>
         /// Gets or sets the target version
         /// </summary>
+        /// <value>The version.</value>
         public long Version { get; set; }
 
         /// <summary>
         /// Gets or sets the start version
         /// </summary>
-        /// <remarks>This will be used only if <see cref="NoConnection"/> is set to true.
+        /// <value>The start version.</value>
+        /// <remarks>This will be used only if <see cref="NoConnection" /> is set to true.
         /// Otherwise current state of target database will determine which migrations are needed.</remarks>
         public long StartVersion { get; set; }
 
         /// <summary>
         /// Gets or sets the number of versions to apply
         /// </summary>
+        /// <value>The steps.</value>
         public int Steps { get; set; }
 
         /// <summary>
         /// Gets or sets the profile migrations to apply
         /// </summary>
+        /// <value>The profile.</value>
         [CanBeNull]
         public string Profile { get; set; }
 
         /// <summary>
         /// Gets or sets the tags the migrations must match
         /// </summary>
+        /// <value>The tags.</value>
         /// <remarks>All migrations are matched when no tags were specified</remarks>
         [CanBeNull, ItemNotNull]
         public string[] Tags { get; set; }
@@ -82,40 +101,42 @@ namespace FluentMigrator.Runner.Initialization
         /// <summary>
         /// Gets or sets a value indicating whether the migration runner is allowed to apply breaking changes
         /// </summary>
+        /// <value><c>true</c> if [allow breaking change]; otherwise, <c>false</c>.</value>
         public bool AllowBreakingChange { get; set; }
 
         /// <summary>
         /// Use one transaction for the whole session
         /// </summary>
-        /// <remarks>
-        /// The default transaction behavior is to use one transaction per migration.
-        /// </remarks>
+        /// <value><c>true</c> if [transaction per session]; otherwise, <c>false</c>.</value>
+        /// <remarks>The default transaction behavior is to use one transaction per migration.</remarks>
         public bool TransactionPerSession { get; set; }
 
         /// <summary>
         /// Gets or sets the arbitrary application context passed to the task runner
         /// </summary>
+        /// <value>The application context.</value>
         [Obsolete]
         public object ApplicationContext { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether no connection should be used
         /// </summary>
-        /// <remarks>
-        /// The difference between this and PreviewOnly is, that
+        /// <value><c>true</c> if [no connection]; otherwise, <c>false</c>.</value>
+        /// <remarks>The difference between this and PreviewOnly is, that
         /// the preview-only mode uses the connection to determine the current
-        /// state of the database.
-        /// </remarks>
+        /// state of the database.</remarks>
         public bool NoConnection { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether untagged maintenance items should always be loaded/executed.
         /// </summary>
+        /// <value><c>true</c> if [include untagged maintenances]; otherwise, <c>false</c>.</value>
         public bool IncludeUntaggedMaintenances { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether untagged migrations should always be loaded/executed.
         /// </summary>
+        /// <value><c>true</c> if [include untagged migrations]; otherwise, <c>false</c>.</value>
         public bool IncludeUntaggedMigrations { get; set; } = true;
 
         /// <summary>

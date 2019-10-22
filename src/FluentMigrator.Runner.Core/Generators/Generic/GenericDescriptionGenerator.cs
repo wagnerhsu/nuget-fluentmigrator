@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="GenericDescriptionGenerator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -25,11 +38,31 @@ namespace FluentMigrator.Runner.Generators.Generic
     /// </summary>
     public abstract class GenericDescriptionGenerator : IDescriptionGenerator
     {
+        /// <summary>
+        /// Generates the table description.
+        /// </summary>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="tableDescription">The table description.</param>
+        /// <returns>System.String.</returns>
         protected abstract string GenerateTableDescription(
             string schemaName, string tableName, string tableDescription);
+        /// <summary>
+        /// Generates the column description.
+        /// </summary>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <param name="columnDescription">The column description.</param>
+        /// <returns>System.String.</returns>
         protected abstract string GenerateColumnDescription(
             string schemaName, string tableName, string columnName, string columnDescription);
 
+        /// <summary>
+        /// Generates the description statements.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         public virtual IEnumerable<string> GenerateDescriptionStatements(Expressions.CreateTableExpression expression)
         {
             var statements = new List<string>();
@@ -52,6 +85,11 @@ namespace FluentMigrator.Runner.Generators.Generic
             return statements;
         }
 
+        /// <summary>
+        /// Generates the description statement.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public virtual string GenerateDescriptionStatement(Expressions.AlterTableExpression expression)
         {
             if (string.IsNullOrEmpty(expression.TableDescription))
@@ -61,6 +99,11 @@ namespace FluentMigrator.Runner.Generators.Generic
                 expression.SchemaName, expression.TableName, expression.TableDescription);
         }
 
+        /// <summary>
+        /// Generates the description statement.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public virtual string GenerateDescriptionStatement(Expressions.CreateColumnExpression expression)
         {
             if (string.IsNullOrEmpty(expression.Column.ColumnDescription))
@@ -70,6 +113,11 @@ namespace FluentMigrator.Runner.Generators.Generic
                 expression.SchemaName, expression.TableName, expression.Column.Name, expression.Column.ColumnDescription);
         }
 
+        /// <summary>
+        /// Generates the description statement.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public virtual string GenerateDescriptionStatement(Expressions.AlterColumnExpression expression)
         {
             if (string.IsNullOrEmpty(expression.Column.ColumnDescription))

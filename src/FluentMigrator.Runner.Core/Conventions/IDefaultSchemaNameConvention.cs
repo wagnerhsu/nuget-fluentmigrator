@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IDefaultSchemaNameConvention.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -25,9 +38,9 @@ namespace FluentMigrator.Runner.Conventions
         /// Returns the default schema name depending on the original schema name
         /// </summary>
         /// <param name="originalSchemaName">The original schema name</param>
-        /// <returns>Returns the <paramref name="originalSchemaName"/> when the
+        /// <returns>Returns the <paramref name="originalSchemaName" /> when the
         /// default schema name is null or empty and returns the new default
-        /// schema name when the <paramref name="originalSchemaName"/> is null
+        /// schema name when the <paramref name="originalSchemaName" /> is null
         /// or empty</returns>
         string GetSchemaName(string originalSchemaName);
     }

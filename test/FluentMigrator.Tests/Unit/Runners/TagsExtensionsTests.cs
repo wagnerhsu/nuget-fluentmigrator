@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TagsExtensionsTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -24,9 +37,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Runners
 {
+    /// <summary>
+    /// Defines test class TagsExtensionsTests.
+    /// </summary>
     [TestFixture]
     public class TagsExtensionsTests
     {
+        /// <summary>
+        /// Defines the test method ToTags_WithOneTag_ShouldReturnListWithOneTag.
+        /// </summary>
         [Test]
         public void ToTags_WithOneTag_ShouldReturnListWithOneTag()
         {
@@ -35,6 +54,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.That(tags[0], Is.EqualTo("Test"));
         }
 
+        /// <summary>
+        /// Defines the test method ToTags_WithNullString_ShouldReturnEmptyList.
+        /// </summary>
         [Test]
         public void ToTags_WithNullString_ShouldReturnEmptyList()
         {
@@ -43,6 +65,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.That(tags, Is.Not.Null);
         }
 
+        /// <summary>
+        /// Defines the test method ToTags_WithThreeTags_ShouldReturnListWithThreeTags.
+        /// </summary>
         [Test]
         public void ToTags_WithThreeTags_ShouldReturnListWithThreeTags()
         {

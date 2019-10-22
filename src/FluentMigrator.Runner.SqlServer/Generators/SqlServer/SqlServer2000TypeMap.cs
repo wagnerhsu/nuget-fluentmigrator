@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2000TypeMap.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Fluent Migrator Project
@@ -22,15 +35,41 @@ using FluentMigrator.Runner.Generators.Base;
 
 namespace FluentMigrator.Runner.Generators.SqlServer
 {
+    /// <summary>
+    /// Class SqlServer2000TypeMap.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
     public class SqlServer2000TypeMap : TypeMapBase
     {
+        /// <summary>
+        /// The ANSI string capacity
+        /// </summary>
         public const int AnsiStringCapacity = 8000;
+        /// <summary>
+        /// The ANSI text capacity
+        /// </summary>
         public const int AnsiTextCapacity = 2147483647;
+        /// <summary>
+        /// The unicode string capacity
+        /// </summary>
         public const int UnicodeStringCapacity = 4000;
+        /// <summary>
+        /// The unicode text capacity
+        /// </summary>
         public const int UnicodeTextCapacity = 1073741823;
+        /// <summary>
+        /// The image capacity
+        /// </summary>
         public const int ImageCapacity = 2147483647;
+        /// <summary>
+        /// The decimal capacity
+        /// </summary>
         public const int DecimalCapacity = 38;
 
+        /// <summary>
+        /// Setups the type maps.
+        /// </summary>
         protected override void SetupTypeMaps()
         {
             SetTypeMap(DbType.AnsiStringFixedLength, "CHAR(255)");

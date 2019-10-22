@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationRunner.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -41,44 +54,80 @@ using FluentMigrator.Runner.Constraints;
 namespace FluentMigrator.Runner
 {
     /// <summary>
-    /// The default <see cref="IMigrationRunner"/> implementation
+    /// The default <see cref="IMigrationRunner" /> implementation
     /// </summary>
     public class MigrationRunner : IMigrationRunner
     {
+        /// <summary>
+        /// The logger
+        /// </summary>
         [NotNull]
         private readonly ILogger _logger;
 
+        /// <summary>
+        /// The stop watch
+        /// </summary>
         [NotNull]
         private readonly IStopWatch _stopWatch;
 
+        /// <summary>
+        /// The service provider
+        /// </summary>
         [CanBeNull]
         private readonly IServiceProvider _serviceProvider;
 
+        /// <summary>
+        /// The version loader
+        /// </summary>
         [NotNull]
         private readonly Lazy<IVersionLoader> _versionLoader;
 
+        /// <summary>
+        /// The migration assemblies
+        /// </summary>
         [NotNull]
         [Obsolete]
 #pragma warning disable 612
         private readonly IAssemblyCollection _migrationAssemblies;
 #pragma warning restore 612
 
+        /// <summary>
+        /// The options
+        /// </summary>
         [CanBeNull]
         private readonly RunnerOptions _options;
 
+        /// <summary>
+        /// The processor options
+        /// </summary>
         [NotNull]
         private readonly ProcessorOptions _processorOptions;
+        /// <summary>
+        /// The migration validator
+        /// </summary>
         private readonly MigrationValidator _migrationValidator;
+        /// <summary>
+        /// The migration scope manager
+        /// </summary>
         private readonly IMigrationScopeManager _migrationScopeManager;
 
+        /// <summary>
+        /// The current version loader
+        /// </summary>
         private IVersionLoader _currentVersionLoader;
 
+        /// <summary>
+        /// The already output preview only mode warning
+        /// </summary>
         private bool _alreadyOutputPreviewOnlyModeWarning;
 
+        /// <summary>
+        /// The caught exceptions
+        /// </summary>
         private List<Exception> _caughtExceptions;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationRunner"/> class.
+        /// Initializes a new instance of the <see cref="MigrationRunner" /> class.
         /// </summary>
         /// <param name="assembly">The assembly to scan for migrations, etc...</param>
         /// <param name="runnerContext">The runner context</param>
@@ -90,7 +139,7 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationRunner"/> class.
+        /// Initializes a new instance of the <see cref="MigrationRunner" /> class.
         /// </summary>
         /// <param name="assembly">The assembly to scan for migrations, etc...</param>
         /// <param name="runnerContext">The runner context</param>
@@ -103,7 +152,7 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationRunner"/> class.
+        /// Initializes a new instance of the <see cref="MigrationRunner" /> class.
         /// </summary>
         /// <param name="assemblies">The collection of assemblies to scan for migrations, etc...</param>
         /// <param name="runnerContext">The runner context</param>
@@ -120,7 +169,7 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationRunner"/> class.
+        /// Initializes a new instance of the <see cref="MigrationRunner" /> class.
         /// </summary>
         /// <param name="assemblies">The collection of assemblies to scan for migrations, etc...</param>
         /// <param name="runnerContext">The runner context</param>
@@ -178,7 +227,7 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationRunner"/> class.
+        /// Initializes a new instance of the <see cref="MigrationRunner" /> class.
         /// </summary>
         /// <param name="options">The migration runner options</param>
         /// <param name="processorOptions">The migration processor options</param>
@@ -223,7 +272,7 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationRunner"/> class.
+        /// Initializes a new instance of the <see cref="MigrationRunner" /> class.
         /// </summary>
         /// <param name="options">The migration runner options</param>
         /// <param name="processorOptions">The migration processor options</param>
@@ -280,17 +329,20 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Gets a value indicating whether a single transaction for the whole session should be used
         /// </summary>
+        /// <value><c>true</c> if [transaction per session]; otherwise, <c>false</c>.</value>
         public bool TransactionPerSession => _options?.TransactionPerSession ?? RunnerContext?.TransactionPerSession ?? false;
 #pragma warning restore 612
 
         /// <summary>
         /// Gets a value indicating whether exceptions should be caught
         /// </summary>
+        /// <value><c>true</c> if [silently fail]; otherwise, <c>false</c>.</value>
         public bool SilentlyFail { get; set; }
 
         /// <summary>
-        /// Gets the caught exceptions when <see cref="SilentlyFail"/> is <c>true</c>
+        /// Gets the caught exceptions when <see cref="SilentlyFail" /> is <c>true</c>
         /// </summary>
+        /// <value>The caught exceptions.</value>
         public IReadOnlyList<Exception> CaughtExceptions => _caughtExceptions;
 
         /// <inheritdoc />
@@ -302,23 +354,27 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Gets or sets the profile loader
         /// </summary>
+        /// <value>The profile loader.</value>
         public IProfileLoader ProfileLoader { get; set; }
 
         /// <summary>
         /// Gets the maintenance loader
         /// </summary>
+        /// <value>The maintenance loader.</value>
         public IMaintenanceLoader MaintenanceLoader { get; }
 
         /// <summary>
         /// Gets the migration runner conventions
         /// </summary>
+        /// <value>The conventions.</value>
         public IMigrationRunnerConventions Conventions { get; }
 
         /// <summary>
         /// Gets or sets the currently active migration scope.
-        /// Setter for <see cref="IMigrationScopeManager"/> was removed. Setter for this property will throw exception when custom migration scope handler is used
+        /// Setter for <see cref="IMigrationScopeManager" /> was removed. Setter for this property will throw exception when custom migration scope handler is used
         /// </summary>
-        /// <exception cref="NotSupportedException">Thrown when custom <see cref="IMigrationScopeManager"/> implementation is used</exception>
+        /// <value>The current scope.</value>
+        /// <exception cref="NotSupportedException"></exception>
         public IMigrationScope CurrentScope
         {
             get => _migrationScopeManager.CurrentScope;
@@ -342,12 +398,17 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Gets or sets the version loader
         /// </summary>
+        /// <value>The version loader.</value>
         public IVersionLoader VersionLoader
         {
             get => _currentVersionLoader ?? _versionLoader.Value;
             set => _currentVersionLoader = value;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether [allow breaking changes].
+        /// </summary>
+        /// <value><c>true</c> if [allow breaking changes]; otherwise, <c>false</c>.</value>
         private bool AllowBreakingChanges =>
 #pragma warning disable 612
             _options?.AllowBreakingChange ?? RunnerContext?.AllowBreakingChange ?? false;
@@ -406,7 +467,7 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Apply migrations up to the given <paramref name="targetVersion"/>
+        /// Apply migrations up to the given <paramref name="targetVersion" />
         /// </summary>
         /// <param name="targetVersion">The target migration version</param>
         /// <param name="useAutomaticTransactionManagement"><c>true</c> if automatic transaction management should be used</param>
@@ -449,6 +510,11 @@ namespace FluentMigrator.Runner
             VersionLoader.LoadVersionInfo();
         }
 
+        /// <summary>
+        /// Gets up migrations to apply.
+        /// </summary>
+        /// <param name="version">The version.</param>
+        /// <returns>IEnumerable&lt;IMigrationInfo&gt;.</returns>
         private IEnumerable<IMigrationInfo> GetUpMigrationsToApply(long version)
         {
             var migrations = MigrationLoader.LoadMigrations();
@@ -458,6 +524,12 @@ namespace FluentMigrator.Runner
                    select pair.Value;
         }
 
+        /// <summary>
+        /// Determines whether [is migration step needed for up migration] [the specified migration].
+        /// </summary>
+        /// <param name="migration">The migration.</param>
+        /// <param name="targetVersion">The target version.</param>
+        /// <returns><c>true</c> if [is migration step needed for up migration] [the specified migration]; otherwise, <c>false</c>.</returns>
         private bool IsMigrationStepNeededForUpMigration(IMigrationInfo migration, long targetVersion)
         {
             bool MeetsMigrationConstraints(Type migrationType)
@@ -486,7 +558,7 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Revert migrations down to the given <paramref name="targetVersion"/>
+        /// Revert migrations down to the given <paramref name="targetVersion" />
         /// </summary>
         /// <param name="targetVersion">The target version that should become the last applied migration version</param>
         /// <param name="useAutomaticTransactionManagement"><c>true</c> if automatic transaction management should be used</param>
@@ -521,6 +593,11 @@ namespace FluentMigrator.Runner
             VersionLoader.LoadVersionInfo();
         }
 
+        /// <summary>
+        /// Gets down migrations to apply.
+        /// </summary>
+        /// <param name="targetVersion">The target version.</param>
+        /// <returns>IEnumerable&lt;IMigrationInfo&gt;.</returns>
         private IEnumerable<IMigrationInfo> GetDownMigrationsToApply(long targetVersion)
         {
             var migrations = MigrationLoader.LoadMigrations();
@@ -533,6 +610,12 @@ namespace FluentMigrator.Runner
         }
 
 
+        /// <summary>
+        /// Determines whether [is migration step needed for down migration] [the specified version of migration].
+        /// </summary>
+        /// <param name="versionOfMigration">The version of migration.</param>
+        /// <param name="targetVersion">The target version.</param>
+        /// <returns><c>true</c> if [is migration step needed for down migration] [the specified version of migration]; otherwise, <c>false</c>.</returns>
         private bool IsMigrationStepNeededForDownMigration(long versionOfMigration, long targetVersion)
         {
             if (versionOfMigration > targetVersion && VersionLoader.VersionInfo.HasAppliedMigration(versionOfMigration))
@@ -571,6 +654,8 @@ namespace FluentMigrator.Runner
         /// </summary>
         /// <param name="migrationInfo">The migration information</param>
         /// <param name="useTransaction"><c>true</c> when a transaction for this migration should be used</param>
+        /// <exception cref="ArgumentNullException">migrationInfo</exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public virtual void ApplyMigrationUp([NotNull] IMigrationInfo migrationInfo, bool useTransaction)
         {
             if (migrationInfo == null)
@@ -636,6 +721,7 @@ namespace FluentMigrator.Runner
         /// </summary>
         /// <param name="migrationInfo">The migration information</param>
         /// <param name="useTransaction"><c>true</c> when a transaction for this operation should be used</param>
+        /// <exception cref="ArgumentNullException">migrationInfo</exception>
         public virtual void ApplyMigrationDown([NotNull] IMigrationInfo migrationInfo, bool useTransaction)
         {
             if (migrationInfo == null)
@@ -684,7 +770,7 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Rollback the last <paramref name="steps"/>
+        /// Rollback the last <paramref name="steps" />
         /// </summary>
         /// <param name="steps">The number of migrations to rollback</param>
         /// <param name="useAutomaticTransactionManagement"><c>true</c> if automatic transaction management should be used</param>
@@ -738,7 +824,7 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Rollback to a given <paramref name="version"/>
+        /// Rollback to a given <paramref name="version" />
         /// </summary>
         /// <param name="version">The version to rollback to (exclusive)</param>
         /// <param name="useAutomaticTransactionManagement"><c>true</c> if automatic transaction management should be used</param>
@@ -802,6 +888,11 @@ namespace FluentMigrator.Runner
             ApplyMigrationUp(migrationInfoAdapter, true);
         }
 
+        /// <summary>
+        /// Executes the migration.
+        /// </summary>
+        /// <param name="migration">The migration.</param>
+        /// <param name="getExpressions">The get expressions.</param>
         private void ExecuteMigration(IMigration migration, Action<IMigration, IMigrationContext> getExpressions)
         {
             _caughtExceptions = new List<Exception>();
@@ -884,6 +975,11 @@ namespace FluentMigrator.Runner
             }
         }
 
+        /// <summary>
+        /// Announces the time.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="action">The action.</param>
         private void AnnounceTime(string message, Action action)
         {
             _logger.LogSay(message);
@@ -930,6 +1026,11 @@ namespace FluentMigrator.Runner
             }
         }
 
+        /// <summary>
+        /// Gets the status strings.
+        /// </summary>
+        /// <param name="status">The status.</param>
+        /// <returns>IEnumerable&lt;System.String&gt;.</returns>
         private IEnumerable<string> GetStatusStrings(MigrationStatus status)
         {
             switch (status & MigrationStatus.AppliedMask)
@@ -950,6 +1051,12 @@ namespace FluentMigrator.Runner
             }
         }
 
+        /// <summary>
+        /// Gets the status.
+        /// </summary>
+        /// <param name="migration">The migration.</param>
+        /// <param name="currentVersion">The current version.</param>
+        /// <returns>MigrationStatus.</returns>
         private MigrationStatus GetStatus(KeyValuePair<long, IMigrationInfo> migration, long currentVersion)
         {
             MigrationStatus status;
@@ -975,6 +1082,11 @@ namespace FluentMigrator.Runner
             return status;
         }
 
+        /// <summary>
+        /// Migrations the version less than greatest applied migration.
+        /// </summary>
+        /// <param name="version">The version.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool MigrationVersionLessThanGreatestAppliedMigration(long version)
         {
             return !VersionLoader.VersionInfo.HasAppliedMigration(version) && version < VersionLoader.VersionInfo.Latest();
@@ -986,13 +1098,31 @@ namespace FluentMigrator.Runner
             return _migrationScopeManager.BeginScope();
         }
 
+        /// <summary>
+        /// Enum MigrationStatus
+        /// </summary>
         [Flags]
         private enum MigrationStatus
         {
+            /// <summary>
+            /// The applied
+            /// </summary>
             Applied = 0,
+            /// <summary>
+            /// The current
+            /// </summary>
             Current = 1,
+            /// <summary>
+            /// The not applied
+            /// </summary>
             NotApplied = 2,
+            /// <summary>
+            /// The applied mask
+            /// </summary>
             AppliedMask = 3,
+            /// <summary>
+            /// The breaking
+            /// </summary>
             Breaking = 4,
         }
     }

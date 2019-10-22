@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Migration.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -30,6 +43,7 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the starting point for data deletions
         /// </summary>
+        /// <value>The delete.</value>
         public IDeleteExpressionRoot Delete
         {
             get { return new DeleteExpressionRoot(Context); }
@@ -38,6 +52,7 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the starting point for SQL execution
         /// </summary>
+        /// <value>The execute.</value>
         public IExecuteExpressionRoot Execute
         {
             get { return new ExecuteExpressionRoot(Context); }
@@ -46,6 +61,7 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the starting point for data updates
         /// </summary>
+        /// <value>The update.</value>
         public IUpdateExpressionRoot Update
         {
             get { return new UpdateExpressionRoot(Context); }

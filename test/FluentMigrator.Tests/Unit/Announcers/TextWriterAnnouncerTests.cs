@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TextWriterAnnouncerTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -25,10 +38,16 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Announcers
 {
+    /// <summary>
+    /// Defines test class TextWriterAnnouncerTests.
+    /// </summary>
     [TestFixture]
     [Obsolete]
     public class TextWriterAnnouncerTests
     {
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -40,14 +59,27 @@ namespace FluentMigrator.Tests.Unit.Announcers
                              };
         }
 
+        /// <summary>
+        /// The announcer
+        /// </summary>
         private TextWriterAnnouncer _announcer;
+        /// <summary>
+        /// The string writer
+        /// </summary>
         private StringWriter _stringWriter;
 
+        /// <summary>
+        /// Gets the output.
+        /// </summary>
+        /// <value>The output.</value>
         public string Output
         {
             get { return _stringWriter.GetStringBuilder().ToString(); }
         }
 
+        /// <summary>
+        /// Defines the test method CanAnnounceAndPadWithEquals.
+        /// </summary>
         [Test]
         public void CanAnnounceAndPadWithEquals()
         {
@@ -55,6 +87,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Output.ShouldBe("/* Test ====================================================================== */" + Environment.NewLine + Environment.NewLine);
         }
 
+        /// <summary>
+        /// Defines the test method CanSay.
+        /// </summary>
         [Test]
         public void CanSay()
         {
@@ -62,6 +97,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Output.ShouldBe("/* Create table */" + Environment.NewLine);
         }
 
+        /// <summary>
+        /// Defines the test method CanSaySql.
+        /// </summary>
         [Test]
         public void CanSaySql()
         {
@@ -69,6 +107,9 @@ namespace FluentMigrator.Tests.Unit.Announcers
             Output.ShouldBe("DELETE Blah" + Environment.NewLine);
         }
 
+        /// <summary>
+        /// Defines the test method CanSayTimeSpan.
+        /// </summary>
         [Test]
         public void CanSayTimeSpan()
         {

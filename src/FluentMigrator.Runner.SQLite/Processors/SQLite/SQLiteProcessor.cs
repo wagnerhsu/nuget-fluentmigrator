@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SQLite
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SQLiteProcessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -40,18 +53,42 @@ namespace FluentMigrator.Runner.Processors.SQLite
 {
 
     // ReSharper disable once InconsistentNaming
+    /// <summary>
+    /// Class SQLiteProcessor.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.GenericProcessorBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.GenericProcessorBase" />
     public class SQLiteProcessor : GenericProcessorBase
     {
+        /// <summary>
+        /// The service provider
+        /// </summary>
         [CanBeNull]
         private readonly IServiceProvider _serviceProvider;
 
+        /// <summary>
+        /// Gets the database type
+        /// </summary>
+        /// <value>The type of the database.</value>
         public override string DatabaseType
         {
             get { return "SQLite"; }
         }
 
+        /// <summary>
+        /// Gets the database type aliases
+        /// </summary>
+        /// <value>The database type aliases.</value>
         public override IList<string> DatabaseTypeAliases { get; } = new List<string>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SQLiteProcessor"/> class.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <param name="generator">The generator.</param>
+        /// <param name="announcer">The announcer.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="factory">The factory.</param>
         [Obsolete]
         public SQLiteProcessor(
             IDbConnection connection,
@@ -63,6 +100,15 @@ namespace FluentMigrator.Runner.Processors.SQLite
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SQLiteProcessor"/> class.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
+        /// <param name="generator">The generator.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="connectionStringAccessor">The connection string accessor.</param>
+        /// <param name="serviceProvider">The service provider.</param>
         public SQLiteProcessor(
             [NotNull] SQLiteDbFactory factory,
             [NotNull] SQLiteGenerator generator,
@@ -75,16 +121,34 @@ namespace FluentMigrator.Runner.Processors.SQLite
             _serviceProvider = serviceProvider;
         }
 
+        /// <summary>
+        /// Tests if the schema exists
+        /// </summary>
+        /// <param name="schemaName">The schema name</param>
+        /// <returns><c>true</c> when it exists</returns>
         public override bool SchemaExists(string schemaName)
         {
             return true;
         }
 
+        /// <summary>
+        /// Tests if the table exists
+        /// </summary>
+        /// <param name="schemaName">The schema name</param>
+        /// <param name="tableName">The table name</param>
+        /// <returns><c>true</c> when it exists</returns>
         public override bool TableExists(string schemaName, string tableName)
         {
             return Exists("select count(*) from sqlite_master where name=\"{0}\" and type='table'", tableName);
         }
 
+        /// <summary>
+        /// Tests if a column exists
+        /// </summary>
+        /// <param name="schemaName">The schema name</param>
+        /// <param name="tableName">The table name</param>
+        /// <param name="columnName">The column name</param>
+        /// <returns><c>true</c> when it exists</returns>
         public override bool ColumnExists(string schemaName, string tableName, string columnName)
         {
             var dataSet = Read("PRAGMA table_info([{0}])", tableName);
@@ -96,26 +160,57 @@ namespace FluentMigrator.Runner.Processors.SQLite
             return table.Select(string.Format("Name='{0}'", columnName.Replace("'", "''"))).Length > 0;
         }
 
+        /// <summary>
+        /// Tests if a constraint exists
+        /// </summary>
+        /// <param name="schemaName">The schema name</param>
+        /// <param name="tableName">The table name</param>
+        /// <param name="constraintName">The constraint name</param>
+        /// <returns><c>true</c> when it exists</returns>
         public override bool ConstraintExists(string schemaName, string tableName, string constraintName)
         {
             return false;
         }
 
+        /// <summary>
+        /// Tests if an index exists
+        /// </summary>
+        /// <param name="schemaName">The schema name</param>
+        /// <param name="tableName">The table name</param>
+        /// <param name="indexName">The index name</param>
+        /// <returns><c>true</c> when it exists</returns>
         public override bool IndexExists(string schemaName, string tableName, string indexName)
         {
             return Exists("select count(*) from sqlite_master where name='{0}' and tbl_name='{1}' and type='index'", indexName, tableName);
         }
 
+        /// <summary>
+        /// Tests if a sequence exists
+        /// </summary>
+        /// <param name="schemaName">The schema name</param>
+        /// <param name="sequenceName">The sequence name</param>
+        /// <returns><c>true</c> when it exists</returns>
         public override bool SequenceExists(string schemaName, string sequenceName)
         {
             return false;
         }
 
+        /// <summary>
+        /// Execute an SQL statement
+        /// </summary>
+        /// <param name="template">The SQL statement</param>
+        /// <param name="args">The arguments to replace in the SQL statement</param>
         public override void Execute(string template, params object[] args)
         {
             Process(string.Format(template, args));
         }
 
+        /// <summary>
+        /// Returns <c>true</c> if data could be found for the given SQL query
+        /// </summary>
+        /// <param name="template">The SQL query</param>
+        /// <param name="args">The arguments of the SQL query</param>
+        /// <returns><c>true</c> when the SQL query returned data</returns>
         public override bool Exists(string template, params object[] args)
         {
             EnsureConnectionIsOpen();
@@ -136,16 +231,34 @@ namespace FluentMigrator.Runner.Processors.SQLite
             }
         }
 
+        /// <summary>
+        /// Reads all data from all rows from a table
+        /// </summary>
+        /// <param name="schemaName">The schema name of the table</param>
+        /// <param name="tableName">The table name</param>
+        /// <returns>The data from the specified table</returns>
         public override DataSet ReadTableData(string schemaName, string tableName)
         {
             return Read("select * from [{0}]", tableName);
         }
 
+        /// <summary>
+        /// Tests if a default value for a column exists
+        /// </summary>
+        /// <param name="schemaName">The schema name</param>
+        /// <param name="tableName">The table name</param>
+        /// <param name="columnName">The column name</param>
+        /// <param name="defaultValue">The default value</param>
+        /// <returns><c>true</c> when it exists</returns>
         public override bool DefaultValueExists(string schemaName, string tableName, string columnName, object defaultValue)
         {
             return false;
         }
 
+        /// <summary>
+        /// Executes a DB operation
+        /// </summary>
+        /// <param name="expression">The expression to execute</param>
         public override void Process(PerformDBOperationExpression expression)
         {
             Logger.LogSay("Performing DB Operation");
@@ -158,6 +271,10 @@ namespace FluentMigrator.Runner.Processors.SQLite
             expression.Operation?.Invoke(Connection, Transaction);
         }
 
+        /// <summary>
+        /// Processes the specified SQL.
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
         protected override void Process(string sql)
         {
             if (string.IsNullOrEmpty(sql))
@@ -213,6 +330,11 @@ namespace FluentMigrator.Runner.Processors.SQLite
 
         }
 
+        /// <summary>
+        /// Determines whether the specified SQL contains go.
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
+        /// <returns><c>true</c> if the specified SQL contains go; otherwise, <c>false</c>.</returns>
         private bool ContainsGo(string sql)
         {
             var containsGo = false;
@@ -226,6 +348,11 @@ namespace FluentMigrator.Runner.Processors.SQLite
             return containsGo;
         }
 
+        /// <summary>
+        /// Executes the non query.
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
+        /// <exception cref="Exception"></exception>
         private void ExecuteNonQuery(string sql)
         {
             using (var command = CreateCommand(sql))
@@ -241,6 +368,13 @@ namespace FluentMigrator.Runner.Processors.SQLite
             }
         }
 
+        /// <summary>
+        /// Executes the batch non query.
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
+        /// <param name="executeBatch">The execute batch.</param>
+        /// <param name="executeGo">The execute go.</param>
+        /// <exception cref="Exception"></exception>
         private void ExecuteBatchNonQuery(string sql, Action<string> executeBatch, Action<string, int> executeGo)
         {
             string sqlBatch = string.Empty;
@@ -278,6 +412,12 @@ namespace FluentMigrator.Runner.Processors.SQLite
             }
         }
 
+        /// <summary>
+        /// Reads the specified template.
+        /// </summary>
+        /// <param name="template">The template.</param>
+        /// <param name="args">The arguments.</param>
+        /// <returns>DataSet.</returns>
         public override DataSet Read(string template, params object[] args)
         {
             EnsureConnectionIsOpen();

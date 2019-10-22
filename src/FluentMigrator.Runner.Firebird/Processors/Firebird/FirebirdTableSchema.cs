@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Firebird
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdTableSchema.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Fluent Migrator Project
@@ -26,21 +39,73 @@ using FluentMigrator.Runner.Models;
 
 namespace FluentMigrator.Runner.Processors.Firebird
 {
+    /// <summary>
+    /// Class FirebirdTableSchema. This class cannot be inherited.
+    /// </summary>
     internal sealed class FirebirdTableSchema
     {
+        /// <summary>
+        /// The quoter
+        /// </summary>
         private readonly FirebirdQuoter _quoter;
+        /// <summary>
+        /// Gets the table meta.
+        /// </summary>
+        /// <value>The table meta.</value>
         public TableInfo TableMeta { get; private set; }
+        /// <summary>
+        /// Gets the columns.
+        /// </summary>
+        /// <value>The columns.</value>
         public List<ColumnInfo> Columns { get; private set; }
+        /// <summary>
+        /// Gets the indexes.
+        /// </summary>
+        /// <value>The indexes.</value>
         public List<IndexInfo> Indexes { get; private set; }
+        /// <summary>
+        /// Gets the constraints.
+        /// </summary>
+        /// <value>The constraints.</value>
         public List<ConstraintInfo> Constraints { get; private set; }
+        /// <summary>
+        /// Gets the triggers.
+        /// </summary>
+        /// <value>The triggers.</value>
         public List<TriggerInfo> Triggers { get; private set; }
 
+        /// <summary>
+        /// Gets the name of the table.
+        /// </summary>
+        /// <value>The name of the table.</value>
         public string TableName { get; }
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="FirebirdTableSchema"/> is exists.
+        /// </summary>
+        /// <value><c>true</c> if exists; otherwise, <c>false</c>.</value>
         public bool Exists => TableMeta?.Exists ?? false;
+        /// <summary>
+        /// Gets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         public FirebirdProcessor Processor { get; }
+        /// <summary>
+        /// Gets the definition.
+        /// </summary>
+        /// <value>The definition.</value>
         public FirebirdTableDefinition Definition { get; }
+        /// <summary>
+        /// Gets a value indicating whether this instance has primary key.
+        /// </summary>
+        /// <value><c>true</c> if this instance has primary key; otherwise, <c>false</c>.</value>
         public bool HasPrimaryKey { get { return Definition.Columns.Any(x => x.IsPrimaryKey); } }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FirebirdTableSchema"/> class.
+        /// </summary>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="processor">The processor.</param>
+        /// <param name="quoter">The quoter.</param>
         public FirebirdTableSchema(string tableName, FirebirdProcessor processor, FirebirdQuoter quoter)
         {
             _quoter = quoter;
@@ -54,6 +119,9 @@ namespace FluentMigrator.Runner.Processors.Firebird
             Load();
         }
 
+        /// <summary>
+        /// Loads this instance.
+        /// </summary>
         public void Load()
         {
             LoadMeta();
@@ -63,11 +131,17 @@ namespace FluentMigrator.Runner.Processors.Firebird
             LoadTriggers();
         }
 
+        /// <summary>
+        /// Loads the meta.
+        /// </summary>
         private void LoadMeta()
         {
             TableMeta = TableInfo.Read(Processor, TableName, _quoter);
         }
 
+        /// <summary>
+        /// Loads the columns.
+        /// </summary>
         private void LoadColumns()
         {
             Columns = ColumnInfo.Read(Processor, TableMeta);
@@ -90,6 +164,9 @@ namespace FluentMigrator.Runner.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Loads the indexes.
+        /// </summary>
         private void LoadIndexes()
         {
             Indexes = IndexInfo.Read(Processor, TableMeta);
@@ -111,6 +188,10 @@ namespace FluentMigrator.Runner.Processors.Firebird
                 Definition.Indexes.Add(indexDef);
             }
         }
+        /// <summary>
+        /// Removes the index.
+        /// </summary>
+        /// <param name="indexName">Name of the index.</param>
         private void RemoveIndex(string indexName)
         {
             if (Definition.Indexes.Any(x => x.Name == indexName))
@@ -120,6 +201,9 @@ namespace FluentMigrator.Runner.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Loads the constraints.
+        /// </summary>
         private void LoadConstraints()
         {
             Constraints = ConstraintInfo.Read(Processor, TableMeta);
@@ -168,6 +252,9 @@ namespace FluentMigrator.Runner.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Loads the triggers.
+        /// </summary>
         private void LoadTriggers()
         {
             Triggers = TriggerInfo.Read(Processor, TableMeta);

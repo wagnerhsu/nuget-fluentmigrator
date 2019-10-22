@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2012Generator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -25,19 +38,36 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Generators.SqlServer
 {
+    /// <summary>
+    /// Class SqlServer2012Generator.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2008Generator" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2008Generator" />
     public class SqlServer2012Generator : SqlServer2008Generator
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2012Generator"/> class.
+        /// </summary>
         public SqlServer2012Generator()
             : this(new SqlServer2008Quoter())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2012Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
         public SqlServer2012Generator(
             [NotNull] SqlServer2008Quoter quoter)
             : base(quoter, new OptionsWrapper<GeneratorOptions>(new GeneratorOptions()))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2012Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         public SqlServer2012Generator(
             [NotNull] SqlServer2008Quoter quoter,
             [NotNull] IOptions<GeneratorOptions> generatorOptions)
@@ -45,6 +75,13 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2012Generator"/> class.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="descriptionGenerator">The description generator.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         protected SqlServer2012Generator(
             [NotNull] IColumn column,
             [NotNull] IQuoter quoter,
@@ -54,6 +91,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         {
         }
 
+        /// <summary>
+        /// Generates a <c>CREATE SEQUENCE</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.CreateSequenceExpression expression)
         {
             var result = new StringBuilder("CREATE SEQUENCE ");
@@ -102,6 +144,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return result.ToString();
         }
 
+        /// <summary>
+        /// Generates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public override string Generate(Expressions.DeleteSequenceExpression expression)
         {
             return $"DROP SEQUENCE {Quoter.QuoteSequenceName(expression.SequenceName, expression.SchemaName)}";

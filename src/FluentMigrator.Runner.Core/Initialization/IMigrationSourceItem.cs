@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IMigrationSourceItem.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -22,13 +35,14 @@ using System.Collections.Generic;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// Interface to get the candidate types for <see cref="MigrationSource"/>
+    /// Interface to get the candidate types for <see cref="MigrationSource" />
     /// </summary>
     public interface IMigrationSourceItem
     {
         /// <summary>
         /// Gets all migration type candidates (unfiltered)
         /// </summary>
+        /// <value>The migration type candidates.</value>
         IEnumerable<Type> MigrationTypeCandidates { get; }
     }
 }

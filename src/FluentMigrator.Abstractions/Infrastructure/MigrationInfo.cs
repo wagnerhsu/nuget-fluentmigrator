@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationInfo.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -22,15 +35,21 @@ using System.Collections.Generic;
 namespace FluentMigrator.Infrastructure
 {
     /// <summary>
-    /// The default <see cref="IMigrationInfo"/> implementation for migrations with the <see cref="MigrationAttribute"/>
+    /// The default <see cref="IMigrationInfo" /> implementation for migrations with the <see cref="MigrationAttribute" />
     /// </summary>
     public class MigrationInfo : IMigrationInfo
     {
+        /// <summary>
+        /// The traits
+        /// </summary>
         private readonly Dictionary<string, object> _traits = new Dictionary<string, object>();
+        /// <summary>
+        /// The lazy migration
+        /// </summary>
         private readonly Lazy<IMigration> _lazyMigration;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationInfo"/> class.
+        /// Initializes a new instance of the <see cref="MigrationInfo" /> class.
         /// </summary>
         /// <param name="version">The migration version</param>
         /// <param name="transactionBehavior">The desired transaction behavior</param>
@@ -41,7 +60,7 @@ namespace FluentMigrator.Infrastructure
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationInfo"/> class.
+        /// Initializes a new instance of the <see cref="MigrationInfo" /> class.
         /// </summary>
         /// <param name="version">The migration version</param>
         /// <param name="transactionBehavior">The desired transaction behavior</param>
@@ -53,13 +72,14 @@ namespace FluentMigrator.Infrastructure
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationInfo"/> class.
+        /// Initializes a new instance of the <see cref="MigrationInfo" /> class.
         /// </summary>
         /// <param name="version">The migration version</param>
         /// <param name="description">The migration description</param>
         /// <param name="transactionBehavior">The desired transaction behavior</param>
         /// <param name="isBreakingChange">Indicates wether the migration is a breaking change</param>
-        /// <param name="migrationFunc">A function to get the <see cref="IMigration"/> instance</param>
+        /// <param name="migrationFunc">A function to get the <see cref="IMigration" /> instance</param>
+        /// <exception cref="ArgumentNullException">migrationFunc</exception>
         public MigrationInfo(
             long version,
             string description,

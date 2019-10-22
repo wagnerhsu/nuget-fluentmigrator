@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TypeFinder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -34,9 +47,8 @@ namespace FluentMigrator.Runner
         /// </summary>
         /// <param name="types">Source types collection to search in.</param>
         /// <param name="namespace">Namespace to search types in. Set to null or empty string to search in all namespaces.</param>
-        /// <param name="loadNestedNamespaces">Set to true to search for types located in nested namespaces of <paramref name="namespace"/>.
-        /// This parameter is ignored if <paramref name="namespace"/> is null or empty string.
-        /// </param>
+        /// <param name="loadNestedNamespaces">Set to true to search for types located in nested namespaces of <paramref name="namespace" />.
+        /// This parameter is ignored if <paramref name="namespace" /> is null or empty string.</param>
         /// <returns>Collection of types matching specified criteria.</returns>
         public static IEnumerable<Type> FilterByNamespace([NotNull, ItemNotNull] this IEnumerable<Type> types, [CanBeNull] string @namespace, bool loadNestedNamespaces)
         {
@@ -58,13 +70,11 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Test if the type is in the given namespace
         /// </summary>
-        /// <remarks>
-        /// All types will be accepted when no namespace is given.
-        /// </remarks>
         /// <param name="type">The type to test</param>
         /// <param name="namespace">The namespace</param>
         /// <param name="loadNestedNamespaces">Indicates whether nested namespaces should be accepted</param>
         /// <returns><c>true</c> when the type is in the given namespace</returns>
+        /// <remarks>All types will be accepted when no namespace is given.</remarks>
         public static bool IsInNamespace(
             [NotNull] this Type type,
             [CanBeNull] string @namespace,

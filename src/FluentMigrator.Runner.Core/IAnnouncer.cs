@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IAnnouncer.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -18,17 +31,53 @@ using System;
 
 namespace FluentMigrator.Runner
 {
+    /// <summary>
+    /// Interface IAnnouncer
+    /// </summary>
     [Obsolete]
     public interface IAnnouncer
     {
+        /// <summary>
+        /// Headings the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
         void Heading(string message);
+        /// <summary>
+        /// Says the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
         void Say(string message);
+        /// <summary>
+        /// Emphasizes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
         void Emphasize(string message);
+        /// <summary>
+        /// SQLs the specified SQL.
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
         void Sql(string sql);
+        /// <summary>
+        /// Elapseds the time.
+        /// </summary>
+        /// <param name="timeSpan">The time span.</param>
         void ElapsedTime(TimeSpan timeSpan);
+        /// <summary>
+        /// Errors the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
         void Error(string message);
+        /// <summary>
+        /// Errors the specified exception.
+        /// </summary>
+        /// <param name="exception">The exception.</param>
         void Error(Exception exception);
 
+        /// <summary>
+        /// Writes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="isNotSql">if set to <c>true</c> [is not SQL].</param>
         [Obsolete]
         void Write(string message, bool isNotSql = true);
     }

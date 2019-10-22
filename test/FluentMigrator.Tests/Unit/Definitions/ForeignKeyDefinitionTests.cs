@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ForeignKeyDefinitionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,9 +41,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Definitions
 {
+    /// <summary>
+    /// Defines test class ForeignKeyDefinitionTests.
+    /// </summary>
     [TestFixture]
     public class ForeignKeyDefinitionTests
     {
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenNameIsNull.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenNameIsNull()
         {
@@ -39,6 +58,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldContain(ErrorMessages.ForeignKeyNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenNameIsNotNullOrEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenNameIsNotNullOrEmptyString()
         {
@@ -47,6 +69,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldNotContain(ErrorMessages.ForeignKeyNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenForeignTableNameIsNull.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenForeignTableNameIsNull()
         {
@@ -55,6 +80,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldContain(ErrorMessages.ForeignTableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenTableNameIsNotNullOrEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenTableNameIsNotNullOrEmptyString()
         {
@@ -63,6 +91,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldNotContain(ErrorMessages.ForeignTableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenForeignTableNameIsEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenForeignTableNameIsEmptyString()
         {
@@ -71,6 +102,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldContain(ErrorMessages.ForeignTableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenPrimaryTableNameIsNull.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenPrimaryTableNameIsNull()
         {
@@ -79,6 +113,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldContain(ErrorMessages.PrimaryTableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenPrimaryTableNameIsEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenPrimaryTableNameIsEmptyString()
         {
@@ -87,6 +124,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldContain(ErrorMessages.PrimaryTableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenPrimaryTableNameIsNotNullOrEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenPrimaryTableNameIsNotNullOrEmptyString()
         {
@@ -95,6 +135,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldNotContain(ErrorMessages.PrimaryTableNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenForeignColumnsIsEmpty.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenForeignColumnsIsEmpty()
         {
@@ -103,6 +146,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldContain(ErrorMessages.ForeignKeyMustHaveOneOrMoreForeignColumns);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenForeignColumnsIsNotEmpty.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenForeignColumnsIsNotEmpty()
         {
@@ -111,6 +157,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldNotContain(ErrorMessages.ForeignKeyMustHaveOneOrMoreForeignColumns);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenPrimaryColumnsIsEmpty.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenPrimaryColumnsIsEmpty()
         {
@@ -119,6 +168,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldContain(ErrorMessages.ForeignKeyMustHaveOneOrMorePrimaryColumns);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenPrimaryColumnsIsNotEmpty.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenPrimaryColumnsIsNotEmpty()
         {
@@ -127,6 +179,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             errors.ShouldNotContain(ErrorMessages.ForeignKeyMustHaveOneOrMorePrimaryColumns);
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull()
         {
@@ -144,6 +199,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             Assert.That(processed.ForeignKey.PrimaryTableSchema, Is.Null);
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged()
         {
@@ -163,6 +221,9 @@ namespace FluentMigrator.Tests.Unit.Definitions
             Assert.That(processed.ForeignKey.PrimaryTableSchema, Is.EqualTo("testschema"));
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema()
         {

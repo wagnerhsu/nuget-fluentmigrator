@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Issue817.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -20,11 +33,19 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration.Processors.Firebird.EndToEnd
 {
+    /// <summary>
+    /// Defines test class Issue817.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.Firebird.EndToEnd.FbEndToEndFixture" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.Firebird.EndToEnd.FbEndToEndFixture" />
     [TestFixture]
     [Category("Integration")]
     [Category("Firebird")]
     public class Issue817 : FbEndToEndFixture
     {
+        /// <summary>
+        /// Defines the test method TestIssue817.
+        /// </summary>
         [Test]
         public void TestIssue817()
         {

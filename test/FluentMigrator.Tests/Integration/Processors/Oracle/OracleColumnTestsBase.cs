@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleColumnTestsBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -28,15 +41,38 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Oracle
 {
+    /// <summary>
+    /// Class OracleColumnTestsBase.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.BaseColumnTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.BaseColumnTests" />
     [Category("Integration")]
     public abstract class OracleColumnTestsBase : BaseColumnTests
     {
+        /// <summary>
+        /// The schema name
+        /// </summary>
         private const string SchemaName = "FMTEST";
 
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private OracleProcessorBase Processor { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsCanAcceptColumnNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsCanAcceptColumnNameWithSingleQuote()
         {
@@ -46,6 +82,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsCanAcceptTableNameWithSingleQuote.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsCanAcceptTableNameWithSingleQuote()
         {
@@ -55,6 +94,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfColumnDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsFalseIfColumnDoesNotExist()
         {
@@ -64,6 +106,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfColumnDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsFalseIfColumnDoesNotExistWithSchema()
         {
@@ -73,18 +118,27 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfTableDoesNotExist.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsFalseIfTableDoesNotExist()
         {
             Processor.ColumnExists(null, "DoesNotExist", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsFalseIfTableDoesNotExistWithSchema.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsFalseIfTableDoesNotExistWithSchema()
         {
             Processor.ColumnExists(SchemaName, "DoesNotExist", "DoesNotExist").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsTrueIfColumnExists.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsTrueIfColumnExists()
         {
@@ -94,6 +148,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnExistsReturnsTrueIfColumnExistsWithSchema.
+        /// </summary>
         [Test]
         public override void CallingColumnExistsReturnsTrueIfColumnExistsWithSchema()
         {
@@ -103,6 +160,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             }
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
@@ -117,12 +177,18 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             ServiceProvider = serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -130,12 +196,20 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             Processor = ServiceScope.ServiceProvider.GetRequiredService<OracleProcessorBase>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {
             ServiceScope?.Dispose();
         }
 
+        /// <summary>
+        /// Adds the oracle services.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        /// <returns>IServiceCollection.</returns>
         protected abstract IServiceCollection AddOracleServices(IServiceCollection services);
     }
 }

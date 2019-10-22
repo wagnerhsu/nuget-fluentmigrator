@@ -1,4 +1,17 @@
-﻿using System;
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ITypeMap.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.Data;
 
 using JetBrains.Annotations;
@@ -6,14 +19,14 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Runner.Generators
 {
     /// <summary>
-    /// A map of <see cref="DbType"/> to an SQL type
+    /// A map of <see cref="DbType" /> to an SQL type
     /// </summary>
     public interface ITypeMap
     {
         /// <summary>
-        /// Get the SQL type for a <see cref="DbType"/>
+        /// Get the SQL type for a <see cref="DbType" />
         /// </summary>
-        /// <param name="type">The <see cref="DbType"/> to get the SQL type for</param>
+        /// <param name="type">The <see cref="DbType" /> to get the SQL type for</param>
         /// <param name="size">The requested size (in DB lingua: precision)</param>
         /// <param name="precision">The requested precision (in DB lingua: scale)</param>
         /// <returns>The SQL type</returns>
@@ -22,9 +35,9 @@ namespace FluentMigrator.Runner.Generators
         string GetTypeMap(DbType type, int size, int precision);
 
         /// <summary>
-        /// Get the SQL type for a <see cref="DbType"/>
+        /// Get the SQL type for a <see cref="DbType" />
         /// </summary>
-        /// <param name="type">The <see cref="DbType"/> to get the SQL type for</param>
+        /// <param name="type">The <see cref="DbType" /> to get the SQL type for</param>
         /// <param name="size">The requested size (in DB lingua: precision)</param>
         /// <param name="precision">The requested precision (in DB lingua: scale)</param>
         /// <returns>The SQL type</returns>

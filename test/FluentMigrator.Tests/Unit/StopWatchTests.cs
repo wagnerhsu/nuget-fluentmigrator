@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="StopWatchTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -24,9 +37,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit
 {
+    /// <summary>
+    /// Defines test class StopWatchTests.
+    /// </summary>
     [TestFixture]
     public class StopWatchTests
     {
+        /// <summary>
+        /// Defines the test method CanGetTheElapsedTime.
+        /// </summary>
         [Test]
         public void CanGetTheElapsedTime()
         {

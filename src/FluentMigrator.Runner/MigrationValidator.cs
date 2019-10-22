@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationValidator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -34,17 +47,35 @@ using Microsoft.Extensions.Logging;
 
 namespace FluentMigrator.Runner
 {
+    /// <summary>
+    /// Class MigrationValidator.
+    /// </summary>
     public class MigrationValidator
     {
+        /// <summary>
+        /// The logger
+        /// </summary>
         [CanBeNull]
         private readonly ILogger _logger;
 
+        /// <summary>
+        /// The conventions
+        /// </summary>
         [CanBeNull]
         private readonly IConventionSet _conventions;
 
+        /// <summary>
+        /// The validator
+        /// </summary>
         [NotNull]
         private readonly IMigrationExpressionValidator _validator;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MigrationValidator"/> class.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
+        /// <param name="conventions">The conventions.</param>
+        /// <param name="validator">The validator.</param>
         internal MigrationValidator(
             [NotNull] ILogger logger,
             [NotNull] IConventionSet conventions,
@@ -56,6 +87,12 @@ namespace FluentMigrator.Runner
         }
 
         // ReSharper disable once UnusedMember.Global
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MigrationValidator"/> class.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
+        /// <param name="conventions">The conventions.</param>
+        /// <param name="validator">The validator.</param>
         public MigrationValidator(
             [NotNull] ILogger<MigrationValidator> logger,
             [NotNull] IConventionSet conventions,
@@ -66,12 +103,20 @@ namespace FluentMigrator.Runner
             _validator = validator ?? new DefaultMigrationExpressionValidator(serviceProvider: null);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MigrationValidator"/> class.
+        /// </summary>
         [Obsolete]
         public MigrationValidator()
         {
             _validator = new DefaultMigrationExpressionValidator(null);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MigrationValidator"/> class.
+        /// </summary>
+        /// <param name="announcer">The announcer.</param>
+        /// <param name="conventions">The conventions.</param>
         [Obsolete]
         public MigrationValidator(IAnnouncer announcer, IConventionSet conventions)
         {
@@ -86,6 +131,7 @@ namespace FluentMigrator.Runner
         /// </summary>
         /// <param name="migration">The current migration being run</param>
         /// <param name="expressions">All the expressions contained in the up or down action</param>
+        /// <exception cref="FluentMigrator.Runner.Exceptions.InvalidMigrationException"></exception>
         public void ApplyConventionsToAndValidateExpressions(IMigration migration, IEnumerable<IMigrationExpression> expressions)
         {
             var errorMessageBuilder = new StringBuilder();
@@ -112,6 +158,12 @@ namespace FluentMigrator.Runner
             }
         }
 
+        /// <summary>
+        /// Appends the error.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
+        /// <param name="expressionType">Type of the expression.</param>
+        /// <param name="errors">The errors.</param>
         private void AppendError(StringBuilder builder, string expressionType, string errors)
         {
             builder.AppendFormat("{0}: {1}{2}", expressionType, errors, Environment.NewLine);

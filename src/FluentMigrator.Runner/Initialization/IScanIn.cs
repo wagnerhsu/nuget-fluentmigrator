@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IScanIn.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,6 +39,7 @@ namespace FluentMigrator.Runner.Initialization
         /// <summary>
         /// Gets the current assembly source item
         /// </summary>
+        /// <value>The source item.</value>
         [EditorBrowsable(EditorBrowsableState.Never)]
         IAssemblySourceItem SourceItem { get; }
     }

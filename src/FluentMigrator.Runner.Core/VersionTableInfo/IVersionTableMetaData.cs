@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IVersionTableMetaData.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -20,24 +33,54 @@ using System;
 
 namespace FluentMigrator.Runner.VersionTableInfo
 {
+    /// <summary>
+    /// Interface IVersionTableMetaData
+    /// </summary>
     public interface IVersionTableMetaData
     {
         /// <summary>
         /// Provides access to <code>ApplicationContext</code> object.
         /// </summary>
-        /// <remarks>
-        /// ApplicationContext value is set by FluentMigrator immediately after instantiation of a class
+        /// <value>The application context.</value>
+        /// <remarks>ApplicationContext value is set by FluentMigrator immediately after instantiation of a class
         /// implementing <code>IVersionTableMetaData</code> and before any of properties of <code>IVersionTableMetaData</code>
-        /// is called. Properties can use <code>ApplicationContext</code> value to implement context-depending logic.
-        /// </remarks>
+        /// is called. Properties can use <code>ApplicationContext</code> value to implement context-depending logic.</remarks>
         [Obsolete("Use dependency injection to get the IRunnerContext")]
         object ApplicationContext { get; set; }
+        /// <summary>
+        /// Gets a value indicating whether [owns schema].
+        /// </summary>
+        /// <value><c>true</c> if [owns schema]; otherwise, <c>false</c>.</value>
         bool OwnsSchema { get; }
+        /// <summary>
+        /// Gets the name of the schema.
+        /// </summary>
+        /// <value>The name of the schema.</value>
         string SchemaName { get; }
+        /// <summary>
+        /// Gets the name of the table.
+        /// </summary>
+        /// <value>The name of the table.</value>
         string TableName { get; }
+        /// <summary>
+        /// Gets the name of the column.
+        /// </summary>
+        /// <value>The name of the column.</value>
         string ColumnName { get; }
+        /// <summary>
+        /// Gets the name of the description column.
+        /// </summary>
+        /// <value>The name of the description column.</value>
         string DescriptionColumnName { get; }
+        /// <summary>
+        /// Gets the name of the unique index.
+        /// </summary>
+        /// <value>The name of the unique index.</value>
         string UniqueIndexName { get; }
+        /// <summary>
+        /// Gets the name of the applied on column.
+        /// </summary>
+        /// <value>The name of the applied on column.</value>
         string AppliedOnColumnName { get; }
     }
 }

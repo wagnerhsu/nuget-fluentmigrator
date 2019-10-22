@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateConstraintExpression.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System.Collections.Generic;
 
 using FluentMigrator.Infrastructure;
@@ -15,8 +28,9 @@ namespace FluentMigrator.Expressions
         public virtual ConstraintDefinition Constraint { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateConstraintExpression"/> class.
+        /// Initializes a new instance of the <see cref="CreateConstraintExpression" /> class.
         /// </summary>
+        /// <param name="type">The type.</param>
         public CreateConstraintExpression(ConstraintType type)
         {
             // ReSharper disable once VirtualMemberCallInConstructor

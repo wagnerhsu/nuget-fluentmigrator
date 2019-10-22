@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2005Column.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -19,8 +32,18 @@ using FluentMigrator.SqlServer;
 
 namespace FluentMigrator.Runner.Generators.SqlServer
 {
+    /// <summary>
+    /// Class SqlServer2005Column.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2000Column" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2000Column" />
     internal class SqlServer2005Column : SqlServer2000Column
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2005Column"/> class.
+        /// </summary>
+        /// <param name="typeMap">The type map</param>
+        /// <param name="quoter">The quoter</param>
         public SqlServer2005Column(ITypeMap typeMap, IQuoter quoter)
             : base(typeMap, quoter)
         {
@@ -39,7 +62,7 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         }
 
         /// <summary>
-        /// Add <c>ROWGUIDCOL</c> when <see cref="SqlServerExtensions.RowGuidColumn"/> is set.
+        /// Add <c>ROWGUIDCOL</c> when <see cref="SqlServerExtensions.RowGuidColumn" /> is set.
         /// </summary>
         /// <param name="column">The column to create the definition part for</param>
         /// <returns>The generated SQL string part</returns>

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Extensions.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerExtensions.Include.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -24,8 +37,17 @@ using FluentMigrator.Model;
 
 namespace FluentMigrator.SqlServer
 {
+    /// <summary>
+    /// Class SqlServerExtensions.
+    /// </summary>
     public static partial class SqlServerExtensions
     {
+        /// <summary>
+        /// Includes the specified column name.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <returns>ICreateIndexOptionsSyntax.</returns>
         public static ICreateIndexOptionsSyntax Include(this ICreateIndexOptionsSyntax expression, string columnName)
         {
             var additionalFeatures = expression as ISupportAdditionalFeatures;
@@ -33,6 +55,12 @@ namespace FluentMigrator.SqlServer
             return expression;
         }
 
+        /// <summary>
+        /// Includes the specified column name.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <returns>ICreateIndexNonKeyColumnSyntax.</returns>
         public static ICreateIndexNonKeyColumnSyntax Include(this ICreateIndexOnColumnSyntax expression, string columnName)
         {
             var additionalFeatures = expression as ISupportAdditionalFeatures;
@@ -40,6 +68,12 @@ namespace FluentMigrator.SqlServer
             return new CreateIndexExpressionNonKeyBuilder(expression, additionalFeatures);
         }
 
+        /// <summary>
+        /// Includes the specified column name.
+        /// </summary>
+        /// <param name="additionalFeatures">The additional features.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <exception cref="InvalidOperationException"></exception>
         internal static void Include(this ISupportAdditionalFeatures additionalFeatures, string columnName)
         {
             if (additionalFeatures == null)

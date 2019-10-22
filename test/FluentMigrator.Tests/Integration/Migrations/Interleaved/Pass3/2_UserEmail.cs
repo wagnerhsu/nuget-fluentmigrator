@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="2_UserEmail.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -18,14 +31,25 @@
 
 namespace FluentMigrator.Tests.Integration.Migrations.Interleaved.Pass3
 {
+    /// <summary>
+    /// Class UserEmail.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     [Migration(200909060935)]
     public class UserEmail : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Column("Email").OnTable("User").AsString().Nullable();
         }
 
+        /// <summary>
+        /// Downs this instance.
+        /// </summary>
         public override void Down()
         {
         }

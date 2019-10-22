@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2012ConstraintsTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -24,17 +37,29 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlServer2012
 {
+    /// <summary>
+    /// Defines test class SqlServer2012ConstraintsTests.
+    /// </summary>
     [TestFixture]
     public class SqlServer2012ConstraintsTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected SqlServer2012Generator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new SqlServer2012Generator();
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintWithCurrentDateTimeOffsetAsDefault.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintWithCurrentDateTimeOffsetAsDefault()
         {

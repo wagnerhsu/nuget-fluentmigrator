@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2005ConstraintsTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -30,17 +43,31 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
 {
+    /// <summary>
+    /// Defines test class SqlServer2005ConstraintsTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseConstraintsTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseConstraintsTests" />
     [TestFixture]
     public class SqlServer2005ConstraintsTests : BaseConstraintsTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected SqlServer2005Generator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new SqlServer2005Generator();
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintWithCurrentUserAsDefault.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintWithCurrentUserAsDefault()
         {
@@ -69,6 +96,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintWithCurrentDateAsDefault.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintWithCurrentDateAsDefault()
         {
@@ -97,6 +127,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintWithCurrentUtcDateAsDefault.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintWithCurrentUtcDateAsDefault()
         {
@@ -125,6 +158,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintWithCurrentDateTimeOffsetUsingGetUtcDateAsDefault.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintWithCurrentDateTimeOffsetUsingGetUtcDateAsDefault()
         {
@@ -153,6 +189,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintWithNewGuidAsDefault.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintWithNewGuidAsDefault()
         {
@@ -181,6 +220,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintWithStringAsDefault.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintWithStringAsDefault()
         {
@@ -209,6 +251,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintWithSqlFunctionAsDefault.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintWithSqlFunctionAsDefault()
         {
@@ -237,6 +282,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateForeignKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateForeignKeyWithCustomSchema()
         {
@@ -248,6 +296,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [FK_TestTable1_TestColumn1_TestTable2_TestColumn2] FOREIGN KEY ([TestColumn1]) REFERENCES [TestSchema].[TestTable2] ([TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateForeignKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateForeignKeyWithDefaultSchema()
         {
@@ -257,6 +308,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [FK_TestTable1_TestColumn1_TestTable2_TestColumn2] FOREIGN KEY ([TestColumn1]) REFERENCES [dbo].[TestTable2] ([TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateForeignKeyWithDifferentSchemas.
+        /// </summary>
         [Test]
         public override void CanCreateForeignKeyWithDifferentSchemas()
         {
@@ -267,6 +321,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [FK_TestTable1_TestColumn1_TestTable2_TestColumn2] FOREIGN KEY ([TestColumn1]) REFERENCES [dbo].[TestTable2] ([TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateMultiColumnForeignKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateMultiColumnForeignKeyWithCustomSchema()
         {
@@ -278,6 +335,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [FK_TestTable1_TestColumn1_TestColumn3_TestTable2_TestColumn2_TestColumn4] FOREIGN KEY ([TestColumn1], [TestColumn3]) REFERENCES [TestSchema].[TestTable2] ([TestColumn2], [TestColumn4])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateMultiColumnForeignKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateMultiColumnForeignKeyWithDefaultSchema()
         {
@@ -287,6 +347,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [FK_TestTable1_TestColumn1_TestColumn3_TestTable2_TestColumn2_TestColumn4] FOREIGN KEY ([TestColumn1], [TestColumn3]) REFERENCES [dbo].[TestTable2] ([TestColumn2], [TestColumn4])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateMultiColumnForeignKeyWithDifferentSchemas.
+        /// </summary>
         [Test]
         public override void CanCreateMultiColumnForeignKeyWithDifferentSchemas()
         {
@@ -297,6 +360,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [FK_TestTable1_TestColumn1_TestColumn3_TestTable2_TestColumn2_TestColumn4] FOREIGN KEY ([TestColumn1], [TestColumn3]) REFERENCES [dbo].[TestTable2] ([TestColumn2], [TestColumn4])");
         }
 
+        /// <summary>
+        /// Determines whether this instance [can create multi column primary key constraint with custom schema].
+        /// </summary>
         public override void CanCreateMultiColumnPrimaryKeyConstraintWithCustomSchema()
         {
             var expression = GeneratorTestHelper.GetCreateMultiColumnPrimaryKeyExpression();
@@ -306,6 +372,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [PK_TestTable1_TestColumn1_TestColumn2] PRIMARY KEY ([TestColumn1], [TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateMultiColumnPrimaryKeyConstraintWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateMultiColumnPrimaryKeyConstraintWithDefaultSchema()
         {
@@ -315,6 +384,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [PK_TestTable1_TestColumn1_TestColumn2] PRIMARY KEY ([TestColumn1], [TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateMultiColumnUniqueConstraintWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateMultiColumnUniqueConstraintWithCustomSchema()
         {
@@ -325,6 +397,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [UC_TestTable1_TestColumn1_TestColumn2] UNIQUE ([TestColumn1], [TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateMultiColumnUniqueConstraintWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateMultiColumnUniqueConstraintWithDefaultSchema()
         {
@@ -334,6 +409,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [UC_TestTable1_TestColumn1_TestColumn2] UNIQUE ([TestColumn1], [TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedForeignKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedForeignKeyWithCustomSchema()
         {
@@ -345,6 +423,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [FK_Test] FOREIGN KEY ([TestColumn1]) REFERENCES [TestSchema].[TestTable2] ([TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedForeignKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedForeignKeyWithDefaultSchema()
         {
@@ -354,6 +435,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [FK_Test] FOREIGN KEY ([TestColumn1]) REFERENCES [dbo].[TestTable2] ([TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedForeignKeyWithDifferentSchemas.
+        /// </summary>
         [Test]
         public override void CanCreateNamedForeignKeyWithDifferentSchemas()
         {
@@ -364,6 +448,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [FK_Test] FOREIGN KEY ([TestColumn1]) REFERENCES [dbo].[TestTable2] ([TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedForeignKeyWithOnDeleteAndOnUpdateOptions.
+        /// </summary>
         [Test]
         public override void CanCreateNamedForeignKeyWithOnDeleteAndOnUpdateOptions()
         {
@@ -375,6 +462,11 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [FK_Test] FOREIGN KEY ([TestColumn1]) REFERENCES [dbo].[TestTable2] ([TestColumn2]) ON DELETE CASCADE ON UPDATE SET DEFAULT");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedForeignKeyWithOnDeleteOptions.
+        /// </summary>
+        /// <param name="rule">The rule.</param>
+        /// <param name="output">The output.</param>
         [TestCase(Rule.SetDefault, "SET DEFAULT"), TestCase(Rule.SetNull, "SET NULL"), TestCase(Rule.Cascade, "CASCADE")]
         public override void CanCreateNamedForeignKeyWithOnDeleteOptions(Rule rule, string output)
         {
@@ -385,6 +477,11 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe(string.Format("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [FK_Test] FOREIGN KEY ([TestColumn1]) REFERENCES [dbo].[TestTable2] ([TestColumn2]) ON DELETE {0}", output));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedForeignKeyWithOnUpdateOptions.
+        /// </summary>
+        /// <param name="rule">The rule.</param>
+        /// <param name="output">The output.</param>
         [TestCase(Rule.SetDefault, "SET DEFAULT"), TestCase(Rule.SetNull, "SET NULL"), TestCase(Rule.Cascade, "CASCADE")]
         public override void CanCreateNamedForeignKeyWithOnUpdateOptions(Rule rule, string output)
         {
@@ -395,6 +492,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe(string.Format("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [FK_Test] FOREIGN KEY ([TestColumn1]) REFERENCES [dbo].[TestTable2] ([TestColumn2]) ON UPDATE {0}", output));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedMultiColumnForeignKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedMultiColumnForeignKeyWithCustomSchema()
         {
@@ -406,6 +506,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [FK_Test] FOREIGN KEY ([TestColumn1], [TestColumn3]) REFERENCES [TestSchema].[TestTable2] ([TestColumn2], [TestColumn4])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedMultiColumnForeignKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedMultiColumnForeignKeyWithDefaultSchema()
         {
@@ -415,6 +518,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [FK_Test] FOREIGN KEY ([TestColumn1], [TestColumn3]) REFERENCES [dbo].[TestTable2] ([TestColumn2], [TestColumn4])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedMultiColumnForeignKeyWithDifferentSchemas.
+        /// </summary>
         [Test]
         public override void CanCreateNamedMultiColumnForeignKeyWithDifferentSchemas()
         {
@@ -425,6 +531,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [FK_Test] FOREIGN KEY ([TestColumn1], [TestColumn3]) REFERENCES [dbo].[TestTable2] ([TestColumn2], [TestColumn4])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedMultiColumnPrimaryKeyConstraintWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedMultiColumnPrimaryKeyConstraintWithCustomSchema()
         {
@@ -435,6 +544,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [TESTPRIMARYKEY] PRIMARY KEY ([TestColumn1], [TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedMultiColumnPrimaryKeyConstraintWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedMultiColumnPrimaryKeyConstraintWithDefaultSchema()
         {
@@ -444,6 +556,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [TESTPRIMARYKEY] PRIMARY KEY ([TestColumn1], [TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedMultiColumnUniqueConstraintWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedMultiColumnUniqueConstraintWithCustomSchema()
         {
@@ -454,6 +569,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [TESTUNIQUECONSTRAINT] UNIQUE ([TestColumn1], [TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedMultiColumnUniqueConstraintWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedMultiColumnUniqueConstraintWithDefaultSchema()
         {
@@ -463,6 +581,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [TESTUNIQUECONSTRAINT] UNIQUE ([TestColumn1], [TestColumn2])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedPrimaryKeyConstraintWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedPrimaryKeyConstraintWithCustomSchema()
         {
@@ -473,6 +594,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [TESTPRIMARYKEY] PRIMARY KEY ([TestColumn1])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedPrimaryKeyConstraintWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedPrimaryKeyConstraintWithDefaultSchema()
         {
@@ -482,6 +606,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [TESTPRIMARYKEY] PRIMARY KEY ([TestColumn1])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedUniqueConstraintWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedUniqueConstraintWithCustomSchema()
         {
@@ -492,6 +619,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [TESTUNIQUECONSTRAINT] UNIQUE ([TestColumn1])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNamedUniqueConstraintWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNamedUniqueConstraintWithDefaultSchema()
         {
@@ -501,6 +631,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [TESTUNIQUECONSTRAINT] UNIQUE ([TestColumn1])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreatePrimaryKeyConstraintWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreatePrimaryKeyConstraintWithCustomSchema()
         {
@@ -511,6 +644,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [PK_TestTable1_TestColumn1] PRIMARY KEY ([TestColumn1])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreatePrimaryKeyConstraintWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreatePrimaryKeyConstraintWithDefaultSchema()
         {
@@ -520,6 +656,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [PK_TestTable1_TestColumn1] PRIMARY KEY ([TestColumn1])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateUniqueConstraintWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateUniqueConstraintWithCustomSchema()
         {
@@ -530,6 +669,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] ADD CONSTRAINT [UC_TestTable1_TestColumn1] UNIQUE ([TestColumn1])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateUniqueConstraintWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateUniqueConstraintWithDefaultSchema()
         {
@@ -539,6 +681,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [UC_TestTable1_TestColumn1] UNIQUE ([TestColumn1])");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreatePrimaryKeyWithOnlineOn.
+        /// </summary>
         [Test]
         public void CanCreatePrimaryKeyWithOnlineOn()
         {
@@ -549,6 +694,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [PK_TestTable1_TestColumn1] PRIMARY KEY ([TestColumn1]) WITH (ONLINE=ON)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreatePrimaryKeyWithOnlineOff.
+        /// </summary>
         [Test]
         public void CanCreatePrimaryKeyWithOnlineOff()
         {
@@ -559,6 +707,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] ADD CONSTRAINT [PK_TestTable1_TestColumn1] PRIMARY KEY ([TestColumn1]) WITH (ONLINE=OFF)");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropForeignKeyWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropForeignKeyWithCustomSchema()
         {
@@ -569,6 +720,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] DROP CONSTRAINT [FK_Test]");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropForeignKeyWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropForeignKeyWithDefaultSchema()
         {
@@ -578,6 +732,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] DROP CONSTRAINT [FK_Test]");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropPrimaryKeyConstraintWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropPrimaryKeyConstraintWithCustomSchema()
         {
@@ -588,6 +745,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] DROP CONSTRAINT [TESTPRIMARYKEY]");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropPrimaryKeyConstraintWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropPrimaryKeyConstraintWithDefaultSchema()
         {
@@ -597,6 +757,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] DROP CONSTRAINT [TESTPRIMARYKEY]");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropPrimaryKeyWithOnlineOn.
+        /// </summary>
         [Test]
         public void CanDropPrimaryKeyWithOnlineOn()
         {
@@ -606,6 +769,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] DROP CONSTRAINT [TESTPRIMARYKEY] WITH (ONLINE=ON)");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropPrimaryKeyWithOnlineOff.
+        /// </summary>
         [Test]
         public void CanDropPrimaryKeyWithOnlineOff()
         {
@@ -615,6 +781,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [dbo].[TestTable1] DROP CONSTRAINT [TESTPRIMARYKEY] WITH (ONLINE=OFF)");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropUniqueConstraintWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropUniqueConstraintWithCustomSchema()
         {
@@ -625,6 +794,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2005
             result.ShouldBe("ALTER TABLE [TestSchema].[TestTable1] DROP CONSTRAINT [TESTUNIQUECONSTRAINT]");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropUniqueConstraintWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropUniqueConstraintWithDefaultSchema()
         {

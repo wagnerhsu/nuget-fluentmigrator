@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateSequenceExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -28,9 +41,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Expressions
 {
+    /// <summary>
+    /// Defines test class CreateSequenceExpressionTests.
+    /// </summary>
     [TestFixture]
     public class CreateSequenceExpressionTests
     {
+        /// <summary>
+        /// Defines the test method ErrorIsReturnedWhenSequenceNameIsEmptyString.
+        /// </summary>
         [Test]
         public void ErrorIsReturnedWhenSequenceNameIsEmptyString()
         {
@@ -40,6 +59,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.SequenceNameCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ErrorIsNotReturnedWhenSequenceNameIsSet.
+        /// </summary>
         [Test]
         public void ErrorIsNotReturnedWhenSequenceNameIsSet()
         {
@@ -49,6 +71,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(errors.Count, Is.EqualTo(0));
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsNotSetThenSchemaShouldBeNull()
         {
@@ -59,6 +84,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.Sequence.SchemaName, Is.Null);
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsAppliedAndSchemaIsSetThenSchemaShouldNotBeChanged()
         {
@@ -75,6 +103,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             Assert.That(processed.Sequence.SchemaName, Is.EqualTo("testschema"));
         }
 
+        /// <summary>
+        /// Defines the test method WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema.
+        /// </summary>
         [Test]
         public void WhenDefaultSchemaConventionIsChangedAndSchemaIsNotSetThenSetSchema()
         {

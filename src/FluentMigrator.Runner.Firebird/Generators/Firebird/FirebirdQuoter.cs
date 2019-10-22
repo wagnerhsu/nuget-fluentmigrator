@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Firebird
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdQuoter.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -22,9 +35,17 @@ using FluentMigrator.Runner.Processors.Firebird;
 
 namespace FluentMigrator.Runner.Generators.Firebird
 {
+    /// <summary>
+    /// Class FirebirdQuoter.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Generic.GenericQuoter" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Generic.GenericQuoter" />
     public class FirebirdQuoter : GenericQuoter
     {
         // see http://www.firebirdsql.org/refdocs/langrefupd25-reskeywords-full-keywords.html
+        /// <summary>
+        /// The keywords
+        /// </summary>
         private static readonly HashSet<string> _keywords = new HashSet<string>(
             new[] { "!<", "^<", "^=", "^>", ",", ":=", "!=", "!>", "(", ")", "<", "<=", "<>", "=", ">", ">=", "||", "~<", "~=", "~>",
             "ABS", "ACCENT", "ACOS", "ACTION", "ACTIVE", "ADD", "ADMIN", "AFTER", "ALL", "ALTER", "ALWAYS", "AND", "ANY",
@@ -58,10 +79,13 @@ namespace FluentMigrator.Runner.Generators.Firebird
             "WRITE", "YEAR", "YEARDAY" },
             StringComparer.OrdinalIgnoreCase);
 
+        /// <summary>
+        /// The force quote
+        /// </summary>
         private readonly bool _forceQuote;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirebirdQuoter"/> class.
+        /// Initializes a new instance of the <see cref="FirebirdQuoter" /> class.
         /// </summary>
         /// <param name="options">The firebird specific options</param>
         public FirebirdQuoter(FirebirdOptions options)
@@ -69,11 +93,20 @@ namespace FluentMigrator.Runner.Generators.Firebird
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FirebirdQuoter"/> class.
+        /// </summary>
+        /// <param name="forceQuote">if set to <c>true</c> [force quote].</param>
         public FirebirdQuoter(bool forceQuote)
         {
             _forceQuote = forceQuote;
         }
 
+        /// <summary>
+        /// Shoulds the quote.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         protected override bool ShouldQuote(string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -89,6 +122,11 @@ namespace FluentMigrator.Runner.Generators.Firebird
             return false;
         }
 
+        /// <summary>
+        /// Formats the system methods.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public override string FormatSystemMethods(SystemMethods value)
         {
             switch (value)
@@ -105,11 +143,21 @@ namespace FluentMigrator.Runner.Generators.Firebird
             return base.FormatSystemMethods(value);
         }
 
+        /// <summary>
+        /// Formats the date time.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public override string FormatDateTime(DateTime value)
         {
             return ValueQuote + (value).ToString("yyyy-MM-dd HH:mm:ss") + ValueQuote;
         }
 
+        /// <summary>
+        /// Converts to fbobjectname.
+        /// </summary>
+        /// <param name="objName">Name of the object.</param>
+        /// <returns>System.String.</returns>
         public string ToFbObjectName(string objName)
         {
             if (IsQuoted(objName))
@@ -120,6 +168,11 @@ namespace FluentMigrator.Runner.Generators.Firebird
             return objName.ToUpper();
         }
 
+        /// <summary>
+        /// Quotes the name of the schema.
+        /// </summary>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns>System.String.</returns>
         public override string QuoteSchemaName(string schemaName)
         {
             // This database doesn't support schemata

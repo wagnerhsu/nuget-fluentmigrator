@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConnectionlessProcessorFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -32,14 +45,20 @@ namespace FluentMigrator.Runner.Processors
     [Obsolete]
     public class ConnectionlessProcessorFactory : IMigrationProcessorFactory
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         [NotNull]
         private readonly IMigrationGenerator _generator;
 
+        /// <summary>
+        /// The database identifier
+        /// </summary>
         [NotNull]
         private readonly string _databaseId;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectionlessProcessorFactory"/> class.
+        /// Initializes a new instance of the <see cref="ConnectionlessProcessorFactory" /> class.
         /// </summary>
         /// <param name="generatorAccessor">The accessor to get the migration generator to use</param>
         /// <param name="runnerContext">The runner context</param>
@@ -75,8 +94,17 @@ namespace FluentMigrator.Runner.Processors
         /// <inheritdoc />
         public string Name { get; }
 
+        /// <summary>
+        /// Class PassThroughGeneratorAccessor.
+        /// Implements the <see cref="FluentMigrator.Runner.Generators.IGeneratorAccessor" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Generators.IGeneratorAccessor" />
         private class PassThroughGeneratorAccessor : IGeneratorAccessor
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PassThroughGeneratorAccessor"/> class.
+            /// </summary>
+            /// <param name="generator">The generator.</param>
             public PassThroughGeneratorAccessor(IMigrationGenerator generator)
             {
                 Generator = generator;
@@ -86,15 +114,33 @@ namespace FluentMigrator.Runner.Processors
             public IMigrationGenerator Generator { get; }
         }
 
+        /// <summary>
+        /// Class ProcessorOptionsSnapshot.
+        /// Implements the <see cref="Microsoft.Extensions.Options.IOptionsSnapshot{FluentMigrator.Runner.Processors.ProcessorOptions}" />
+        /// </summary>
+        /// <seealso cref="Microsoft.Extensions.Options.IOptionsSnapshot{FluentMigrator.Runner.Processors.ProcessorOptions}" />
         private class ProcessorOptionsSnapshot : IOptionsSnapshot<ProcessorOptions>
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ProcessorOptionsSnapshot"/> class.
+            /// </summary>
+            /// <param name="options">The options.</param>
             public ProcessorOptionsSnapshot(ProcessorOptions options)
             {
                 Value = options;
             }
 
+            /// <summary>
+            /// The default configured TOptions instance, equivalent to Get(string.Empty).
+            /// </summary>
+            /// <value>The value.</value>
             public ProcessorOptions Value { get; }
 
+            /// <summary>
+            /// Gets the specified name.
+            /// </summary>
+            /// <param name="name">The name.</param>
+            /// <returns>ProcessorOptions.</returns>
             public ProcessorOptions Get(string name)
             {
                 return Value;

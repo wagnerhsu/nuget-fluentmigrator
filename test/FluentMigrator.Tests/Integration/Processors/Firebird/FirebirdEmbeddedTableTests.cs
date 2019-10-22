@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdEmbeddedTableTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -35,13 +48,22 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration.Processors.Firebird
 {
+    /// <summary>
+    /// Defines test class FirebirdEmbeddedTableTests.
+    /// </summary>
     [TestFixture]
     [Category("Firebird")]
     [Category("Integration")]
     public class FirebirdEmbeddedTableTests
     {
+        /// <summary>
+        /// The firebird library prober
+        /// </summary>
         private readonly FirebirdLibraryProber _firebirdLibraryProber = new FirebirdLibraryProber();
 
+        /// <summary>
+        /// Defines the test method RenameTable_WhenOriginalTableExistsAndContainsDataWithNulls_ShouldNotThrowException.
+        /// </summary>
         [Test]
         public void RenameTable_WhenOriginalTableExistsAndContainsDataWithNulls_ShouldNotThrowException()
         {
@@ -84,6 +106,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method RenameTable_WhenOriginalTableContainsMultipleRows_ShouldNotFailToMigrate.
+        /// </summary>
         [Test]
         public void RenameTable_WhenOriginalTableContainsMultipleRows_ShouldNotFailToMigrate()
         {
@@ -118,15 +143,30 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Class DeleteDataMigration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         private class DeleteDataMigration : Migration
         {
+            /// <summary>
+            /// The ids
+            /// </summary>
             private readonly int[] _ids;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="DeleteDataMigration"/> class.
+            /// </summary>
+            /// <param name="forIds">For ids.</param>
             public DeleteDataMigration(params int[] forIds)
             {
                 _ids = forIds;
             }
 
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
                 var start = Delete.FromTable("TheTable").Row(new { Id = _ids.First() });
@@ -134,11 +174,17 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
                     start.Row(new { Id = id });
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down()
             {
             }
         }
 
+        /// <summary>
+        /// Defines the test method OneMigrationWithOneDelete_ShouldDeleteAffectedRow.
+        /// </summary>
         [Test]
         public void OneMigrationWithOneDelete_ShouldDeleteAffectedRow()
         {
@@ -179,6 +225,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method OneMigrationWithMultipleDeletes_ShouldDeleteAffectedRow.
+        /// </summary>
         [Test]
         public void OneMigrationWithMultipleDeletes_ShouldDeleteAffectedRow()
         {
@@ -218,18 +267,32 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Class DeleteAllRowsMigration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         private class DeleteAllRowsMigration : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
                 Delete.FromTable("TheTable").AllRows();
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down()
             {
             }
         }
 
+        /// <summary>
+        /// Defines the test method MigrationWithcAllRowsDelete_ShouldDeleteAllRows.
+        /// </summary>
         [Test]
         public void MigrationWithcAllRowsDelete_ShouldDeleteAllRows()
         {
@@ -269,6 +332,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method OneMigrationWithOneSpecificUpdate_ShouldUpdateAffectedRow.
+        /// </summary>
         [Test]
         public void OneMigrationWithOneSpecificUpdate_ShouldUpdateAffectedRow()
         {
@@ -308,6 +374,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method TwoMigrationsWithSpecificUpdates_ShouldUpdateAffectedRows.
+        /// </summary>
         [Test]
         public void TwoMigrationsWithSpecificUpdates_ShouldUpdateAffectedRows()
         {
@@ -348,6 +417,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method OneMigrationWithOneBlanketUpdate_ShouldUpdateAffectedRow.
+        /// </summary>
         [Test]
         public void OneMigrationWithOneBlanketUpdate_ShouldUpdateAffectedRow()
         {
@@ -388,6 +460,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method RenamingTable_WhenTableHasTextBlobs_ShouldCreateNewTableWithTextBlobsNotBinaryBlobs.
+        /// </summary>
         [Test]
         public void RenamingTable_WhenTableHasTextBlobs_ShouldCreateNewTableWithTextBlobsNotBinaryBlobs()
         {
@@ -413,6 +488,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteAlterTable_MigrationRequiresAutomaticDelete_AndProcessorHasUndoDisabled_ShouldNotThrow.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteAlterTable_MigrationRequiresAutomaticDelete_AndProcessorHasUndoDisabled_ShouldNotThrow()
@@ -458,6 +536,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Defines the test method AlterTable_MigrationRequiresAutomaticDelete_AndProcessorHasUndoDisabled_ShouldNotThrow.
+        /// </summary>
         [Test]
         public void AlterTable_MigrationRequiresAutomaticDelete_AndProcessorHasUndoDisabled_ShouldNotThrow()
         {
@@ -488,6 +569,14 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Asserts the type of the that field has correct type and sub.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="processor">The processor.</param>
+        /// <param name="expectedFieldType">Expected type of the field.</param>
+        /// <param name="expectedFieldSubType">Expected type of the field sub.</param>
         private static void AssertThatFieldHasCorrectTypeAndSubType(string fieldName, string tableName, IMigrationProcessor processor,
             int expectedFieldType, int expectedFieldSubType)
         {
@@ -508,6 +597,13 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             Assert.AreEqual(expectedFieldSubType, fieldSubType, "Field subtype mismatch");
         }
 
+        /// <summary>
+        /// Counts the rows with.
+        /// </summary>
+        /// <param name="countSql">The count SQL.</param>
+        /// <param name="processor">The processor.</param>
+        /// <param name="args">The arguments.</param>
+        /// <returns>System.Int32.</returns>
         private static int CountRowsWith(string countSql, IMigrationProcessor processor, params object[] args)
         {
             var result = processor.Read(countSql, args);
@@ -522,6 +618,12 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             return Convert.ToInt32(row["TheCount"]);
         }
 
+        /// <summary>
+        /// Creates the service provider.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <param name="namespace">The namespace.</param>
+        /// <returns>ServiceProvider.</returns>
         private ServiceProvider CreateServiceProvider(string connectionString, string @namespace)
         {
             return ServiceCollectionExtensions.CreateServices()
@@ -531,6 +633,12 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
                 .BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Foreigns the key exists.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <param name="withName">Name of the with.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool ForeignKeyExists(string connectionString, string withName)
         {
             using (var connection = new FbConnection(connectionString))
@@ -588,34 +696,67 @@ ORDER BY s.RDB$FIELD_POSITION";
             }
         }
 
+        /// <summary>
+        /// Class MigrationWhichCreatesTableWithTextBlob.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         public class MigrationWhichCreatesTableWithTextBlob : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
                 Create.Table("TheTable")
                     .WithColumn("TheColumn").AsString(int.MaxValue);
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down()
             {
             }
         }
 
+        /// <summary>
+        /// Class MigrationWhichRenamesTableWithTextBlob.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         public class MigrationWhichRenamesTableWithTextBlob : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
                 Rename.Table("TheTable").To("TheNewTable");
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down()
             {
             }
         }
 
+        /// <summary>
+        /// Class MigrationWhichCreatesTwoRelatedTables.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         public class MigrationWhichCreatesTwoRelatedTables : Migration
         {
+            /// <summary>
+            /// The foreign key name
+            /// </summary>
             public const string ForeignKeyName = "FK_table2_table1";
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
                 Create.Table("table1")
@@ -627,34 +768,67 @@ ORDER BY s.RDB$FIELD_POSITION";
                         .ToTable("table1").PrimaryColumn("id");
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down()
             {
             }
         }
 
+        /// <summary>
+        /// Class MigrationWhichAltersTableWithFK.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         public class MigrationWhichAltersTableWithFK : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
                 Alter.Table("table1").AddColumn("Value").AsDouble().Nullable();
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down()
             {
             }
         }
 
+        /// <summary>
+        /// Class UpdateMigration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         private class UpdateMigration : Migration
         {
+            /// <summary>
+            /// From
+            /// </summary>
             private readonly int? _from;
 
+            /// <summary>
+            /// To
+            /// </summary>
             private readonly int _to;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="UpdateMigration"/> class.
+            /// </summary>
+            /// <param name="to">To.</param>
+            /// <param name="from">From.</param>
             public UpdateMigration(int to, int? from = null)
             {
                 _from = from;
                 _to = to;
             }
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
                 if (_from.HasValue)
@@ -663,13 +837,24 @@ ORDER BY s.RDB$FIELD_POSITION";
                     Update.Table("TheTable").Set(new { SomeValue = _to }).AllRows();
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down()
             {
             }
         }
 
+        /// <summary>
+        /// Class CreateTableMigration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         public class CreateTableMigration : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
                 Create.Table("TheTable")
@@ -678,44 +863,79 @@ ORDER BY s.RDB$FIELD_POSITION";
                     .WithColumn("SomeValue").AsInt32().Nullable();
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down()
             {
             }
         }
 
+        /// <summary>
+        /// Class AddDataMigration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         public class AddDataMigration : Migration
         {
+            /// <summary>
+            /// The identifier
+            /// </summary>
             private readonly int _id;
 
             // ReSharper disable once UnusedMember.Global
+            /// <summary>
+            /// Initializes a new instance of the <see cref="AddDataMigration"/> class.
+            /// </summary>
             public AddDataMigration()
                 : this(1)
             {
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="AddDataMigration"/> class.
+            /// </summary>
+            /// <param name="id">The identifier.</param>
             public AddDataMigration(int id)
             {
                 _id = id;
             }
 
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
                 Insert.IntoTable("TheTable").Row(new { Id = _id, SomeValue = _id });
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down()
             {
                 Delete.FromTable("TheTable").Row(new { Id = _id });
             }
         }
 
+        /// <summary>
+        /// Class RenameTableMigration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         public class RenameTableMigration : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
                 Rename.Table("TheTable").To("TheNewTable");
             }
 
+            /// <summary>
+            /// Downs this instance.
+            /// </summary>
             public override void Down()
             {
             }

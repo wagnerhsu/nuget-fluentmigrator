@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="BaseSchemaTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -20,12 +33,24 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Generators
 {
+    /// <summary>
+    /// Class BaseSchemaTests.
+    /// </summary>
     [Category("Generator")]
     [Category("Schema")]
     public abstract class BaseSchemaTests
     {
+        /// <summary>
+        /// Determines whether this instance [can alter schema].
+        /// </summary>
         public abstract void CanAlterSchema();
+        /// <summary>
+        /// Determines whether this instance [can create schema].
+        /// </summary>
         public abstract void CanCreateSchema();
+        /// <summary>
+        /// Determines whether this instance [can drop schema].
+        /// </summary>
         public abstract void CanDropSchema();
     }
 }

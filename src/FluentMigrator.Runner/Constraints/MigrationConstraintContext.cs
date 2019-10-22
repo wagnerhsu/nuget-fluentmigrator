@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationConstraintContext.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2019, Fluent Migrator Project
@@ -23,16 +36,18 @@ namespace FluentMigrator.Runner.Constraints
     /// <summary>
     /// Contextual information about the context in which runner will determinate whether a constrained Migration should be run.
     /// </summary>
-    /// <seealso cref="MigrationConstraintAttribute"/>
+    /// <seealso cref="MigrationConstraintAttribute" />
     public class MigrationConstraintContext
     {
         /// <summary>
         /// Runner options under which current migration run is started
         /// </summary>
+        /// <value>The runner options.</value>
         public RunnerOptions RunnerOptions { get; set; }
         /// <summary>
         /// Provides information about the current state of target database
         /// </summary>
+        /// <value>The version information.</value>
         public IVersionInfo VersionInfo { get; set; }
     }
 }

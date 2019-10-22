@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TaskExecutor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -33,21 +46,46 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Initialization
 {
+    /// <summary>
+    /// Class TaskExecutor.
+    /// </summary>
     public class TaskExecutor
     {
+        /// <summary>
+        /// The logger
+        /// </summary>
         [NotNull]
         private readonly ILogger _logger;
 
+        /// <summary>
+        /// The assembly source
+        /// </summary>
         [NotNull]
         private readonly IAssemblySource _assemblySource;
 
+        /// <summary>
+        /// The runner options
+        /// </summary>
         private readonly RunnerOptions _runnerOptions;
 
+        /// <summary>
+        /// The lazy service provider
+        /// </summary>
         [NotNull, ItemNotNull]
         private readonly Lazy<IServiceProvider> _lazyServiceProvider;
 
+        /// <summary>
+        /// The assemblies
+        /// </summary>
         private IReadOnlyCollection<Assembly> _assemblies;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskExecutor"/> class.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
+        /// <param name="assemblySource">The assembly source.</param>
+        /// <param name="runnerOptions">The runner options.</param>
+        /// <param name="serviceProvider">The service provider.</param>
         public TaskExecutor(
             [NotNull] ILogger<TaskExecutor> logger,
             [NotNull] IAssemblySource assemblySource,
@@ -63,6 +101,11 @@ namespace FluentMigrator.Runner.Initialization
             _lazyServiceProvider = new Lazy<IServiceProvider>(() => serviceProvider);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskExecutor"/> class.
+        /// </summary>
+        /// <param name="runnerContext">The runner context.</param>
+        /// <exception cref="ArgumentNullException">runnerContext</exception>
         [Obsolete]
         public TaskExecutor([NotNull] IRunnerContext runnerContext)
         {
@@ -80,6 +123,13 @@ namespace FluentMigrator.Runner.Initialization
                     .BuildServiceProvider(validateScopes: true));
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskExecutor"/> class.
+        /// </summary>
+        /// <param name="runnerContext">The runner context.</param>
+        /// <param name="connectionStringProvider">The connection string provider.</param>
+        /// <param name="assemblyLoaderFactory">The assembly loader factory.</param>
+        /// <param name="factoryProvider">The factory provider.</param>
         [Obsolete("Ony the statically provided factories are accessed")]
         public TaskExecutor(
             [NotNull] IRunnerContext runnerContext,
@@ -94,6 +144,14 @@ namespace FluentMigrator.Runner.Initialization
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskExecutor"/> class.
+        /// </summary>
+        /// <param name="runnerContext">The runner context.</param>
+        /// <param name="assemblyLoaderFactory">The assembly loader factory.</param>
+        /// <param name="connectionStringProvider">The connection string provider.</param>
+        /// <exception cref="ArgumentNullException">runnerContext</exception>
+        /// <exception cref="ArgumentNullException">assemblyLoaderFactory</exception>
         [Obsolete]
         public TaskExecutor(
             [NotNull] IRunnerContext runnerContext,
@@ -117,15 +175,15 @@ namespace FluentMigrator.Runner.Initialization
         /// <summary>
         /// Gets the current migration runner
         /// </summary>
-        /// <remarks>
-        /// This will only be set during a migration operation
-        /// </remarks>
+        /// <value>The runner.</value>
+        /// <remarks>This will only be set during a migration operation</remarks>
         [CanBeNull]
         protected IMigrationRunner Runner { get; set; }
 
         /// <summary>
         /// Gets the connection string provider
         /// </summary>
+        /// <value>The connection string provider.</value>
         [CanBeNull]
         [Obsolete]
         protected IConnectionStringProvider ConnectionStringProvider { get; }
@@ -133,9 +191,14 @@ namespace FluentMigrator.Runner.Initialization
         /// <summary>
         /// Gets the service provider used to instantiate all migration services
         /// </summary>
+        /// <value>The service provider.</value>
         [NotNull]
         protected IServiceProvider ServiceProvider => _lazyServiceProvider.Value;
 
+        /// <summary>
+        /// Gets the target assemblies.
+        /// </summary>
+        /// <returns>IEnumerable&lt;Assembly&gt;.</returns>
         [Obsolete]
         protected virtual IEnumerable<Assembly> GetTargetAssemblies()
         {
@@ -145,13 +208,14 @@ namespace FluentMigrator.Runner.Initialization
         /// <summary>
         /// Will be called durin the runner scope intialization
         /// </summary>
-        /// <remarks>
-        /// The <see cref="Runner"/> isn't initialized yet.
-        /// </remarks>
+        /// <remarks>The <see cref="Runner" /> isn't initialized yet.</remarks>
         protected virtual void Initialize()
         {
         }
 
+        /// <summary>
+        /// Executes this instance.
+        /// </summary>
         public void Execute()
         {
             using (var scope = new RunnerScope(this))
@@ -197,6 +261,7 @@ namespace FluentMigrator.Runner.Initialization
         /// Checks whether the current task will actually run any migrations.
         /// Can be used to decide whether it's necessary perform a backup before the migrations are executed.
         /// </summary>
+        /// <returns><c>true</c> if [has migrations to apply]; otherwise, <c>false</c>.</returns>
         public bool HasMigrationsToApply()
         {
             using (var scope = new RunnerScope(this))
@@ -225,16 +290,34 @@ namespace FluentMigrator.Runner.Initialization
             }
         }
 
+        /// <summary>
+        /// Class RunnerScope.
+        /// Implements the <see cref="System.IDisposable" />
+        /// </summary>
+        /// <seealso cref="System.IDisposable" />
         private class RunnerScope : IDisposable
         {
+            /// <summary>
+            /// The executor
+            /// </summary>
             [NotNull]
             private readonly TaskExecutor _executor;
 
+            /// <summary>
+            /// The service scope
+            /// </summary>
             [CanBeNull]
             private readonly IServiceScope _serviceScope;
 
+            /// <summary>
+            /// The has custom runner
+            /// </summary>
             private readonly bool _hasCustomRunner;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="RunnerScope"/> class.
+            /// </summary>
+            /// <param name="executor">The executor.</param>
             public RunnerScope([NotNull] TaskExecutor executor)
             {
                 _executor = executor;
@@ -254,8 +337,15 @@ namespace FluentMigrator.Runner.Initialization
                 }
             }
 
+            /// <summary>
+            /// Gets the runner.
+            /// </summary>
+            /// <value>The runner.</value>
             public IMigrationRunner Runner { get; }
 
+            /// <summary>
+            /// Disposes this instance.
+            /// </summary>
             public void Dispose()
             {
                 if (_hasCustomRunner)

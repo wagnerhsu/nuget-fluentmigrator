@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Extensions.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerExtensions.Online.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -24,6 +37,9 @@ using FluentMigrator.Infrastructure;
 
 namespace FluentMigrator.SqlServer
 {
+    /// <summary>
+    /// Class SqlServerExtensions.
+    /// </summary>
     public static partial class SqlServerExtensions
     {
         /// <summary>
@@ -31,12 +47,12 @@ namespace FluentMigrator.SqlServer
         /// The ONLINE option can only be specified in certain situations, please refer to documentation for SQL Server 2005 and newer.
         /// </summary>
         /// <param name="expression">The expression to use to set the <c>WITH(ONLINE=)</c> option</param>
-        /// <param name="active">
-        /// <c>true</c>
+        /// <param name="active"><c>true</c>
         /// Long-term table locks are not held. This allows queries or updates to the underlying table to continue.
         /// <c>false</c>
-        /// Table locks are applied and the table is unavailable for the duration of the index operation.
-        /// </param>
+        /// Table locks are applied and the table is unavailable for the duration of the index operation.</param>
+        /// <returns>IDeleteIndexOptionsSyntax.</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public static IDeleteIndexOptionsSyntax Online(this IDeleteIndexOptionsSyntax expression, bool active = true)
         {
             var additionalFeatures = expression as ISupportAdditionalFeatures ??
@@ -50,12 +66,12 @@ namespace FluentMigrator.SqlServer
         /// The ONLINE option can only be specified in certain situations, please refer to documentation for SQL Server 2005 and newer.
         /// </summary>
         /// <param name="expression">The expression to use to set the <c>WITH(ONLINE=)</c> option</param>
-        /// <param name="active">
-        /// <c>true</c>
+        /// <param name="active"><c>true</c>
         /// Long-term table locks are not held. This allows queries or updates to the underlying table to continue.
         /// <c>false</c>
-        /// Table locks are applied and the table is unavailable for the duration of the index operation.
-        /// </param>
+        /// Table locks are applied and the table is unavailable for the duration of the index operation.</param>
+        /// <returns>IDeleteConstraintInSchemaOptionsSyntax.</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public static IDeleteConstraintInSchemaOptionsSyntax Online(this IDeleteConstraintInSchemaOptionsSyntax expression, bool active = true)
         {
             var additionalFeatures = expression as ISupportAdditionalFeatures ??
@@ -69,12 +85,12 @@ namespace FluentMigrator.SqlServer
         /// The ONLINE option can only be specified in certain situations, please refer to documentation for SQL Server 2005 and newer.
         /// </summary>
         /// <param name="expression">The expression to use to set the <c>WITH(ONLINE=)</c> option</param>
-        /// <param name="active">
-        /// <c>true</c>
+        /// <param name="active"><c>true</c>
         /// Long-term table locks are not held. This allows queries or updates to the underlying table to continue.
         /// <c>false</c>
-        /// Table locks are applied and the table is unavailable for the duration of the index operation.
-        /// </param>
+        /// Table locks are applied and the table is unavailable for the duration of the index operation.</param>
+        /// <returns>ICreateIndexOptionsSyntax.</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public static ICreateIndexOptionsSyntax Online(this ICreateIndexOptionsSyntax expression, bool active = true)
         {
             var additionalFeatures = expression as ISupportAdditionalFeatures ??
@@ -88,12 +104,12 @@ namespace FluentMigrator.SqlServer
         /// The ONLINE option can only be specified in certain situations, please refer to documentation for SQL Server 2005 and newer.
         /// </summary>
         /// <param name="expression">The expression to use to set the <c>WITH(ONLINE=)</c> option</param>
-        /// <param name="active">
-        /// <c>true</c>
+        /// <param name="active"><c>true</c>
         /// Long-term table locks are not held. This allows queries or updates to the underlying table to continue.
         /// <c>false</c>
-        /// Table locks are applied and the table is unavailable for the duration of the index operation.
-        /// </param>
+        /// Table locks are applied and the table is unavailable for the duration of the index operation.</param>
+        /// <returns>ICreateConstraintOptionsSyntax.</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public static ICreateConstraintOptionsSyntax Online(this ICreateConstraintOptionsSyntax expression, bool active = true)
         {
             var additionalFeatures = expression as ISupportAdditionalFeatures ??

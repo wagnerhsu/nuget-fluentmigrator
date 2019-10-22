@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FluentMigratorRunnerLogger.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -24,7 +37,13 @@ namespace FluentMigrator.Runner.Logging
     /// </summary>
     public class FluentMigratorRunnerLogger : FluentMigratorLogger
     {
+        /// <summary>
+        /// The output
+        /// </summary>
         private readonly TextWriter _output;
+        /// <summary>
+        /// The error
+        /// </summary>
         private readonly TextWriter _error;
 
         /// <inheritdoc />

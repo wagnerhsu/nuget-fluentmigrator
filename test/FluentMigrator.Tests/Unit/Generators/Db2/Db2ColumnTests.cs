@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Db2ColumnTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -31,14 +44,26 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Db2
 {
+    /// <summary>
+    /// Defines test class Db2ColumnTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseColumnTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseColumnTests" />
     [TestFixture]
     public class Db2ColumnTests : BaseColumnTests
     {
+        /// <summary>
+        /// Gets or sets the generator.
+        /// </summary>
+        /// <value>The generator.</value>
         public Db2Generator Generator
         {
             get; set;
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNullableColumnWithCustomDomainTypeAndCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNullableColumnWithCustomDomainTypeAndCustomSchema()
         {
@@ -49,6 +74,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ADD COLUMN TestColumn1 MyDomainType DEFAULT");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNullableColumnWithCustomDomainTypeAndDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNullableColumnWithCustomDomainTypeAndDefaultSchema()
         {
@@ -58,6 +86,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestTable1 ADD COLUMN TestColumn1 MyDomainType DEFAULT");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanAlterColumnWithCustomSchema()
         {
@@ -69,6 +100,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ALTER COLUMN TestColumn1 SET DATA TYPE VARGRAPHIC(20) CCSID 1200 NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanAlterColumnWithDefaultSchema()
         {
@@ -79,6 +113,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestTable1 ALTER COLUMN TestColumn1 SET DATA TYPE VARGRAPHIC(20) CCSID 1200 NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAutoIncrementColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateAutoIncrementColumnWithCustomSchema()
         {
@@ -89,6 +126,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAutoIncrementColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateAutoIncrementColumnWithDefaultSchema()
         {
@@ -98,6 +138,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithCustomSchema()
         {
@@ -108,6 +151,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ADD COLUMN TestColumn1 VARGRAPHIC(5) CCSID 1200 NOT NULL DEFAULT");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithDefaultSchema()
         {
@@ -117,6 +163,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestTable1 ADD COLUMN TestColumn1 VARGRAPHIC(5) CCSID 1200 NOT NULL DEFAULT");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithSystemMethodAndCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithSystemMethodAndCustomSchema()
         {
@@ -127,6 +176,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
                 @"UPDATE TestSchema.TestTable1 SET TestColumn1 = CURRENT_TIMESTAMP");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithSystemMethodAndDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithSystemMethodAndDefaultSchema()
         {
@@ -137,6 +189,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
                 @"UPDATE TestTable1 SET TestColumn1 = CURRENT_TIMESTAMP");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateDecimalColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateDecimalColumnWithCustomSchema()
         {
@@ -147,6 +202,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ADD COLUMN TestColumn1 DECIMAL(19,2) NOT NULL DEFAULT");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateDecimalColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateDecimalColumnWithDefaultSchema()
         {
@@ -156,6 +214,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestTable1 ADD COLUMN TestColumn1 DECIMAL(19,2) NOT NULL DEFAULT");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropColumnWithCustomSchema()
         {
@@ -166,6 +227,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 DROP COLUMN TestColumn1");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropColumnWithDefaultSchema()
         {
@@ -175,6 +239,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestTable1 DROP COLUMN TestColumn1");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropMultipleColumnsWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropMultipleColumnsWithCustomSchema()
         {
@@ -185,6 +252,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 DROP COLUMN TestColumn1 DROP COLUMN TestColumn2");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropMultipleColumnsWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropMultipleColumnsWithDefaultSchema()
         {
@@ -194,6 +264,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestTable1 DROP COLUMN TestColumn1 DROP COLUMN TestColumn2");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanRenameColumnWithCustomSchema()
         {
@@ -203,6 +276,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanRenameColumnWithDefaultSchema()
         {
@@ -212,6 +288,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {

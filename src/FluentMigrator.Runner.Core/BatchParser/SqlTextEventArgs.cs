@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlTextEventArgs.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,12 +34,12 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Runner.BatchParser
 {
     /// <summary>
-    /// Event arguments for the SQL text collected by the <see cref="SqlBatchParser"/>
+    /// Event arguments for the SQL text collected by the <see cref="SqlBatchParser" />
     /// </summary>
     public class SqlTextEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlTextEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="SqlTextEventArgs" /> class.
         /// </summary>
         /// <param name="sqlText">The collected SQL text</param>
         public SqlTextEventArgs([NotNull] string sqlText)
@@ -37,6 +50,7 @@ namespace FluentMigrator.Runner.BatchParser
         /// <summary>
         /// Gets the collected SQL text
         /// </summary>
+        /// <value>The SQL text.</value>
         [NotNull]
         public string SqlText { get; }
     }

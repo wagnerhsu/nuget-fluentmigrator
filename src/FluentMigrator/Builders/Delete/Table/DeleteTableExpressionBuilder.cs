@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteTableExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -21,12 +34,12 @@ using FluentMigrator.Expressions;
 namespace FluentMigrator.Builders.Delete.Table
 {
     /// <summary>
-    /// An expression builder for a <see cref="DeleteTableExpression"/>
+    /// An expression builder for a <see cref="DeleteTableExpression" />
     /// </summary>
     public class DeleteTableExpressionBuilder : ExpressionBuilderBase<DeleteTableExpression>, IInSchemaSyntax
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeleteTableExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="DeleteTableExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         public DeleteTableExpressionBuilder(DeleteTableExpression expression)

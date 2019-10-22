@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IAssemblySource.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -22,14 +35,13 @@ namespace FluentMigrator.Runner.Initialization
     /// <summary>
     /// Interface for an assembly provider
     /// </summary>
-    /// <remarks>
-    /// This will be used to find some user-defined interface implementations of out-of-process runners
-    /// </remarks>
+    /// <remarks>This will be used to find some user-defined interface implementations of out-of-process runners</remarks>
     public interface IAssemblySource
     {
         /// <summary>
         /// Gets the assemblies
         /// </summary>
+        /// <value>The assemblies.</value>
         IReadOnlyCollection<Assembly> Assemblies { get; }
     }
 }

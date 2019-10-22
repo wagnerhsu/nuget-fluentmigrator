@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Firebird
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdSchemaInfo.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,8 +19,16 @@ using FluentMigrator.Runner.Generators.Firebird;
 
 namespace FluentMigrator.Runner.Processors.Firebird
 {
+    /// <summary>
+    /// Class AdoHelper.
+    /// </summary>
     public static class AdoHelper
     {
+        /// <summary>
+        /// Gets the int value.
+        /// </summary>
+        /// <param name="val">The value.</param>
+        /// <returns>System.Nullable&lt;System.Int32&gt;.</returns>
         public static int? GetIntValue(object val)
         {
             if (val == DBNull.Value)
@@ -15,11 +36,21 @@ namespace FluentMigrator.Runner.Processors.Firebird
             return int.Parse(val.ToString());
         }
 
+        /// <summary>
+        /// Gets the string value.
+        /// </summary>
+        /// <param name="val">The value.</param>
+        /// <returns>System.String.</returns>
         public static string GetStringValue(object val)
         {
             return val.ToString();
         }
 
+        /// <summary>
+        /// Formats the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public static string FormatValue(string value)
         {
             return value.Replace(@"'", @"''");
@@ -27,24 +58,54 @@ namespace FluentMigrator.Runner.Processors.Firebird
 
     }
 
+    /// <summary>
+    /// Class TableInfo. This class cannot be inherited.
+    /// </summary>
     public sealed class TableInfo
     {
+        /// <summary>
+        /// The query
+        /// </summary>
         private static readonly string query = "select rdb$relation_name from rdb$relations where lower(rdb$relation_name) = lower('{0}')";
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; }
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="TableInfo"/> is exists.
+        /// </summary>
+        /// <value><c>true</c> if exists; otherwise, <c>false</c>.</value>
         public bool Exists { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TableInfo"/> class.
+        /// </summary>
+        /// <param name="drMeta">The dr meta.</param>
         public TableInfo(DataRow drMeta)
             : this(drMeta["rdb$relation_name"].ToString().Trim(), true)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TableInfo"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="exists">if set to <c>true</c> [exists].</param>
         public TableInfo(string name, bool exists)
         {
             Name = name;
             Exists = exists;
         }
 
+        /// <summary>
+        /// Reads the specified processor.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="quoter">The quoter.</param>
+        /// <returns>TableInfo.</returns>
         public static TableInfo Read(FirebirdProcessor processor, string tableName, FirebirdQuoter quoter)
         {
             var fbTableName = quoter.ToFbObjectName(tableName);
@@ -55,8 +116,14 @@ namespace FluentMigrator.Runner.Processors.Firebird
         }
     }
 
+    /// <summary>
+    /// Class ColumnInfo. This class cannot be inherited.
+    /// </summary>
     public sealed class ColumnInfo
     {
+        /// <summary>
+        /// The query
+        /// </summary>
         private static readonly string query = @"select
                     fields.rdb$field_name as field_name,
                     fields.rdb$relation_name as relation_name,
@@ -75,19 +142,71 @@ namespace FluentMigrator.Runner.Processors.Firebird
                     where (lower(fields.rdb$relation_name) = lower('{0}'))
                     ";
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; }
+        /// <summary>
+        /// Gets the name of the table.
+        /// </summary>
+        /// <value>The name of the table.</value>
         public string TableName { get; }
+        /// <summary>
+        /// Gets the default value.
+        /// </summary>
+        /// <value>The default value.</value>
         public object DefaultValue { get; }
+        /// <summary>
+        /// Gets the position.
+        /// </summary>
+        /// <value>The position.</value>
         public int Position { get; }
+        /// <summary>
+        /// Gets the type of the database.
+        /// </summary>
+        /// <value>The type of the database.</value>
         public DbType? DBType { get { return GetDBType(); } }
+        /// <summary>
+        /// Gets the type of the custom.
+        /// </summary>
+        /// <value>The type of the custom.</value>
         public string CustomType { get { return GetCustomDBType(); } }
+        /// <summary>
+        /// Gets a value indicating whether this instance is nullable.
+        /// </summary>
+        /// <value><c>true</c> if this instance is nullable; otherwise, <c>false</c>.</value>
         public bool IsNullable { get; }
+        /// <summary>
+        /// Gets the precision.
+        /// </summary>
+        /// <value>The precision.</value>
         public int? Precision { get; }
+        /// <summary>
+        /// Gets the length of the character.
+        /// </summary>
+        /// <value>The length of the character.</value>
         public int? CharacterLength { get; }
+        /// <summary>
+        /// Gets the type of the field.
+        /// </summary>
+        /// <value>The type of the field.</value>
         public int? FieldType { get; }
+        /// <summary>
+        /// Gets the type of the field sub.
+        /// </summary>
+        /// <value>The type of the field sub.</value>
         public int? FieldSubType { get; }
+        /// <summary>
+        /// Gets the name of the field type.
+        /// </summary>
+        /// <value>The name of the field type.</value>
         public string FieldTypeName { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ColumnInfo"/> class.
+        /// </summary>
+        /// <param name="drColumn">The dr column.</param>
         private ColumnInfo(DataRow drColumn)
         {
             Name = AdoHelper.GetStringValue(drColumn["field_name"]).Trim();
@@ -102,6 +221,12 @@ namespace FluentMigrator.Runner.Processors.Firebird
             FieldTypeName = AdoHelper.GetStringValue(drColumn["field_type_name"]).Trim();
 
         }
+        /// <summary>
+        /// Reads the specified processor.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="table">The table.</param>
+        /// <returns>List&lt;ColumnInfo&gt;.</returns>
         public static List<ColumnInfo> Read(FirebirdProcessor processor, TableInfo table)
         {
             using (DataSet ds = processor.Read(query, AdoHelper.FormatValue(table.Name)))
@@ -113,11 +238,19 @@ namespace FluentMigrator.Runner.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Gets the type of the database.
+        /// </summary>
+        /// <returns>System.Nullable&lt;DbType&gt;.</returns>
         private DbType? GetDBType()
         {
             return null;
         }
 
+        /// <summary>
+        /// Gets the type of the custom database.
+        /// </summary>
+        /// <returns>System.String.</returns>
         private string GetCustomDBType()
         {
             #region FieldTypes by number
@@ -171,6 +304,12 @@ namespace FluentMigrator.Runner.Processors.Firebird
             return FieldTypeName;
         }
 
+        /// <summary>
+        /// Gets the default value.
+        /// </summary>
+        /// <param name="val">The value.</param>
+        /// <returns>System.Object.</returns>
+        /// <exception cref="NotSupportedException"></exception>
         private object GetDefaultValue(object val)
         {
             if (val == null)
@@ -206,23 +345,60 @@ namespace FluentMigrator.Runner.Processors.Firebird
         }
     }
 
+    /// <summary>
+    /// Class IndexInfo. This class cannot be inherited.
+    /// </summary>
     public sealed class IndexInfo
     {
+        /// <summary>
+        /// The query
+        /// </summary>
         private static readonly string query = @"select
                 rdb$index_name, rdb$relation_name, rdb$unique_flag, rdb$index_type
                 from rdb$indices where rdb$relation_name = '{0}'";
+        /// <summary>
+        /// The single query
+        /// </summary>
         private static readonly string singleQuery = @"select
                 rdb$index_name, rdb$relation_name, rdb$unique_flag, rdb$index_type
                 from rdb$indices where rdb$index_name = '{0}'";
+        /// <summary>
+        /// The index field query
+        /// </summary>
         private static readonly string indexFieldQuery = @"select rdb$field_name from rdb$index_segments where rdb$index_name = '{0}'";
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; }
+        /// <summary>
+        /// Gets the name of the table.
+        /// </summary>
+        /// <value>The name of the table.</value>
         public string TableName { get; }
+        /// <summary>
+        /// Gets a value indicating whether this instance is unique.
+        /// </summary>
+        /// <value><c>true</c> if this instance is unique; otherwise, <c>false</c>.</value>
         public bool IsUnique { get; }
+        /// <summary>
+        /// Gets a value indicating whether this instance is ascending.
+        /// </summary>
+        /// <value><c>true</c> if this instance is ascending; otherwise, <c>false</c>.</value>
         public bool IsAscending { get; }
+        /// <summary>
+        /// Gets the columns.
+        /// </summary>
+        /// <value>The columns.</value>
         public List<string> Columns { get; }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IndexInfo"/> class.
+        /// </summary>
+        /// <param name="drIndex">Index of the dr.</param>
+        /// <param name="processor">The processor.</param>
         private IndexInfo(DataRow drIndex, FirebirdProcessor processor)
         {
             Name = drIndex["rdb$index_name"].ToString().Trim();
@@ -237,6 +413,12 @@ namespace FluentMigrator.Runner.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Reads the specified processor.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="table">The table.</param>
+        /// <returns>List&lt;IndexInfo&gt;.</returns>
         public static List<IndexInfo> Read(FirebirdProcessor processor, TableInfo table)
         {
             using (DataSet ds = processor.Read(query, AdoHelper.FormatValue(table.Name)))
@@ -248,6 +430,12 @@ namespace FluentMigrator.Runner.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Reads the specified processor.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="indexName">Name of the index.</param>
+        /// <returns>IndexInfo.</returns>
         public static IndexInfo Read(FirebirdProcessor processor, string indexName)
         {
             using (DataSet ds = processor.Read(singleQuery, AdoHelper.FormatValue(indexName)))
@@ -257,25 +445,75 @@ namespace FluentMigrator.Runner.Processors.Firebird
         }
     }
 
+    /// <summary>
+    /// Class ConstraintInfo. This class cannot be inherited.
+    /// </summary>
     public sealed class ConstraintInfo
     {
+        /// <summary>
+        /// The query
+        /// </summary>
         private static readonly string query = @"select
                 rdb$constraint_name, rdb$constraint_type, rdb$index_name
                 from rdb$relation_constraints where rdb$relation_name = '{0}'";
+        /// <summary>
+        /// The col query
+        /// </summary>
         private static readonly string colQuery = @"select
                 rdb$const_name_uq, rdb$update_rule, rdb$delete_rule
                 from rdb$ref_constraints where rdb$constraint_name = '{0}'";
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; }
+        /// <summary>
+        /// Gets a value indicating whether this instance is primary key.
+        /// </summary>
+        /// <value><c>true</c> if this instance is primary key; otherwise, <c>false</c>.</value>
         public bool IsPrimaryKey { get; }
+        /// <summary>
+        /// Gets a value indicating whether this instance is unique.
+        /// </summary>
+        /// <value><c>true</c> if this instance is unique; otherwise, <c>false</c>.</value>
         public bool IsUnique { get; }
+        /// <summary>
+        /// Gets a value indicating whether this instance is not null.
+        /// </summary>
+        /// <value><c>true</c> if this instance is not null; otherwise, <c>false</c>.</value>
         public bool IsNotNull { get; }
+        /// <summary>
+        /// Gets a value indicating whether this instance is foreign key.
+        /// </summary>
+        /// <value><c>true</c> if this instance is foreign key; otherwise, <c>false</c>.</value>
         public bool IsForeignKey { get; }
+        /// <summary>
+        /// Gets the name of the index.
+        /// </summary>
+        /// <value>The name of the index.</value>
         public string IndexName { get; }
+        /// <summary>
+        /// Gets the index of the foreign.
+        /// </summary>
+        /// <value>The index of the foreign.</value>
         public IndexInfo ForeignIndex { get; }
+        /// <summary>
+        /// Gets the update rule.
+        /// </summary>
+        /// <value>The update rule.</value>
         public Rule UpdateRule { get; }
+        /// <summary>
+        /// Gets the delete rule.
+        /// </summary>
+        /// <value>The delete rule.</value>
         public Rule DeleteRule { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConstraintInfo"/> class.
+        /// </summary>
+        /// <param name="drConstraint">The dr constraint.</param>
+        /// <param name="processor">The processor.</param>
         private ConstraintInfo(DataRow drConstraint, FirebirdProcessor processor)
         {
             Name = drConstraint["rdb$constraint_name"].ToString().Trim();
@@ -297,6 +535,11 @@ namespace FluentMigrator.Runner.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Gets the foreign rule.
+        /// </summary>
+        /// <param name="val">The value.</param>
+        /// <returns>Rule.</returns>
         private Rule GetForeignRule(object val)
         {
             if (val == null)
@@ -317,6 +560,12 @@ namespace FluentMigrator.Runner.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Reads the specified processor.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="table">The table.</param>
+        /// <returns>List&lt;ConstraintInfo&gt;.</returns>
         public static List<ConstraintInfo> Read(FirebirdProcessor processor, TableInfo table)
         {
             using (DataSet ds = processor.Read(query, AdoHelper.FormatValue(table.Name)))
@@ -329,23 +578,72 @@ namespace FluentMigrator.Runner.Processors.Firebird
         }
     }
 
+    /// <summary>
+    /// Enum TriggerEvent
+    /// </summary>
     public enum TriggerEvent { Insert, Update, Delete }
+    /// <summary>
+    /// Class TriggerInfo. This class cannot be inherited.
+    /// </summary>
     public sealed class TriggerInfo
     {
+        /// <summary>
+        /// The query
+        /// </summary>
         private static readonly string query = @"select
                 rdb$trigger_name, rdb$trigger_sequence, rdb$trigger_type, rdb$trigger_source
                 from rdb$triggers where rdb$relation_name = '{0}'";
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; }
+        /// <summary>
+        /// Gets the sequence.
+        /// </summary>
+        /// <value>The sequence.</value>
         public int Sequence { get; }
+        /// <summary>
+        /// Gets the type.
+        /// </summary>
+        /// <value>The type.</value>
         public int Type { get; }
+        /// <summary>
+        /// Gets the body.
+        /// </summary>
+        /// <value>The body.</value>
         public string Body { get; }
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="TriggerInfo"/> is before.
+        /// </summary>
+        /// <value><c>true</c> if before; otherwise, <c>false</c>.</value>
         public bool Before { get { return Type % 2 == 1; } }
+        /// <summary>
+        /// Gets a value indicating whether [on insert].
+        /// </summary>
+        /// <value><c>true</c> if [on insert]; otherwise, <c>false</c>.</value>
         public bool OnInsert { get { return Type == 1 || Type == 2; } }
+        /// <summary>
+        /// Gets a value indicating whether [on update].
+        /// </summary>
+        /// <value><c>true</c> if [on update]; otherwise, <c>false</c>.</value>
         public bool OnUpdate { get { return Type == 3 || Type == 4; } }
+        /// <summary>
+        /// Gets a value indicating whether [on delete].
+        /// </summary>
+        /// <value><c>true</c> if [on delete]; otherwise, <c>false</c>.</value>
         public bool OnDelete { get { return Type == 5 || Type == 6; } }
+        /// <summary>
+        /// Gets the event.
+        /// </summary>
+        /// <value>The event.</value>
         public TriggerEvent Event { get { return OnInsert ? TriggerEvent.Insert : OnUpdate ? TriggerEvent.Update : TriggerEvent.Delete; } }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TriggerInfo"/> class.
+        /// </summary>
+        /// <param name="drTrigger">The dr trigger.</param>
         private TriggerInfo(DataRow drTrigger)
         {
             Name = drTrigger["rdb$trigger_name"].ToString().Trim();
@@ -354,6 +652,12 @@ namespace FluentMigrator.Runner.Processors.Firebird
             Body = drTrigger["rdb$trigger_source"].ToString().Trim();
         }
 
+        /// <summary>
+        /// Reads the specified processor.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="table">The table.</param>
+        /// <returns>List&lt;TriggerInfo&gt;.</returns>
         public static List<TriggerInfo> Read(FirebirdProcessor processor, TableInfo table)
         {
             using (DataSet ds = processor.Read(query, AdoHelper.FormatValue(table.Name)))
@@ -366,14 +670,36 @@ namespace FluentMigrator.Runner.Processors.Firebird
         }
     }
 
+    /// <summary>
+    /// Class SequenceInfo. This class cannot be inherited.
+    /// </summary>
     public sealed class SequenceInfo
     {
+        /// <summary>
+        /// The query
+        /// </summary>
         private static readonly string query = @"select rdb$generator_name from rdb$generators where rdb$generator_name = '{0}'";
+        /// <summary>
+        /// The query value
+        /// </summary>
         private static readonly string queryValue = "select gen_id(\"{0}\", 0) as gen_val from rdb$database";
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; }
+        /// <summary>
+        /// Gets the current value.
+        /// </summary>
+        /// <value>The current value.</value>
         public int CurrentValue{get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SequenceInfo"/> class.
+        /// </summary>
+        /// <param name="drSequence">The dr sequence.</param>
+        /// <param name="processor">The processor.</param>
         private SequenceInfo(DataRow drSequence, FirebirdProcessor processor)
         {
             Name = drSequence["rdb$generator_name"].ToString().Trim();
@@ -383,6 +709,13 @@ namespace FluentMigrator.Runner.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Reads the specified processor.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="sequenceName">Name of the sequence.</param>
+        /// <param name="quoter">The quoter.</param>
+        /// <returns>SequenceInfo.</returns>
         public static SequenceInfo Read(FirebirdProcessor processor, string sequenceName, FirebirdQuoter quoter)
         {
             var fbSequenceName = quoter.ToFbObjectName(sequenceName);

@@ -1,4 +1,17 @@
-﻿using System.Linq;
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteDataExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System.Linq;
 using NUnit.Framework;
 
 using FluentMigrator.Expressions;
@@ -9,10 +22,16 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Builders.Delete
 {
+    /// <summary>
+    /// Defines test class DeleteDataExpressionTests.
+    /// </summary>
     [TestFixture]
     public class DeleteDataExpressionTests
     {
 
+        /// <summary>
+        /// Defines the test method CallingRowAddAColumn.
+        /// </summary>
         [Test]
         public void CallingRowAddAColumn()
         {
@@ -27,6 +46,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             rowobject.Value.ShouldBe("TestValue");
         }
 
+        /// <summary>
+        /// Defines the test method CallingRowTwiceAddTwoColumns.
+        /// </summary>
         [Test]
         public void CallingRowTwiceAddTwoColumns()
         {
@@ -46,6 +68,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             rowobject[0].Value.ShouldBe("TestValue2");
         }
 
+        /// <summary>
+        /// Defines the test method CallingAllRowsSetsAllRowsToTrue.
+        /// </summary>
         [Test]
         public void CallingAllRowsSetsAllRowsToTrue()
         {
@@ -58,6 +83,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             expressionMock.VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method CallingInSchemaSetSchemaName.
+        /// </summary>
         [Test]
         public void CallingInSchemaSetSchemaName()
         {
@@ -70,6 +98,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             expressionMock.VerifyAll();
         }
 
+        /// <summary>
+        /// Defines the test method CallingIsNullAddsANullColumn.
+        /// </summary>
         [Test]
         public void CallingIsNullAddsANullColumn()
         {

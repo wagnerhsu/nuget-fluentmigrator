@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ProcessorFactoryNotFoundException.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,14 +41,14 @@ namespace FluentMigrator.Exceptions
     public class ProcessorFactoryNotFoundException : FluentMigratorException
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProcessorFactoryNotFoundException"/> class.
+        /// Initializes a new instance of the <see cref="ProcessorFactoryNotFoundException" /> class.
         /// </summary>
         public ProcessorFactoryNotFoundException()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProcessorFactoryNotFoundException"/> class.
+        /// Initializes a new instance of the <see cref="ProcessorFactoryNotFoundException" /> class.
         /// </summary>
         /// <param name="message">The exception message</param>
         public ProcessorFactoryNotFoundException(string message) : base(message)
@@ -43,7 +56,7 @@ namespace FluentMigrator.Exceptions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProcessorFactoryNotFoundException"/> class.
+        /// Initializes a new instance of the <see cref="ProcessorFactoryNotFoundException" /> class.
         /// </summary>
         /// <param name="message">The exception message</param>
         /// <param name="innerException">The inner exception</param>
@@ -53,7 +66,7 @@ namespace FluentMigrator.Exceptions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProcessorFactoryNotFoundException"/> class.
+        /// Initializes a new instance of the <see cref="ProcessorFactoryNotFoundException" /> class.
         /// </summary>
         /// <param name="info">The serialization information</param>
         /// <param name="context">The streaming context</param>

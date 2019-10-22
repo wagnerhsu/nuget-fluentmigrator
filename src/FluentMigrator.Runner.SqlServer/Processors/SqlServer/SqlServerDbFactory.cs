@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -22,14 +35,26 @@ using System.Data.SqlClient;
 
 namespace FluentMigrator.Runner.Processors.SqlServer
 {
+    /// <summary>
+    /// Class SqlServerDbFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.DbFactoryBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.DbFactoryBase" />
     [Obsolete]
     public class SqlServerDbFactory : DbFactoryBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServerDbFactory"/> class.
+        /// </summary>
         public SqlServerDbFactory()
             : base(SqlClientFactory.Instance)
         {
         }
 
+        /// <summary>
+        /// Creates the factory.
+        /// </summary>
+        /// <returns>DbProviderFactory.</returns>
         protected override DbProviderFactory CreateFactory()
         {
             return SqlClientFactory.Instance;

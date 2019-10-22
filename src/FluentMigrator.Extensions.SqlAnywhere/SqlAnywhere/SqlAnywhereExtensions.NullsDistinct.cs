@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Extensions.SqlAnywhere
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlAnywhereExtensions.NullsDistinct.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -30,7 +43,7 @@ namespace FluentMigrator.SqlAnywhere
         /// Index should have unique values, but multiple rows with null values should be accepted.
         /// </summary>
         /// <param name="expression">The expression to set this option for</param>
-        /// <returns>The <paramref name="expression"/></returns>
+        /// <returns>The <paramref name="expression" /></returns>
         public static ICreateIndexOnColumnSyntax UniqueNullsNotDistinct(
             this ICreateIndexOptionsSyntax expression)
         {
@@ -42,7 +55,8 @@ namespace FluentMigrator.SqlAnywhere
         /// </summary>
         /// <param name="expression">The expression to set this option for</param>
         /// <param name="nullsAreDistinct"><c>true</c> when nulls should be distinct</param>
-        /// <returns>The <paramref name="expression"/></returns>
+        /// <returns>The <paramref name="expression" /></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public static ICreateIndexOnColumnSyntax UniqueNullsDistinct(
             this ICreateIndexOptionsSyntax expression,
             bool nullsAreDistinct = true)

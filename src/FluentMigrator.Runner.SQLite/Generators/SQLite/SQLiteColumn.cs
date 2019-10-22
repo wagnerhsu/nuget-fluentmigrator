@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SQLite
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SQLiteColumn.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,8 +21,16 @@ using FluentMigrator.Runner.Generators.Base;
 namespace FluentMigrator.Runner.Generators.SQLite
 {
     // ReSharper disable once InconsistentNaming
+    /// <summary>
+    /// Class SQLiteColumn.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.ColumnBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.ColumnBase" />
     internal class SQLiteColumn : ColumnBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SQLiteColumn"/> class.
+        /// </summary>
         public SQLiteColumn()
             : base(new SQLiteTypeMap(), new SQLiteQuoter())
         {

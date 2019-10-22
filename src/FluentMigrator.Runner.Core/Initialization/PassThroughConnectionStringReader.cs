@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PassThroughConnectionStringReader.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,10 +34,13 @@ namespace FluentMigrator.Runner.Initialization
     /// </summary>
     public class PassThroughConnectionStringReader : IConnectionStringReader
     {
+        /// <summary>
+        /// The connection string
+        /// </summary>
         private readonly string _connectionString;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PassThroughConnectionStringReader"/> class.
+        /// Initializes a new instance of the <see cref="PassThroughConnectionStringReader" /> class.
         /// </summary>
         /// <param name="connectionString">The connection string</param>
         public PassThroughConnectionStringReader(string connectionString)

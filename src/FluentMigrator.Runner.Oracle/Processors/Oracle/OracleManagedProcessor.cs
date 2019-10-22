@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleManagedProcessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -24,8 +37,21 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Processors.Oracle
 {
+    /// <summary>
+    /// Class OracleManagedProcessor.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.Oracle.OracleProcessorBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.Oracle.OracleProcessorBase" />
     public class OracleManagedProcessor : OracleProcessorBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleManagedProcessor"/> class.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
+        /// <param name="generator">The generator.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="connectionStringAccessor">The connection string accessor.</param>
         public OracleManagedProcessor(
             [NotNull] OracleManagedDbFactory factory,
             [NotNull] IOracleGenerator generator,

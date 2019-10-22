@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IfDatabaseExpressionRoot.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -41,15 +54,15 @@ namespace FluentMigrator.Builders.IfDatabase
         /// <summary>
         /// The context to add expressions into
         /// </summary>
-        /// <remarks>If the database type doe snot apply then this will be a new context that is not used by the caller</remarks>
         private readonly IMigrationContext _context;
 
         /// <summary>
-        /// Initializes a new instance of a the <see cref="IfDatabaseExpressionRoot"/> class that will only add expressions to the provided <paramref name="context"/> if <paramref name="databaseType"/> matches the migration processor
+        /// Initializes a new instance of a the <see cref="IfDatabaseExpressionRoot" /> class that will only add expressions to the provided <paramref name="context" /> if <paramref name="databaseType" /> matches the migration processor
         /// </summary>
-        /// <remarks>If the database type does not apply then a <seealso cref="NullIfDatabaseProcessor"/> will be used as a container to void any fluent expressions that would have been executed</remarks>
         /// <param name="context">The context to add expressions to if the database type applies</param>
         /// <param name="databaseType">The database type that the expressions relate to</param>
+        /// <exception cref="ArgumentNullException">databaseType</exception>
+        /// <remarks>If the database type does not apply then a <seealso cref="NullIfDatabaseProcessor" /> will be used as a container to void any fluent expressions that would have been executed</remarks>
         public IfDatabaseExpressionRoot(IMigrationContext context, params string[] databaseType)
         {
             if (databaseType == null) throw new ArgumentNullException(nameof(databaseType));
@@ -60,11 +73,12 @@ namespace FluentMigrator.Builders.IfDatabase
         }
 
         /// <summary>
-        /// Initializes a new instance of a the <see cref="IfDatabaseExpressionRoot"/> class that will only add expressions to the provided <paramref name="context"/> if <paramref name="databaseTypePredicate"/> is true for the migration processor
+        /// Initializes a new instance of a the <see cref="IfDatabaseExpressionRoot" /> class that will only add expressions to the provided <paramref name="context" /> if <paramref name="databaseTypePredicate" /> is true for the migration processor
         /// </summary>
-        /// <remarks>If the database type does not apply then a <seealso cref="NullIfDatabaseProcessor"/> will be used as a container to void any fluent expressions that would have been executed</remarks>
         /// <param name="context">The context to add expressions to if the database type applies</param>
         /// <param name="databaseTypePredicate">The predicate that must be true for the expression to run</param>
+        /// <exception cref="ArgumentNullException">databaseTypePredicate</exception>
+        /// <remarks>If the database type does not apply then a <seealso cref="NullIfDatabaseProcessor" /> will be used as a container to void any fluent expressions that would have been executed</remarks>
         public IfDatabaseExpressionRoot(IMigrationContext context, Predicate<string> databaseTypePredicate)
         {
             if (databaseTypePredicate == null) throw new ArgumentNullException(nameof(databaseTypePredicate));
@@ -77,6 +91,7 @@ namespace FluentMigrator.Builders.IfDatabase
         /// <summary>
         /// Alter the schema of an existing object
         /// </summary>
+        /// <value>The alter.</value>
         public IAlterExpressionRoot Alter
         {
             get { return new AlterExpressionRoot(_context); }
@@ -85,6 +100,7 @@ namespace FluentMigrator.Builders.IfDatabase
         /// <summary>
         /// Create a new database object
         /// </summary>
+        /// <value>The create.</value>
         public ICreateExpressionRoot Create
         {
             get { return new CreateExpressionRoot(_context); }
@@ -93,6 +109,7 @@ namespace FluentMigrator.Builders.IfDatabase
         /// <summary>
         /// Delete a database object, table, or row
         /// </summary>
+        /// <value>The delete.</value>
         public IDeleteExpressionRoot Delete
         {
             get { return new DeleteExpressionRoot(_context); }
@@ -101,6 +118,7 @@ namespace FluentMigrator.Builders.IfDatabase
         /// <summary>
         /// Rename tables / columns
         /// </summary>
+        /// <value>The rename.</value>
         public IRenameExpressionRoot Rename
         {
             get { return new RenameExpressionRoot(_context); }
@@ -109,6 +127,7 @@ namespace FluentMigrator.Builders.IfDatabase
         /// <summary>
         /// Insert data into a table
         /// </summary>
+        /// <value>The insert.</value>
         public IInsertExpressionRoot Insert
         {
             get { return new InsertExpressionRoot(_context); }
@@ -117,6 +136,7 @@ namespace FluentMigrator.Builders.IfDatabase
         /// <summary>
         /// Execute SQL statements
         /// </summary>
+        /// <value>The execute.</value>
         public IExecuteExpressionRoot Execute
         {
             get { return new ExecuteExpressionRoot(_context); }
@@ -131,6 +151,7 @@ namespace FluentMigrator.Builders.IfDatabase
         /// <summary>
         /// Update an existing row
         /// </summary>
+        /// <value>The update.</value>
         public IUpdateExpressionRoot Update
         {
             get { return new UpdateExpressionRoot(_context); }
@@ -184,6 +205,11 @@ namespace FluentMigrator.Builders.IfDatabase
             return false;
         }
 
+        /// <summary>
+        /// Creates the empty migration context.
+        /// </summary>
+        /// <param name="originalContext">The original context.</param>
+        /// <returns>IMigrationContext.</returns>
         private static IMigrationContext CreateEmptyMigrationContext(IMigrationContext originalContext)
         {
             var result = new MigrationContext(

@@ -1,4 +1,17 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerCeTypeMapTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.Data;
 
 using FluentMigrator.Runner.Generators.SqlServer;
@@ -9,23 +22,41 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
 {
+    /// <summary>
+    /// Defines test class SqlServerCeTypeMapTests.
+    /// </summary>
     [TestFixture]
     [Category("SqlServerCe")]
     [Category("Generator")]
     [Category("TypeMap")]
     public abstract class SqlServerCeTypeMapTests
     {
+        /// <summary>
+        /// Gets or sets the type map.
+        /// </summary>
+        /// <value>The type map.</value>
         private SqlServerCeTypeMap TypeMap { get; set; }
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             TypeMap = new SqlServerCeTypeMap();
         }
 
+        /// <summary>
+        /// Defines test class AnsistringTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
         [TestFixture]
         public class AnsistringTests : SqlServerCeTypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsAnsistringByDefaultToNvarchar255.
+            /// </summary>
             [Test]
             public void ItMapsAnsistringByDefaultToNvarchar255()
             {
@@ -34,6 +65,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("NVARCHAR(255)");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsAnsistringWithSizeToNvarcharOfSize.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(1)]
             [TestCase(2000)]
@@ -45,6 +80,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe($"NVARCHAR({size})");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsAnsistringWithMaxSizeToNtext.
+            /// </summary>
             [Test]
             public void ItMapsAnsistringWithMaxSizeToNtext()
             {
@@ -53,9 +91,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             }
         }
 
+        /// <summary>
+        /// Defines test class AnsistringFixedLengthTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
         [TestFixture]
         public class AnsistringFixedLengthTests : SqlServerCeTypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsAnsistringFixedLengthByDefaultToNchar255.
+            /// </summary>
             [Test]
             public void ItMapsAnsistringFixedLengthByDefaultToNchar255()
             {
@@ -64,6 +110,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("NCHAR(255)");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsAnsistringFixedLengthWithSizeToNcharOfSize.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(1)]
             [TestCase(2000)]
@@ -75,6 +125,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe($"NCHAR({size})");
             }
 
+            /// <summary>
+            /// Defines the test method ItThrowsIfAnsistringFixedLengthHasSizeAbove4000.
+            /// </summary>
             [Test]
             public void ItThrowsIfAnsistringFixedLengthHasSizeAbove4000()
             {
@@ -83,9 +136,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             }
         }
 
+        /// <summary>
+        /// Defines test class StringTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
         [TestFixture]
         public class StringTests : SqlServerCeTypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsStringByDefaultToNvarchar255.
+            /// </summary>
             [Test]
             public void ItMapsStringByDefaultToNvarchar255()
             {
@@ -94,6 +155,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("NVARCHAR(255)");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsStringWithSizeToNvarcharOfSize.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(1)]
             [TestCase(4000)]
@@ -104,6 +169,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe($"NVARCHAR({size})");
             }
 
+            /// <summary>
+            /// Defines the test method ItThrowsIfStringHasSizeAbove4000.
+            /// </summary>
             [Test]
             public void ItThrowsIfStringHasSizeAbove4000()
             {
@@ -112,9 +180,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             }
         }
 
+        /// <summary>
+        /// Defines test class StringFixedLengthTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
         [TestFixture]
         public class StringFixedLengthTests : SqlServerCeTypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsStringFixedLengthByDefaultToNchar255.
+            /// </summary>
             [Test]
             public void ItMapsStringFixedLengthByDefaultToNchar255()
             {
@@ -124,6 +200,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             }
 
 
+            /// <summary>
+            /// Defines the test method ItMapsStringFixedLengthWithSizeToNcharOfSize.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(1)]
             [TestCase(4000)]
@@ -134,6 +214,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe($"NCHAR({size})");
             }
 
+            /// <summary>
+            /// Defines the test method ItThrowsIfStringFixedLengthHasSizeAbove4000.
+            /// </summary>
             [Test]
             public void ItThrowsIfStringFixedLengthHasSizeAbove4000()
             {
@@ -142,9 +225,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             }
         }
 
+        /// <summary>
+        /// Defines test class BinaryTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
         [TestFixture]
         public class BinaryTests : SqlServerCeTypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsBinaryByDefaultToVarbinary8000.
+            /// </summary>
             [Test]
             public void ItMapsBinaryByDefaultToVarbinary8000()
             {
@@ -153,6 +244,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("VARBINARY(8000)");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsBinaryWithSizeToVarbinaryOfSize.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(1)]
             [TestCase(4000)]
@@ -164,6 +259,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe($"VARBINARY({size})");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsBinaryWithSizeAbove8000ToImage.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(8001)]
             [TestCase(1073741823)]
@@ -174,6 +273,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("IMAGE");
             }
 
+            /// <summary>
+            /// Defines the test method ItThrowsIfBinarySizeIsAbove1073741823.
+            /// </summary>
+            /// <param name="size">The size.</param>
             [Test]
             [TestCase(1073741824)]
             public void ItThrowsIfBinarySizeIsAbove1073741823(int size)
@@ -183,9 +286,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             }
         }
 
+        /// <summary>
+        /// Defines test class NumericTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
         [TestFixture]
         public class NumericTests : SqlServerCeTypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsBooleanToBit.
+            /// </summary>
             [Test]
             public void ItMapsBooleanToBit()
             {
@@ -194,6 +305,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("BIT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsByteToTinyint.
+            /// </summary>
             [Test]
             public void ItMapsByteToTinyint()
             {
@@ -202,6 +316,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("TINYINT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsInt16ToSmallint.
+            /// </summary>
             [Test]
             public void ItMapsInt16ToSmallint()
             {
@@ -210,6 +327,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("SMALLINT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsInt32ToInt.
+            /// </summary>
             [Test]
             public void ItMapsInt32ToInt()
             {
@@ -218,6 +338,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("INT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsInt64ToBigint.
+            /// </summary>
             [Test]
             public void ItMapsInt64ToBigint()
             {
@@ -226,6 +349,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("BIGINT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsSingleToReal.
+            /// </summary>
             [Test]
             public void ItMapsSingleToReal()
             {
@@ -234,6 +360,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("REAL");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDoubleToDoublePrecision.
+            /// </summary>
             [Test]
             public void ItMapsDoubleToDoublePrecision()
             {
@@ -242,6 +371,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("FLOAT");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsCurrencyToMoney.
+            /// </summary>
             [Test]
             public void ItMapsCurrencyToMoney()
             {
@@ -250,6 +382,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("MONEY");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDecimalByDefaultToDecimal195.
+            /// </summary>
             [Test]
             public void ItMapsDecimalByDefaultToDecimal195()
             {
@@ -258,6 +393,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("NUMERIC(19,5)");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDecimalWithPrecisionToDecimal.
+            /// </summary>
+            /// <param name="precision">The precision.</param>
             [Test]
             [TestCase(1)]
             [TestCase(20)]
@@ -269,6 +408,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe($"NUMERIC({precision},1)");
             }
 
+            /// <summary>
+            /// Defines the test method ItThrowsIfDecimalPrecisionIsAbove38.
+            /// </summary>
             [Test]
             public void ItThrowsIfDecimalPrecisionIsAbove38()
             {
@@ -277,9 +419,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             }
         }
 
+        /// <summary>
+        /// Defines test class GuidTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
         [TestFixture]
         public class GuidTests : SqlServerCeTypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsGUIDToUniqueidentifier.
+            /// </summary>
             [Test]
             public void ItMapsGUIDToUniqueidentifier()
             {
@@ -289,9 +439,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             }
         }
 
+        /// <summary>
+        /// Defines test class DateTimeTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
         [TestFixture]
         public class DateTimeTests : SqlServerCeTypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsTimeToDatetime.
+            /// </summary>
             [Test]
             public void ItMapsTimeToDatetime()
             {
@@ -300,6 +458,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("DATETIME");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDateToDatetime.
+            /// </summary>
             [Test]
             public void ItMapsDateToDatetime()
             {
@@ -308,6 +469,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
                 template.ShouldBe("DATETIME");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDatetimeToDatetime.
+            /// </summary>
             [Test]
             public void ItMapsDatetimeToDatetime()
             {
@@ -317,9 +481,17 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             }
         }
 
+        /// <summary>
+        /// Defines test class XmlTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServerCe.SqlServerCeTypeMapTests" />
         [TestFixture]
         public class XmlTests : SqlServerCeTypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsXmlToNtext.
+            /// </summary>
             [Test]
             public void ItMapsXmlToNtext()
             {

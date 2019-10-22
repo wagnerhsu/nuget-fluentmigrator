@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Jet
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="JetProcessorFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -23,9 +36,21 @@ using FluentMigrator.Runner.Generators.Jet;
 
 namespace FluentMigrator.Runner.Processors.Jet
 {
+    /// <summary>
+    /// Class JetProcessorFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.MigrationProcessorFactory" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.MigrationProcessorFactory" />
     [Obsolete]
     public class JetProcessorFactory : MigrationProcessorFactory
     {
+        /// <summary>
+        /// Creates the specified connection string.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <param name="announcer">The announcer.</param>
+        /// <param name="options">The options.</param>
+        /// <returns>IMigrationProcessor.</returns>
         [Obsolete]
         public override IMigrationProcessor Create(string connectionString, IAnnouncer announcer, IMigrationProcessorOptions options)
         {

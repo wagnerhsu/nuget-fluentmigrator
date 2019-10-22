@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2008Processor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -26,6 +39,11 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Processors.SqlServer
 {
+    /// <summary>
+    /// Class SqlServer2008Processor.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.SqlServer.SqlServerProcessor" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.SqlServer.SqlServerProcessor" />
     public class SqlServer2008Processor : SqlServerProcessor
     {
         /// <inheritdoc />

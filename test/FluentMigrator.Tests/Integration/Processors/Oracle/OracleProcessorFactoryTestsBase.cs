@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleProcessorFactoryTestsBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -28,15 +41,34 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration.Processors.Oracle
 {
+    /// <summary>
+    /// Class OracleProcessorFactoryTestsBase.
+    /// </summary>
     [Category("Integration")]
     [Obsolete]
     public abstract class OracleProcessorFactoryTestsBase
     {
+        /// <summary>
+        /// The factory
+        /// </summary>
         private IMigrationProcessorFactory _factory;
+        /// <summary>
+        /// The connection string
+        /// </summary>
         private string _connectionString;
+        /// <summary>
+        /// The announcer
+        /// </summary>
         private IAnnouncer _announcer;
+        /// <summary>
+        /// The options
+        /// </summary>
         private ProcessorOptions _options;
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
+        /// <param name="processorFactory">The processor factory.</param>
         protected void SetUp(IMigrationProcessorFactory processorFactory)
         {
             if (!IntegrationTestOptions.Oracle.IsEnabled)
@@ -50,6 +82,10 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             _options = new ProcessorOptions();
         }
 
+        /// <summary>
+        /// Defines the test method CreateProcessorWithNoProviderSwitchesShouldUseOracleQuoter.
+        /// </summary>
+        /// <param name="providerSwitches">The provider switches.</param>
         [TestCase("")]
         [TestCase(null)]
         public void CreateProcessorWithNoProviderSwitchesShouldUseOracleQuoter(string providerSwitches)
@@ -59,6 +95,10 @@ namespace FluentMigrator.Tests.Integration.Processors.Oracle
             Assert.That(((OracleProcessor) processor).Quoter, Is.InstanceOf<OracleQuoter>());
         }
 
+        /// <summary>
+        /// Defines the test method CreateProcessorWithProviderSwitchIndicatingQuotedShouldUseOracleQuoterQuotedIdentifier.
+        /// </summary>
+        /// <param name="providerSwitches">The provider switches.</param>
         [TestCase("QuotedIdentifiers=true")]
         [TestCase("QuotedIdentifiers=TRUE;")]
         [TestCase("QuotedIDENTIFIERS=TRUE;")]

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="StopWatch.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -20,28 +33,57 @@ using System;
 
 namespace FluentMigrator.Runner
 {
+    /// <summary>
+    /// Class StopWatch.
+    /// Implements the <see cref="FluentMigrator.Runner.IStopWatch" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.IStopWatch" />
     public class StopWatch : IStopWatch
     {
+        /// <summary>
+        /// The time now
+        /// </summary>
         public static Func<DateTime> TimeNow = () => DateTime.Now;
 
+        /// <summary>
+        /// The start time
+        /// </summary>
         private DateTime _startTime;
+        /// <summary>
+        /// The end time
+        /// </summary>
         private DateTime _endTime;
 
+        /// <summary>
+        /// Starts this instance.
+        /// </summary>
         public void Start()
         {
             _startTime = TimeNow();
         }
 
+        /// <summary>
+        /// Stops this instance.
+        /// </summary>
         public void Stop()
         {
             _endTime = TimeNow();
         }
 
+        /// <summary>
+        /// Elapseds the time.
+        /// </summary>
+        /// <returns>TimeSpan.</returns>
         public TimeSpan ElapsedTime()
         {
             return _endTime - _startTime;
         }
 
+        /// <summary>
+        /// Times the specified action.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <returns>TimeSpan.</returns>
         public TimeSpan Time(Action action)
         {
             Start();

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IntegrationTestBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -42,14 +55,29 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration
 {
+    /// <summary>
+    /// Class IntegrationTestBase.
+    /// </summary>
     public class IntegrationTestBase
     {
+        /// <summary>
+        /// The processors
+        /// </summary>
         private readonly List<(Type processorType, Func<IntegrationTestOptions.DatabaseServerOptions> getOptionsFunc)> _processors;
 
+        /// <summary>
+        /// The is first execute for firebird
+        /// </summary>
         private bool _isFirstExecuteForFirebird = true;
 
+        /// <summary>
+        /// The temporary data directory
+        /// </summary>
         private string _tempDataDirectory;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegrationTestBase"/> class.
+        /// </summary>
         protected IntegrationTestBase()
         {
             _processors = new List<(Type, Func<IntegrationTestOptions.DatabaseServerOptions>)>
@@ -67,12 +95,18 @@ namespace FluentMigrator.Tests.Integration
             };
         }
 
+        /// <summary>
+        /// Sets up firebird.
+        /// </summary>
         [SetUp]
         public void SetUpFirebird()
         {
             _isFirstExecuteForFirebird = true;
         }
 
+        /// <summary>
+        /// Sets up data directory.
+        /// </summary>
         [SetUp]
         public void SetUpDataDirectory()
         {
@@ -81,6 +115,9 @@ namespace FluentMigrator.Tests.Integration
             AppDomain.CurrentDomain.SetData("DataDirectory", _tempDataDirectory);
         }
 
+        /// <summary>
+        /// Tears down data directory.
+        /// </summary>
         [TearDown]
         public void TearDownDataDirectory()
         {
@@ -90,6 +127,11 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Determines whether [is any server enabled] [the specified except processors].
+        /// </summary>
+        /// <param name="exceptProcessors">The except processors.</param>
+        /// <returns><c>true</c> if [is any server enabled] [the specified except processors]; otherwise, <c>false</c>.</returns>
         private bool IsAnyServerEnabled(params Type[] exceptProcessors)
         {
             return IsAnyServerEnabled(procType => !exceptProcessors.Any(p => p.IsAssignableFrom(procType)));

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TrackingMigrationScope.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -21,10 +34,13 @@ namespace FluentMigrator.Runner
     /// <inheritdoc />
     public class TrackingMigrationScope : IMigrationScope
     {
+        /// <summary>
+        /// The disposal action
+        /// </summary>
         private readonly Action _disposalAction;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrackingMigrationScope"/> class.
+        /// Initializes a new instance of the <see cref="TrackingMigrationScope" /> class.
         /// </summary>
         /// <param name="disposalAction">Called after the scope was cancelled</param>
         public TrackingMigrationScope(Action disposalAction)
@@ -60,14 +76,14 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Called when <see cref="Complete"/> was called and the scope was active
+        /// Called when <see cref="Complete" /> was called and the scope was active
         /// </summary>
         protected virtual void DoComplete()
         {
         }
 
         /// <summary>
-        /// Called when <see cref="Cancel"/> was called and the scope was active
+        /// Called when <see cref="Cancel" /> was called and the scope was active
         /// </summary>
         protected virtual void DoCancel()
         {

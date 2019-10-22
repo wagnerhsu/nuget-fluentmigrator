@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleManagedQuoterServiceTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,6 +35,11 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration.Processors.Oracle.OracleManaged
 {
+    /// <summary>
+    /// Defines test class OracleManagedQuoterServiceTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.Oracle.OracleQuoterServiceTestsBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.Oracle.OracleQuoterServiceTestsBase" />
     [TestFixture]
     [Category("OracleManaged")]
     public class OracleManagedQuoterServiceTests : OracleQuoterServiceTestsBase

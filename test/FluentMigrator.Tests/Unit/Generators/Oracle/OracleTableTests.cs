@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleTableTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -22,9 +35,17 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Generators.Oracle
 {
+    /// <summary>
+    /// Defines test class OracleTableTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.Oracle.OracleBaseTableTests{FluentMigrator.Runner.Generators.Oracle.OracleGenerator}" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.Oracle.OracleBaseTableTests{FluentMigrator.Runner.Generators.Oracle.OracleGenerator}" />
     [TestFixture]
     public class OracleTableTests : OracleBaseTableTests<OracleGenerator>
     {
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithCustomSchema()
         {
@@ -34,6 +55,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(expression));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithIdentityWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateTableWithIdentityWithDefaultSchema()
         {

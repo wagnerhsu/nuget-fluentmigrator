@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IFilteringMigrationSource.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -23,15 +36,15 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// This is a specialization of <see cref="IMigrationSource"/> that allows filtering the types beforehand
+    /// This is a specialization of <see cref="IMigrationSource" /> that allows filtering the types beforehand
     /// </summary>
     public interface IFilteringMigrationSource : IMigrationSource
     {
         /// <summary>
-        /// Returns the instances for all found types implementing <see cref="IMigration"/>
+        /// Returns the instances for all found types implementing <see cref="IMigration" />
         /// </summary>
         /// <param name="predicate">The predicate used to select the types to instantiate</param>
-        /// <returns>the instances for all found types implementing <see cref="IMigration"/></returns>
+        /// <returns>the instances for all found types implementing <see cref="IMigration" /></returns>
         [NotNull, ItemNotNull]
         IEnumerable<IMigration> GetMigrations(Func<Type, bool> predicate);
     }

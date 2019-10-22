@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RenameColumnExpressionBuilderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -23,9 +36,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Builders.Rename
 {
+    /// <summary>
+    /// Defines test class RenameColumnExpressionBuilderTests.
+    /// </summary>
     [TestFixture]
     public class RenameColumnExpressionBuilderTests
     {
+        /// <summary>
+        /// Defines the test method CallingToSetsNewName.
+        /// </summary>
         [Test]
         public void CallingToSetsNewName()
         {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AnnouncerOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -21,11 +34,14 @@ using System;
 namespace FluentMigrator.Runner.Announcers
 {
     /// <summary>
-    /// Options for the <see cref="IAnnouncer"/>
+    /// Options for the <see cref="IAnnouncer" />
     /// </summary>
     [Obsolete]
     public class AnnouncerOptions
     {
+        /// <summary>
+        /// All enabled
+        /// </summary>
         [Obsolete]
         public static readonly AnnouncerOptions AllEnabled = new AnnouncerOptions()
         {
@@ -36,11 +52,13 @@ namespace FluentMigrator.Runner.Announcers
         /// <summary>
         /// Gets or sets a value indicating whether SQL statements should be shown
         /// </summary>
+        /// <value><c>true</c> if [show SQL]; otherwise, <c>false</c>.</value>
         public bool ShowSql { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the elapsed time should be shown
         /// </summary>
+        /// <value><c>true</c> if [show elapsed time]; otherwise, <c>false</c>.</value>
         public bool ShowElapsedTime { get; set; }
     }
 }

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="GenericProcessorBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -29,22 +42,50 @@ using Microsoft.Extensions.Logging;
 
 namespace FluentMigrator.Runner.Processors
 {
+    /// <summary>
+    /// Class GenericProcessorBase.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.ProcessorBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.ProcessorBase" />
     public abstract class GenericProcessorBase : ProcessorBase
     {
+        /// <summary>
+        /// The connection string
+        /// </summary>
         [Obsolete]
         private readonly string _connectionString;
 
+        /// <summary>
+        /// The database provider factory
+        /// </summary>
         [NotNull, ItemCanBeNull]
         private readonly Lazy<DbProviderFactory> _dbProviderFactory;
 
+        /// <summary>
+        /// The lazy connection
+        /// </summary>
         [NotNull, ItemCanBeNull]
         private readonly Lazy<IDbConnection> _lazyConnection;
 
+        /// <summary>
+        /// The connection
+        /// </summary>
         [CanBeNull]
         private IDbConnection _connection;
 
+        /// <summary>
+        /// The disposed
+        /// </summary>
         private bool _disposed = false;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenericProcessorBase"/> class.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <param name="factory">The factory.</param>
+        /// <param name="generator">The generator.</param>
+        /// <param name="announcer">The announcer.</param>
+        /// <param name="options">The options.</param>
         [Obsolete]
         protected GenericProcessorBase(
             IDbConnection connection,
@@ -69,6 +110,14 @@ namespace FluentMigrator.Runner.Processors
             _lazyConnection = new Lazy<IDbConnection>(() => connection);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenericProcessorBase"/> class.
+        /// </summary>
+        /// <param name="factoryAccessor">The factory accessor.</param>
+        /// <param name="generator">The generator.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="connectionStringAccessor">The connection string accessor.</param>
         protected GenericProcessorBase(
             [CanBeNull] Func<DbProviderFactory> factoryAccessor,
             [NotNull] IMigrationGenerator generator,
@@ -104,25 +153,48 @@ namespace FluentMigrator.Runner.Processors
                 });
         }
 
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <value>The connection string.</value>
         [Obsolete("Will change from public to protected")]
         public override string ConnectionString => _connectionString;
 
+        /// <summary>
+        /// Gets or sets the connection.
+        /// </summary>
+        /// <value>The connection.</value>
         public IDbConnection Connection
         {
             get => _connection ?? _lazyConnection.Value;
             protected set => _connection = value;
         }
 
+        /// <summary>
+        /// Gets or sets the factory.
+        /// </summary>
+        /// <value>The factory.</value>
         [Obsolete]
         [NotNull]
         public IDbFactory Factory { get; protected set; }
 
+        /// <summary>
+        /// Gets or sets the transaction.
+        /// </summary>
+        /// <value>The transaction.</value>
         [CanBeNull]
         public IDbTransaction Transaction { get; protected set; }
 
+        /// <summary>
+        /// Gets the database provider factory.
+        /// </summary>
+        /// <value>The database provider factory.</value>
         [CanBeNull]
         protected DbProviderFactory DbProviderFactory => _dbProviderFactory.Value;
 
+        /// <summary>
+        /// Ensures the connection is open.
+        /// </summary>
         protected virtual void EnsureConnectionIsOpen()
         {
             if (Connection != null && Connection.State != ConnectionState.Open)
@@ -131,6 +203,9 @@ namespace FluentMigrator.Runner.Processors
             }
         }
 
+        /// <summary>
+        /// Ensures the connection is closed.
+        /// </summary>
         protected virtual void EnsureConnectionIsClosed()
         {
             if ((_connection != null || (_lazyConnection.IsValueCreated && Connection != null)) && Connection.State != ConnectionState.Closed)
@@ -139,6 +214,9 @@ namespace FluentMigrator.Runner.Processors
             }
         }
 
+        /// <summary>
+        /// Begins the transaction.
+        /// </summary>
         public override void BeginTransaction()
         {
             if (Transaction != null) return;
@@ -150,6 +228,9 @@ namespace FluentMigrator.Runner.Processors
             Transaction = Connection?.BeginTransaction();
         }
 
+        /// <summary>
+        /// Rollbacks the transaction.
+        /// </summary>
         public override void RollbackTransaction()
         {
             if (Transaction == null) return;
@@ -161,6 +242,9 @@ namespace FluentMigrator.Runner.Processors
             Transaction = null;
         }
 
+        /// <summary>
+        /// Commits the transaction.
+        /// </summary>
         public override void CommitTransaction()
         {
             if (Transaction == null) return;
@@ -172,6 +256,10 @@ namespace FluentMigrator.Runner.Processors
             Transaction = null;
         }
 
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="isDisposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected override void Dispose(bool isDisposing)
         {
             if (!isDisposing || _disposed)
@@ -187,11 +275,23 @@ namespace FluentMigrator.Runner.Processors
             }
         }
 
+        /// <summary>
+        /// Creates the command.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <returns>IDbCommand.</returns>
         protected virtual IDbCommand CreateCommand(string commandText)
         {
             return CreateCommand(commandText, Connection, Transaction);
         }
 
+        /// <summary>
+        /// Creates the command.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="connection">The connection.</param>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns>IDbCommand.</returns>
         protected virtual IDbCommand CreateCommand(string commandText, IDbConnection connection, IDbTransaction transaction)
         {
             IDbCommand result;
@@ -219,11 +319,23 @@ namespace FluentMigrator.Runner.Processors
             return result;
         }
 
+        /// <summary>
+        /// Class DbFactoryWrapper.
+        /// Implements the <see cref="FluentMigrator.Runner.Processors.IDbFactory" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Processors.IDbFactory" />
         [Obsolete]
         private class DbFactoryWrapper : IDbFactory
         {
+            /// <summary>
+            /// The processor
+            /// </summary>
             private readonly GenericProcessorBase _processor;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="DbFactoryWrapper"/> class.
+            /// </summary>
+            /// <param name="processor">The processor.</param>
             public DbFactoryWrapper(GenericProcessorBase processor)
             {
                 _processor = processor;

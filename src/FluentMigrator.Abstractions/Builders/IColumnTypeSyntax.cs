@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IColumnTypeSyntax.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -36,21 +49,21 @@ namespace FluentMigrator.Builders
         TNext AsAnsiString();
 
         /// <summary>
-        /// Defines the column type as ANSI string (single byte character set) with the given <paramref name="collationName"/>
+        /// Defines the column type as ANSI string (single byte character set) with the given <paramref name="collationName" />
         /// </summary>
         /// <param name="collationName">The collation to use for this column</param>
         /// <returns>The next step</returns>
         TNext AsAnsiString(string collationName);
 
         /// <summary>
-        /// Defines the column type as ANSI string (single byte character set) with the given <paramref name="size"/>
+        /// Defines the column type as ANSI string (single byte character set) with the given <paramref name="size" />
         /// </summary>
         /// <param name="size">The maximum size (usually in bytes) of the ansi string</param>
         /// <returns>The next step</returns>
         TNext AsAnsiString(int size);
 
         /// <summary>
-        /// Defines the column type as ANSI string (single byte character set) with the given <paramref name="size"/> and <paramref name="collationName"/>
+        /// Defines the column type as ANSI string (single byte character set) with the given <paramref name="size" /> and <paramref name="collationName" />
         /// </summary>
         /// <param name="size">The maximum size (usually in bytes) of the ansi string</param>
         /// <param name="collationName">The collation to use for this column</param>
@@ -71,13 +84,13 @@ namespace FluentMigrator.Builders
         TNext AsBinary(int size);
 
         /// <summary>
-        /// Defines the column type as <see cref="bool"/> (or bit)
+        /// Defines the column type as <see cref="bool" /> (or bit)
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsBoolean();
 
         /// <summary>
-        /// Defines the column type as <see cref="byte"/>
+        /// Defines the column type as <see cref="byte" />
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsByte();
@@ -95,33 +108,33 @@ namespace FluentMigrator.Builders
         TNext AsDate();
 
         /// <summary>
-        /// Defines the column type as <see cref="DateTime"/>
+        /// Defines the column type as <see cref="DateTime" />
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsDateTime();
 
 
         /// <summary>
-        /// Defines the column type as <see cref="DateTime"/> with extended range and precision
+        /// Defines the column type as <see cref="DateTime" /> with extended range and precision
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsDateTime2();
 
         /// <summary>
-        /// Defines the column type as <see cref="DateTimeOffset"/>
+        /// Defines the column type as <see cref="DateTimeOffset" />
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsDateTimeOffset();
 
         /// <summary>
-        /// Defines the column type as <see cref="DateTimeOffset"/>
+        /// Defines the column type as <see cref="DateTimeOffset" />
         /// </summary>
         /// <param name="precision">The number of digits for the fraction of a second</param>
         /// <returns>The next step</returns>
         TNext AsDateTimeOffset(int precision);
 
         /// <summary>
-        /// Defines the column type as <see cref="decimal"/>
+        /// Defines the column type as <see cref="decimal" />
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsDecimal();
@@ -135,13 +148,13 @@ namespace FluentMigrator.Builders
         TNext AsDecimal(int size, int precision);
 
         /// <summary>
-        /// Defines the column type as <see cref="double"/>
+        /// Defines the column type as <see cref="double" />
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsDouble();
 
         /// <summary>
-        /// Defines the column type as a <see cref="System.Guid"/>
+        /// Defines the column type as a <see cref="System.Guid" />
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsGuid();
@@ -177,25 +190,25 @@ namespace FluentMigrator.Builders
         TNext AsFixedLengthAnsiString(int size, string collationName);
 
         /// <summary>
-        /// Defines the column type as a <see cref="float"/>
+        /// Defines the column type as a <see cref="float" />
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsFloat();
 
         /// <summary>
-        /// Defines the column type as a <see cref="short"/>
+        /// Defines the column type as a <see cref="short" />
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsInt16();
 
         /// <summary>
-        /// Defines the column type as a <see cref="int"/>
+        /// Defines the column type as a <see cref="int" />
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsInt32();
 
         /// <summary>
-        /// Defines the column type as a <see cref="long"/>
+        /// Defines the column type as a <see cref="long" />
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsInt64();
@@ -229,7 +242,7 @@ namespace FluentMigrator.Builders
         TNext AsString(int size, string collationName);
 
         /// <summary>
-        /// Defines the column type as <see cref="TimeSpan"/>
+        /// Defines the column type as <see cref="TimeSpan" />
         /// </summary>
         /// <returns>The next step</returns>
         TNext AsTime();

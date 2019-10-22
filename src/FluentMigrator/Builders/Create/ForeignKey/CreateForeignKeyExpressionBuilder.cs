@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateForeignKeyExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -22,7 +35,7 @@ using FluentMigrator.Expressions;
 namespace FluentMigrator.Builders.Create.ForeignKey
 {
     /// <summary>
-    /// An expression builder for a <see cref="CreateForeignKeyExpression"/>
+    /// An expression builder for a <see cref="CreateForeignKeyExpression" />
     /// </summary>
     public class CreateForeignKeyExpressionBuilder : ExpressionBuilderBase<CreateForeignKeyExpression>,
         ICreateForeignKeyFromTableSyntax,
@@ -32,7 +45,7 @@ namespace FluentMigrator.Builders.Create.ForeignKey
         ICreateForeignKeyCascadeSyntax
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateForeignKeyExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="CreateForeignKeyExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         public CreateForeignKeyExpressionBuilder(CreateForeignKeyExpression expression)

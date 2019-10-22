@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AssemblyCollectionService.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -30,14 +43,23 @@ namespace FluentMigrator.Runner.Initialization
     [Obsolete("Exists only to simplify the migration to the new FluentMigration version")]
     public class AssemblyCollectionService : IAssemblyCollection
     {
+        /// <summary>
+        /// The lazy assemblies
+        /// </summary>
         private readonly Lazy<Assembly[]> _lazyAssemblies;
 
+        /// <summary>
+        /// The exported types
+        /// </summary>
         private readonly Lazy<Type[]> _exportedTypes;
 
+        /// <summary>
+        /// The ressource entries
+        /// </summary>
         private readonly Lazy<ManifestResourceNameWithAssembly[]> _ressourceEntries;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssemblyCollectionService"/> class.
+        /// Initializes a new instance of the <see cref="AssemblyCollectionService" /> class.
         /// </summary>
         /// <param name="source">The source assemblies used to search for types with given traits</param>
         public AssemblyCollectionService([NotNull] IAssemblySource source)

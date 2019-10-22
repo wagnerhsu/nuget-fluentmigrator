@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlScriptFluentMigratorLoggerProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -21,21 +34,33 @@ using Microsoft.Extensions.Logging;
 namespace FluentMigrator.Runner.Logging
 {
     /// <summary>
-    /// The base class for writing SQL scripts produced by the <see cref="IMigrationGenerator"/> implementations
+    /// The base class for writing SQL scripts produced by the <see cref="IMigrationGenerator" /> implementations
     /// </summary>
     public class SqlScriptFluentMigratorLoggerProvider : ILoggerProvider
     {
+        /// <summary>
+        /// The writer
+        /// </summary>
         private readonly TextWriter _writer;
+        /// <summary>
+        /// The dispose writer
+        /// </summary>
         private readonly bool _disposeWriter;
+        /// <summary>
+        /// The SQL writer
+        /// </summary>
         private readonly SqlTextWriter _sqlWriter;
+        /// <summary>
+        /// The log file logger
+        /// </summary>
         private readonly ILogger _logFileLogger;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlScriptFluentMigratorLoggerProvider"/> class.
+        /// Initializes a new instance of the <see cref="SqlScriptFluentMigratorLoggerProvider" /> class.
         /// </summary>
         /// <param name="output">The writer to write the SQL script to</param>
         /// <param name="options">The log file logger options</param>
-        /// <param name="disposeWriter">A value indicating whether the <paramref name="output"/> writer should be disposed by this logger provider</param>
+        /// <param name="disposeWriter">A value indicating whether the <paramref name="output" /> writer should be disposed by this logger provider</param>
         public SqlScriptFluentMigratorLoggerProvider(
             TextWriter output,
             SqlScriptFluentMigratorLoggerOptions options = null,

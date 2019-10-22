@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IProfileLoader.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Fluent Migrator Project
 //
@@ -29,8 +42,9 @@ namespace FluentMigrator.Runner
     public interface IProfileLoader
     {
         /// <summary>
-        /// Gets a value indicating whether this instance allows a call to <see cref="ApplyProfiles()"/>
+        /// Gets a value indicating whether this instance allows a call to <see cref="ApplyProfiles()" />
         /// </summary>
+        /// <value><c>true</c> if [supports parameterless apply profile]; otherwise, <c>false</c>.</value>
         [Obsolete]
         bool SupportsParameterlessApplyProfile { get; }
 

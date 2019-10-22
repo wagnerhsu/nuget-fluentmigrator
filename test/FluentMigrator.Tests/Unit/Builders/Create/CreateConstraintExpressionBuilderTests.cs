@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateConstraintExpressionBuilderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -31,13 +44,31 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Builders.Create
 {
+    /// <summary>
+    /// Defines test class CreateConstraintExpressionBuilderTests.
+    /// </summary>
     [TestFixture]
     public class CreateConstraintExpressionBuilderTests
     {
+        /// <summary>
+        /// The table name
+        /// </summary>
         private const string TableName = "Bacon";
+        /// <summary>
+        /// The column1
+        /// </summary>
         private const string Column1 = "BaconId";
+        /// <summary>
+        /// The column2
+        /// </summary>
         private const string Column2 = "EggsId";
 
+        /// <summary>
+        /// Creates the mock of constraint.
+        /// </summary>
+        /// <param name="constraintType">Type of the constraint.</param>
+        /// <param name="expressionBuilderAction">The expression builder action.</param>
+        /// <returns>Mock&lt;ConstraintDefinition&gt;.</returns>
         private Mock<ConstraintDefinition> CreateMockOfConstraint(ConstraintType constraintType,
             Action<CreateConstraintExpressionBuilder> expressionBuilderAction)
         {
@@ -54,6 +85,12 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             return constraintMock;
         }
 
+        /// <summary>
+        /// Creates the mock of constraint columns.
+        /// </summary>
+        /// <param name="constraintType">Type of the constraint.</param>
+        /// <param name="expressionBuilderAction">The expression builder action.</param>
+        /// <returns>Mock&lt;IList&lt;System.String&gt;&gt;.</returns>
         private Mock<IList<string>> CreateMockOfConstraintColumns(ConstraintType constraintType,
             Action<CreateConstraintExpressionBuilder> expressionBuilderAction)
         {
@@ -73,6 +110,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             return collectionMock;
         }
 
+        /// <summary>
+        /// Defines the test method CallingOnTableSetsTableNameForPrimaryKey.
+        /// </summary>
         [Test]
         public void CallingOnTableSetsTableNameForPrimaryKey()
         {
@@ -81,6 +121,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             constraintMock.VerifySet(x => x.TableName = TableName);
         }
 
+        /// <summary>
+        /// Defines the test method CallingOnTableSetsTableNamesForUnique.
+        /// </summary>
         [Test]
         public void CallingOnTableSetsTableNamesForUnique()
         {
@@ -89,6 +132,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             constraintMock.VerifySet(x => x.TableName = TableName);
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnAddsColumnNameForPrimaryKey.
+        /// </summary>
         [Test]
         public void CallingColumnAddsColumnNameForPrimaryKey()
         {
@@ -97,6 +143,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             collectionMock.Verify(x => x.Add(Column1));
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnAddsColumnNameForUnique.
+        /// </summary>
         [Test]
         public void CallingColumnAddsColumnNameForUnique()
         {
@@ -105,6 +154,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             collectionMock.Verify(x => x.Add(Column1));
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnsAddsColumnNamesForPrimaryKey.
+        /// </summary>
         [Test]
         public void CallingColumnsAddsColumnNamesForPrimaryKey()
         {
@@ -114,6 +166,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             collectionMock.Verify(x => x.Add(Column2));
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnsAddsColumnNamesForUnique.
+        /// </summary>
         [Test]
         public void CallingColumnsAddsColumnNamesForUnique()
         {
@@ -123,6 +178,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             collectionMock.Verify(x => x.Add(Column2));
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnsWithDuplicateNamesAddsSetOfColumnNamesForPrimaryKey.
+        /// </summary>
         [Test]
         public void CallingColumnsWithDuplicateNamesAddsSetOfColumnNamesForPrimaryKey()
         {
@@ -134,6 +192,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             Assert.That(expression.Constraint.Columns.Count, Is.EqualTo(2));
         }
 
+        /// <summary>
+        /// Defines the test method CallingColumnsWithDuplicateNamesAddsSetOfColumnNamesForUnique.
+        /// </summary>
         [Test]
         public void CallingColumnsWithDuplicateNamesAddsSetOfColumnNamesForUnique()
         {
@@ -145,6 +206,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
             Assert.That(expression.Constraint.Columns.Count, Is.EqualTo(2));
         }
 
+        /// <summary>
+        /// Defines the test method CallingClusteredSetsAdditionalPropertiesForPrimaryKey.
+        /// </summary>
         [Test]
         public void CallingClusteredSetsAdditionalPropertiesForPrimaryKey()
         {
@@ -155,6 +219,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
                     SqlServerConstraintType.Clustered));
         }
 
+        /// <summary>
+        /// Defines the test method CallingClusteredSetsAdditionalPropertiesForUnique.
+        /// </summary>
         [Test]
         public void CallingClusteredSetsAdditionalPropertiesForUnique()
         {
@@ -165,6 +232,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
                     SqlServerConstraintType.Clustered));
         }
 
+        /// <summary>
+        /// Defines the test method CallingNonClusteredSetsAdditionalPropertiesForPrimaryKey.
+        /// </summary>
         [Test]
         public void CallingNonClusteredSetsAdditionalPropertiesForPrimaryKey()
         {
@@ -175,6 +245,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Create
                     SqlServerConstraintType.NonClustered));
         }
 
+        /// <summary>
+        /// Defines the test method CallingNonClusteredSetsAdditionalPropertiesForUnique.
+        /// </summary>
         [Test]
         public void CallingNonClusteredSetsAdditionalPropertiesForUnique()
         {

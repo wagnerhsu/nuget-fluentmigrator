@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IMigrationScopeStarter.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,9 +32,7 @@ namespace FluentMigrator.Runner
     /// <summary>
     /// Manually start a migration scope
     /// </summary>
-    /// <remarks>
-    /// This is handles nested scopes gracefully.
-    /// </remarks>
+    /// <remarks>This is handles nested scopes gracefully.</remarks>
     public interface IMigrationScopeStarter
     {
         /// <summary>

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AppConfigConnectionStringReader.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -31,28 +44,53 @@ using Microsoft.Extensions.Options;
 namespace FluentMigrator.Runner.Initialization.NetFramework
 {
     /// <summary>
-    /// A <see cref="IConnectionStringReader"/> implementation that uses the app or machine config
+    /// A <see cref="IConnectionStringReader" /> implementation that uses the app or machine config
     /// </summary>
     [Obsolete]
     public class AppConfigConnectionStringReader : IConnectionStringReader
     {
+        /// <summary>
+        /// The match password
+        /// </summary>
         private static readonly Regex _matchPwd = new Regex("(PWD=|PASSWORD=)([^;]*);", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+        /// <summary>
+        /// The configuration manager
+        /// </summary>
         [NotNull]
         private readonly INetConfigManager _configManager;
 
+        /// <summary>
+        /// The logger
+        /// </summary>
         [NotNull]
         private readonly ILogger _logger;
 
+        /// <summary>
+        /// The options
+        /// </summary>
         [NotNull]
         private readonly AppConfigConnectionStringAccessorOptions _options;
 
+        /// <summary>
+        /// The assembly location
+        /// </summary>
         [CanBeNull]
         private readonly string _assemblyLocation;
 
+        /// <summary>
+        /// The connection information
+        /// </summary>
         [CanBeNull]
         private ConnectionInfo _connectionInfo;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AppConfigConnectionStringReader"/> class.
+        /// </summary>
+        /// <param name="configManager">The configuration manager.</param>
+        /// <param name="assemblySource">The assembly source.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="options">The options.</param>
         public AppConfigConnectionStringReader(
             [NotNull] INetConfigManager configManager,
             [NotNull] IAssemblySource assemblySource,
@@ -67,6 +105,13 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
             _assemblyLocation = singleAssembly != null ? singleAssembly.Location : string.Empty;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AppConfigConnectionStringReader"/> class.
+        /// </summary>
+        /// <param name="configManager">The configuration manager.</param>
+        /// <param name="assemblyLocation">The assembly location.</param>
+        /// <param name="announcer">The announcer.</param>
+        /// <param name="options">The options.</param>
         [Obsolete]
         public AppConfigConnectionStringReader(
             [NotNull] INetConfigManager configManager,
@@ -99,6 +144,12 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
             return result?.ConnectionString ?? connectionStringOrName;
         }
 
+        /// <summary>
+        /// Loads the connection string.
+        /// </summary>
+        /// <param name="connectionStringOrName">Name of the connection string or.</param>
+        /// <param name="assemblyLocation">The assembly location.</param>
+        /// <returns>ConnectionInfo.</returns>
         [CanBeNull]
         private ConnectionInfo LoadConnectionString([CanBeNull] string connectionStringOrName, [CanBeNull] string assemblyLocation)
         {
@@ -127,6 +178,12 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
             return result;
         }
 
+        /// <summary>
+        /// Loads the connection string from configuration file.
+        /// </summary>
+        /// <param name="connectionStringName">Name of the connection string.</param>
+        /// <param name="configurationFile">The configuration file.</param>
+        /// <returns>ConnectionInfo.</returns>
         [CanBeNull]
         private ConnectionInfo LoadConnectionStringFromConfigurationFile([CanBeNull] string connectionStringName, [NotNull] Configuration configurationFile)
         {
@@ -145,6 +202,12 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
             return ReadConnectionString(connectionString, configurationFile.FilePath);
         }
 
+        /// <summary>
+        /// Reads the connection string.
+        /// </summary>
+        /// <param name="connectionSetting">The connection setting.</param>
+        /// <param name="configurationFile">The configuration file.</param>
+        /// <returns>ConnectionInfo.</returns>
         [Pure]
         [CanBeNull]
         private ConnectionInfo ReadConnectionString(
@@ -156,6 +219,10 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
             return new ConnectionInfo(connectionSetting.Name, connectionSetting.ConnectionString, configurationFile);
         }
 
+        /// <summary>
+        /// Outputs the results.
+        /// </summary>
+        /// <param name="info">The information.</param>
         private void OutputResults(ConnectionInfo info)
         {
             if (info == null)
@@ -185,8 +252,17 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
             _logger.LogSay(message);
         }
 
+        /// <summary>
+        /// Class ConnectionInfo.
+        /// </summary>
         private class ConnectionInfo
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ConnectionInfo"/> class.
+            /// </summary>
+            /// <param name="name">The name.</param>
+            /// <param name="connectionString">The connection string.</param>
+            /// <param name="source">The source.</param>
             public ConnectionInfo([CanBeNull] string name, [NotNull] string connectionString, [CanBeNull] string source)
             {
                 Name = name;
@@ -194,12 +270,24 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
                 Source = source;
             }
 
+            /// <summary>
+            /// Gets the name.
+            /// </summary>
+            /// <value>The name.</value>
             [CanBeNull]
             public string Name { get; }
 
+            /// <summary>
+            /// Gets the connection string.
+            /// </summary>
+            /// <value>The connection string.</value>
             [NotNull]
             public string ConnectionString { get; }
 
+            /// <summary>
+            /// Gets the source.
+            /// </summary>
+            /// <value>The source.</value>
             [CanBeNull]
             public string Source { get; }
         }

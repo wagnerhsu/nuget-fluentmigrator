@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteConstriantTest.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -25,9 +38,15 @@ using FluentMigrator.Builders.Delete;
 
 namespace FluentMigrator.Tests.Unit.Builders.Delete
 {
+    /// <summary>
+    /// Defines test class DeleteConstraintTest.
+    /// </summary>
     [TestFixture]
     public class DeleteConstraintTest
     {
+        /// <summary>
+        /// Defines the test method CallingDeletePrimaryKeyCreatesADeleteConstraintExpression.
+        /// </summary>
         [Test]
         public void CallingDeletePrimaryKeyCreatesADeleteConstraintExpression()
         {
@@ -44,6 +63,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             contextMock.VerifyGet(x => x.Expressions);
         }
 
+        /// <summary>
+        /// Defines the test method CallingDeleteUniqueConstraintCreatesADeleteConstraintExpression.
+        /// </summary>
         [Test]
         public void CallingDeleteUniqueConstraintCreatesADeleteConstraintExpression()
         {

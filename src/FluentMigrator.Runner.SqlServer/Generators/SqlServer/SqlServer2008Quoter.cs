@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2008Quoter.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -16,8 +29,18 @@
 
 namespace FluentMigrator.Runner.Generators.SqlServer
 {
+    /// <summary>
+    /// Class SqlServer2008Quoter.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2005Quoter" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2005Quoter" />
     public class SqlServer2008Quoter : SqlServer2005Quoter
     {
+        /// <summary>
+        /// Formats the system methods.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public override string FormatSystemMethods(SystemMethods value)
         {
             switch (value)

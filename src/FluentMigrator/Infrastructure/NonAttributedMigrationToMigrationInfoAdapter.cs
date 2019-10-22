@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="NonAttributedMigrationToMigrationInfoAdapter.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -19,12 +32,12 @@ using System;
 namespace FluentMigrator.Infrastructure
 {
     /// <summary>
-    /// This adapter wraps a migration into a MigrationInfo instance, used to keep <see cref="IMigration"/> backwards compatible with new <see cref="IMigrationInfo"/>.
+    /// This adapter wraps a migration into a MigrationInfo instance, used to keep <see cref="IMigration" /> backwards compatible with new <see cref="IMigrationInfo" />.
     /// </summary>
     public class NonAttributedMigrationToMigrationInfoAdapter : IMigrationInfo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NonAttributedMigrationToMigrationInfoAdapter"/> class.
+        /// Initializes a new instance of the <see cref="NonAttributedMigrationToMigrationInfoAdapter" /> class.
         /// </summary>
         /// <param name="migration">The underlying migration</param>
         public NonAttributedMigrationToMigrationInfoAdapter(IMigration migration)
@@ -32,10 +45,11 @@ namespace FluentMigrator.Infrastructure
         {}
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NonAttributedMigrationToMigrationInfoAdapter"/> class.
+        /// Initializes a new instance of the <see cref="NonAttributedMigrationToMigrationInfoAdapter" /> class.
         /// </summary>
         /// <param name="migration">The underlying migration</param>
         /// <param name="transactionBehavior">The desired transaction behavior</param>
+        /// <exception cref="ArgumentNullException">migration</exception>
         public NonAttributedMigrationToMigrationInfoAdapter(IMigration migration, TransactionBehavior transactionBehavior)
         {
             Migration = migration ?? throw new ArgumentNullException(nameof(migration));

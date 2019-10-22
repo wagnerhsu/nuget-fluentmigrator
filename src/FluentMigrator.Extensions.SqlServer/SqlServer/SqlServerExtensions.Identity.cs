@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Extensions.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerExtensions.Identity.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -21,15 +34,20 @@ using FluentMigrator.Infrastructure;
 
 namespace FluentMigrator.SqlServer
 {
+    /// <summary>
+    /// Class SqlServerExtensions.
+    /// </summary>
     public static partial class SqlServerExtensions
     {
         /// <summary>
         /// Makes a column an Identity column using the specified seed and increment values.
         /// </summary>
+        /// <typeparam name="TNext">The type of the t next.</typeparam>
+        /// <typeparam name="TNextFk">The type of the t next fk.</typeparam>
         /// <param name="expression">Column on which to apply the identity.</param>
         /// <param name="seed">Starting value of the identity.</param>
         /// <param name="increment">Increment value of the identity.</param>
-        /// <returns></returns>
+        /// <returns>TNext.</returns>
         public static TNext Identity<TNext, TNextFk>(
             this IColumnOptionSyntax<TNext, TNextFk> expression,
             int seed,
@@ -43,10 +61,12 @@ namespace FluentMigrator.SqlServer
         /// <summary>
         /// Makes a column an Identity column using the specified seed and increment values with bigint support.
         /// </summary>
+        /// <typeparam name="TNext">The type of the t next.</typeparam>
+        /// <typeparam name="TNextFk">The type of the t next fk.</typeparam>
         /// <param name="expression">Column on which to apply the identity.</param>
         /// <param name="seed">Starting value of the identity.</param>
         /// <param name="increment">Increment value of the identity.</param>
-        /// <returns></returns>
+        /// <returns>TNext.</returns>
         public static TNext Identity<TNext, TNextFk>(
             this IColumnOptionSyntax<TNext, TNextFk> expression,
             long seed,
@@ -57,6 +77,16 @@ namespace FluentMigrator.SqlServer
             return SetIdentity(expression, seed, increment, castColumn);
         }
 
+        /// <summary>
+        /// Sets the identity.
+        /// </summary>
+        /// <typeparam name="TNext">The type of the t next.</typeparam>
+        /// <typeparam name="TNextFk">The type of the t next fk.</typeparam>
+        /// <param name="expression">The expression.</param>
+        /// <param name="seed">The seed.</param>
+        /// <param name="increment">The increment.</param>
+        /// <param name="castColumn">The cast column.</param>
+        /// <returns>TNext.</returns>
         private static TNext SetIdentity<TNext, TNextFk>(
             IColumnOptionSyntax<TNext, TNextFk> expression,
             object seed,
@@ -69,6 +99,14 @@ namespace FluentMigrator.SqlServer
             return expression.Identity();
         }
 
+        /// <summary>
+        /// Gets the column.
+        /// </summary>
+        /// <typeparam name="TNext">The type of the t next.</typeparam>
+        /// <typeparam name="TNextFk">The type of the t next fk.</typeparam>
+        /// <param name="expression">The expression.</param>
+        /// <returns>ISupportAdditionalFeatures.</returns>
+        /// <exception cref="InvalidOperationException"></exception>
         private static ISupportAdditionalFeatures GetColumn<TNext, TNextFk>(IColumnOptionSyntax<TNext, TNextFk> expression) where TNext : IFluentSyntax where TNextFk : IFluentSyntax
         {
             if (expression is IColumnExpressionBuilder cast1)

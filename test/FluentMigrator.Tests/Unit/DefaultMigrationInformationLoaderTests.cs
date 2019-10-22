@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DefaultMigrationInformationLoaderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -41,9 +54,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit
 {
+    /// <summary>
+    /// Defines test class DefaultMigrationInformationLoaderTests.
+    /// </summary>
     [TestFixture]
     public class DefaultMigrationInformationLoaderTests
     {
+        /// <summary>
+        /// Defines the test method CanFindMigrationsInAssembly.
+        /// </summary>
         [Test]
         public void CanFindMigrationsInAssembly()
         {
@@ -59,6 +78,9 @@ namespace FluentMigrator.Tests.Unit
             count.ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Defines the test method CanFindMigrationsInNamespace.
+        /// </summary>
         [Test]
         public void CanFindMigrationsInNamespace()
         {
@@ -72,6 +94,9 @@ namespace FluentMigrator.Tests.Unit
             migrationList.Count().ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Defines the test method DefaultBehaviorIsToNotLoadNestedNamespaces.
+        /// </summary>
         [Test]
         public void DefaultBehaviorIsToNotLoadNestedNamespaces()
         {
@@ -87,6 +112,9 @@ namespace FluentMigrator.Tests.Unit
             defaultLoader.LoadNestedNamespaces.ShouldBe(false);
         }
 
+        /// <summary>
+        /// Defines the test method FindsMigrationsInNestedNamespaceWhenLoadNestedNamespacesEnabled.
+        /// </summary>
         [Test]
         public void FindsMigrationsInNestedNamespaceWhenLoadNestedNamespacesEnabled()
         {
@@ -109,6 +137,9 @@ namespace FluentMigrator.Tests.Unit
             CollectionAssert.AreEquivalent(expected, actual);
         }
 
+        /// <summary>
+        /// Defines the test method DoesNotFindsMigrationsInNestedNamespaceWhenLoadNestedNamespacesDisabled.
+        /// </summary>
         [Test]
         public void DoesNotFindsMigrationsInNestedNamespaceWhenLoadNestedNamespacesDisabled()
         {
@@ -128,6 +159,9 @@ namespace FluentMigrator.Tests.Unit
             CollectionAssert.AreEquivalent(expected, actual);
         }
 
+        /// <summary>
+        /// Defines the test method DoesFindMigrationsThatHaveMatchingTags.
+        /// </summary>
         [Test]
         public void DoesFindMigrationsThatHaveMatchingTags()
         {
@@ -154,6 +188,9 @@ namespace FluentMigrator.Tests.Unit
             CollectionAssert.AreEquivalent(expected, actual);
         }
 
+        /// <summary>
+        /// Defines the test method DoesNotFindMigrationsThatDoNotHaveMatchingTags.
+        /// </summary>
         [Test]
         public void DoesNotFindMigrationsThatDoNotHaveMatchingTags()
         {
@@ -180,6 +217,9 @@ namespace FluentMigrator.Tests.Unit
             CollectionAssert.AreEquivalent(expected, actual);
         }
 
+        /// <summary>
+        /// Defines the test method HandlesNotFindingMigrations.
+        /// </summary>
         [Test]
         public void HandlesNotFindingMigrations()
         {
@@ -190,6 +230,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.Throws<MissingMigrationsException>(() => loader.LoadMigrations());
         }
 
+        /// <summary>
+        /// Defines the test method ShouldThrowExceptionIfDuplicateVersionNumbersAreLoaded.
+        /// </summary>
         [Test]
         public void ShouldThrowExceptionIfDuplicateVersionNumbersAreLoaded()
         {
@@ -200,6 +243,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.Throws<DuplicateMigrationException>(() => loader.LoadMigrations());
         }
 
+        /// <summary>
+        /// Defines the test method HandlesMigrationThatDoesNotInheritFromMigrationBaseClass.
+        /// </summary>
         [Test]
         public void HandlesMigrationThatDoesNotInheritFromMigrationBaseClass()
         {
@@ -210,6 +256,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.That(loader.LoadMigrations().Count(), Is.EqualTo(1));
         }
 
+        /// <summary>
+        /// Defines the test method ShouldHandleTransactionlessMigrations.
+        /// </summary>
         [Test]
         public void ShouldHandleTransactionlessMigrations()
         {
@@ -231,6 +280,9 @@ namespace FluentMigrator.Tests.Unit
             list[1].Value.Version.ShouldBe(2);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteCanFindMigrationsInAssembly.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteCanFindMigrationsInAssembly()
@@ -246,6 +298,9 @@ namespace FluentMigrator.Tests.Unit
             count.ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteCanFindMigrationsInNamespace.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteCanFindMigrationsInNamespace()
@@ -259,6 +314,9 @@ namespace FluentMigrator.Tests.Unit
             migrationList.Count().ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteDefaultBehaviorIsToNotLoadNestedNamespaces.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteDefaultBehaviorIsToNotLoadNestedNamespaces()
@@ -270,6 +328,9 @@ namespace FluentMigrator.Tests.Unit
             loader.LoadNestedNamespaces.ShouldBe(false);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteFindsMigrationsInNestedNamespaceWhenLoadNestedNamespacesEnabled.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteFindsMigrationsInNestedNamespaceWhenLoadNestedNamespacesEnabled()
@@ -292,6 +353,9 @@ namespace FluentMigrator.Tests.Unit
             CollectionAssert.AreEquivalent(expected, actual);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteDoesNotFindsMigrationsInNestedNamespaceWhenLoadNestedNamespacesDisabled.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteDoesNotFindsMigrationsInNestedNamespaceWhenLoadNestedNamespacesDisabled()
@@ -311,6 +375,9 @@ namespace FluentMigrator.Tests.Unit
             CollectionAssert.AreEquivalent(expected, actual);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteDoesFindMigrationsThatHaveMatchingTags.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteDoesFindMigrationsThatHaveMatchingTags()
@@ -334,6 +401,9 @@ namespace FluentMigrator.Tests.Unit
             CollectionAssert.AreEquivalent(expected, actual);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteDoesNotFindMigrationsThatDoNotHaveMatchingTags.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteDoesNotFindMigrationsThatDoNotHaveMatchingTags()
@@ -357,6 +427,9 @@ namespace FluentMigrator.Tests.Unit
             CollectionAssert.AreEquivalent(expected, actual);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteHandlesNotFindingMigrations.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteHandlesNotFindingMigrations()
@@ -367,6 +440,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.Throws<MissingMigrationsException>(() => loader.LoadMigrations());
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteShouldThrowExceptionIfDuplicateVersionNumbersAreLoaded.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteShouldThrowExceptionIfDuplicateVersionNumbersAreLoaded()
@@ -377,6 +453,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.Throws<DuplicateMigrationException>(() => migrationLoader.LoadMigrations());
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteHandlesMigrationThatDoesNotInheritFromMigrationBaseClass.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteHandlesMigrationThatDoesNotInheritFromMigrationBaseClass()
@@ -388,6 +467,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.That(loader.LoadMigrations().Count(), Is.EqualTo(1));
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteShouldHandleTransactionlessMigrations.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteShouldHandleTransactionlessMigrations()
@@ -418,28 +500,54 @@ namespace FluentMigrator.Tests.Unit
 
     namespace DoesHandleTransactionLessMigrations
     {
+        /// <summary>
+        /// Class MigrationThatIsTransactionLess.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(1, TransactionBehavior.None)]
         public class MigrationThatIsTransactionLess : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
+            /// <exception cref="NotImplementedException"></exception>
             public override void Up()
             {
                 throw new NotImplementedException();
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
+            /// <exception cref="NotImplementedException"></exception>
             public override void Down()
             {
                 throw new NotImplementedException();
             }
         }
 
+        /// <summary>
+        /// Class MigrationThatIsNotTransactionLess.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(2)]
         public class MigrationThatIsNotTransactionLess : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
+            /// <exception cref="NotImplementedException"></exception>
             public override void Up()
             {
                 throw new NotImplementedException();
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
+            /// <exception cref="NotImplementedException"></exception>
             public override void Down()
             {
                 throw new NotImplementedException();
@@ -449,22 +557,45 @@ namespace FluentMigrator.Tests.Unit
 
     namespace DoesNotInheritFromBaseClass
     {
+        /// <summary>
+        /// Class MigrationThatDoesNotInheritFromMigrationBaseClass.
+        /// Implements the <see cref="FluentMigrator.IMigration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.IMigration" />
         [Migration(1)]
         public class MigrationThatDoesNotInheritFromMigrationBaseClass : IMigration
         {
-            /// <summary>The arbitrary application context passed to the task runner.</summary>
+            /// <summary>
+            /// The arbitrary application context passed to the task runner.
+            /// </summary>
+            /// <value>The application context.</value>
+            /// <exception cref="NotImplementedException"></exception>
             public object ApplicationContext
             {
                 get { throw new NotImplementedException(); }
             }
 
+            /// <summary>
+            /// Gets the connection string passed to the task runner
+            /// </summary>
+            /// <value>The connection string.</value>
             public string ConnectionString { get; } = null;
 
+            /// <summary>
+            /// Collects all Up migration expressions in the <paramref name="context" />.
+            /// </summary>
+            /// <param name="context">The context to use while collecting the Up migration expressions</param>
+            /// <exception cref="NotImplementedException"></exception>
             public void GetUpExpressions(IMigrationContext context)
             {
                 throw new NotImplementedException();
             }
 
+            /// <summary>
+            /// Collects all Down migration expressions in the <paramref name="context" />.
+            /// </summary>
+            /// <param name="context">The context to use while collecting the Down migration expressions</param>
+            /// <exception cref="NotImplementedException"></exception>
             public void GetDownExpressions(IMigrationContext context)
             {
                 throw new NotImplementedException();
@@ -474,39 +605,83 @@ namespace FluentMigrator.Tests.Unit
 
     namespace DuplicateVersionNumbers
     {
+        /// <summary>
+        /// Class Duplicate1.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(1)]
         public class Duplicate1 : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up() { }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down() { }
         }
 
+        /// <summary>
+        /// Class Duplicate2.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(1)]
         public class Duplicate2 : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up() { }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down() { }
         }
     }
 
     namespace TaggingTestFakes
     {
+        /// <summary>
+        /// Class TaggedMigration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Tags("UK", "IE", "QA", "Production")]
         [Migration(123)]
         public class TaggedMigration : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up() { }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down() { }
         }
 
+        /// <summary>
+        /// Class UntaggedMigration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(567)]
         public class UntaggedMigration : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up() { }
 
+            /// <summary>
+            /// Downs this instance.
+            /// </summary>
             public override void Down() { }
         }
     }

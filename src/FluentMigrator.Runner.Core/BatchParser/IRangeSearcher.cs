@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IRangeSearcher.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,20 +39,23 @@ namespace FluentMigrator.Runner.BatchParser
         /// <summary>
         /// Gets the length of the start code
         /// </summary>
+        /// <value>The start length of the code.</value>
         int StartCodeLength { get; }
 
         /// <summary>
         /// Gets the length of the end code
         /// </summary>
+        /// <value>The end length of the code.</value>
         int EndCodeLength { get; }
 
         /// <summary>
         /// Is this range a comment?
         /// </summary>
+        /// <value><c>true</c> if this instance is comment; otherwise, <c>false</c>.</value>
         bool IsComment { get; }
 
         /// <summary>
-        /// Gets the index into the <paramref name="reader"/> where the start code was found
+        /// Gets the index into the <paramref name="reader" /> where the start code was found
         /// </summary>
         /// <param name="reader">The reader where the start code is searched</param>
         /// <returns><c>-1</c> when the start code couldn't be found</returns>

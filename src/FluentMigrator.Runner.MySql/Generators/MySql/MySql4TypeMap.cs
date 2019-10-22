@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.MySql
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MySql4TypeMap.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -20,16 +33,45 @@ using FluentMigrator.Runner.Generators.Base;
 
 namespace FluentMigrator.Runner.Generators.MySql
 {
+    /// <summary>
+    /// Class MySql4TypeMap.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
     internal class MySql4TypeMap : TypeMapBase
     {
+        /// <summary>
+        /// The ANSI tiny string capacity
+        /// </summary>
         public const int AnsiTinyStringCapacity = 127;
+        /// <summary>
+        /// The string capacity
+        /// </summary>
         public const int StringCapacity = 255;
+        /// <summary>
+        /// The varchar capacity
+        /// </summary>
         public const int VarcharCapacity = 8192;
+        /// <summary>
+        /// The text capacity
+        /// </summary>
         public const int TextCapacity = 65535;
+        /// <summary>
+        /// The medium text capacity
+        /// </summary>
         public const int MediumTextCapacity = 16777215;
+        /// <summary>
+        /// The long text capacity
+        /// </summary>
         public const int LongTextCapacity = int.MaxValue;
+        /// <summary>
+        /// The decimal capacity
+        /// </summary>
         public const int DecimalCapacity = 254;
 
+        /// <summary>
+        /// Setups the type maps.
+        /// </summary>
         protected override void SetupTypeMaps()
         {
             SetTypeMap(DbType.AnsiStringFixedLength, "CHAR(255)");

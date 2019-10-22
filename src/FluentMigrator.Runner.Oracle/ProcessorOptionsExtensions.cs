@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ProcessorOptionsExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +34,7 @@ using FluentMigrator.Runner.Processors;
 namespace FluentMigrator.Runner
 {
     /// <summary>
-    /// Extension methods for <see cref="ProcessorOptions"/>
+    /// Extension methods for <see cref="ProcessorOptions" />
     /// </summary>
     internal static class ProcessorOptionsExtensions
     {

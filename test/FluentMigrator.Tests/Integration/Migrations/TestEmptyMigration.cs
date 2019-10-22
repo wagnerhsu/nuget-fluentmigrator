@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TestEmptyMigration.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // 
@@ -20,12 +33,20 @@
 
 namespace FluentMigrator.Tests.Integration.Migrations
 {
-    /// <summary>A migration class that deliberately does nothing.</summary>
+    /// <summary>
+    /// A migration class that deliberately does nothing.
+    /// </summary>
     /// <remarks>This is intended for unit testing the migration class itself, rather than the database migration.</remarks>
     [Migration(3)]
     public class TestEmptyMigration : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up() { }
+        /// <summary>
+        /// Downs this instance.
+        /// </summary>
         public override void Down() { }
     }
 }

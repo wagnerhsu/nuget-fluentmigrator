@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaTestTable.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,15 +23,48 @@ using Sap.Data.Hana;
 
 namespace FluentMigrator.Tests.Helpers
 {
+    /// <summary>
+    /// Class HanaTestTable.
+    /// Implements the <see cref="System.IDisposable" />
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public class HanaTestTable : IDisposable
     {
+        /// <summary>
+        /// The quoter
+        /// </summary>
         private readonly IQuoter _quoter = new HanaQuoter();
+        /// <summary>
+        /// The schema name
+        /// </summary>
         private readonly string _schemaName;
+        /// <summary>
+        /// Gets the connection.
+        /// </summary>
+        /// <value>The connection.</value>
         public HanaConnection Connection { get; private set; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the name with schema.
+        /// </summary>
+        /// <value>The name with schema.</value>
         public string NameWithSchema { get; set; }
+        /// <summary>
+        /// Gets the transaction.
+        /// </summary>
+        /// <value>The transaction.</value>
         public HanaTransaction Transaction { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HanaTestTable"/> class.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public HanaTestTable(HanaProcessor processor, string schemaName, params string[] columnDefinitions)
         {
             _schemaName = schemaName;
@@ -27,6 +73,13 @@ namespace FluentMigrator.Tests.Helpers
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HanaTestTable"/> class.
+        /// </summary>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="processor">The processor.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public HanaTestTable(string tableName, HanaProcessor processor, string schemaName, params string[] columnDefinitions)
         {
             _schemaName = schemaName;
@@ -35,6 +88,11 @@ namespace FluentMigrator.Tests.Helpers
             Init(processor, columnDefinitions);
         }
 
+        /// <summary>
+        /// Initializes the specified processor.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="columnDefinitions">The column definitions.</param>
         private void Init(HanaProcessor processor, IEnumerable<string> columnDefinitions)
         {
             NameWithSchema = _quoter.QuoteTableName(Name, _schemaName);
@@ -48,11 +106,18 @@ namespace FluentMigrator.Tests.Helpers
             Create(columnDefinitions);
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             Drop();
         }
 
+        /// <summary>
+        /// Creates the specified column definitions.
+        /// </summary>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public void Create(IEnumerable<string> columnDefinitions)
         {
             var sb = new StringBuilder();
@@ -80,6 +145,9 @@ namespace FluentMigrator.Tests.Helpers
                 command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Drops this instance.
+        /// </summary>
         public void Drop()
         {
             var sb = new StringBuilder();
@@ -92,6 +160,10 @@ namespace FluentMigrator.Tests.Helpers
                 command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Withes the default value on.
+        /// </summary>
+        /// <param name="column">The column.</param>
         public void WithDefaultValueOn(string column)
         {
             const int defaultValue = 1;
@@ -99,6 +171,11 @@ namespace FluentMigrator.Tests.Helpers
                 command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Withes the index on.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         public string WithIndexOn(string column)
         {
             var indexName = string.Format("idx_{0}", column);
@@ -112,11 +189,20 @@ namespace FluentMigrator.Tests.Helpers
 
             return indexName;
         }
+        /// <summary>
+        /// Withes the unique constraint on.
+        /// </summary>
+        /// <param name="column">The column.</param>
         public void WithUniqueConstraintOn(string column)
         {
             WithUniqueConstraintOn(column, "UC_" + column);
         }
 
+        /// <summary>
+        /// Withes the unique constraint on.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="name">The name.</param>
         public void WithUniqueConstraintOn(string column, string name)
         {
             var sb = new StringBuilder();

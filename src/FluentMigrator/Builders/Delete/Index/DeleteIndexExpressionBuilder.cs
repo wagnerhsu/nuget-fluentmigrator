@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteIndexExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -26,7 +39,7 @@ using FluentMigrator.Model;
 namespace FluentMigrator.Builders.Delete.Index
 {
     /// <summary>
-    /// An expression builder for a <see cref="DeleteIndexExpression"/>
+    /// An expression builder for a <see cref="DeleteIndexExpression" />
     /// </summary>
     public class DeleteIndexExpressionBuilder : ExpressionBuilderBase<DeleteIndexExpression>,
         IDeleteIndexForTableSyntax,
@@ -35,7 +48,7 @@ namespace FluentMigrator.Builders.Delete.Index
         ISupportAdditionalFeatures
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeleteIndexExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="DeleteIndexExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         public DeleteIndexExpressionBuilder(DeleteIndexExpression expression)
@@ -46,6 +59,7 @@ namespace FluentMigrator.Builders.Delete.Index
         /// <summary>
         /// Gets or sets the current column
         /// </summary>
+        /// <value>The current column.</value>
         [Obsolete("Unused by the Fluent Migrator infrastructure")]
         public IndexColumnDefinition CurrentColumn { get; set; }
 

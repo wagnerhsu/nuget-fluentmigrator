@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="VersionMigrationTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -35,6 +48,11 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration
 {
+    /// <summary>
+    /// Defines test class VersionMigrationTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.IntegrationTestBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.IntegrationTestBase" />
     [TestFixture]
     [Category("Integration")]
     [Category("Firebird")]
@@ -47,6 +65,9 @@ namespace FluentMigrator.Tests.Integration
     [Category("SqlServer2014")]
     public class VersionMigrationTests : IntegrationTestBase
     {
+        /// <summary>
+        /// Defines the test method CanUseVersionInfo.
+        /// </summary>
         [Test]
         public void CanUseVersionInfo()
         {
@@ -72,6 +93,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanUseCustomVersionInfo.
+        /// </summary>
         [Test]
         public void CanUseCustomVersionInfo()
         {
@@ -110,6 +134,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhereProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanUseCustomVersionInfoDefaultSchema.
+        /// </summary>
         [Test]
         public void CanUseCustomVersionInfoDefaultSchema()
         {

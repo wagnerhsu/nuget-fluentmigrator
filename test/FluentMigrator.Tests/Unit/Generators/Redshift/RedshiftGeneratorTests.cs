@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RedshiftGeneratorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -28,17 +41,29 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Redshift
 {
+    /// <summary>
+    /// Class RedshiftGeneratorTests. This class cannot be inherited.
+    /// </summary>
     [TestFixture]
     public sealed class RedshiftGeneratorTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         private RedshiftGenerator _generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             _generator = new RedshiftGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithBoolDefaultValue.
+        /// </summary>
         [Test]
         public void CanCreateTableWithBoolDefaultValue()
         {
@@ -49,6 +74,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("CREATE TABLE \"public\".\"TestTable1\" (\"TestColumn1\" text NOT NULL DEFAULT true, \"TestColumn2\" integer NOT NULL);");
         }
 
+        /// <summary>
+        /// Defines the test method CanUseSystemMethodCurrentUserAsADefaultValueForAColumn.
+        /// </summary>
         [Test]
         public void CanUseSystemMethodCurrentUserAsADefaultValueForAColumn()
         {
@@ -60,6 +88,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("ALTER TABLE \"public\".\"NewTable\" ADD \"NewColumn\" varchar(15) NOT NULL DEFAULT current_user;");
         }
 
+        /// <summary>
+        /// Defines the test method CanUseSystemMethodCurrentUTCDateTimeAsADefaultValueForAColumn.
+        /// </summary>
         [Test]
         public void CanUseSystemMethodCurrentUTCDateTimeAsADefaultValueForAColumn()
         {
@@ -71,6 +102,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("ALTER TABLE \"public\".\"NewTable\" ADD \"NewColumn\" varchar(5) NOT NULL DEFAULT (SYSDATE at time zone 'UTC');");
         }
 
+        /// <summary>
+        /// Defines the test method NonUnicodeQuotesCorrectly.
+        /// </summary>
         [Test]
         public void NonUnicodeQuotesCorrectly()
         {
@@ -85,6 +119,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("INSERT INTO \"public\".\"TestTable\" (\"NormalString\",\"UnicodeString\") VALUES ('Just''in','codethinked''.com');");
         }
 
+        /// <summary>
+        /// Defines the test method ExplicitUnicodeStringIgnoredForNonSqlServer.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ExplicitUnicodeStringIgnoredForNonSqlServer()
@@ -100,6 +137,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("INSERT INTO \"public\".\"TestTable\" (\"NormalString\",\"UnicodeString\") VALUES ('Just''in','codethinked''.com');");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnAndSetAsNullable.
+        /// </summary>
         [Test]
         public void CanAlterColumnAndSetAsNullable()
         {
@@ -114,6 +154,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" TYPE text, ALTER \"TestColumn1\" DROP NOT NULL;");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnAndSetAsNotNullable.
+        /// </summary>
         [Test]
         public void CanAlterColumnAndSetAsNotNullable()
         {
@@ -128,6 +171,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" TYPE text, ALTER \"TestColumn1\" SET NOT NULL;");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDefaultConstraint.
+        /// </summary>
         [Test]
         public void CanDeleteDefaultConstraint()
         {
@@ -142,6 +188,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" DROP DEFAULT;");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintToCurrentUser.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintToCurrentUser()
         {
@@ -153,6 +202,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" DROP DEFAULT, ALTER \"TestColumn1\" SET DEFAULT current_user;");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintToCurrentDate.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintToCurrentDate()
         {
@@ -164,6 +216,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" DROP DEFAULT, ALTER \"TestColumn1\" SET DEFAULT SYSDATE;");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintToCurrentUtcDateTime.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintToCurrentUtcDateTime()
         {
@@ -175,6 +230,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("ALTER TABLE \"TestSchema\".\"TestTable1\" ALTER \"TestColumn1\" DROP DEFAULT, ALTER \"TestColumn1\" SET DEFAULT (SYSDATE at time zone 'UTC');");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnAndOnlySetTypeIfIsNullableNotSet.
+        /// </summary>
         [Test]
         public void CanAlterColumnAndOnlySetTypeIfIsNullableNotSet()
         {

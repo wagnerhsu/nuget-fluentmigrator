@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleDataTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 using FluentMigrator.Runner.Generators.Oracle;
 using NUnit.Framework;
@@ -6,17 +19,31 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Oracle
 {
+    /// <summary>
+    /// Defines test class OracleDataTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseDataTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseDataTests" />
     [TestFixture]
     public class OracleDataTests : BaseDataTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected OracleGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new OracleGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForAllRowsWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForAllRowsWithCustomSchema()
         {
@@ -27,6 +54,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("DELETE FROM TestSchema.TestTable1 WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForAllRowsWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForAllRowsWithDefaultSchema()
         {
@@ -36,6 +66,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("DELETE FROM TestTable1 WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForMultipleRowsWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForMultipleRowsWithCustomSchema()
         {
@@ -49,6 +82,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
                 "DELETE FROM TestSchema.TestTable1 WHERE Website = 'github.com'");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForMultipleRowsWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForMultipleRowsWithDefaultSchema()
         {
@@ -61,6 +97,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
                 "DELETE FROM TestTable1 WHERE Website = 'github.com'");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataWithCustomSchema()
         {
@@ -71,6 +110,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("DELETE FROM TestSchema.TestTable1 WHERE Name = 'Just''in' AND Website IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataWithDefaultSchema()
         {
@@ -80,6 +122,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("DELETE FROM TestTable1 WHERE Name = 'Just''in' AND Website IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithDbNullCriteria.
+        /// </summary>
         [Test]
         public override void CanDeleteDataWithDbNullCriteria()
         {
@@ -88,6 +133,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("DELETE FROM TestTable1 WHERE Name = 'Just''in' AND Website IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanInsertDataWithCustomSchema()
         {
@@ -102,6 +150,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanInsertDataWithDefaultSchema()
         {
@@ -115,6 +166,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertGuidDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanInsertGuidDataWithCustomSchema()
         {
@@ -127,6 +181,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("INSERT ALL INTO TestSchema.TestTable1 (guid) VALUES ('797B487E6C627D4E811CBC30AB31C564') SELECT 1 FROM DUAL");
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertGuidDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanInsertGuidDataWithDefaultSchema()
         {
@@ -137,6 +194,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("INSERT ALL INTO TestTable1 (guid) VALUES ('797B487E6C627D4E811CBC30AB31C564') SELECT 1 FROM DUAL");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataForAllDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataForAllDataWithCustomSchema()
         {
@@ -147,6 +207,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("UPDATE TestSchema.TestTable1 SET Name = 'Just''in', Age = 25 WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataForAllDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataForAllDataWithDefaultSchema()
         {
@@ -156,6 +219,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("UPDATE TestTable1 SET Name = 'Just''in', Age = 25 WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataWithCustomSchema()
         {
@@ -166,6 +232,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("UPDATE TestSchema.TestTable1 SET Name = 'Just''in', Age = 25 WHERE Id = 9 AND Homepage IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataWithDefaultSchema()
         {
@@ -175,6 +244,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("UPDATE TestTable1 SET Name = 'Just''in', Age = 25 WHERE Id = 9 AND Homepage IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataWithDbNullCriteria.
+        /// </summary>
         [Test]
         public override void CanUpdateDataWithDbNullCriteria()
         {

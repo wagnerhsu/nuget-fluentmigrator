@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleBaseColumnTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -26,18 +39,33 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Oracle
 {
+    /// <summary>
+    /// Defines test class OracleBaseColumnTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseColumnTests" />
+    /// </summary>
+    /// <typeparam name="TGenerator">The type of the t generator.</typeparam>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseColumnTests" />
     [TestFixture]
     public abstract class OracleBaseColumnTests<TGenerator> : BaseColumnTests
         where TGenerator : OracleGenerator, new()
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected TGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new TGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNullableColumnWithCustomDomainTypeAndCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNullableColumnWithCustomDomainTypeAndCustomSchema()
         {
@@ -48,6 +76,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ADD TestColumn1 MyDomainType");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNullableColumnWithCustomDomainTypeAndDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNullableColumnWithCustomDomainTypeAndDefaultSchema()
         {
@@ -57,6 +88,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestTable1 ADD TestColumn1 MyDomainType");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanAlterColumnWithCustomSchema()
         {
@@ -67,6 +101,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 MODIFY TestColumn1 NVARCHAR2(20) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanAlterColumnWithDefaultSchema()
         {
@@ -76,12 +113,21 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestTable1 MODIFY TestColumn1 NVARCHAR2(20) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAutoIncrementColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public abstract override void CanCreateAutoIncrementColumnWithCustomSchema();
 
+        /// <summary>
+        /// Defines the test method CanCreateAutoIncrementColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public abstract override void CanCreateAutoIncrementColumnWithDefaultSchema();
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithCustomSchema()
         {
@@ -92,6 +138,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ADD TestColumn1 NVARCHAR2(5) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithDefaultSchema()
         {
@@ -101,6 +150,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestTable1 ADD TestColumn1 NVARCHAR2(5) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithSystemMethodAndCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithSystemMethodAndCustomSchema()
         {
@@ -111,6 +163,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
                 "UPDATE TestSchema.TestTable1 SET TestColumn1 = LOCALTIMESTAMP WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithSystemMethodAndDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithSystemMethodAndDefaultSchema()
         {
@@ -121,6 +176,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
                 "UPDATE TestTable1 SET TestColumn1 = LOCALTIMESTAMP WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateDecimalColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateDecimalColumnWithCustomSchema()
         {
@@ -131,6 +189,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ADD TestColumn1 NUMBER(19,2) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateDecimalColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateDecimalColumnWithDefaultSchema()
         {
@@ -140,6 +201,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestTable1 ADD TestColumn1 NUMBER(19,2) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropColumnWithCustomSchema()
         {
@@ -150,6 +214,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 DROP COLUMN TestColumn1");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropColumnWithDefaultSchema()
         {
@@ -159,6 +226,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestTable1 DROP COLUMN TestColumn1");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropMultipleColumnsWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropMultipleColumnsWithCustomSchema()
         {
@@ -172,6 +242,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
                 "ALTER TABLE TestSchema.TestTable1 DROP COLUMN TestColumn2");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropMultipleColumnsWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropMultipleColumnsWithDefaultSchema()
         {
@@ -184,6 +257,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
                 "ALTER TABLE TestTable1 DROP COLUMN TestColumn2");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanRenameColumnWithCustomSchema()
         {
@@ -194,6 +270,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 RENAME COLUMN TestColumn1 TO TestColumn2");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanRenameColumnWithDefaultSchema()
         {
@@ -203,6 +282,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestTable1 RENAME COLUMN TestColumn1 TO TestColumn2");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithDefaultValue.
+        /// </summary>
         [Test]
         public void CanCreateColumnWithDefaultValue()
         {
@@ -214,6 +296,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestTable1 ADD TestColumn1 NVARCHAR2(5) DEFAULT 1 NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithDefaultStringValue.
+        /// </summary>
         [Test]
         public void CanCreateColumnWithDefaultStringValue()
         {
@@ -225,6 +310,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestTable1 ADD TestColumn1 NVARCHAR2(5) DEFAULT '1' NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithDefaultSystemMethodNewGuid.
+        /// </summary>
         [Test]
         public void CanCreateColumnWithDefaultSystemMethodNewGuid()
         {
@@ -236,6 +324,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestTable1 ADD TestColumn1 NVARCHAR2(5) DEFAULT sys_guid() NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithDefaultSystemMethodCurrentDateTime.
+        /// </summary>
         [Test]
         public void CanCreateColumnWithDefaultSystemMethodCurrentDateTime()
         {
@@ -247,6 +338,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             result.ShouldBe("ALTER TABLE TestTable1 ADD TestColumn1 NVARCHAR2(5) DEFAULT LOCALTIMESTAMP NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithDefaultSystemMethodCurrentUser.
+        /// </summary>
         [Test]
         public void CanCreateColumnWithDefaultSystemMethodCurrentUser()
         {

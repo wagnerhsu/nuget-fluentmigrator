@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ColumnBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -28,15 +41,19 @@ namespace FluentMigrator.Runner.Generators.Base
     /// </summary>
     public abstract class ColumnBase : IColumn
     {
+        /// <summary>
+        /// The type map
+        /// </summary>
         private readonly ITypeMap _typeMap;
 
         /// <summary>
         /// Gets or sets the clause order
         /// </summary>
+        /// <value>The clause order.</value>
         protected IList<Func<ColumnDefinition, string>> ClauseOrder { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ColumnBase"/> class.
+        /// Initializes a new instance of the <see cref="ColumnBase" /> class.
         /// </summary>
         /// <param name="typeMap">The type map</param>
         /// <param name="quoter">The quoter</param>
@@ -59,11 +76,13 @@ namespace FluentMigrator.Runner.Generators.Base
         /// <summary>
         /// The default foreign key constraint format
         /// </summary>
+        /// <value>The foreign key constraint.</value>
         public virtual string ForeignKeyConstraint => "{0}FOREIGN KEY ({1}) REFERENCES {2} ({3}){4}{5}";
 
         /// <summary>
         /// Gets the quoter
         /// </summary>
+        /// <value>The quoter.</value>
         protected IQuoter Quoter { get; }
 
         /// <summary>

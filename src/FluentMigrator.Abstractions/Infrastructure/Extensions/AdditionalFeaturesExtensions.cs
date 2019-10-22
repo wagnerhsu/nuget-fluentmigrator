@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AdditionalFeaturesExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -21,7 +34,7 @@ using System;
 namespace FluentMigrator.Infrastructure.Extensions
 {
     /// <summary>
-    /// Extension methods for the <see cref="ISupportAdditionalFeatures"/> interface
+    /// Extension methods for the <see cref="ISupportAdditionalFeatures" /> interface
     /// </summary>
     public static class AdditionalFeaturesExtensions
     {
@@ -30,9 +43,9 @@ namespace FluentMigrator.Infrastructure.Extensions
         /// </summary>
         /// <typeparam name="T">The value type</typeparam>
         /// <param name="additionalFeatures">The additional feature values</param>
-        /// <param name="key">The key into the <see cref="ISupportAdditionalFeatures.AdditionalFeatures"/> dictionary</param>
+        /// <param name="key">The key into the <see cref="ISupportAdditionalFeatures.AdditionalFeatures" /> dictionary</param>
         /// <param name="defaultValue">The default value to be used if none was found</param>
-        /// <returns>The stored value or the <paramref name="defaultValue"/></returns>
+        /// <returns>The stored value or the <paramref name="defaultValue" /></returns>
         public static T GetAdditionalFeature<T>(this ISupportAdditionalFeatures additionalFeatures, string key, T defaultValue = default)
         {
             T result;
@@ -55,7 +68,7 @@ namespace FluentMigrator.Infrastructure.Extensions
         /// </summary>
         /// <typeparam name="T">The value type</typeparam>
         /// <param name="additionalFeatures">The additional feature values</param>
-        /// <param name="key">The key into the <see cref="ISupportAdditionalFeatures.AdditionalFeatures"/> dictionary</param>
+        /// <param name="key">The key into the <see cref="ISupportAdditionalFeatures.AdditionalFeatures" /> dictionary</param>
         /// <param name="createDefaultValue">A lambda to create a default value</param>
         /// <returns>The stored or a newly created value</returns>
         public static T GetAdditionalFeature<T>(this ISupportAdditionalFeatures additionalFeatures, string key, Func<T> createDefaultValue)
@@ -80,7 +93,7 @@ namespace FluentMigrator.Infrastructure.Extensions
         /// </summary>
         /// <typeparam name="T">The value type</typeparam>
         /// <param name="additionalFeatures">The additional feature values</param>
-        /// <param name="key">The key into the <see cref="ISupportAdditionalFeatures.AdditionalFeatures"/> dictionary</param>
+        /// <param name="key">The key into the <see cref="ISupportAdditionalFeatures.AdditionalFeatures" /> dictionary</param>
         /// <param name="value">The value to be set</param>
         public static void SetAdditionalFeature<T>(this ISupportAdditionalFeatures additionalFeatures, string key, T value)
         {

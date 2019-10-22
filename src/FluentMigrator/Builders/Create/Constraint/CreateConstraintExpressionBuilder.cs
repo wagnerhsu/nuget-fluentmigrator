@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CreateConstraintExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System.Collections.Generic;
 
 using FluentMigrator.Expressions;
@@ -6,7 +19,7 @@ using FluentMigrator.Infrastructure;
 namespace FluentMigrator.Builders.Create.Constraint
 {
     /// <summary>
-    /// An expression builder for a <see cref="CreateConstraintExpression"/>
+    /// An expression builder for a <see cref="CreateConstraintExpression" />
     /// </summary>
     public class CreateConstraintExpressionBuilder : ExpressionBuilderBase<CreateConstraintExpression>,
         ICreateConstraintOnTableSyntax,
@@ -15,7 +28,7 @@ namespace FluentMigrator.Builders.Create.Constraint
         ISupportAdditionalFeatures
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:CreateConstraintExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="T:CreateConstraintExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         public CreateConstraintExpressionBuilder(CreateConstraintExpression expression)

@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="JetIntegrationTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,17 +41,42 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration.Processors.Jet
 {
+    /// <summary>
+    /// Class JetIntegrationTests.
+    /// </summary>
     [Category("Integration")]
     [Category("Jet")]
     public abstract class JetIntegrationTests
     {
+        /// <summary>
+        /// The temporary data directory
+        /// </summary>
         private string _tempDataDirectory;
 
+        /// <summary>
+        /// Gets or sets the database filename.
+        /// </summary>
+        /// <value>The database filename.</value>
         private string DatabaseFilename { get; set; }
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         protected JetProcessor Processor { get; private set; }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
@@ -52,12 +90,18 @@ namespace FluentMigrator.Tests.Integration.Processors.Jet
             ServiceProvider = serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -94,6 +138,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Jet
             Processor = ServiceScope.ServiceProvider.GetRequiredService<JetProcessor>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {
@@ -112,6 +159,11 @@ namespace FluentMigrator.Tests.Integration.Processors.Jet
             }
         }
 
+        /// <summary>
+        /// Recreates the database.
+        /// </summary>
+        /// <param name="jetCatalogType">Type of the jet catalog.</param>
+        /// <param name="connString">The connection string.</param>
         private void RecreateDatabase(Type jetCatalogType, string connString)
         {
             if (File.Exists(DatabaseFilename))

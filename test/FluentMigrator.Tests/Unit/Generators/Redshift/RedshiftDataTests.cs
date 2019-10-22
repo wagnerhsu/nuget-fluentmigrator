@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RedshiftDataTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -22,17 +35,31 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Redshift
 {
+    /// <summary>
+    /// Class RedshiftDataTests. This class cannot be inherited.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseDataTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseDataTests" />
     [TestFixture]
     public sealed class RedshiftDataTests : BaseDataTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         private RedshiftGenerator _generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             _generator = new RedshiftGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForAllRowsWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForAllRowsWithCustomSchema()
         {
@@ -43,6 +70,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("DELETE FROM \"TestSchema\".\"TestTable1\";");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForAllRowsWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForAllRowsWithDefaultSchema()
         {
@@ -52,6 +82,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("DELETE FROM \"public\".\"TestTable1\";");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForMultipleRowsWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForMultipleRowsWithCustomSchema()
         {
@@ -63,6 +96,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
                 "DELETE FROM \"TestSchema\".\"TestTable1\" WHERE \"Name\" = 'Just''in' AND \"Website\" IS NULL;DELETE FROM \"TestSchema\".\"TestTable1\" WHERE \"Website\" = 'github.com';");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForMultipleRowsWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForMultipleRowsWithDefaultSchema()
         {
@@ -73,6 +109,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
                 "DELETE FROM \"public\".\"TestTable1\" WHERE \"Name\" = 'Just''in' AND \"Website\" IS NULL;DELETE FROM \"public\".\"TestTable1\" WHERE \"Website\" = 'github.com';");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataWithCustomSchema()
         {
@@ -84,6 +123,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
                 "DELETE FROM \"TestSchema\".\"TestTable1\" WHERE \"Name\" = 'Just''in' AND \"Website\" IS NULL;");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataWithDefaultSchema()
         {
@@ -94,6 +136,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
                 "DELETE FROM \"public\".\"TestTable1\" WHERE \"Name\" = 'Just''in' AND \"Website\" IS NULL;");
         }
 
+        /// <summary>
+        /// Determines whether this instance [can delete data with database null criteria].
+        /// </summary>
         public override void CanDeleteDataWithDbNullCriteria()
         {
             var expression = GeneratorTestHelper.GetDeleteDataExpressionWithDbNullValue();
@@ -102,6 +147,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
                 "DELETE FROM \"public\".\"TestTable1\" WHERE \"Name\" = 'Just''in' AND \"Website\" IS NULL;");
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanInsertDataWithCustomSchema()
         {
@@ -117,6 +165,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanInsertDataWithDefaultSchema()
         {
@@ -131,6 +182,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertGuidDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanInsertGuidDataWithCustomSchema()
         {
@@ -142,6 +196,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
                                                  GeneratorTestHelper.TestGuid));
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertGuidDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanInsertGuidDataWithDefaultSchema()
         {
@@ -152,6 +209,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
                                                  GeneratorTestHelper.TestGuid));
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataForAllDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataForAllDataWithCustomSchema()
         {
@@ -162,6 +222,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("UPDATE \"TestSchema\".\"TestTable1\" SET \"Name\" = 'Just''in', \"Age\" = 25 WHERE 1 = 1;");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataForAllDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataForAllDataWithDefaultSchema()
         {
@@ -171,6 +234,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("UPDATE \"public\".\"TestTable1\" SET \"Name\" = 'Just''in', \"Age\" = 25 WHERE 1 = 1;");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataWithCustomSchema()
         {
@@ -182,6 +248,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
                 "UPDATE \"TestSchema\".\"TestTable1\" SET \"Name\" = 'Just''in', \"Age\" = 25 WHERE \"Id\" = 9 AND \"Homepage\" IS NULL;");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataWithDefaultSchema()
         {
@@ -192,6 +261,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
                 "UPDATE \"public\".\"TestTable1\" SET \"Name\" = 'Just''in', \"Age\" = 25 WHERE \"Id\" = 9 AND \"Homepage\" IS NULL;");
         }
 
+        /// <summary>
+        /// Determines whether this instance [can update data with database null criteria].
+        /// </summary>
         public override void CanUpdateDataWithDbNullCriteria()
         {
             var expression = GeneratorTestHelper.GetUpdateDataExpressionWithDbNullValue();

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Extensions.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerExtensions.NullsDistinct.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -21,13 +34,16 @@ using FluentMigrator.Infrastructure;
 
 namespace FluentMigrator.SqlServer
 {
+    /// <summary>
+    /// Class SqlServerExtensions.
+    /// </summary>
     public static partial class SqlServerExtensions
     {
         /// <summary>
         /// Column should have unique values, but multiple rows with null values should be accepted.
         /// </summary>
         /// <param name="expression">The expression to set this option for</param>
-        /// <returns>The <paramref name="expression"/></returns>
+        /// <returns>The <paramref name="expression" /></returns>
         public static ICreateIndexColumnUniqueOptionsSyntax NullsNotDistinct(
             this ICreateIndexColumnUniqueOptionsSyntax expression)
         {
@@ -39,7 +55,7 @@ namespace FluentMigrator.SqlServer
         /// </summary>
         /// <param name="expression">The expression to set this option for</param>
         /// <param name="nullsAreDistinct"><c>true</c> when nulls should be distinct</param>
-        /// <returns>The <paramref name="expression"/></returns>
+        /// <returns>The <paramref name="expression" /></returns>
         public static ICreateIndexColumnUniqueOptionsSyntax NullsDistinct(
             this ICreateIndexColumnUniqueOptionsSyntax expression,
             bool nullsAreDistinct = true)
@@ -52,7 +68,7 @@ namespace FluentMigrator.SqlServer
         /// Column should have unique values, but multiple rows with null values should be accepted.
         /// </summary>
         /// <param name="expression">The expression to set this option for</param>
-        /// <returns>The <paramref name="expression"/></returns>
+        /// <returns>The <paramref name="expression" /></returns>
         public static ICreateIndexOnColumnSyntax NullsNotDistinct(
             this ICreateIndexMoreColumnOptionsSyntax expression)
         {
@@ -64,7 +80,7 @@ namespace FluentMigrator.SqlServer
         /// </summary>
         /// <param name="expression">The expression to set this option for</param>
         /// <param name="nullsAreDistinct"><c>true</c> when nulls should be distinct</param>
-        /// <returns>The <paramref name="expression"/></returns>
+        /// <returns>The <paramref name="expression" /></returns>
         public static ICreateIndexOnColumnSyntax NullsDistinct(
             this ICreateIndexMoreColumnOptionsSyntax expression,
             bool nullsAreDistinct = true)
@@ -77,7 +93,7 @@ namespace FluentMigrator.SqlServer
         /// Index should have unique values, but multiple rows with null values should be accepted.
         /// </summary>
         /// <param name="expression">The expression to set this option for</param>
-        /// <returns>The <paramref name="expression"/></returns>
+        /// <returns>The <paramref name="expression" /></returns>
         public static ICreateIndexOnColumnSyntax UniqueNullsNotDistinct(
             this ICreateIndexOptionsSyntax expression)
         {
@@ -89,7 +105,8 @@ namespace FluentMigrator.SqlServer
         /// </summary>
         /// <param name="expression">The expression to set this option for</param>
         /// <param name="nullsAreDistinct"><c>true</c> when nulls should be distinct</param>
-        /// <returns>The <paramref name="expression"/></returns>
+        /// <returns>The <paramref name="expression" /></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public static ICreateIndexOnColumnSyntax UniqueNullsDistinct(
             this ICreateIndexOptionsSyntax expression,
             bool nullsAreDistinct = true)

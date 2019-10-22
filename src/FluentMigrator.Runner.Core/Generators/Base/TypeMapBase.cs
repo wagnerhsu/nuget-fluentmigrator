@@ -1,30 +1,74 @@
-﻿using System;
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TypeMapBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 
 namespace FluentMigrator.Runner.Generators.Base
 {
+    /// <summary>
+    /// Class TypeMapBase.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.ITypeMap" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.ITypeMap" />
     public abstract class TypeMapBase : ITypeMap
     {
+        /// <summary>
+        /// The templates
+        /// </summary>
         private readonly Dictionary<DbType, SortedList<int, string>> _templates = new Dictionary<DbType, SortedList<int, string>>();
+        /// <summary>
+        /// The size placeholder
+        /// </summary>
         private const string SizePlaceholder = "$size";
+        /// <summary>
+        /// The precision placeholder
+        /// </summary>
         protected const string PrecisionPlaceholder = "$precision";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TypeMapBase"/> class.
+        /// </summary>
         protected TypeMapBase()
         {
             // ReSharper disable once VirtualMemberCallInConstructor
             SetupTypeMaps();
         }
 
+        /// <summary>
+        /// Setups the type maps.
+        /// </summary>
         protected abstract void SetupTypeMaps();
 
+        /// <summary>
+        /// Sets the type map.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="template">The template.</param>
         protected void SetTypeMap(DbType type, string template)
         {
             EnsureHasList(type);
             _templates[type][-1] = template;
         }
 
+        /// <summary>
+        /// Sets the type map.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="template">The template.</param>
+        /// <param name="maxSize">The maximum size.</param>
         protected void SetTypeMap(DbType type, string template, int maxSize)
         {
             EnsureHasList(type);
@@ -60,12 +104,23 @@ namespace FluentMigrator.Runner.Generators.Base
             return GetTypeMap(type, (int?)size, precision);
         }
 
+        /// <summary>
+        /// Ensures the has list.
+        /// </summary>
+        /// <param name="type">The type.</param>
         private void EnsureHasList(DbType type)
         {
             if (!_templates.ContainsKey(type))
                 _templates.Add(type, new SortedList<int, string>());
         }
 
+        /// <summary>
+        /// Replaces the placeholders.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="size">The size.</param>
+        /// <param name="precision">The precision.</param>
+        /// <returns>System.String.</returns>
         private string ReplacePlaceholders(string value, int? size, int? precision)
         {
             if (size != null)

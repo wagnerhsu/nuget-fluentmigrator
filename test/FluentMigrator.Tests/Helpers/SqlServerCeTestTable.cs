@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerCeTestTable.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 using System.Data.SqlServerCe;
 using System.Collections.Generic;
@@ -9,14 +22,43 @@ using FluentMigrator.Runner.Processors.SqlServer;
 namespace FluentMigrator.Tests.Helpers
 {
 
+    /// <summary>
+    /// Class SqlServerCeTestTable.
+    /// Implements the <see cref="System.IDisposable" />
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public class SqlServerCeTestTable : IDisposable
     {
+        /// <summary>
+        /// Gets or sets the connection.
+        /// </summary>
+        /// <value>The connection.</value>
         private SqlCeConnection Connection { get; set; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the quoter.
+        /// </summary>
+        /// <value>The quoter.</value>
         private IQuoter Quoter { get; set; }
+        /// <summary>
+        /// The constraints
+        /// </summary>
         private List<string> constraints = new List<string>();
+        /// <summary>
+        /// The indexies
+        /// </summary>
         private List<string> indexies = new List<string>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServerCeTestTable"/> class.
+        /// </summary>
+        /// <param name="table">The table.</param>
+        /// <param name="processor">The processor.</param>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public SqlServerCeTestTable(string table, SqlServerCeProcessor processor, params string[] columnDefinitions)
         {
             Connection = (SqlCeConnection)processor.Connection;
@@ -26,6 +68,11 @@ namespace FluentMigrator.Tests.Helpers
             Create(columnDefinitions);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServerCeTestTable"/> class.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public SqlServerCeTestTable(SqlServerCeProcessor processor, params string[] columnDefinitions)
         {
             Connection = (SqlCeConnection)processor.Connection;
@@ -35,11 +82,18 @@ namespace FluentMigrator.Tests.Helpers
             Create(columnDefinitions);
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             Drop();
         }
 
+        /// <summary>
+        /// Creates the specified column definitions.
+        /// </summary>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public void Create(IEnumerable<string> columnDefinitions)
         {
 
@@ -60,11 +114,20 @@ namespace FluentMigrator.Tests.Helpers
                 command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Withes the unique constraint on.
+        /// </summary>
+        /// <param name="column">The column.</param>
         public void WithUniqueConstraintOn(string column)
         {
             WithUniqueConstraintOn(column, "UC_" + column);
         }
 
+        /// <summary>
+        /// Withes the unique constraint on.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="name">The name.</param>
         public void WithUniqueConstraintOn(string column, string name)
         {
             var sb = new StringBuilder();
@@ -75,11 +138,20 @@ namespace FluentMigrator.Tests.Helpers
                 command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Withes the index on.
+        /// </summary>
+        /// <param name="column">The column.</param>
         public void WithIndexOn(string column)
         {
             WithIndexOn(column, "UI_" + column);
         }
 
+        /// <summary>
+        /// Withes the index on.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="name">The name.</param>
         public void WithIndexOn(string column, string name)
         {
             var sb = new StringBuilder();
@@ -90,6 +162,9 @@ namespace FluentMigrator.Tests.Helpers
                 command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Drops this instance.
+        /// </summary>
         public void Drop()
         {
             foreach (var contraint in constraints)

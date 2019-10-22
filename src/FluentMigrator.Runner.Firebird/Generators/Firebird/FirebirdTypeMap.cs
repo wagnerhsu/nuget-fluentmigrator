@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Firebird
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdTypeMap.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Fluent Migrator Project
@@ -22,15 +35,38 @@ using FluentMigrator.Runner.Generators.Base;
 
 namespace FluentMigrator.Runner.Generators.Firebird
 {
+    /// <summary>
+    /// Class FirebirdTypeMap.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.TypeMapBase" />
     internal class FirebirdTypeMap : TypeMapBase
     {
+        /// <summary>
+        /// The decimal capacity
+        /// </summary>
         private const int DecimalCapacity = 19;
+        /// <summary>
+        /// The firebird maximum varchar size
+        /// </summary>
         private const int FirebirdMaxVarcharSize = 32765;
+        /// <summary>
+        /// The firebird maximum character size
+        /// </summary>
         private const int FirebirdMaxCharSize = 32767;
+        /// <summary>
+        /// The firebird maximum unicode character size
+        /// </summary>
         private const int FirebirdMaxUnicodeCharSize = 4000;
         // http://www.firebirdsql.org/en/firebird-technical-specifications/
+        /// <summary>
+        /// The firebird maximum text size
+        /// </summary>
         private const int FirebirdMaxTextSize = int.MaxValue;  // as close as Int32 can come to 32GB
 
+        /// <summary>
+        /// Setups the type maps.
+        /// </summary>
         protected override void SetupTypeMaps()
         {
             /*

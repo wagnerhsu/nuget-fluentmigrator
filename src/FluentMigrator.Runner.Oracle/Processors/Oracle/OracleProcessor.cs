@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleProcessor.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -30,8 +43,21 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Processors.Oracle
 {
+    /// <summary>
+    /// Class OracleProcessor.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.Oracle.OracleProcessorBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.Oracle.OracleProcessorBase" />
     public class OracleProcessor : OracleProcessorBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleProcessor"/> class.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <param name="generator">The generator.</param>
+        /// <param name="announcer">The announcer.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="factory">The factory.</param>
         [Obsolete]
         public OracleProcessor(
             IDbConnection connection,
@@ -43,6 +69,14 @@ namespace FluentMigrator.Runner.Processors.Oracle
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OracleProcessor"/> class.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
+        /// <param name="generator">The generator.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="connectionStringAccessor">The connection string accessor.</param>
         public OracleProcessor(
             [NotNull] OracleDbFactory factory,
             [NotNull] IOracleGenerator generator,

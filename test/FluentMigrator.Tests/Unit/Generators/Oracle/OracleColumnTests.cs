@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleColumnTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -22,9 +35,17 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Generators.Oracle
 {
+    /// <summary>
+    /// Defines test class OracleColumnTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.Oracle.OracleBaseColumnTests{FluentMigrator.Runner.Generators.Oracle.OracleGenerator}" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.Oracle.OracleBaseColumnTests{FluentMigrator.Runner.Generators.Oracle.OracleGenerator}" />
     [TestFixture]
     public class OracleColumnTests : OracleBaseColumnTests<OracleGenerator>
     {
+        /// <summary>
+        /// Defines the test method CanCreateAutoIncrementColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateAutoIncrementColumnWithCustomSchema()
         {
@@ -34,6 +55,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Oracle
             Assert.Throws<DatabaseOperationNotSupportedException>(() => Generator.Generate(expression));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAutoIncrementColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateAutoIncrementColumnWithDefaultSchema()
         {

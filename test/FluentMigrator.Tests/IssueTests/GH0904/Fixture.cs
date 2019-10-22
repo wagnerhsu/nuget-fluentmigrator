@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Fixture.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,15 +38,27 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.IssueTests.GH0904
 {
+    /// <summary>
+    /// Defines test class Fixture.
+    /// </summary>
     [TestFixture]
     [Category("Issue")]
     [Category("GH-0904")]
     [Category("SQLite")]
     public class Fixture
     {
+        /// <summary>
+        /// The sqlite database file name
+        /// </summary>
         private string _sqliteDbFileName;
+        /// <summary>
+        /// The service provider
+        /// </summary>
         private ServiceProvider _serviceProvider;
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -54,6 +79,9 @@ namespace FluentMigrator.Tests.IssueTests.GH0904
                 .BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {
@@ -61,6 +89,9 @@ namespace FluentMigrator.Tests.IssueTests.GH0904
             File.Delete(_sqliteDbFileName);
         }
 
+        /// <summary>
+        /// Defines the test method ProfileMustNotCauseNullReferenceException.
+        /// </summary>
         [Test]
         public void ProfileMustNotCauseNullReferenceException()
         {

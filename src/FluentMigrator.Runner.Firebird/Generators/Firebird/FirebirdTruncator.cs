@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Firebird
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdTruncator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -27,43 +40,89 @@ using System.Security.Cryptography;
 
 namespace FluentMigrator.Runner.Generators.Firebird
 {
+    /// <summary>
+    /// Class FirebirdTruncator.
+    /// </summary>
     public class FirebirdTruncator
     {
+        /// <summary>
+        /// The enabled
+        /// </summary>
         private readonly bool _enabled;
+        /// <summary>
+        /// The pack key names
+        /// </summary>
         private readonly bool _packKeyNames;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FirebirdTruncator"/> class.
+        /// </summary>
+        /// <param name="enabled">if set to <c>true</c> [enabled].</param>
+        /// <param name="packKeyNames">if set to <c>true</c> [pack key names].</param>
         public FirebirdTruncator(bool enabled, bool packKeyNames)
         {
             _enabled = enabled;
             _packKeyNames = packKeyNames;
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(CreateSchemaExpression expression) { }
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(AlterSchemaExpression expression) { }
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(DeleteSchemaExpression expression) { }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(CreateTableExpression expression)
         {
             expression.TableName = Truncate(expression.TableName);
             TruncateColumns(expression.Columns);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(AlterTableExpression expression)
         {
             expression.TableName = Truncate(expression.TableName);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(DeleteTableExpression expression)
         {
             expression.TableName = Truncate(expression.TableName);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(RenameTableExpression expression)
         {
             expression.OldName = Truncate(expression.OldName);
             expression.NewName = Truncate(expression.NewName);
         }
 
+        /// <summary>
+        /// Truncates the specified column.
+        /// </summary>
+        /// <param name="column">The column.</param>
         public void Truncate(ColumnDefinition column)
         {
             column.Name = Truncate(column.Name);
@@ -72,24 +131,40 @@ namespace FluentMigrator.Runner.Generators.Firebird
                 column.PrimaryKeyName = _packKeyNames ? Pack(column.PrimaryKeyName) : Truncate(column.PrimaryKeyName);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(CreateColumnExpression expression)
         {
             expression.TableName = Truncate(expression.TableName);
             Truncate(expression.Column);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(AlterColumnExpression expression)
         {
             expression.TableName = Truncate(expression.TableName);
             Truncate(expression.Column);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(DeleteColumnExpression expression)
         {
             expression.TableName = Truncate(expression.TableName);
             expression.ColumnNames = TruncateNames(expression.ColumnNames);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(RenameColumnExpression expression)
         {
             expression.OldName = Truncate(expression.OldName);
@@ -97,6 +172,10 @@ namespace FluentMigrator.Runner.Generators.Firebird
             expression.TableName = Truncate(expression.TableName);
         }
 
+        /// <summary>
+        /// Truncates the specified index.
+        /// </summary>
+        /// <param name="index">The index.</param>
         public void Truncate(IndexDefinition index)
         {
             index.TableName = Truncate(index.TableName);
@@ -105,16 +184,28 @@ namespace FluentMigrator.Runner.Generators.Firebird
         }
 
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(CreateIndexExpression expression)
         {
             Truncate(expression.Index);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(DeleteIndexExpression expression)
         {
             Truncate(expression.Index);
         }
 
+        /// <summary>
+        /// Truncates the specified constraint.
+        /// </summary>
+        /// <param name="constraint">The constraint.</param>
         public void Truncate(ConstraintDefinition constraint)
         {
             constraint.TableName = Truncate(constraint.TableName);
@@ -122,16 +213,28 @@ namespace FluentMigrator.Runner.Generators.Firebird
             constraint.Columns = TruncateNames(constraint.Columns);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(CreateConstraintExpression expression)
         {
             Truncate(expression.Constraint);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(DeleteConstraintExpression expression)
         {
             Truncate(expression.Constraint);
         }
 
+        /// <summary>
+        /// Truncates the specified foreign key.
+        /// </summary>
+        /// <param name="foreignKey">The foreign key.</param>
         public void Truncate(ForeignKeyDefinition foreignKey)
         {
             foreignKey.Name = _packKeyNames ? Pack(foreignKey.Name) : Truncate(foreignKey.Name);
@@ -141,42 +244,74 @@ namespace FluentMigrator.Runner.Generators.Firebird
             foreignKey.ForeignColumns = TruncateNames(foreignKey.ForeignColumns);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(CreateForeignKeyExpression expression)
         {
             Truncate(expression.ForeignKey);
         }
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(DeleteForeignKeyExpression expression)
         {
             Truncate(expression.ForeignKey);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(AlterDefaultConstraintExpression expression)
         {
             expression.TableName = Truncate(expression.TableName);
             expression.ColumnName = Truncate(expression.ColumnName);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(DeleteDefaultConstraintExpression expression)
         {
             expression.TableName = Truncate(expression.TableName);
             expression.ColumnName = Truncate(expression.ColumnName);
         }
 
+        /// <summary>
+        /// Truncates the specified sequence.
+        /// </summary>
+        /// <param name="sequence">The sequence.</param>
         public void Truncate(SequenceDefinition sequence)
         {
             sequence.Name = Truncate(sequence.Name);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(CreateSequenceExpression expression)
         {
             Truncate(expression.Sequence);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(DeleteSequenceExpression expression)
         {
             expression.SequenceName = Truncate(expression.SequenceName);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(InsertDataExpression expression)
         {
             expression.TableName = Truncate(expression.TableName);
@@ -194,6 +329,10 @@ namespace FluentMigrator.Runner.Generators.Firebird
             expression.Rows.AddRange(insertions);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(DeleteDataExpression expression)
         {
             expression.TableName = Truncate(expression.TableName);
@@ -211,6 +350,10 @@ namespace FluentMigrator.Runner.Generators.Firebird
             expression.Rows.AddRange(deletions);
         }
 
+        /// <summary>
+        /// Truncates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
         public void Truncate(UpdateDataExpression expression)
         {
             expression.TableName = Truncate(expression.TableName);
@@ -233,6 +376,11 @@ namespace FluentMigrator.Runner.Generators.Firebird
             }
         }
 
+        /// <summary>
+        /// Truncates the names.
+        /// </summary>
+        /// <param name="names">The names.</param>
+        /// <returns>ICollection&lt;System.String&gt;.</returns>
         public ICollection<string> TruncateNames(ICollection<string> names)
         {
             List<string> ret = new List<string>();
@@ -243,6 +391,10 @@ namespace FluentMigrator.Runner.Generators.Firebird
             return ret;
         }
 
+        /// <summary>
+        /// Truncates the columns.
+        /// </summary>
+        /// <param name="columns">The columns.</param>
         public void TruncateColumns(ICollection<ColumnDefinition> columns)
         {
             foreach (ColumnDefinition colDef in columns)
@@ -251,6 +403,12 @@ namespace FluentMigrator.Runner.Generators.Firebird
             }
         }
 
+        /// <summary>
+        /// Truncates the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>System.String.</returns>
+        /// <exception cref="ArgumentException"></exception>
         public string Truncate(string name)
         {
             if (!string.IsNullOrEmpty(name))
@@ -266,6 +424,12 @@ namespace FluentMigrator.Runner.Generators.Firebird
             return name;
         }
 
+        /// <summary>
+        /// Packs the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>System.String.</returns>
+        /// <exception cref="ArgumentException"></exception>
         public string Pack(string name)
         {
             if (!string.IsNullOrEmpty(name))

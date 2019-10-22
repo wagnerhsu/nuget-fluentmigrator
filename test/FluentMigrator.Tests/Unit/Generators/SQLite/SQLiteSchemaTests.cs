@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SQLiteSchemaTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -23,18 +36,32 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SQLite
 {
+    /// <summary>
+    /// Defines test class SQLiteSchemaTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseSchemaTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseSchemaTests" />
     [TestFixture]
     // ReSharper disable once InconsistentNaming
     public class SQLiteSchemaTests : BaseSchemaTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected SQLiteGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new SQLiteGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterSchema.
+        /// </summary>
         [Test]
         public override void CanAlterSchema()
         {
@@ -44,6 +71,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSchema.
+        /// </summary>
         [Test]
         public override void CanCreateSchema()
         {
@@ -53,6 +83,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SQLite
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method CanDropSchema.
+        /// </summary>
         [Test]
         public override void CanDropSchema()
         {

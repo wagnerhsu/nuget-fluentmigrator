@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="NullAnnouncer.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -20,9 +33,19 @@ using System;
 
 namespace FluentMigrator.Runner.Announcers
 {
+    /// <summary>
+    /// Class NullAnnouncer.
+    /// Implements the <see cref="FluentMigrator.Runner.Announcers.Announcer" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Announcers.Announcer" />
     [Obsolete]
     public class NullAnnouncer : Announcer
     {
+        /// <summary>
+        /// Writes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="isNotSql">if set to <c>true</c> [is not SQL].</param>
         public override void Write(string message, bool isNotSql = true)
         {
         }

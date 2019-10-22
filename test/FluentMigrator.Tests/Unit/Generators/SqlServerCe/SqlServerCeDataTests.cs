@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerCeDataTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -25,17 +38,31 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
 {
+    /// <summary>
+    /// Defines test class SqlServerCeDataTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseDataTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseDataTests" />
     [TestFixture]
     public class SqlServerCeDataTests : BaseDataTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected SqlServerCeGenerator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new SqlServerCeGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForAllRowsWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForAllRowsWithCustomSchema()
         {
@@ -46,6 +73,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("DELETE FROM [TestTable1] WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForAllRowsWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForAllRowsWithDefaultSchema()
         {
@@ -55,6 +85,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("DELETE FROM [TestTable1] WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForMultipleRowsWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForMultipleRowsWithCustomSchema()
         {
@@ -65,6 +98,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("DELETE FROM [TestTable1] WHERE [Name] = N'Just''in' AND [Website] IS NULL; DELETE FROM [TestTable1] WHERE [Website] = N'github.com'");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataForMultipleRowsWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataForMultipleRowsWithDefaultSchema()
         {
@@ -74,6 +110,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("DELETE FROM [TestTable1] WHERE [Name] = N'Just''in' AND [Website] IS NULL; DELETE FROM [TestTable1] WHERE [Website] = N'github.com'");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataWithCustomSchema()
         {
@@ -84,6 +123,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("DELETE FROM [TestTable1] WHERE [Name] = N'Just''in' AND [Website] IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDeleteDataWithDefaultSchema()
         {
@@ -93,6 +135,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("DELETE FROM [TestTable1] WHERE [Name] = N'Just''in' AND [Website] IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithDbNullCriteria.
+        /// </summary>
         [Test]
         public override void CanDeleteDataWithDbNullCriteria()
         {
@@ -101,6 +146,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("DELETE FROM [TestTable1] WHERE [Name] = N'Just''in' AND [Website] IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanInsertDataWithCustomSchema()
         {
@@ -114,6 +162,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanInsertDataWithDefaultSchema()
         {
@@ -126,6 +177,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertGuidDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanInsertGuidDataWithCustomSchema()
         {
@@ -136,6 +190,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe(string.Format("INSERT INTO [TestTable1] ([guid]) SELECT '{0}'", GeneratorTestHelper.TestGuid.ToString()));
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertGuidDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanInsertGuidDataWithDefaultSchema()
         {
@@ -145,6 +202,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe(string.Format("INSERT INTO [TestTable1] ([guid]) SELECT '{0}'", GeneratorTestHelper.TestGuid.ToString()));
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataForAllDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataForAllDataWithCustomSchema()
         {
@@ -155,6 +215,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("UPDATE [TestTable1] SET [Name] = N'Just''in', [Age] = 25 WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataForAllDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataForAllDataWithDefaultSchema()
         {
@@ -164,6 +227,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("UPDATE [TestTable1] SET [Name] = N'Just''in', [Age] = 25 WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataWithCustomSchema()
         {
@@ -174,6 +240,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("UPDATE [TestTable1] SET [Name] = N'Just''in', [Age] = 25 WHERE [Id] = 9 AND [Homepage] IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanUpdateDataWithDefaultSchema()
         {
@@ -183,6 +252,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe("UPDATE [TestTable1] SET [Name] = N'Just''in', [Age] = 25 WHERE [Id] = 9 AND [Homepage] IS NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithIdentityInsert.
+        /// </summary>
         [Test]
         public void CanInsertDataWithIdentityInsert()
         {
@@ -198,6 +270,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithIdentityInsertInStrictMode.
+        /// </summary>
         [Test]
         public void CanInsertDataWithIdentityInsertInStrictMode()
         {
@@ -214,6 +289,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServerCe
             result.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateDataWithDbNullCriteria.
+        /// </summary>
         [Test]
         public override void CanUpdateDataWithDbNullCriteria()
         {

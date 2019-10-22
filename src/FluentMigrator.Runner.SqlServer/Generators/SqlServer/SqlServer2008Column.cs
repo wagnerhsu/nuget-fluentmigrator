@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2008Column.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -19,8 +32,18 @@ using FluentMigrator.SqlServer;
 
 namespace FluentMigrator.Runner.Generators.SqlServer
 {
+    /// <summary>
+    /// Class SqlServer2008Column.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2005Column" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2005Column" />
     internal class SqlServer2008Column : SqlServer2005Column
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2008Column"/> class.
+        /// </summary>
+        /// <param name="typeMap">The type map</param>
+        /// <param name="quoter">The quoter</param>
         public SqlServer2008Column(ITypeMap typeMap, IQuoter quoter)
            : base(typeMap, quoter)
         {
@@ -28,7 +51,7 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         }
 
         /// <summary>
-        /// Add <c>SPARSE</c> when <see cref="SqlServerExtensions.SparseColumn"/> is set.
+        /// Add <c>SPARSE</c> when <see cref="SqlServerExtensions.SparseColumn" /> is set.
         /// </summary>
         /// <param name="column">The column to create the definition part for</param>
         /// <returns>The generated SQL string part</returns>

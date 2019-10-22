@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AnnouncerFluentMigratorLogger.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -21,15 +34,18 @@ using Microsoft.Extensions.Logging;
 namespace FluentMigrator.Runner.Logging
 {
     /// <summary>
-    /// A <see cref="ILogger"/> implementation that redirects all messages to a <see cref="IAnnouncer"/>
+    /// A <see cref="ILogger" /> implementation that redirects all messages to a <see cref="IAnnouncer" />
     /// </summary>
     [Obsolete]
     public class AnnouncerFluentMigratorLogger : FluentMigratorLogger
     {
+        /// <summary>
+        /// The announcer
+        /// </summary>
         private readonly IAnnouncer _announcer;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AnnouncerFluentMigratorLogger"/> class.
+        /// Initializes a new instance of the <see cref="AnnouncerFluentMigratorLogger" /> class.
         /// </summary>
         /// <param name="announcer">The announcer to send all messages to</param>
         public AnnouncerFluentMigratorLogger(IAnnouncer announcer)

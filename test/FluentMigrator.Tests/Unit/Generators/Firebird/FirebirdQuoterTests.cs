@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdQuoterTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -23,9 +36,15 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Firebird
 {
+    /// <summary>
+    /// Defines test class FirebirdQuoterTests.
+    /// </summary>
     [TestFixture]
     public class FirebirdQuoterTests
     {
+        /// <summary>
+        /// The fb keywords
+        /// </summary>
         private static readonly string[] _fbKeywords = new[]
         {
             "!<", "^<", "^=", "^>", ",", ":=", "!=", "!>", "(", ")", "<", "<=", "<>", "=", ">", ">=", "||", "~<", "~=", "~>",
@@ -60,6 +79,10 @@ namespace FluentMigrator.Tests.Unit.Generators.Firebird
             "WRITE", "YEAR", "YEARDAY"
         };
 
+        /// <summary>
+        /// Defines the test method Quote_ArgIsFirebirdKeyword_ArgShouldBeQuoted.
+        /// </summary>
+        /// <param name="quoteArg">The quote argument.</param>
         [Test, TestCaseSource("_fbKeywords")]
         public void Quote_ArgIsFirebirdKeyword_ArgShouldBeQuoted(string quoteArg)
         {
@@ -68,6 +91,10 @@ namespace FluentMigrator.Tests.Unit.Generators.Firebird
             actual.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method Quote_ArgIsNotAKeyWord_ArgShouldNotBeQuoted.
+        /// </summary>
+        /// <param name="quoteArg">The quote argument.</param>
         [TestCase("one")]
         [TestCase("silly")]
         public void Quote_ArgIsNotAKeyWord_ArgShouldNotBeQuoted(string quoteArg)
@@ -76,6 +103,10 @@ namespace FluentMigrator.Tests.Unit.Generators.Firebird
             actual.ShouldBe(quoteArg);
         }
 
+        /// <summary>
+        /// Defines the test method Quote_ArgIsNotAKeyWordButQuoteForced_ArgMustBeQuoted.
+        /// </summary>
+        /// <param name="quoteArg">The quote argument.</param>
         [TestCase("one")]
         [TestCase("silly")]
         public void Quote_ArgIsNotAKeyWordButQuoteForced_ArgMustBeQuoted(string quoteArg)
@@ -85,6 +116,10 @@ namespace FluentMigrator.Tests.Unit.Generators.Firebird
             actual.ShouldBe(expected);
         }
 
+        /// <summary>
+        /// Defines the test method Quote_ArgBeginsWithUnderscore_ArgShouldBeQuoted.
+        /// </summary>
+        /// <param name="quoteArg">The quote argument.</param>
         [TestCase("_test")]
         public void Quote_ArgBeginsWithUnderscore_ArgShouldBeQuoted(string quoteArg)
         {
@@ -92,6 +127,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Firebird
             actual.ShouldBe(string.Format("\"{0}\"", quoteArg));
         }
 
+        /// <summary>
+        /// Defines the test method Quote_PassesTurkishTest.
+        /// </summary>
         [Test, SetCulture("tr-TR")]
         public void Quote_PassesTurkishTest()
         {
@@ -99,6 +137,10 @@ namespace FluentMigrator.Tests.Unit.Generators.Firebird
             actual.ShouldBe("\"similar\"");
         }
 
+        /// <summary>
+        /// Defines the test method Quote_ArgIsKeywordInLowercase_ArgShouldBeQuoted.
+        /// </summary>
+        /// <param name="quoteArg">The quote argument.</param>
         [Test, TestCaseSource("_fbKeywords")]
         public void Quote_ArgIsKeywordInLowercase_ArgShouldBeQuoted(string quoteArg)
         {

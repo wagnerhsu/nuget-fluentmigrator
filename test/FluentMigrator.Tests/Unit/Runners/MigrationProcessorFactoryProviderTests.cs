@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationProcessorFactoryProviderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -27,18 +40,30 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Runners
 {
+    /// <summary>
+    /// Defines test class MigrationProcessorFactoryProviderTests.
+    /// </summary>
     [TestFixture]
     [Obsolete]
     public class MigrationProcessorFactoryProviderTests
     {
+        /// <summary>
+        /// The migration processor factory provider
+        /// </summary>
         private MigrationProcessorFactoryProvider _migrationProcessorFactoryProvider;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             _migrationProcessorFactoryProvider = new MigrationProcessorFactoryProvider();
         }
 
+        /// <summary>
+        /// Defines the test method CanRetrieveFactoryWithArgumentString.
+        /// </summary>
         [Test]
         public void CanRetrieveFactoryWithArgumentString()
         {
@@ -46,6 +71,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.IsTrue(factory.GetType() == typeof(SQLiteProcessorFactory));
         }
 
+        /// <summary>
+        /// Defines the test method CanRetrieveSqlServer2000FactoryWithArgumentString.
+        /// </summary>
         [Test]
         public void CanRetrieveSqlServer2000FactoryWithArgumentString()
         {
@@ -53,6 +81,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.IsTrue(factory.GetType() == typeof(SqlServer2000ProcessorFactory));
         }
 
+        /// <summary>
+        /// Defines the test method CanRetrieveSqlServer2005FactoryWithArgumentString.
+        /// </summary>
         [Test]
         public void CanRetrieveSqlServer2005FactoryWithArgumentString()
         {
@@ -60,6 +91,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.IsTrue(factory.GetType() == typeof(SqlServer2005ProcessorFactory));
         }
 
+        /// <summary>
+        /// Defines the test method CanRetrieveSqlServer2008FactoryWithArgumentString.
+        /// </summary>
         [Test]
         public void CanRetrieveSqlServer2008FactoryWithArgumentString()
         {
@@ -67,6 +101,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.IsTrue(factory.GetType() == typeof(SqlServer2008ProcessorFactory));
         }
 
+        /// <summary>
+        /// Defines the test method CanRetrieveSqlServer2012FactoryWithArgumentString.
+        /// </summary>
         [Test]
         public void CanRetrieveSqlServer2012FactoryWithArgumentString()
         {
@@ -74,6 +111,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.IsTrue(factory.GetType() == typeof(SqlServer2012ProcessorFactory));
         }
 
+        /// <summary>
+        /// Defines the test method CanRetrieveSqlServer2014FactoryWithArgumentString.
+        /// </summary>
         [Test]
         public void CanRetrieveSqlServer2014FactoryWithArgumentString()
         {
@@ -81,6 +121,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.IsTrue(factory.GetType() == typeof(SqlServer2014ProcessorFactory));
         }
 
+        /// <summary>
+        /// Defines the test method CanRetrieveSqlServer2016FactoryWithArgumentString.
+        /// </summary>
         [Test]
         public void CanRetrieveSqlServer2016FactoryWithArgumentString()
         {
@@ -88,6 +131,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.IsTrue(factory.GetType() == typeof(SqlServer2016ProcessorFactory));
         }
 
+        /// <summary>
+        /// Defines the test method RetrievesSqlServerProcessorFactoryIfArgumentIsSqlServer.
+        /// </summary>
         [Test]
         public void RetrievesSqlServerProcessorFactoryIfArgumentIsSqlServer()
         {
@@ -95,6 +141,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.IsTrue(factory.GetType() == typeof(SqlServerProcessorFactory));
         }
 
+        /// <summary>
+        /// Defines the test method CanRetrieveSqlServerCeFactoryWithArgumentString.
+        /// </summary>
         [Test]
         public void CanRetrieveSqlServerCeFactoryWithArgumentString()
         {
@@ -102,12 +151,18 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.IsTrue(factory.GetType() == typeof(SqlServerCeProcessorFactory));
         }
 
+        /// <summary>
+        /// Defines the test method CanRetrieveOracleFactoryWithArgumentString.
+        /// </summary>
         [Test]
         public void CanRetrieveOracleFactoryWithArgumentString()
         {
             Assert.IsInstanceOf<OracleProcessorFactory>(_migrationProcessorFactoryProvider.GetFactory("Oracle"));
         }
 
+        /// <summary>
+        /// Defines the test method CanRetrieveOracleManagedFactoryWithArgumentString.
+        /// </summary>
         [Test]
         public void CanRetrieveOracleManagedFactoryWithArgumentString()
         {
@@ -115,6 +170,9 @@ namespace FluentMigrator.Tests.Unit.Runners
             Assert.IsTrue(factory.GetType() == typeof(OracleManagedProcessorFactory));
         }
 
+        /// <summary>
+        /// Defines the test method CanRetrieveHanaFactoryWithArgumentString.
+        /// </summary>
         [Test]
         public void CanRetrieveHanaFactoryWithArgumentString()
         {

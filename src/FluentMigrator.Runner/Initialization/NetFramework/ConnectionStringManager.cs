@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ConnectionStringManager.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -33,18 +46,57 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
     /// </summary>
     internal class ConnectionStringManager
     {
+        /// <summary>
+        /// The match password
+        /// </summary>
         private static readonly Regex _matchPwd = new Regex("(PWD=|PASSWORD=)([^;]*);", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+        /// <summary>
+        /// The logger
+        /// </summary>
         private readonly ILogger _logger;
+        /// <summary>
+        /// The assembly location
+        /// </summary>
         private readonly string _assemblyLocation;
+        /// <summary>
+        /// The configuration manager
+        /// </summary>
         private readonly INetConfigManager _configManager;
+        /// <summary>
+        /// The configuration path
+        /// </summary>
         private readonly string _configPath;
+        /// <summary>
+        /// The database
+        /// </summary>
         private readonly string _database;
+        /// <summary>
+        /// The configuration file
+        /// </summary>
         private string _configFile;
+        /// <summary>
+        /// The connection
+        /// </summary>
         private string _connection;
+        /// <summary>
+        /// The machine name provider
+        /// </summary>
         private Func<string> _machineNameProvider = () => Environment.MachineName;
+        /// <summary>
+        /// The not using configuration
+        /// </summary>
         private bool _notUsingConfig;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectionStringManager"/> class.
+        /// </summary>
+        /// <param name="configManager">The configuration manager.</param>
+        /// <param name="logger">The logger.</param>
+        /// <param name="connection">The connection.</param>
+        /// <param name="configPath">The configuration path.</param>
+        /// <param name="assemblyLocation">The assembly location.</param>
+        /// <param name="database">The database.</param>
         public ConnectionStringManager(INetConfigManager configManager, ILogger<ConnectionStringManager> logger, string connection, string configPath, string assemblyLocation,
                                        string database)
         {
@@ -57,14 +109,25 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
             _logger = logger;
         }
 
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <value>The connection string.</value>
         public string ConnectionString { get; private set; }
 
+        /// <summary>
+        /// Gets or sets the machine name provider.
+        /// </summary>
+        /// <value>The machine name provider.</value>
         public Func<string> MachineNameProvider
         {
             get { return _machineNameProvider; }
             set { _machineNameProvider = value; }
         }
 
+        /// <summary>
+        /// Loads the connection string.
+        /// </summary>
         public void LoadConnectionString()
         {
             if (_notUsingConfig && !string.IsNullOrEmpty(_configPath))
@@ -86,6 +149,10 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
             OutputResults();
         }
 
+        /// <summary>
+        /// Loads the connection string from configuration file.
+        /// </summary>
+        /// <param name="configurationFile">The configuration file.</param>
         private void LoadConnectionStringFromConfigurationFile(Configuration configurationFile)
         {
             var connections = configurationFile.ConnectionStrings.ConnectionStrings;
@@ -103,6 +170,11 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
             ReadConnectionString(connectionString, configurationFile.FilePath);
         }
 
+        /// <summary>
+        /// Reads the connection string.
+        /// </summary>
+        /// <param name="connectionSetting">The connection setting.</param>
+        /// <param name="configurationFile">The configuration file.</param>
         private void ReadConnectionString(ConnectionStringSettings connectionSetting, string configurationFile)
         {
             if (connectionSetting == null) return;
@@ -113,6 +185,10 @@ namespace FluentMigrator.Runner.Initialization.NetFramework
             _notUsingConfig = false;
         }
 
+        /// <summary>
+        /// Outputs the results.
+        /// </summary>
+        /// <exception cref="UndeterminableConnectionException">Unable to resolve any connectionstring using parameters \"/connection\" and \"/configPath\"</exception>
         private void OutputResults()
         {
             if (string.IsNullOrEmpty(ConnectionString))

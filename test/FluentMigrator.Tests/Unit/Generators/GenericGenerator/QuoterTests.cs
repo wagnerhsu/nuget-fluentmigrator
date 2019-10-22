@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="QuoterTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -34,103 +47,170 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
 {
+    /// <summary>
+    /// Defines test class ConstantFormatterTests.
+    /// </summary>
     [TestFixture]
     public class ConstantFormatterTests
     {
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
             _quoter = new GenericQuoter();
         }
 
+        /// <summary>
+        /// The quoter
+        /// </summary>
         private IQuoter _quoter;
+        /// <summary>
+        /// The current culture
+        /// </summary>
         private readonly CultureInfo _currentCulture = Thread.CurrentThread.CurrentCulture;
 
+        /// <summary>
+        /// Restores the culture.
+        /// </summary>
         private void RestoreCulture()
         {
             Thread.CurrentThread.CurrentCulture = _currentCulture;
         }
 
+        /// <summary>
+        /// Changes the culture.
+        /// </summary>
         private void ChangeCulture()
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("nb-NO");
         }
 
+        /// <summary>
+        /// Enum Foo
+        /// </summary>
         private enum Foo
         {
+            /// <summary>
+            /// The bar
+            /// </summary>
             Bar,
             // ReSharper disable once UnusedMember.Local
+            /// <summary>
+            /// The baz
+            /// </summary>
             Baz
         }
 
+        /// <summary>
+        /// Class CustomClass.
+        /// </summary>
         private class CustomClass
         {
+            /// <summary>
+            /// Returns a <see cref="System.String" /> that represents this instance.
+            /// </summary>
+            /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
             public override string ToString()
             {
                 return "CustomClass";
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanEscapeAString.
+        /// </summary>
         [Test]
         public void CanEscapeAString()
         {
             _quoter.Quote("Test\"String").ShouldBe("\"Test\"\"String\"");
         }
 
+        /// <summary>
+        /// Defines the test method CanHandleAnAlreadyQuotedColumnName.
+        /// </summary>
         [Test]
         public void CanHandleAnAlreadyQuotedColumnName()
         {
             _quoter.QuoteColumnName("\"ColumnName\"").ShouldBe("\"ColumnName\"");
         }
 
+        /// <summary>
+        /// Defines the test method CanHandleAnAlreadyQuotedSchemaName.
+        /// </summary>
         [Test]
         public void CanHandleAnAlreadyQuotedSchemaName()
         {
             _quoter.QuoteColumnName("\"SchemaName\"").ShouldBe("\"SchemaName\"");
         }
 
+        /// <summary>
+        /// Defines the test method CanHandleAnAlreadyQuotedTableName.
+        /// </summary>
         [Test]
         public void CanHandleAnAlreadyQuotedTableName()
         {
             _quoter.QuoteColumnName("\"TableName\"").ShouldBe("\"TableName\"");
         }
 
+        /// <summary>
+        /// Defines the test method CanHandleAnUnQuotedColumnName.
+        /// </summary>
         [Test]
         public void CanHandleAnUnQuotedColumnName()
         {
             _quoter.QuoteColumnName("ColumnName").ShouldBe("\"ColumnName\"");
         }
 
+        /// <summary>
+        /// Defines the test method CanHandleAnUnQuotedSchemaName.
+        /// </summary>
         [Test]
         public void CanHandleAnUnQuotedSchemaName()
         {
             _quoter.QuoteColumnName("SchemaName").ShouldBe("\"SchemaName\"");
         }
 
+        /// <summary>
+        /// Defines the test method CanHandleAnUnQuotedTableName.
+        /// </summary>
         [Test]
         public void CanHandleAnUnQuotedTableName()
         {
             _quoter.QuoteColumnName("TableName").ShouldBe("\"TableName\"");
         }
 
+        /// <summary>
+        /// Defines the test method CanQuoteAString.
+        /// </summary>
         [Test]
         public void CanQuoteAString()
         {
             _quoter.Quote("TestString").ShouldBe("\"TestString\"");
         }
 
+        /// <summary>
+        /// Defines the test method CanRecogniseAQuotedString.
+        /// </summary>
         [Test]
         public void CanRecogniseAQuotedString()
         {
             _quoter.IsQuoted("\"QuotedString\"").ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method CanRecogniseAnUnQuotedString.
+        /// </summary>
         [Test]
         public void CanRecogniseAnUnQuotedString()
         {
             _quoter.IsQuoted("UnQuotedString").ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CharIsFormattedWithQuotes.
+        /// </summary>
         [Test]
         public void CharIsFormattedWithQuotes()
         {
@@ -138,6 +218,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("'A'");
         }
 
+        /// <summary>
+        /// Defines the test method CustomTypeIsBare.
+        /// </summary>
         [Test]
         public void CustomTypeIsBare()
         {
@@ -145,6 +228,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("CustomClass");
         }
 
+        /// <summary>
+        /// Defines the test method DateTimeIsFormattedIso8601WithQuotes.
+        /// </summary>
         [Test]
         public void DateTimeIsFormattedIso8601WithQuotes()
         {
@@ -154,6 +240,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("'2010-01-02T18:04:05'");
         }
 
+        /// <summary>
+        /// Defines the test method DateTimeIsFormattedIso8601WithQuotes_WithItalyAsCulture.
+        /// </summary>
         [Test]
         public void DateTimeIsFormattedIso8601WithQuotes_WithItalyAsCulture()
         {
@@ -163,6 +252,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("'2010-01-02T18:04:05'");
         }
 
+        /// <summary>
+        /// Defines the test method DateTimeOffsetIsFormattedIso8601WithQuotes.
+        /// </summary>
         [Test]
         public void DateTimeOffsetIsFormattedIso8601WithQuotes()
         {
@@ -171,6 +263,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
             _quoter.QuoteValue(date).ShouldBe("'2010-01-02T18:04:05-04:00'");
         }
 
+        /// <summary>
+        /// Defines the test method DateTimeOffsetIsFormattedIso8601WithQuotes_WithItalyAsCulture.
+        /// </summary>
         [Test]
         public void DateTimeOffsetIsFormattedIso8601WithQuotes_WithItalyAsCulture()
         {
@@ -180,6 +275,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("'2010-01-02T18:04:05-04:00'");
         }
 
+        /// <summary>
+        /// Defines the test method EnumIsFormattedAsString.
+        /// </summary>
         [Test]
         public void EnumIsFormattedAsString()
         {
@@ -187,6 +285,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("'Bar'");
         }
 
+        /// <summary>
+        /// Defines the test method FalseIsFormattedAsZero.
+        /// </summary>
         [Test]
         public void FalseIsFormattedAsZero()
         {
@@ -194,6 +295,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("0");
         }
 
+        /// <summary>
+        /// Defines the test method GuidIsFormattedWithQuotes.
+        /// </summary>
         [Test]
         public void GuidIsFormattedWithQuotes()
         {
@@ -202,6 +306,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("'00000000-0000-0000-0000-000000000000'");
         }
 
+        /// <summary>
+        /// Defines the test method Int32IsBare.
+        /// </summary>
         [Test]
         public void Int32IsBare()
         {
@@ -209,6 +316,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("1234");
         }
 
+        /// <summary>
+        /// Defines the test method NullIsFormattedAsLiteral.
+        /// </summary>
         [Test]
         public void NullIsFormattedAsLiteral()
         {
@@ -216,6 +326,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("NULL");
         }
 
+        /// <summary>
+        /// Defines the test method ShouldEscapeJetObjectNames.
+        /// </summary>
         [Test]
         public void ShouldEscapeJetObjectNames()
         {
@@ -225,6 +338,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
             quoter.Quote("[Table]Name").ShouldBe("[[Table]Name]");
         }
 
+        /// <summary>
+        /// Defines the test method ShouldEscapeMySqlObjectNames.
+        /// </summary>
         [Test]
         public void ShouldEscapeMySqlObjectNames()
         {
@@ -232,6 +348,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
             quoter.Quote("`Table`Name").ShouldBe("```Table``Name`");
         }
 
+        /// <summary>
+        /// Defines the test method ShouldEscapeOracleObjectNames.
+        /// </summary>
         [Test]
         public void ShouldEscapeOracleObjectNames()
         {
@@ -240,6 +359,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
             quoter.Quote("Table\"Name").ShouldBe("\"Table\"\"Name\"");
         }
 
+        /// <summary>
+        /// Defines the test method ShouldEscapeSqlServerObjectNames.
+        /// </summary>
         [Test]
         public void ShouldEscapeSqlServerObjectNames()
         {
@@ -247,6 +369,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
             quoter.Quote("[Table]Name").ShouldBe("[[Table]]Name]");
         }
 
+        /// <summary>
+        /// Defines the test method ShouldEscapeSqliteObjectNames.
+        /// </summary>
         [Test]
         public void ShouldEscapeSqliteObjectNames()
         {
@@ -254,6 +379,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
             quoter.Quote("Table\"Name").ShouldBe("\"Table\"\"Name\"");
         }
 
+        /// <summary>
+        /// Defines the test method ShouldHandleDecimalToStringConversionInAnyCulture.
+        /// </summary>
         [Test]
         public void ShouldHandleDecimalToStringConversionInAnyCulture()
         {
@@ -262,6 +390,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
             RestoreCulture();
         }
 
+        /// <summary>
+        /// Defines the test method ShouldHandleDoubleToStringConversionInAnyCulture.
+        /// </summary>
         [Test]
         public void ShouldHandleDoubleToStringConversionInAnyCulture()
         {
@@ -270,6 +401,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
             RestoreCulture();
         }
 
+        /// <summary>
+        /// Defines the test method ShouldHandleFloatToStringConversionInAnyCulture.
+        /// </summary>
         [Test]
         public void ShouldHandleFloatToStringConversionInAnyCulture()
         {
@@ -278,6 +412,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
             RestoreCulture();
         }
 
+        /// <summary>
+        /// Defines the test method StringIsFormattedWithQuotes.
+        /// </summary>
         [Test]
         public void StringIsFormattedWithQuotes()
         {
@@ -285,6 +422,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("'value'");
         }
 
+        /// <summary>
+        /// Defines the test method StringWithQuoteIsFormattedWithDoubleQuote.
+        /// </summary>
         [Test]
         public void StringWithQuoteIsFormattedWithDoubleQuote()
         {
@@ -292,6 +432,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("'val''ue'");
         }
 
+        /// <summary>
+        /// Defines the test method TrueIsFormattedAsOne.
+        /// </summary>
         [Test]
         public void TrueIsFormattedAsOne()
         {
@@ -299,6 +442,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("1");
         }
 
+        /// <summary>
+        /// Defines the test method ByteArrayIsFormattedWithQuotes.
+        /// </summary>
         [Test]
         public void ByteArrayIsFormattedWithQuotes()
         {
@@ -306,6 +452,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("0x00fe0d127d11");
         }
 
+        /// <summary>
+        /// Defines the test method TimeSpanIsFormattedQuotes.
+        /// </summary>
         [Test]
         public void TimeSpanIsFormattedQuotes()
         {
@@ -313,18 +462,27 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
                 .ShouldBe("'02:14:05'");
         }
 
+        /// <summary>
+        /// Defines the test method NonUnicodeStringIsFormattedAsNormalString.
+        /// </summary>
         [Test]
         public void NonUnicodeStringIsFormattedAsNormalString()
         {
             _quoter.QuoteValue(new NonUnicodeString("Test String")).ShouldBe("'Test String'");
         }
 
+        /// <summary>
+        /// Defines the test method NonUnicodeStringIsFormattedAsNormalStringQuotes.
+        /// </summary>
         [Test]
         public void NonUnicodeStringIsFormattedAsNormalStringQuotes()
         {
             _quoter.QuoteValue(new NonUnicodeString("Test ' String")).ShouldBe("'Test '' String'");
         }
 
+        /// <summary>
+        /// Defines the test method ExplicitUnicodeStringIsFormattedAsNormalString.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ExplicitUnicodeStringIsFormattedAsNormalString()
@@ -332,6 +490,9 @@ namespace FluentMigrator.Tests.Unit.Generators.GenericGenerator
             _quoter.QuoteValue(new ExplicitUnicodeString("Test String")).ShouldBe("'Test String'");
         }
 
+        /// <summary>
+        /// Defines the test method ExplicitUnicodeStringIsFormattedAsNormalStringQuotes.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ExplicitUnicodeStringIsFormattedAsNormalStringQuotes()

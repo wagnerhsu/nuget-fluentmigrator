@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlAnywhereBatchParserTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -25,9 +38,17 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.BatchParser
 {
+    /// <summary>
+    /// Class SqlAnywhereBatchParserTests.
+    /// </summary>
     [Category("BatchParser")]
     public class SqlAnywhereBatchParserTests
     {
+        /// <summary>
+        /// Defines the test method TestSqlStrippedSingleLineCommentAndSqlWithoutGo.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [TestCase("-- blah\nqweqwe", "\nqweqwe\n")]
         [TestCase("// blah\nqweqwe", "\nqweqwe\n")]
         [TestCase("qwe # blah\nqweqwe", "qwe # blah\nqweqwe\n")]

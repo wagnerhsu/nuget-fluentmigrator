@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TestMigration.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +29,11 @@
 
 namespace FluentMigrator.Tests.IssueTests.GH0904.Migrations
 {
+    /// <summary>
+    /// Class TestMigration.
+    /// Implements the <see cref="FluentMigrator.ForwardOnlyMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.ForwardOnlyMigration" />
     [Migration(version: 1)]
     public class TestMigration : ForwardOnlyMigration
     {

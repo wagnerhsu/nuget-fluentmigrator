@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ProcessorOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -23,21 +36,21 @@ using FluentMigrator.Runner.Initialization;
 namespace FluentMigrator.Runner.Processors
 {
     /// <summary>
-    /// Options for an <see cref="IMigrationProcessor"/>
+    /// Options for an <see cref="IMigrationProcessor" />
     /// </summary>
 #pragma warning disable 612
     public sealed class ProcessorOptions : IMigrationProcessorOptions
 #pragma warning restore 612
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProcessorOptions"/> class.
+        /// Initializes a new instance of the <see cref="ProcessorOptions" /> class.
         /// </summary>
         public ProcessorOptions()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProcessorOptions"/> class.
+        /// Initializes a new instance of the <see cref="ProcessorOptions" /> class.
         /// </summary>
         /// <param name="runnerContext">The runner context to get the values from</param>
         [Obsolete]
@@ -47,28 +60,33 @@ namespace FluentMigrator.Runner.Processors
         }
 
         /// <summary>
-        /// Gets or sets the connection string (will not be used when <see cref="PreviewOnly"/> is active)
+        /// Gets or sets the connection string (will not be used when <see cref="PreviewOnly" /> is active)
         /// </summary>
+        /// <value>The connection string.</value>
         public string ConnectionString { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether a preview-only mode is active
         /// </summary>
+        /// <value><c>true</c> if [preview only]; otherwise, <c>false</c>.</value>
         public bool PreviewOnly { get; set; }
 
         /// <summary>
         /// Gets or sets the default command timeout
         /// </summary>
+        /// <value>The timeout.</value>
         public TimeSpan? Timeout { get; set; }
 
         /// <summary>
         /// Gets or sets the provider switches
         /// </summary>
+        /// <value>The provider switches.</value>
         public string ProviderSwitches  { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the comments should be stripped
         /// </summary>
+        /// <value><c>true</c> if [strip comments]; otherwise, <c>false</c>.</value>
         public bool StripComments { get; set; }
 
         /// <inheritdoc />

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleRunnerBuilderExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -26,7 +39,7 @@ using Microsoft.Extensions.Options;
 namespace FluentMigrator.Runner
 {
     /// <summary>
-    /// Extension methods for <see cref="IMigrationRunnerBuilder"/>
+    /// Extension methods for <see cref="IMigrationRunnerBuilder" />
     /// </summary>
     public static class OracleRunnerBuilderExtensions
     {
@@ -67,6 +80,7 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Register Oracle processor dependencies
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="builder">The builder to add the Oracle-specific services to</param>
         private static void RegisterOracleProcessor<T>(IMigrationRunnerBuilder builder)
             where T : OracleProcessor
@@ -83,6 +97,7 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Register Oracle managed processor dependencies
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="builder">The builder to add the Oracle-specific services to</param>
         private static void RegisterOracleManagedProcessor<T>(IMigrationRunnerBuilder builder)
             where T : OracleManagedProcessor
@@ -99,6 +114,7 @@ namespace FluentMigrator.Runner
         /// <summary>
         /// Register dotConnection Oracle processor dependencies
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="builder">The builder to add the Oracle-specific services to</param>
         private static void RegisterDotConnectOracleProcessor<T>(IMigrationRunnerBuilder builder)
             where T : DotConnectOracleProcessor

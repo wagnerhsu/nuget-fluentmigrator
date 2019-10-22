@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2008TypeMapTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -23,23 +36,41 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.SqlServer2008
 {
+    /// <summary>
+    /// Defines test class SqlServer2008TypeMapTests.
+    /// </summary>
     [TestFixture]
     [Category("SqlServer2008")]
     [Category("Generator")]
     [Category("TypeMap")]
     public abstract class SqlServer2008TypeMapTests
     {
+        /// <summary>
+        /// Gets or sets the type map.
+        /// </summary>
+        /// <value>The type map.</value>
         private SqlServer2005TypeMap TypeMap { get; set; }
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             TypeMap = new SqlServer2008TypeMap();
         }
 
+        /// <summary>
+        /// Defines test class DateTimeTests.
+        /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.SqlServer2008.SqlServer2008TypeMapTests" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Tests.Unit.Generators.SqlServer2008.SqlServer2008TypeMapTests" />
         [TestFixture]
         public class DateTimeTests : SqlServer2008TypeMapTests
         {
+            /// <summary>
+            /// Defines the test method ItMapsTimeToDatetime.
+            /// </summary>
             [Test]
             public void ItMapsTimeToDatetime()
             {
@@ -48,6 +79,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2008
                 template.ShouldBe("TIME");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDateToDatetime.
+            /// </summary>
             [Test]
             public void ItMapsDateToDatetime()
             {
@@ -56,6 +90,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2008
                 template.ShouldBe("DATE");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDatetimeToDatetime.
+            /// </summary>
             [Test]
             public void ItMapsDatetimeToDatetime()
             {
@@ -64,6 +101,9 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2008
                 template.ShouldBe("DATETIME2");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDatetimeToDatetimeOffset.
+            /// </summary>
             [Test]
             public void ItMapsDatetimeToDatetimeOffset()
             {
@@ -72,6 +112,10 @@ namespace FluentMigrator.Tests.Unit.Generators.SqlServer2008
                 template.ShouldBe("DATETIMEOFFSET");
             }
 
+            /// <summary>
+            /// Defines the test method ItMapsDatetimeToDatetimeOffset.
+            /// </summary>
+            /// <param name="precision">The precision.</param>
             [Test]
             [TestCase(0)]
             [TestCase(7)]

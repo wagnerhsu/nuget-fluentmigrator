@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RedshiftSchemaTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,17 +35,31 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Redshift
 {
+    /// <summary>
+    /// Class RedshiftSchemaTests. This class cannot be inherited.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseSchemaTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseSchemaTests" />
     [TestFixture]
     public sealed class RedshiftSchemaTests : BaseSchemaTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         private RedshiftGenerator _generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             _generator = new RedshiftGenerator();
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterSchema.
+        /// </summary>
         [Test]
         public override void CanAlterSchema()
         {
@@ -42,6 +69,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("ALTER TABLE \"TestSchema1\".\"TestTable\" SET SCHEMA \"TestSchema2\";");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSchema.
+        /// </summary>
         [Test]
         public override void CanCreateSchema()
         {
@@ -51,6 +81,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Redshift
             result.ShouldBe("CREATE SCHEMA \"TestSchema\";");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropSchema.
+        /// </summary>
         [Test]
         public override void CanDropSchema()
         {

@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IAutoNameConvention.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,12 +32,12 @@ using FluentMigrator.Expressions;
 namespace FluentMigrator.Runner.Conventions
 {
     /// <summary>
-    /// A convention working on <see cref="IAutoNameExpression"/> implementations
+    /// A convention working on <see cref="IAutoNameExpression" /> implementations
     /// </summary>
     public interface IAutoNameConvention
     {
         /// <summary>
-        /// Applies a convention to a <see cref="IAutoNameExpression"/>
+        /// Applies a convention to a <see cref="IAutoNameExpression" />
         /// </summary>
         /// <param name="expression">The expression this convention should be applied to</param>
         /// <returns>The same or a new expression. The underlying type must stay the same.</returns>

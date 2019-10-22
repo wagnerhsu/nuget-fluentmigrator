@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationRunnerTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -48,24 +61,63 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit
 {
+    /// <summary>
+    /// Defines test class MigrationRunnerTests.
+    /// </summary>
     [TestFixture]
     public class MigrationRunnerTests
     {
+        /// <summary>
+        /// The stop watch
+        /// </summary>
         private Mock<IStopWatch> _stopWatch;
 
+        /// <summary>
+        /// The processor mock
+        /// </summary>
         private Mock<IMigrationProcessor> _processorMock;
+        /// <summary>
+        /// The migration loader mock
+        /// </summary>
         private Mock<IMigrationInformationLoader> _migrationLoaderMock;
+        /// <summary>
+        /// The profile loader mock
+        /// </summary>
         private Mock<IProfileLoader> _profileLoaderMock;
+        /// <summary>
+        /// The assembly source mock
+        /// </summary>
         private Mock<IAssemblySource> _assemblySourceMock;
+        /// <summary>
+        /// The migration scope handler mock
+        /// </summary>
         private Mock<IMigrationScopeManager> _migrationScopeHandlerMock;
 
+        /// <summary>
+        /// The log messages
+        /// </summary>
         private ICollection<string> _logMessages;
+        /// <summary>
+        /// The migration list
+        /// </summary>
         private SortedList<long, IMigrationInfo> _migrationList;
+        /// <summary>
+        /// The fake version loader
+        /// </summary>
         private TestVersionLoader _fakeVersionLoader;
+        /// <summary>
+        /// The application context
+        /// </summary>
         private int _applicationContext;
 
+        /// <summary>
+        /// The service collection
+        /// </summary>
         private IServiceCollection _serviceCollection;
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         [MethodImpl(MethodImplOptions.NoInlining)]
         public void SetUp()
@@ -109,6 +161,11 @@ namespace FluentMigrator.Tests.Unit
                 .ConfigureRunner(builder => builder.WithRunnerConventions(new CustomMigrationConventions()));
         }
 
+        /// <summary>
+        /// Creates the runner.
+        /// </summary>
+        /// <param name="initAction">The initialize action.</param>
+        /// <returns>MigrationRunner.</returns>
         private MigrationRunner CreateRunner(Action<IServiceCollection> initAction = null)
         {
             initAction?.Invoke(_serviceCollection);
@@ -134,6 +191,10 @@ namespace FluentMigrator.Tests.Unit
             return runner;
         }
 
+        /// <summary>
+        /// Loads the version data.
+        /// </summary>
+        /// <param name="fakeVersions">The fake versions.</param>
         private void LoadVersionData(params long[] fakeVersions)
         {
             _fakeVersionLoader.Versions.Clear();
@@ -148,6 +209,9 @@ namespace FluentMigrator.Tests.Unit
             _fakeVersionLoader.LoadVersionInfo();
         }
 
+        /// <summary>
+        /// Defines the test method ProfilesAreAppliedWhenMigrateUpIsCalledWithNoVersion.
+        /// </summary>
         [Test]
         public void ProfilesAreAppliedWhenMigrateUpIsCalledWithNoVersion()
         {
@@ -156,6 +220,9 @@ namespace FluentMigrator.Tests.Unit
             _profileLoaderMock.Verify(x => x.ApplyProfiles(runner), Times.Once());
         }
 
+        /// <summary>
+        /// Defines the test method ProfilesAreAppliedWhenMigrateUpIsCalledWithVersionParameter.
+        /// </summary>
         [Test]
         public void ProfilesAreAppliedWhenMigrateUpIsCalledWithVersionParameter()
         {
@@ -164,6 +231,9 @@ namespace FluentMigrator.Tests.Unit
             _profileLoaderMock.Verify(x => x.ApplyProfiles(runner), Times.Once());
         }
 
+        /// <summary>
+        /// Defines the test method ProfilesAreAppliedWhenMigrateDownIsCalled.
+        /// </summary>
         [Test]
         public void ProfilesAreAppliedWhenMigrateDownIsCalled()
         {
@@ -172,7 +242,9 @@ namespace FluentMigrator.Tests.Unit
             _profileLoaderMock.Verify(x => x.ApplyProfiles(runner), Times.Once());
         }
 
-        /// <summary>Unit test which ensures that the application context is correctly propagated down to each migration class.</summary>
+        /// <summary>
+        /// Unit test which ensures that the application context is correctly propagated down to each migration class.
+        /// </summary>
         [Test(Description = "Ensure that the application context is correctly propagated down to each migration class.")]
         public void CanPassApplicationContext()
         {
@@ -184,6 +256,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.AreEqual(_applicationContext, migration.ApplicationContext, "The migration does not have the expected application context.");
         }
 
+        /// <summary>
+        /// Defines the test method CanPassConnectionString.
+        /// </summary>
         [Test]
         public void CanPassConnectionString()
         {
@@ -195,6 +270,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.AreEqual(IntegrationTestOptions.SqlServer2008.ConnectionString, migration.ConnectionString, "The migration does not have the expected connection string.");
         }
 
+        /// <summary>
+        /// Defines the test method CanAnnounceUp.
+        /// </summary>
         [Test]
         public void CanAnnounceUp()
         {
@@ -203,6 +281,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => LineContainsAll(l, "Test", "migrating"));
         }
 
+        /// <summary>
+        /// Defines the test method CanAnnounceUpFinish.
+        /// </summary>
         [Test]
         public void CanAnnounceUpFinish()
         {
@@ -211,6 +292,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => LineContainsAll(l, "Test", "migrated"));
         }
 
+        /// <summary>
+        /// Defines the test method CanAnnounceDown.
+        /// </summary>
         [Test]
         public void CanAnnounceDown()
         {
@@ -219,6 +303,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => LineContainsAll(l, "Test", "reverting"));
         }
 
+        /// <summary>
+        /// Defines the test method CanAnnounceDownFinish.
+        /// </summary>
         [Test]
         public void CanAnnounceDownFinish()
         {
@@ -227,6 +314,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => LineContainsAll(l, "Test", "reverted"));
         }
 
+        /// <summary>
+        /// Defines the test method CanAnnounceUpElapsedTime.
+        /// </summary>
         [Test]
         public void CanAnnounceUpElapsedTime()
         {
@@ -240,6 +330,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => l.Equals($"=> {ts.TotalSeconds}s"));
         }
 
+        /// <summary>
+        /// Defines the test method CanAnnounceDownElapsedTime.
+        /// </summary>
         [Test]
         public void CanAnnounceDownElapsedTime()
         {
@@ -253,6 +346,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => l.Equals($"=> {ts.TotalSeconds}s"));
         }
 
+        /// <summary>
+        /// Defines the test method CanReportExceptions.
+        /// </summary>
         [Test]
         public void CanReportExceptions()
         {
@@ -265,6 +361,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.That(exception.Message, Does.Contain("Oops"));
         }
 
+        /// <summary>
+        /// Defines the test method CanSayExpression.
+        /// </summary>
         [Test]
         public void CanSayExpression()
         {
@@ -276,6 +375,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => LineContainsAll(l, "CreateTable"));
         }
 
+        /// <summary>
+        /// Defines the test method CanTimeExpression.
+        /// </summary>
         [Test]
         public void CanTimeExpression()
         {
@@ -289,6 +391,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => l.Equals($"=> {ts.TotalSeconds}s"));
         }
 
+        /// <summary>
+        /// Defines the test method HasMigrationsToApplyUpWhenThereAreMigrations.
+        /// </summary>
         [Test]
         public void HasMigrationsToApplyUpWhenThereAreMigrations()
         {
@@ -303,6 +408,9 @@ namespace FluentMigrator.Tests.Unit
             runner.HasMigrationsToApplyUp().ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method HasMigrationsToApplyUpWhenThereAreNoNewMigrations.
+        /// </summary>
         [Test]
         public void HasMigrationsToApplyUpWhenThereAreNoNewMigrations()
         {
@@ -315,6 +423,9 @@ namespace FluentMigrator.Tests.Unit
             runner.HasMigrationsToApplyUp().ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method HasMigrationsToApplyUpToSpecificVersionWhenTheSpecificHasNotBeenApplied.
+        /// </summary>
         [Test]
         public void HasMigrationsToApplyUpToSpecificVersionWhenTheSpecificHasNotBeenApplied()
         {
@@ -329,6 +440,9 @@ namespace FluentMigrator.Tests.Unit
             runner.HasMigrationsToApplyUp(fakeMigrationVersion2).ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method HasMigrationsToApplyUpToSpecificVersionWhenTheSpecificHasBeenApplied.
+        /// </summary>
         [Test]
         public void HasMigrationsToApplyUpToSpecificVersionWhenTheSpecificHasBeenApplied()
         {
@@ -343,6 +457,9 @@ namespace FluentMigrator.Tests.Unit
             runner.HasMigrationsToApplyUp(fakeMigrationVersion1).ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method HasMigrationsToApplyRollbackWithOneMigrationApplied.
+        /// </summary>
         [Test]
         public void HasMigrationsToApplyRollbackWithOneMigrationApplied()
         {
@@ -354,6 +471,9 @@ namespace FluentMigrator.Tests.Unit
             runner.HasMigrationsToApplyRollback().ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method HasMigrationsToApplyRollbackWithNoMigrationsApplied.
+        /// </summary>
         [Test]
         public void HasMigrationsToApplyRollbackWithNoMigrationsApplied()
         {
@@ -362,6 +482,9 @@ namespace FluentMigrator.Tests.Unit
             runner.HasMigrationsToApplyRollback().ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method HasMigrationsToApplyDownWhenTheVersionHasNotBeenApplied.
+        /// </summary>
         [Test]
         public void HasMigrationsToApplyDownWhenTheVersionHasNotBeenApplied()
         {
@@ -376,6 +499,9 @@ namespace FluentMigrator.Tests.Unit
             runner.HasMigrationsToApplyDown(fakeMigrationVersion1).ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method HasMigrationsToApplyDownWhenTheVersionHasBeenApplied.
+        /// </summary>
         [Test]
         public void HasMigrationsToApplyDownWhenTheVersionHasBeenApplied()
         {
@@ -388,6 +514,9 @@ namespace FluentMigrator.Tests.Unit
             runner.HasMigrationsToApplyDown(fakeMigrationVersion1).ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method RollbackOnlyOneStepsOfTwoShouldNotDeleteVersionInfoTable.
+        /// </summary>
         [Test]
         public void RollbackOnlyOneStepsOfTwoShouldNotDeleteVersionInfoTable()
         {
@@ -405,6 +534,9 @@ namespace FluentMigrator.Tests.Unit
             _fakeVersionLoader.DidRemoveVersionTableGetCalled.ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method RollbackLastVersionShouldDeleteVersionInfoTable.
+        /// </summary>
         [Test]
         public void RollbackLastVersionShouldDeleteVersionInfoTable()
         {
@@ -421,6 +553,9 @@ namespace FluentMigrator.Tests.Unit
             _fakeVersionLoader.DidRemoveVersionTableGetCalled.ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method RollbackToVersionZeroShouldDeleteVersionInfoTable.
+        /// </summary>
         [Test]
         public void RollbackToVersionZeroShouldDeleteVersionInfoTable()
         {
@@ -433,6 +568,9 @@ namespace FluentMigrator.Tests.Unit
             _fakeVersionLoader.DidRemoveVersionTableGetCalled.ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method RollbackToVersionZeroShouldNotCreateVersionInfoTableAfterRemoval.
+        /// </summary>
         [Test]
         public void RollbackToVersionZeroShouldNotCreateVersionInfoTableAfterRemoval()
         {
@@ -451,6 +589,9 @@ namespace FluentMigrator.Tests.Unit
                 );
         }
 
+        /// <summary>
+        /// Defines the test method RollbackToVersionShouldShouldLimitMigrationsToNamespace.
+        /// </summary>
         [Test]
         public void RollbackToVersionShouldShouldLimitMigrationsToNamespace()
         {
@@ -471,6 +612,9 @@ namespace FluentMigrator.Tests.Unit
             _fakeVersionLoader.Versions.ShouldNotContain(fakeMigration3);
         }
 
+        /// <summary>
+        /// Defines the test method RollbackToVersionZeroShouldShouldLimitMigrationsToNamespace.
+        /// </summary>
         [Test]
         public void RollbackToVersionZeroShouldShouldLimitMigrationsToNamespace()
         {
@@ -492,6 +636,9 @@ namespace FluentMigrator.Tests.Unit
             _fakeVersionLoader.Versions.ShouldNotContain(fakeMigration3);
         }
 
+        /// <summary>
+        /// Defines the test method RollbackShouldLimitMigrationsToNamespace.
+        /// </summary>
         [Test]
         public void RollbackShouldLimitMigrationsToNamespace()
         {
@@ -515,6 +662,9 @@ namespace FluentMigrator.Tests.Unit
             _fakeVersionLoader.DidRemoveVersionTableGetCalled.ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method RollbackToVersionShouldLoadVersionInfoIfVersionGreaterThanZero.
+        /// </summary>
         [Test]
         public void RollbackToVersionShouldLoadVersionInfoIfVersionGreaterThanZero()
         {
@@ -538,6 +688,9 @@ namespace FluentMigrator.Tests.Unit
             _fakeVersionLoader.DidLoadVersionInfoGetCalled.ShouldBe(true);
         }
 
+        /// <summary>
+        /// Defines the test method ValidateVersionOrderingShouldReturnNothingIfNoUnappliedMigrations.
+        /// </summary>
         [Test]
         public void ValidateVersionOrderingShouldReturnNothingIfNoUnappliedMigrations()
         {
@@ -561,6 +714,9 @@ namespace FluentMigrator.Tests.Unit
             _fakeVersionLoader.DidRemoveVersionTableGetCalled.ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method ValidateVersionOrderingShouldReturnNothingIfUnappliedMigrationVersionIsGreaterThanLatestAppliedMigration.
+        /// </summary>
         [Test]
         public void ValidateVersionOrderingShouldReturnNothingIfUnappliedMigrationVersionIsGreaterThanLatestAppliedMigration()
         {
@@ -584,6 +740,9 @@ namespace FluentMigrator.Tests.Unit
             _fakeVersionLoader.DidRemoveVersionTableGetCalled.ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method ValidateVersionOrderingShouldThrowExceptionIfUnappliedMigrationVersionIsLessThanGreatestAppliedMigrationVersion.
+        /// </summary>
         [Test]
         public void ValidateVersionOrderingShouldThrowExceptionIfUnappliedMigrationVersionIsLessThanGreatestAppliedMigrationVersion()
         {
@@ -617,6 +776,9 @@ namespace FluentMigrator.Tests.Unit
             _fakeVersionLoader.DidRemoveVersionTableGetCalled.ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method CanListVersions.
+        /// </summary>
         [Test]
         public void CanListVersions()
         {
@@ -648,6 +810,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => LineContainsAll(l, "2011010104: IMigrationProxy (not applied, BREAKING)"));
         }
 
+        /// <summary>
+        /// Defines the test method IfMigrationHasAnInvalidExpressionDuringUpActionShouldThrowAnExceptionAndAnnounceTheError.
+        /// </summary>
         [Test]
         public void IfMigrationHasAnInvalidExpressionDuringUpActionShouldThrowAnExceptionAndAnnounceTheError()
         {
@@ -662,6 +827,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => LineContainsAll(l, $"UpdateDataExpression: {expectedErrorMessage}"));
         }
 
+        /// <summary>
+        /// Defines the test method IfMigrationHasAnInvalidExpressionDuringDownActionShouldThrowAnExceptionAndAnnounceTheError.
+        /// </summary>
         [Test]
         public void IfMigrationHasAnInvalidExpressionDuringDownActionShouldThrowAnExceptionAndAnnounceTheError()
         {
@@ -676,6 +844,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => LineContainsAll(l, $"UpdateDataExpression: {expectedErrorMessage}"));
         }
 
+        /// <summary>
+        /// Defines the test method IfMigrationHasTwoInvalidExpressionsShouldAnnounceBothErrors.
+        /// </summary>
         [Test]
         public void IfMigrationHasTwoInvalidExpressionsShouldAnnounceBothErrors()
         {
@@ -692,6 +863,9 @@ namespace FluentMigrator.Tests.Unit
             _logMessages.ShouldContain(l => LineContainsAll(l, $"CreateColumnExpression: {ErrorMessages.TableNameCannotBeNullOrEmpty}"));
         }
 
+        /// <summary>
+        /// Defines the test method CanLoadCustomMigrationConventions.
+        /// </summary>
         [Test]
         public void CanLoadCustomMigrationConventions()
         {
@@ -699,6 +873,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.That(runner.Conventions, Is.TypeOf<CustomMigrationConventions>());
         }
 
+        /// <summary>
+        /// Defines the test method CanLoadDefaultMigrationConventionsIfNoCustomConventionsAreSpecified.
+        /// </summary>
         [Test]
         public void CanLoadDefaultMigrationConventionsIfNoCustomConventionsAreSpecified()
         {
@@ -710,6 +887,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.That(runner.Conventions, Is.TypeOf<DefaultMigrationRunnerConventions>());
         }
 
+        /// <summary>
+        /// Defines the test method CanBlockBreakingChangesByDefault.
+        /// </summary>
         [Test]
         public void CanBlockBreakingChangesByDefault()
         {
@@ -726,6 +906,9 @@ namespace FluentMigrator.Tests.Unit
                 ex.Message);
         }
 
+        /// <summary>
+        /// Defines the test method CanRunBreakingChangesIfSpecified.
+        /// </summary>
         [Test]
         public void CanRunBreakingChangesIfSpecified()
         {
@@ -739,6 +922,9 @@ namespace FluentMigrator.Tests.Unit
                     new MigrationInfo(7, TransactionBehavior.Default, true, new TestBreakingMigration()), true));
         }
 
+        /// <summary>
+        /// Defines the test method CanRunBreakingChangesInPreview.
+        /// </summary>
         [Test]
         public void CanRunBreakingChangesInPreview()
         {
@@ -753,6 +939,9 @@ namespace FluentMigrator.Tests.Unit
                     new MigrationInfo(7, TransactionBehavior.Default, true, new TestBreakingMigration()), true));
         }
 
+        /// <summary>
+        /// Defines the test method CanLoadCustomMigrationScopeHandler.
+        /// </summary>
         [Test]
         public void CanLoadCustomMigrationScopeHandler()
         {
@@ -762,6 +951,9 @@ namespace FluentMigrator.Tests.Unit
             _migrationScopeHandlerMock.Verify(x => x.BeginScope(), Times.Once());
         }
 
+        /// <summary>
+        /// Defines the test method CanLoadDefaultMigrationScopeHandlerIfNoCustomHandlerIsSpecified.
+        /// </summary>
         [Test]
         public void CanLoadDefaultMigrationScopeHandlerIfNoCustomHandlerIsSpecified()
         {
@@ -771,6 +963,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.That(field.GetValue(runner), Is.TypeOf<MigrationScopeHandler>());
         }
 
+        /// <summary>
+        /// Defines the test method DoesRunMigrationsThatMeetConstraints.
+        /// </summary>
         [Test]
         public void DoesRunMigrationsThatMeetConstraints()
         {
@@ -783,6 +978,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.AreEqual(1, runner.VersionLoader.VersionInfo.Latest());
         }
 
+        /// <summary>
+        /// Defines the test method DoesRunMigrationsThatDoMeetConstraints.
+        /// </summary>
         [Test]
         public void DoesRunMigrationsThatDoMeetConstraints()
         {
@@ -796,6 +994,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.AreEqual(3, runner.VersionLoader.VersionInfo.Latest());
         }
 
+        /// <summary>
+        /// Defines the test method MultipleConstraintsEachNeedsToReturnTrue.
+        /// </summary>
         [Test]
         public void MultipleConstraintsEachNeedsToReturnTrue()
         {
@@ -806,6 +1007,9 @@ namespace FluentMigrator.Tests.Unit
             Assert.AreEqual(0, runner.VersionLoader.VersionInfo.Latest());
         }
 
+        /// <summary>
+        /// Defines the test method DoesRunMigrationWithPositiveConstraint.
+        /// </summary>
         [Test]
         public void DoesRunMigrationWithPositiveConstraint()
         {
@@ -816,12 +1020,23 @@ namespace FluentMigrator.Tests.Unit
             Assert.AreEqual(1, runner.VersionLoader.VersionInfo.Latest());
         }
 
+        /// <summary>
+        /// Lines the contains all.
+        /// </summary>
+        /// <param name="line">The line.</param>
+        /// <param name="words">The words.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool LineContainsAll(string line, params string[] words)
         {
             var pattern = string.Join(".*?", words.Select(Regex.Escape));
             return Regex.IsMatch(line, pattern);
         }
 
+        /// <summary>
+        /// Class CustomMigrationConventions.
+        /// Implements the <see cref="FluentMigrator.Runner.MigrationRunnerConventions" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.MigrationRunnerConventions" />
         public class CustomMigrationConventions : MigrationRunnerConventions
         {
         }

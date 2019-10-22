@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SingleAssembly.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -27,9 +40,10 @@ namespace FluentMigrator.Infrastructure
     public class SingleAssembly : IAssemblyCollection
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SingleAssembly"/> class.
+        /// Initializes a new instance of the <see cref="SingleAssembly" /> class.
         /// </summary>
         /// <param name="assembly">The assembly</param>
+        /// <exception cref="ArgumentNullException">assembly</exception>
         public SingleAssembly(Assembly assembly)
         {
             if (assembly == null)

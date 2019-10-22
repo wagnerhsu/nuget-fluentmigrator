@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AnnouncerExtensionsTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -26,18 +39,30 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit
 {
+    /// <summary>
+    /// Defines test class AnnouncerExtensionsTests.
+    /// </summary>
     [TestFixture]
     [Obsolete]
     public class AnnouncerExtensionsTests
     {
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             _announcer = new Mock<IAnnouncer>(MockBehavior.Strict).Object;
         }
 
+        /// <summary>
+        /// The announcer
+        /// </summary>
         private IAnnouncer _announcer;
 
+        /// <summary>
+        /// Defines the test method ErrorShouldErrorStringFormattedMessage.
+        /// </summary>
         [Test]
         public void ErrorShouldErrorStringFormattedMessage()
         {
@@ -46,6 +71,9 @@ namespace FluentMigrator.Tests.Unit
             _announcer.Error("Hello {0}", "Error");
         }
 
+        /// <summary>
+        /// Defines the test method HeadingShouldHeadingStringFormattedMessage.
+        /// </summary>
         [Test]
         public void HeadingShouldHeadingStringFormattedMessage()
         {
@@ -54,6 +82,9 @@ namespace FluentMigrator.Tests.Unit
             _announcer.Heading("Hello {0}", "Heading");
         }
 
+        /// <summary>
+        /// Defines the test method SayShouldSayStringFormattedMessage.
+        /// </summary>
         [Test]
         public void SayShouldSayStringFormattedMessage()
         {

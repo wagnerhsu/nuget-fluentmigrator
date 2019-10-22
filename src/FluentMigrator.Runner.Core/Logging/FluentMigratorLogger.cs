@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FluentMigratorLogger.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -21,14 +34,17 @@ using Microsoft.Extensions.Logging;
 namespace FluentMigrator.Runner.Logging
 {
     /// <summary>
-    /// The base class for FluentMigrator-style <see cref="ILogger"/> implementations
+    /// The base class for FluentMigrator-style <see cref="ILogger" /> implementations
     /// </summary>
     public abstract class FluentMigratorLogger : ILogger
     {
+        /// <summary>
+        /// The options
+        /// </summary>
         private readonly FluentMigratorLoggerOptions _options;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FluentMigratorLogger"/> class.
+        /// Initializes a new instance of the <see cref="FluentMigratorLogger" /> class.
         /// </summary>
         /// <param name="options">The logger options</param>
         protected FluentMigratorLogger(FluentMigratorLoggerOptions options)
@@ -170,10 +186,21 @@ namespace FluentMigrator.Runner.Logging
         /// <param name="message">The message</param>
         protected abstract void WriteSay(string message);
 
+        /// <summary>
+        /// Class NoopDisposable.
+        /// Implements the <see cref="System.IDisposable" />
+        /// </summary>
+        /// <seealso cref="System.IDisposable" />
         private class NoopDisposable : IDisposable
         {
+            /// <summary>
+            /// The instance
+            /// </summary>
             public static readonly NoopDisposable Instance = new NoopDisposable();
 
+            /// <summary>
+            /// Disposes this instance.
+            /// </summary>
             public void Dispose()
             {
             }

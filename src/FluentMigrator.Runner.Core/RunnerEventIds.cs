@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RunnerEventIds.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -23,6 +36,9 @@ namespace FluentMigrator.Runner
     /// </summary>
     public static class RunnerEventIds
     {
+        /// <summary>
+        /// The runner category
+        /// </summary>
         public const string RunnerCategory = "FluentMigrator.Runner";
 
         /// <summary>

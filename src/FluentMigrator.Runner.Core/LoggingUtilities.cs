@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="LoggingUtilities.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -78,18 +91,18 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Writes a horizontal ruler to the given <paramref name="writer"/>
+        /// Writes a horizontal ruler to the given <paramref name="writer" />
         /// </summary>
-        /// <param name="writer">The <see cref="TextWriter"/> to write the text to</param>
+        /// <param name="writer">The <see cref="TextWriter" /> to write the text to</param>
         public static void WriteHorizontalRuler(this TextWriter writer)
         {
             writer.WriteLine("".PadRight(79, '-'));
         }
 
         /// <summary>
-        /// Writes the header to the given <paramref name="writer"/>
+        /// Writes the header to the given <paramref name="writer" />
         /// </summary>
-        /// <param name="writer">The <see cref="TextWriter"/> to write the text to</param>
+        /// <param name="writer">The <see cref="TextWriter" /> to write the text to</param>
         public static void WriteHeader(this TextWriter writer)
         {
             writer.WriteHorizontalRuler();
@@ -103,11 +116,11 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Writes the exception message to the given <paramref name="writer"/>
+        /// Writes the exception message to the given <paramref name="writer" />
         /// </summary>
-        /// <param name="writer">The <see cref="TextWriter"/> to write the text to</param>
+        /// <param name="writer">The <see cref="TextWriter" /> to write the text to</param>
         /// <param name="message">The exception message</param>
-        /// <param name="level">A value > 0 when this exception is an inner exception</param>
+        /// <param name="level">A value &gt; 0 when this exception is an inner exception</param>
         public static void WriteExceptionMessage(this TextWriter writer, string message, int level = 0)
         {
             // Indicate the dependencies of the inner exceptions
@@ -126,11 +139,11 @@ namespace FluentMigrator.Runner
         }
 
         /// <summary>
-        /// Writes the exception (and all its inner exceptions) to the given <paramref name="writer"/>
+        /// Writes the exception (and all its inner exceptions) to the given <paramref name="writer" />
         /// </summary>
-        /// <param name="writer">The <see cref="TextWriter"/> to write the text to</param>
+        /// <param name="writer">The <see cref="TextWriter" /> to write the text to</param>
         /// <param name="exception">The exception containing the message</param>
-        /// <param name="level">A value > 0 when this exception is an inner exception</param>
+        /// <param name="level">A value &gt; 0 when this exception is an inner exception</param>
         public static void WriteException(this TextWriter writer, Exception exception, int level = 0)
         {
             while (exception != null)

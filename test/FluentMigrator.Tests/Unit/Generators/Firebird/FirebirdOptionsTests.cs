@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdOptionsTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -20,9 +33,17 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Generators.Firebird
 {
+    /// <summary>
+    /// Defines test class FirebirdOptionsTests.
+    /// </summary>
     [TestFixture]
     public class FirebirdOptionsTests
     {
+        /// <summary>
+        /// Defines the test method CanParseFoceQuoteFromProviderOptions.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        /// <param name="expectedValue">if set to <c>true</c> [expected value].</param>
         [TestCase("force quote=true", true)]
         [TestCase("force quote=1", true)]
         [TestCase("force quote=yes", true)]

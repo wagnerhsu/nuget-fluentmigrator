@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DefaultForeignKeyNameConvention.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -22,11 +35,9 @@ using FluentMigrator.Model;
 namespace FluentMigrator.Runner.Conventions
 {
     /// <summary>
-    /// The default implementation of a <see cref="IForeignKeyConvention"/>
+    /// The default implementation of a <see cref="IForeignKeyConvention" />
     /// </summary>
-    /// <remarks>
-    /// It sets the default name of a foreign key.
-    /// </remarks>
+    /// <remarks>It sets the default name of a foreign key.</remarks>
     public class DefaultForeignKeyNameConvention : IForeignKeyConvention
     {
         /// <inheritdoc />
@@ -40,6 +51,11 @@ namespace FluentMigrator.Runner.Conventions
             return expression;
         }
 
+        /// <summary>
+        /// Gets the name of the foreign key.
+        /// </summary>
+        /// <param name="foreignKey">The foreign key.</param>
+        /// <returns>System.String.</returns>
         private static string GetForeignKeyName(ForeignKeyDefinition foreignKey)
         {
             var sb = new StringBuilder();

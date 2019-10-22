@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TestDisposing.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -31,16 +44,32 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.Firebird
 {
+    /// <summary>
+    /// Defines test class TestDisposing.
+    /// </summary>
     [TestFixture]
     [Category("Integration")]
     [Category("Firebird")]
     public class TestDisposing
     {
+        /// <summary>
+        /// The prober
+        /// </summary>
         private readonly FirebirdLibraryProber _prober = new FirebirdLibraryProber();
+        /// <summary>
+        /// The temporary database
+        /// </summary>
         private TemporaryDatabase _temporaryDatabase;
 
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
 
+        /// <summary>
+        /// Defines the test method Dispose_WasCommited_ShouldNotRollback.
+        /// </summary>
         [Test]
         public void Dispose_WasCommited_ShouldNotRollback()
         {
@@ -72,6 +101,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             }
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -90,6 +122,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird
             ServiceProvider = serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

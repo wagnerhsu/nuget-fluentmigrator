@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SQLiteTestTable.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -24,12 +37,38 @@ using FluentMigrator.Runner.Processors.SQLite;
 
 namespace FluentMigrator.Tests.Helpers {
     // ReSharper disable once InconsistentNaming
+    /// <summary>
+    /// Class SQLiteTestTable.
+    /// Implements the <see cref="System.IDisposable" />
+    /// </summary>
+    /// <seealso cref="System.IDisposable" />
     public class SQLiteTestTable : IDisposable {
+        /// <summary>
+        /// The schema name
+        /// </summary>
         private readonly string _schemaName;
+        /// <summary>
+        /// Gets or sets the connection.
+        /// </summary>
+        /// <value>The connection.</value>
         private IDbConnection Connection { get; set; }
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the transaction.
+        /// </summary>
+        /// <value>The transaction.</value>
         private IDbTransaction Transaction { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SQLiteTestTable"/> class.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public SQLiteTestTable( SQLiteProcessor processor, string schemaName, params string[] columnDefinitions ) {
             _schemaName = schemaName;
             Connection = processor.Connection;
@@ -39,10 +78,17 @@ namespace FluentMigrator.Tests.Helpers {
             Create( columnDefinitions );
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose() {
             Drop();
         }
 
+        /// <summary>
+        /// Creates the specified column definitions.
+        /// </summary>
+        /// <param name="columnDefinitions">The column definitions.</param>
         public void Create( IEnumerable<string> columnDefinitions ) {
             if ( !string.IsNullOrEmpty( _schemaName ) ) {
                 using ( var command = Connection.CreateCommand() ) {
@@ -76,6 +122,9 @@ namespace FluentMigrator.Tests.Helpers {
             //    command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Drops this instance.
+        /// </summary>
         public void Drop() {
             if ( string.IsNullOrEmpty( _schemaName ) ) {
                 using ( var command = Connection.CreateCommand() ) {

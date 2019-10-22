@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="BaseDescriptionGeneratorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -26,16 +39,41 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators
 {
+    /// <summary>
+    /// Class BaseDescriptionGeneratorTests.
+    /// </summary>
     public abstract class BaseDescriptionGeneratorTests
     {
+        /// <summary>
+        /// Gets or sets the description generator.
+        /// </summary>
+        /// <value>The description generator.</value>
         protected IDescriptionGenerator DescriptionGenerator { get; set; }
 
+        /// <summary>
+        /// Generates the description statements for create table return table description statement.
+        /// </summary>
         public abstract void GenerateDescriptionStatementsForCreateTableReturnTableDescriptionStatement();
+        /// <summary>
+        /// Generates the description statements for create table return table description and column descriptions statements.
+        /// </summary>
         public abstract void GenerateDescriptionStatementsForCreateTableReturnTableDescriptionAndColumnDescriptionsStatements();
+        /// <summary>
+        /// Generates the description statement for alter table return table description statement.
+        /// </summary>
         public abstract void GenerateDescriptionStatementForAlterTableReturnTableDescriptionStatement();
+        /// <summary>
+        /// Generates the description statement for create column return column description statement.
+        /// </summary>
         public abstract void GenerateDescriptionStatementForCreateColumnReturnColumnDescriptionStatement();
+        /// <summary>
+        /// Generates the description statement for alter column return column description statement.
+        /// </summary>
         public abstract void GenerateDescriptionStatementForAlterColumnReturnColumnDescriptionStatement();
 
+        /// <summary>
+        /// Defines the test method GenerateDescriptionStatementsReturnEmptyForNoDescriptionsOnCreateTable.
+        /// </summary>
         [Test]
         public void GenerateDescriptionStatementsReturnEmptyForNoDescriptionsOnCreateTable()
         {
@@ -45,6 +83,9 @@ namespace FluentMigrator.Tests.Unit.Generators
             result.ShouldBe(Enumerable.Empty<string>());
         }
 
+        /// <summary>
+        /// Defines the test method GenerateDescriptionStatementReturnEmptyForNoDescriptionOnAlterTable.
+        /// </summary>
         [Test]
         public void GenerateDescriptionStatementReturnEmptyForNoDescriptionOnAlterTable()
         {
@@ -54,6 +95,9 @@ namespace FluentMigrator.Tests.Unit.Generators
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method GenerateDescriptionStatementReturnEmptyForNoDescriptionOnCreateColumn.
+        /// </summary>
         [Test]
         public void GenerateDescriptionStatementReturnEmptyForNoDescriptionOnCreateColumn()
         {
@@ -63,6 +107,9 @@ namespace FluentMigrator.Tests.Unit.Generators
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method GenerateDescriptionStatementReturnEmptyForNoDescriptionOnAlterColumn.
+        /// </summary>
         [Test]
         public void GenerateDescriptionStatementReturnEmptyForNoDescriptionOnAlterColumn()
         {
@@ -72,6 +119,9 @@ namespace FluentMigrator.Tests.Unit.Generators
             result.ShouldBe(string.Empty);
         }
 
+        /// <summary>
+        /// Defines the test method GenerateDescriptionStatementsHaveSingleStatementForDescriptionOnCreate.
+        /// </summary>
         [Test]
         public void GenerateDescriptionStatementsHaveSingleStatementForDescriptionOnCreate()
         {

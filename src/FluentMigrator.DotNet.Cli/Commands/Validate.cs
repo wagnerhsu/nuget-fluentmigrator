@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Validate.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -21,11 +34,20 @@ using McMaster.Extensions.CommandLineUtils;
 
 namespace FluentMigrator.DotNet.Cli.Commands
 {
+    /// <summary>
+    /// Class Validate.
+    /// </summary>
     [HelpOption]
     [Command("validate", Description = "Validations")]
     [Subcommand(typeof(ValidateVersionOrder))]
     public class Validate
     {
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="app">The application.</param>
+        /// <param name="console">The console.</param>
+        /// <returns>System.Int32.</returns>
         private int OnExecute(CommandLineApplication app, IConsole console)
         {
             console.Error.WriteLine("You must specify a subcommand.");

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ICreateSequenceSyntax.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -54,15 +67,15 @@ namespace FluentMigrator.Builders.Create.Sequence
         ICreateSequenceSyntax StartWith(long startwith);
 
         /// <summary>
-        /// Cache the next <paramref name="value"/> number of values for a single sequence increment
+        /// Cache the next <paramref name="value" /> number of values for a single sequence increment
         /// </summary>
-        /// <remarks>Normally used together with <see cref="IncrementBy"/></remarks>
         /// <param name="value">The number of values to cache</param>
         /// <returns>Define the sequence options</returns>
+        /// <remarks>Normally used together with <see cref="IncrementBy" /></remarks>
         ICreateSequenceSyntax Cache(long value);
 
         /// <summary>
-        /// Defines that the sequence starts again with the <see cref="MinValue"/> value for the next value after <see cref="MaxValue"/>
+        /// Defines that the sequence starts again with the <see cref="MinValue" /> value for the next value after <see cref="MaxValue" />
         /// </summary>
         /// <returns>Define the sequence options</returns>
         ICreateSequenceSyntax Cycle();

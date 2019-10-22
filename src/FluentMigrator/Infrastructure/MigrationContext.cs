@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationContext.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,12 +41,12 @@ using Microsoft.Extensions.DependencyInjection;
 namespace FluentMigrator.Infrastructure
 {
     /// <summary>
-    /// The default implementation of the <see cref="IMigrationContext"/>
+    /// The default implementation of the <see cref="IMigrationContext" />
     /// </summary>
     public class MigrationContext : IMigrationContext
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationContext"/> class.
+        /// Initializes a new instance of the <see cref="MigrationContext" /> class.
         /// </summary>
         /// <param name="querySchema">The provider used to query the database</param>
         /// <param name="migrationAssemblies">The collection of migration assemblies</param>
@@ -56,7 +69,7 @@ namespace FluentMigrator.Infrastructure
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MigrationContext"/> class.
+        /// Initializes a new instance of the <see cref="MigrationContext" /> class.
         /// </summary>
         /// <param name="querySchema">The provider used to query the database</param>
         /// <param name="serviceProvider">The service provider</param>

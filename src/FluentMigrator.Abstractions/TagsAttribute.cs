@@ -1,27 +1,42 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TagsAttribute.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 
 namespace FluentMigrator
 {
-    ///<summary>
+    /// <summary>
     /// Used to filter which migrations are run.
-    ///</summary>
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface, AllowMultiple = true)]
     public class TagsAttribute : Attribute
     {
         /// <summary>
         /// Gets the behavior of the runner when evaluating <see cref="TagNames" />.
         /// </summary>
+        /// <value>The behavior.</value>
         public TagBehavior Behavior { get; private set; }
 
         /// <summary>
         /// Gets the names of the tags that are evaluated by the runner.
         /// </summary>
+        /// <value>The tag names.</value>
         public string[] TagNames { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TagsAttribute" /> class.
         /// </summary>
-        /// <param name="behavior">The behavior of the runner when evaluating <paramref name="tagNames"/>.</param>
+        /// <param name="behavior">The behavior of the runner when evaluating <paramref name="tagNames" />.</param>
         /// <param name="tagNames">The names of the tags that are evaluated by the runner.</param>
         public TagsAttribute(TagBehavior behavior, params string[] tagNames)
         {

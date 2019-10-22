@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TestInitialMigration.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -26,9 +39,17 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird.EndToEnd
 {
     namespace SimpleMigration
     {
+        /// <summary>
+        /// Class VersionOneSimpleTableMigration.
+        /// Implements the <see cref="FluentMigrator.Migration" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Migration" />
         [Migration(1)]
         public class VersionOneSimpleTableMigration : Migration
         {
+            /// <summary>
+            /// Collect the UP migration expressions
+            /// </summary>
             public override void Up()
             {
                 Create.Table("SIMPLE")
@@ -36,6 +57,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird.EndToEnd
                     .WithColumn("COL_STR").AsString(10);
             }
 
+            /// <summary>
+            /// Collects the DOWN migration expressions
+            /// </summary>
             public override void Down()
             {
                 Delete.Table("SIMPLE");
@@ -43,11 +67,20 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird.EndToEnd
         }
     }
 
+    /// <summary>
+    /// Defines test class TestInitialMigration.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.Processors.Firebird.EndToEnd.FbEndToEndFixture" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.Processors.Firebird.EndToEnd.FbEndToEndFixture" />
     [TestFixture]
     [Category("Integration")]
     [Category("Firebird")]
     public class TestInitialMigration : FbEndToEndFixture
     {
+        /// <summary>
+        /// Defines the test method Migrate_FirstVersion_ShouldCreateTable.
+        /// </summary>
+        /// <param name="tableName">Name of the table.</param>
         [TestCase("SIMPLE")]
         [TestCase("VersionInfo")]
         public void Migrate_FirstVersion_ShouldCreateTable(string tableName)
@@ -57,6 +90,10 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird.EndToEnd
             TableExists(tableName).ShouldBe(true, string.Format("Table {0} should have been created but it wasn't", tableName));
         }
 
+        /// <summary>
+        /// Defines the test method Migrate_FirstVersion_ShouldCreateColumn.
+        /// </summary>
+        /// <param name="columnName">Name of the column.</param>
         [TestCase("ID")]
         [TestCase("COL_STR")]
         public void Migrate_FirstVersion_ShouldCreateColumn(string columnName)
@@ -66,6 +103,10 @@ namespace FluentMigrator.Tests.Integration.Processors.Firebird.EndToEnd
             ColumnExists("SIMPLE", columnName).ShouldBe(true, string.Format("Column {0} should have been created but it wasn't", columnName));
         }
 
+        /// <summary>
+        /// Defines the test method Rollback_FirstVersion_ShouldDropTable.
+        /// </summary>
+        /// <param name="table">The table.</param>
         [TestCase("SIMPLE")]
         [TestCase("VersionInfo")]
         public void Rollback_FirstVersion_ShouldDropTable(string table)

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DefaultMigrationConventionsTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -39,11 +52,20 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit
 {
+    /// <summary>
+    /// Defines test class DefaultMigrationConventionsTests.
+    /// </summary>
     [TestFixture]
     public class DefaultMigrationConventionsTests
     {
+        /// <summary>
+        /// The default
+        /// </summary>
         private static readonly IMigrationRunnerConventions _default = DefaultMigrationRunnerConventions.Instance;
 
+        /// <summary>
+        /// Defines the test method GetPrimaryKeyNamePrefixesTableNameWithPKAndUnderscore.
+        /// </summary>
         [Test]
         public void GetPrimaryKeyNamePrefixesTableNameWithPKAndUnderscore()
         {
@@ -60,6 +82,9 @@ namespace FluentMigrator.Tests.Unit
             processed.Column.PrimaryKeyName.ShouldBe("PK_Foo");
         }
 
+        /// <summary>
+        /// Defines the test method GetForeignKeyNameReturnsValidForeignKeyNameForSimpleForeignKey.
+        /// </summary>
         [Test]
         public void GetForeignKeyNameReturnsValidForeignKeyNameForSimpleForeignKey()
         {
@@ -79,6 +104,9 @@ namespace FluentMigrator.Tests.Unit
             processed.ForeignKey.Name.ShouldBe("FK_Users_GroupId_Groups_Id");
         }
 
+        /// <summary>
+        /// Defines the test method GetForeignKeyNameReturnsValidForeignKeyNameForComplexForeignKey.
+        /// </summary>
         [Test]
         public void GetForeignKeyNameReturnsValidForeignKeyNameForComplexForeignKey()
         {
@@ -98,6 +126,9 @@ namespace FluentMigrator.Tests.Unit
             processed.ForeignKey.Name.ShouldBe("FK_Users_ColumnA_ColumnB_Groups_ColumnC_ColumnD");
         }
 
+        /// <summary>
+        /// Defines the test method GetIndexNameReturnsValidIndexNameForSimpleIndex.
+        /// </summary>
         [Test]
         public void GetIndexNameReturnsValidIndexNameForSimpleIndex()
         {
@@ -118,6 +149,9 @@ namespace FluentMigrator.Tests.Unit
             processed.Index.Name.ShouldBe("IX_Bacon_BaconName");
         }
 
+        /// <summary>
+        /// Defines the test method GetIndexNameReturnsValidIndexNameForComplexIndex.
+        /// </summary>
         [Test]
         public void GetIndexNameReturnsValidIndexNameForComplexIndex()
         {
@@ -139,6 +173,9 @@ namespace FluentMigrator.Tests.Unit
             processed.Index.Name.ShouldBe("IX_Bacon_BaconName_BaconSpice");
         }
 
+        /// <summary>
+        /// Defines the test method TypeIsMigrationReturnsTrueIfTypeExtendsMigrationAndHasMigrationAttribute.
+        /// </summary>
         [Test]
         public void TypeIsMigrationReturnsTrueIfTypeExtendsMigrationAndHasMigrationAttribute()
         {
@@ -146,6 +183,9 @@ namespace FluentMigrator.Tests.Unit
                 .ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method TypeIsMigrationReturnsFalseIfTypeDoesNotExtendMigration.
+        /// </summary>
         [Test]
         public void TypeIsMigrationReturnsFalseIfTypeDoesNotExtendMigration()
         {
@@ -153,6 +193,9 @@ namespace FluentMigrator.Tests.Unit
                 .ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method TypeIsMigrationReturnsFalseIfTypeDoesNotHaveMigrationAttribute.
+        /// </summary>
         [Test]
         public void TypeIsMigrationReturnsFalseIfTypeDoesNotHaveMigrationAttribute()
         {
@@ -160,6 +203,9 @@ namespace FluentMigrator.Tests.Unit
                 .ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method GetMaintenanceStageReturnsCorrectStage.
+        /// </summary>
         [Test]
         public void GetMaintenanceStageReturnsCorrectStage()
         {
@@ -167,6 +213,9 @@ namespace FluentMigrator.Tests.Unit
                 .ShouldBe(MigrationStage.AfterEach);
         }
 
+        /// <summary>
+        /// Defines the test method MigrationInfoShouldRetainMigration.
+        /// </summary>
         [Test]
         public void MigrationInfoShouldRetainMigration()
         {
@@ -175,6 +224,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.Migration.GetType().ShouldBeSameAs(migration.GetType());
         }
 
+        /// <summary>
+        /// Defines the test method MigrationInfoShouldExtractVersion.
+        /// </summary>
         [Test]
         public void MigrationInfoShouldExtractVersion()
         {
@@ -183,6 +235,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.Version.ShouldBe(123);
         }
 
+        /// <summary>
+        /// Defines the test method MigrationInfoShouldExtractTransactionBehavior.
+        /// </summary>
         [Test]
         public void MigrationInfoShouldExtractTransactionBehavior()
         {
@@ -191,6 +246,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.TransactionBehavior.ShouldBe(TransactionBehavior.None);
         }
 
+        /// <summary>
+        /// Defines the test method MigrationInfoShouldExtractTraits.
+        /// </summary>
         [Test]
         public void MigrationInfoShouldExtractTraits()
         {
@@ -199,6 +257,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.Trait("key").ShouldBe("test");
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteMigrationInfoShouldRetainMigration.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteMigrationInfoShouldRetainMigration()
@@ -208,6 +269,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.Migration.GetType().ShouldBeSameAs(migrationType);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteMigrationInfoShouldExtractVersion.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteMigrationInfoShouldExtractVersion()
@@ -217,6 +281,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.Version.ShouldBe(123);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteMigrationInfoShouldExtractTransactionBehavior.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteMigrationInfoShouldExtractTransactionBehavior()
@@ -226,6 +293,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.TransactionBehavior.ShouldBe(TransactionBehavior.None);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteMigrationInfoShouldExtractTraits.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteMigrationInfoShouldExtractTraits()
@@ -235,6 +305,9 @@ namespace FluentMigrator.Tests.Unit
             migrationinfo.Trait("key").ShouldBe("test");
         }
 
+        /// <summary>
+        /// Defines the test method DefaultSchemaConventionDefaultsToNull.
+        /// </summary>
         [Test]
         public void DefaultSchemaConventionDefaultsToNull()
         {
@@ -243,6 +316,9 @@ namespace FluentMigrator.Tests.Unit
             processed.SchemaName.ShouldBeNull();
         }
 
+        /// <summary>
+        /// Defines the test method TypeHasTagsReturnTrueIfTypeHasTagsAttribute.
+        /// </summary>
         [Test]
         public void TypeHasTagsReturnTrueIfTypeHasTagsAttribute()
         {
@@ -250,6 +326,9 @@ namespace FluentMigrator.Tests.Unit
                 .ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method TypeHasTagsReturnTrueIfInheritedTypeHasTagsAttribute.
+        /// </summary>
         [Test]
         public void TypeHasTagsReturnTrueIfInheritedTypeHasTagsAttribute()
         {
@@ -257,6 +336,9 @@ namespace FluentMigrator.Tests.Unit
                 .ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method TypeHasTagsReturnFalseIfTypeDoesNotHaveTagsAttribute.
+        /// </summary>
         [Test]
         public void TypeHasTagsReturnFalseIfTypeDoesNotHaveTagsAttribute()
         {
@@ -264,6 +346,9 @@ namespace FluentMigrator.Tests.Unit
                 .ShouldBeFalse();
         }
 
+        /// <summary>
+        /// Defines the test method TypeHasTagsReturnTrueIfBaseTypeDoesHaveTagsAttribute.
+        /// </summary>
         [Test]
         public void TypeHasTagsReturnTrueIfBaseTypeDoesHaveTagsAttribute()
         {
@@ -271,8 +356,14 @@ namespace FluentMigrator.Tests.Unit
                 .ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Class TypeHasMatchingTags.
+        /// </summary>
         public class TypeHasMatchingTags
         {
+            /// <summary>
+            /// Defines the test method WhenTypeHasTagAttributeButNoTagsPassedInReturnsFalse.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasTagAttributeButNoTagsPassedInReturnsFalse()
@@ -281,6 +372,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeFalse();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasTagAttributeWithNoTagNamesReturnsFalse.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasTagAttributeWithNoTagNamesReturnsFalse()
@@ -289,6 +383,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeFalse();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasOneTagThatDoesNotMatchSingleThenTagReturnsFalse.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasOneTagThatDoesNotMatchSingleThenTagReturnsFalse()
@@ -297,6 +394,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeFalse();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasOneTagThatDoesMatchSingleTagThenReturnsTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasOneTagThatDoesMatchSingleTagThenReturnsTrue()
@@ -305,6 +405,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasOneTagThatPartiallyMatchesTagThenReturnsFalse.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasOneTagThatPartiallyMatchesTagThenReturnsFalse()
@@ -313,6 +416,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeFalse();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasOneTagThatDoesMatchMultipleTagsThenReturnsFalse.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasOneTagThatDoesMatchMultipleTagsThenReturnsFalse()
@@ -321,6 +427,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeFalse();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasTagsInTwoAttributeThatDoesMatchSingleTagThenReturnsTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasTagsInTwoAttributeThatDoesMatchSingleTagThenReturnsTrue()
@@ -329,6 +438,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasTagsInTwoAttributesThatDoesMatchMultipleTagsThenReturnsTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasTagsInTwoAttributesThatDoesMatchMultipleTagsThenReturnsTrue()
@@ -337,6 +449,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasTagsInOneAttributeThatDoesMatchMultipleTagsThenReturnsTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasTagsInOneAttributeThatDoesMatchMultipleTagsThenReturnsTrue()
@@ -345,6 +460,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasTagsInTwoAttributesThatDontNotMatchMultipleTagsThenReturnsFalse.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasTagsInTwoAttributesThatDontNotMatchMultipleTagsThenReturnsFalse()
@@ -353,6 +471,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeFalse();
             }
 
+            /// <summary>
+            /// Defines the test method WhenBaseTypeHasTagsThenConcreteTypeReturnsTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenBaseTypeHasTagsThenConcreteTypeReturnsTrue()
@@ -363,6 +484,9 @@ namespace FluentMigrator.Tests.Unit
 
 
             //new
+            /// <summary>
+            /// Defines the test method WhenTypeHasSingleTagWithSingleTagNameAndBehaviorOfAnyAndHasMatchingTagNamesThenReturnTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasSingleTagWithSingleTagNameAndBehaviorOfAnyAndHasMatchingTagNamesThenReturnTrue()
@@ -371,6 +495,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasSingleTagWithSingleTagNameAndBehaviorOfAnyButNoMatchingTagNamesThenReturnFalse.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasSingleTagWithSingleTagNameAndBehaviorOfAnyButNoMatchingTagNamesThenReturnFalse()
@@ -379,6 +506,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeFalse();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasSingleTagWithMultipleTagNamesAndBehaviorOfAnyWithSomeMatchingTagNamesThenReturnTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasSingleTagWithMultipleTagNamesAndBehaviorOfAnyWithSomeMatchingTagNamesThenReturnTrue()
@@ -387,6 +517,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasSingleTagWithMultipleTagNamesAndBehaviorOfAnyWithNoMatchingTagNamesThenReturnFalse.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasSingleTagWithMultipleTagNamesAndBehaviorOfAnyWithNoMatchingTagNamesThenReturnFalse()
@@ -395,6 +528,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeFalse();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasMultipleTagsWithMultipleTagNamesAndAllTagsHaveBehaviorOfAnyWithAllHavingAMatchingTagNameThenReturnTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasMultipleTagsWithMultipleTagNamesAndAllTagsHaveBehaviorOfAnyWithAllHavingAMatchingTagNameThenReturnTrue()
@@ -403,6 +539,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasMultipleTagsWithMultipleTagNamesAndAllTagsHaveBehaviorOfAnyWithOneTagNotHavingAMatchingTagNameThenReturnTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasMultipleTagsWithMultipleTagNamesAndAllTagsHaveBehaviorOfAnyWithOneTagNotHavingAMatchingTagNameThenReturnTrue()
@@ -411,6 +550,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasMultipleTagsWithMultipleTagNamesAndOneHasBehaviorOfAnyAndOtherHasBehaviorOfAllWithAllTagNamesMatchingThenReturnTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasMultipleTagsWithMultipleTagNamesAndOneHasBehaviorOfAnyAndOtherHasBehaviorOfAllWithAllTagNamesMatchingThenReturnTrue()
@@ -419,6 +561,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasMultipleTagsWithMultipleTagNamesAndOneHasBehaviorOfAnyAndOtherHasBehaviorOfAllWithoutAllTagNamesMatchingThenReturnTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasMultipleTagsWithMultipleTagNamesAndOneHasBehaviorOfAnyAndOtherHasBehaviorOfAllWithoutAllTagNamesMatchingThenReturnTrue()
@@ -427,6 +572,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenTypeHasMultipleTagsWithMultipleTagNamesAndOneHasBehaviorOfAnyWithoutAnyMatchingTagNamesAndOtherHasBehaviorOfAllWithTagNamesMatchingThenReturnTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenTypeHasMultipleTagsWithMultipleTagNamesAndOneHasBehaviorOfAnyWithoutAnyMatchingTagNamesAndOtherHasBehaviorOfAllWithTagNamesMatchingThenReturnTrue()
@@ -435,6 +583,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenBaseInterfaceHasTagsThenConcreteTypeReturnsTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenBaseInterfaceHasTagsThenConcreteTypeReturnsTrue()
@@ -443,6 +594,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenBaseInterfacesHaveTagsThenConcreteTypeReturnsTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenBaseInterfacesHaveTagsThenConcreteTypeReturnsTrue()
@@ -457,6 +611,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenBaseInterfaceInheritsTagsThenConcreteTypeReturnsTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenBaseInterfaceInheritsTagsThenConcreteTypeReturnsTrue()
@@ -465,6 +622,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenBaseTypesAndInterfacesHaveTagsThenConcreteTypeReturnsTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenBaseTypesAndInterfacesHaveTagsThenConcreteTypeReturnsTrue()
@@ -479,6 +639,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenAttributionAndBaseTypesAndInterfacesHaveTagsThenConcreteTypeReturnsTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenAttributionAndBaseTypesAndInterfacesHaveTagsThenConcreteTypeReturnsTrue()
@@ -505,6 +668,9 @@ namespace FluentMigrator.Tests.Unit
                     .ShouldBeTrue();
             }
 
+            /// <summary>
+            /// Defines the test method WhenBaseInterfacesHaveOverlappingTagsThenConcreteTypeReturnsTrue.
+            /// </summary>
             [Test]
             [Category("Tagging")]
             public void WhenBaseInterfacesHaveOverlappingTagsThenConcreteTypeReturnsTrue()
@@ -532,6 +698,9 @@ namespace FluentMigrator.Tests.Unit
             }
         }
 
+        /// <summary>
+        /// Defines the test method GetAutoScriptUpName.
+        /// </summary>
         [Test]
         public void GetAutoScriptUpName()
         {
@@ -559,6 +728,9 @@ namespace FluentMigrator.Tests.Unit
                 processed.AutoNames);
         }
 
+        /// <summary>
+        /// Defines the test method GetAutoScriptDownName.
+        /// </summary>
         [Test]
         public void GetAutoScriptDownName()
         {
@@ -587,6 +759,9 @@ namespace FluentMigrator.Tests.Unit
                 processed.AutoNames);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteGetAutoScriptUpName.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteGetAutoScriptUpName()
@@ -617,6 +792,9 @@ namespace FluentMigrator.Tests.Unit
                 processed.AutoNames);
         }
 
+        /// <summary>
+        /// Defines the test method ObsoleteGetAutoScriptDownName.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ObsoleteGetAutoScriptDownName()
@@ -648,155 +826,351 @@ namespace FluentMigrator.Tests.Unit
                 processed.AutoNames);
         }
 
+        /// <summary>
+        /// Class ConventionsTestClass.
+        /// Implements the <see cref="FluentMigrator.Expressions.ISchemaExpression" />
+        /// Implements the <see cref="FluentMigrator.Expressions.IFileSystemExpression" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Expressions.ISchemaExpression" />
+        /// <seealso cref="FluentMigrator.Expressions.IFileSystemExpression" />
         private class ConventionsTestClass : ISchemaExpression, IFileSystemExpression
         {
+            /// <summary>
+            /// Gets or sets the schema name
+            /// </summary>
+            /// <value>The name of the schema.</value>
             public string SchemaName { get; set; }
+            /// <summary>
+            /// Gets or sets the root path (working directory)
+            /// </summary>
+            /// <value>The root path.</value>
             public string RootPath { get; set; }
         }
     }
 
+    /// <summary>
+    /// Class ObsoleteAutoScriptMigrationFake.
+    /// Implements the <see cref="FluentMigrator.AutoScriptMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.AutoScriptMigration" />
     [Migration(20130508175300)]
     [Obsolete]
     class ObsoleteAutoScriptMigrationFake : AutoScriptMigration
     {
     }
 
+    /// <summary>
+    /// Class AutoScriptMigrationFake.
+    /// Implements the <see cref="FluentMigrator.AutoScriptMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.AutoScriptMigration" />
     [Migration(20130508175300)]
     class AutoScriptMigrationFake : AutoScriptMigration
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AutoScriptMigrationFake"/> class.
+        /// </summary>
         public AutoScriptMigrationFake()
             : base(new[] { new DefaultEmbeddedResourceProvider() })
         {
         }
     }
 
+    /// <summary>
+    /// Class TaggedWithBeAndUkAndProductionAndStagingInOneTagsAttribute.
+    /// </summary>
     [Tags("BE", "UK", "Staging", "Production")]
     public class TaggedWithBeAndUkAndProductionAndStagingInOneTagsAttribute
     {
     }
 
+    /// <summary>
+    /// Class TaggedWithBeAndUkAndProductionAndStagingAndAnyBehaviorInOneTagsAttribute.
+    /// </summary>
     [Tags(TagBehavior.RequireAny, "BE", "UK", "Staging", "Production")]
     public class TaggedWithBeAndUkAndProductionAndStagingAndAnyBehaviorInOneTagsAttribute
     {
     }
 
+    /// <summary>
+    /// Class TaggedWithBeAndUkAndProductionAndStagingInTwoTagsAttributes.
+    /// </summary>
     [Tags("BE", "UK")]
     [Tags("Staging", "Production")]
     public class TaggedWithBeAndUkAndProductionAndStagingInTwoTagsAttributes
     {
     }
 
+    /// <summary>
+    /// Class TaggedWithBeAndUkAndProductionAndStagingInTwoTagsAttributesWithAnyBehaviorOnBoth.
+    /// </summary>
     [Tags(TagBehavior.RequireAny, "BE", "UK")]
     [Tags(TagBehavior.RequireAny, "Staging", "Production")]
     public class TaggedWithBeAndUkAndProductionAndStagingInTwoTagsAttributesWithAnyBehaviorOnBoth
     {
     }
 
+    /// <summary>
+    /// Class TaggedWithBeAndUkAndAllBehaviorAndProductionAndStagingAndAnyBehaviorInTwoTagsAttributes.
+    /// </summary>
     [Tags(TagBehavior.RequireAll, "BE", "UK", "Staging")]
     [Tags(TagBehavior.RequireAny, "Staging", "Production")]
     public class TaggedWithBeAndUkAndAllBehaviorAndProductionAndStagingAndAnyBehaviorInTwoTagsAttributes
     {
     }
 
+    /// <summary>
+    /// Class TaggedWithUk.
+    /// </summary>
     [Tags("UK")]
     public class TaggedWithUk
     {
     }
 
+    /// <summary>
+    /// Class InheritedFromTaggedWithUk.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.TaggedWithUk" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.TaggedWithUk" />
     public class InheritedFromTaggedWithUk : TaggedWithUk
     {
     }
 
+    /// <summary>
+    /// Class TaggedWithUkAndAnyBehavior.
+    /// </summary>
     [Tags(TagBehavior.RequireAny, "UK")]
     public class TaggedWithUkAndAnyBehavior
     {
     }
 
+    /// <summary>
+    /// Class HasTagAttributeWithNoTagNames.
+    /// </summary>
     [Tags]
     public class HasTagAttributeWithNoTagNames
     {
     }
 
+    /// <summary>
+    /// Class HasNoTagsFake.
+    /// </summary>
     public class HasNoTagsFake
     {
     }
 
+    /// <summary>
+    /// Class BaseHasTagAttribute.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     [Tags("UK")]
     public abstract class BaseHasTagAttribute : Migration
     { }
 
+    /// <summary>
+    /// Class ConcreteHasTagAttribute.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.BaseHasTagAttribute" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.BaseHasTagAttribute" />
     public class ConcreteHasTagAttribute : BaseHasTagAttribute
     {
+        /// <summary>
+        /// Ups this instance.
+        /// </summary>
         public override void Up() { }
 
+        /// <summary>
+        /// Downs this instance.
+        /// </summary>
         public override void Down() { }
     }
 
+    /// <summary>
+    /// Class DefaultConventionMigrationFake.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     [Migration(123, TransactionBehavior.None)]
     [MigrationTrait("key", "test")]
     internal class DefaultConventionMigrationFake : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up() { }
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down() { }
     }
 
+    /// <summary>
+    /// Class MigrationWithoutAttributeFake.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class MigrationWithoutAttributeFake : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up() { }
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down() { }
     }
 
+    /// <summary>
+    /// Class MaintenanceAfterEach.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     [Maintenance(MigrationStage.AfterEach)]
     internal class MaintenanceAfterEach : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up() { }
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down() { }
     }
 
     // tagged interfaces for multiple inheritance of tags
+    /// <summary>
+    /// Interface ITaggedMigrationAppliesToCountries
+    /// </summary>
     [Tags("UK", "US")]
     internal interface ITaggedMigrationAppliesToCountries { }
 
+    /// <summary>
+    /// Interface ITaggedMigrationAppliesToUatEnvironment
+    /// </summary>
     [Tags("UAT")]
     internal interface ITaggedMigrationAppliesToUatEnvironment { }
 
+    /// <summary>
+    /// Interface ITaggedMigrationAppliesToLowerEnvironments
+    /// </summary>
     [Tags("DEV", "QA")]
     internal interface ITaggedMigrationAppliesToLowerEnvironments { }
 
+    /// <summary>
+    /// Interface ITaggedMigrationAppliesToNonProductionEnvironments
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToLowerEnvironments" />
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToUatEnvironment" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToLowerEnvironments" />
+    /// <seealso cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToUatEnvironment" />
     internal interface ITaggedMigrationAppliesToNonProductionEnvironments : ITaggedMigrationAppliesToLowerEnvironments, ITaggedMigrationAppliesToUatEnvironment
     {
     }
 
+    /// <summary>
+    /// Interface ITaggedMigrationAppliesToFeature1
+    /// </summary>
     [Tags("CA", "NY")]
     internal interface ITaggedMigrationAppliesToFeature1 { }
 
+    /// <summary>
+    /// Interface ITaggedMigrationAppliesToFeature2
+    /// </summary>
     [Tags("NV", "TX")]
     internal interface ITaggedMigrationAppliesToFeature2 { }
 
+    /// <summary>
+    /// Interface ITaggedMigrationAppliesToFeature3
+    /// </summary>
     [Tags("CA", "TX")]
     internal interface ITaggedMigrationAppliesToFeature3 { }
 
     // migrations by inheritance
+    /// <summary>
+    /// Class UntaggedConcreteMigration.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class UntaggedConcreteMigration : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up() { }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down() { }
     }
 
+    /// <summary>
+    /// Class TaggedMigrationAppliesToBetaEnvironment.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.UntaggedConcreteMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.UntaggedConcreteMigration" />
     [Tags("Beta")]
     internal class TaggedMigrationAppliesToBetaEnvironment : UntaggedConcreteMigration { }
 
+    /// <summary>
+    /// Class TaggedMigrationBySingleInterfaceTaggedWithUk.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.UntaggedConcreteMigration" />
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToCountries" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.UntaggedConcreteMigration" />
+    /// <seealso cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToCountries" />
     internal class TaggedMigrationBySingleInterfaceTaggedWithUk : UntaggedConcreteMigration, ITaggedMigrationAppliesToCountries { }
 
+    /// <summary>
+    /// Class TaggedMigrationByMultipleInterfacesTaggedWithUsAndNy.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.UntaggedConcreteMigration" />
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToCountries" />
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToFeature1" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.UntaggedConcreteMigration" />
+    /// <seealso cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToCountries" />
+    /// <seealso cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToFeature1" />
     internal class TaggedMigrationByMultipleInterfacesTaggedWithUsAndNy : UntaggedConcreteMigration, ITaggedMigrationAppliesToCountries, ITaggedMigrationAppliesToFeature1 { }
 
+    /// <summary>
+    /// Class TaggedMigrationByCompositeInterfaceTaggedWithDev.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.UntaggedConcreteMigration" />
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToNonProductionEnvironments" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.UntaggedConcreteMigration" />
+    /// <seealso cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToNonProductionEnvironments" />
     internal class TaggedMigrationByCompositeInterfaceTaggedWithDev : UntaggedConcreteMigration, ITaggedMigrationAppliesToNonProductionEnvironments { }
 
+    /// <summary>
+    /// Class TaggedMigrationByCompositeInheritanceTaggedWithBetaAndQa.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.TaggedMigrationAppliesToBetaEnvironment" />
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToNonProductionEnvironments" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.TaggedMigrationAppliesToBetaEnvironment" />
+    /// <seealso cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToNonProductionEnvironments" />
     internal class TaggedMigrationByCompositeInheritanceTaggedWithBetaAndQa : TaggedMigrationAppliesToBetaEnvironment, ITaggedMigrationAppliesToNonProductionEnvironments { }
 
+    /// <summary>
+    /// Class TaggedMigrationByAttributionAndCompositeInheritanceTaggedWithStagingAndBetaAndDev.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.TaggedMigrationAppliesToBetaEnvironment" />
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToNonProductionEnvironments" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.TaggedMigrationAppliesToBetaEnvironment" />
+    /// <seealso cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToNonProductionEnvironments" />
     [Tags("Staging")]
     internal class TaggedMigrationByAttributionAndCompositeInheritanceTaggedWithStagingAndBetaAndDev : TaggedMigrationAppliesToBetaEnvironment, ITaggedMigrationAppliesToNonProductionEnvironments { }
 
+    /// <summary>
+    /// Class TaggedMigrationByCompositeOverlappingTagsTaggedWithCaAndNvOnceAndTxTwice.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.UntaggedConcreteMigration" />
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToFeature2" />
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToFeature3" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.UntaggedConcreteMigration" />
+    /// <seealso cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToFeature2" />
+    /// <seealso cref="FluentMigrator.Tests.Unit.ITaggedMigrationAppliesToFeature3" />
     internal class TaggedMigrationByCompositeOverlappingTagsTaggedWithCaAndNvOnceAndTxTwice : UntaggedConcreteMigration, ITaggedMigrationAppliesToFeature2, ITaggedMigrationAppliesToFeature3 { }
 }

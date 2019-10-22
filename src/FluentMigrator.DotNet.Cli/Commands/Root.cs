@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Root.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -18,6 +31,9 @@ using McMaster.Extensions.CommandLineUtils;
 
 namespace FluentMigrator.DotNet.Cli.Commands
 {
+    /// <summary>
+    /// Class Root.
+    /// </summary>
     [HelpOption(Description = "Execute FluentMigrator actions")]
     [Command("dotnet-fm", Description = "The external FluentMigrator runner that integrates into the .NET Core CLI tooling")]
     [Subcommand(typeof(Migrate))]
@@ -26,6 +42,12 @@ namespace FluentMigrator.DotNet.Cli.Commands
     [Subcommand(typeof(ListCommand))]
     public class Root
     {
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="app">The application.</param>
+        /// <param name="console">The console.</param>
+        /// <returns>System.Int32.</returns>
         protected int OnExecute(CommandLineApplication app, IConsole console)
         {
             console.Error.WriteLine("You must specify a subcommand.");

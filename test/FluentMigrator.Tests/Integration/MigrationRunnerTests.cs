@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationRunnerTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -50,12 +63,23 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration
 {
+    /// <summary>
+    /// Defines test class MigrationRunnerTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.IntegrationTestBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.IntegrationTestBase" />
     [TestFixture]
     [Category("Integration")]
     public class MigrationRunnerTests : IntegrationTestBase
     {
+        /// <summary>
+        /// The root namespace
+        /// </summary>
         private const string RootNamespace = "FluentMigrator.Tests.Integration.Migrations";
 
+        /// <summary>
+        /// Defines the test method CanRunMigration.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -87,6 +111,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanSilentlyFail.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -122,6 +149,9 @@ namespace FluentMigrator.Tests.Integration
             runner.CaughtExceptions.Count.ShouldBeGreaterThan(0);
         }
 
+        /// <summary>
+        /// Defines the test method CanApplyForeignKeyConvention.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -150,6 +180,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SQLiteProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanApplyForeignKeyConventionWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -177,6 +210,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(FirebirdProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanApplyIndexConvention.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -206,6 +242,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanApplyUniqueConvention.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -238,6 +277,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SQLiteProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanApplyIndexConventionWithSchema.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -267,6 +309,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAndDropIndex.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -302,6 +347,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAndDropIndexWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -341,6 +389,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(FirebirdProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameTable.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -378,6 +429,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameTableWithSchema.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -419,6 +473,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameColumn.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -455,6 +512,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SQLiteProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameColumnWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -495,6 +555,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(FirebirdProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanLoadMigrations.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -520,6 +583,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanLoadVersion.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -545,6 +611,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhere16Processor));
         }
 
+        /// <summary>
+        /// Defines the test method CanRunMigrations.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -579,6 +648,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhere16Processor));
         }
 
+        /// <summary>
+        /// Defines the test method CanMigrateASpecificVersion.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -615,6 +687,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhere16Processor));
         }
 
+        /// <summary>
+        /// Defines the test method CanMigrateASpecificVersionDown.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -667,6 +742,9 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Defines the test method RollbackAllShouldRemoveVersionInfoTable.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -701,6 +779,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhere16Processor));
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpWithSqlServerProcessorShouldCommitItsTransaction.
+        /// </summary>
         [Test]
         [Category("SqlServer2008")]
         public void MigrateUpWithSqlServerProcessorShouldCommitItsTransaction()
@@ -730,6 +811,9 @@ namespace FluentMigrator.Tests.Integration
                 IntegrationTestOptions.SqlServer2008);
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpSpecificVersionWithSqlServerProcessorShouldCommitItsTransaction.
+        /// </summary>
         [Test]
         [Category("SqlServer2008")]
         public void MigrateUpSpecificVersionWithSqlServerProcessorShouldCommitItsTransaction()
@@ -759,6 +843,9 @@ namespace FluentMigrator.Tests.Integration
                 IntegrationTestOptions.SqlServer2008);
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpWithTaggedMigrationsShouldOnlyApplyMatchedMigrations.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -796,6 +883,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhere16Processor));
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpWithTaggedMigrationsAndUsingMultipleTagsShouldOnlyApplyMatchedMigrations.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -833,6 +923,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhere16Processor));
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpWithDifferentTaggedShouldIgnoreConcreteOfTagged.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -869,6 +962,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhere16Processor));
         }
 
+        /// <summary>
+        /// Defines the test method MigrateDownWithDifferentTagsToMigrateUpShouldApplyMatchedMigrations.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -929,6 +1025,9 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Defines the test method VersionInfoCreationScriptsOnlyGeneratedOnceInPreviewMode.
+        /// </summary>
         [Test]
         [Category("SqlServer2008")]
         public void VersionInfoCreationScriptsOnlyGeneratedOnceInPreviewMode()
@@ -993,6 +1092,9 @@ namespace FluentMigrator.Tests.Integration
                 IntegrationTestOptions.SqlServer2008);
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpWithTaggedMigrationsShouldNotApplyAnyMigrationsIfNoTagsParameterIsPassedIntoTheRunner.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1029,6 +1131,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhere16Processor));
         }
 
+        /// <summary>
+        /// Defines the test method ValidateVersionOrderShouldDoNothingIfUnappliedMigrationVersionIsGreaterThanLatestAppliedMigration.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("SqlServer2005")]
@@ -1085,6 +1190,9 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Defines the test method ValidateVersionOrderShouldThrowExceptionIfUnappliedMigrationVersionIsLessThanLatestAppliedMigration.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("Postgres")]
@@ -1156,6 +1264,9 @@ namespace FluentMigrator.Tests.Integration
             keyValuePair.Value.Migration.ShouldBeOfType<Migrations.Interleaved.Pass3.UserEmail>();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequence.
+        /// </summary>
         [Test]
         [Category("SqlServer2012")]
         public void CanCreateSequence()
@@ -1176,6 +1287,9 @@ namespace FluentMigrator.Tests.Integration
                 IntegrationTestOptions.SqlServer2012);
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequenceWithSchema.
+        /// </summary>
         [Test]
         [Category("Postgres")]
         [Category("SqlServer2012")]
@@ -1218,6 +1332,9 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1256,6 +1373,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhereProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterTableWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1293,6 +1413,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(FirebirdProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterTablesSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1330,6 +1453,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhereProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateUniqueConstraint.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1360,6 +1486,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, typeof(SQLiteProcessor), typeof(SqlAnywhereProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateUniqueConstraintWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1397,6 +1526,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhereProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertData.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1426,6 +1558,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SQLiteProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1459,6 +1594,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(FirebirdProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateData.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1499,6 +1637,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(FirebirdProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteData.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1534,6 +1675,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SQLiteProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1573,6 +1717,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(FirebirdProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanReverseCreateIndex.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1609,6 +1756,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SQLiteProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanReverseCreateUniqueConstraint.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1641,6 +1791,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhereProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanReverseCreateUniqueConstraintWithSchema.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1677,6 +1830,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SqlAnywhereProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanExecuteSql.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("SQLite")]
@@ -1701,6 +1857,12 @@ namespace FluentMigrator.Tests.Integration
                 typeof(FirebirdProcessor));
         }
 
+        /// <summary>
+        /// Cleanups the test SQL server database.
+        /// </summary>
+        /// <typeparam name="TProcessor">The type of the t processor.</typeparam>
+        /// <param name="serviceProvider">The service provider.</param>
+        /// <param name="origProcessor">The original processor.</param>
         private void CleanupTestSqlServerDatabase<TProcessor>(IServiceProvider serviceProvider, TProcessor origProcessor)
             where TProcessor : SqlServerProcessor
         {
@@ -1721,8 +1883,16 @@ namespace FluentMigrator.Tests.Integration
         }
     }
 
+    /// <summary>
+    /// Class TestForeignKeyNamingConvention.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestForeignKeyNamingConvention : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Table("Users")
@@ -1738,6 +1908,9 @@ namespace FluentMigrator.Tests.Integration
             Create.ForeignKey().FromTable("Users").ForeignColumn("GroupId").ToTable("Groups").PrimaryColumn("GroupId");
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Table("Users");
@@ -1745,8 +1918,16 @@ namespace FluentMigrator.Tests.Integration
         }
     }
 
+    /// <summary>
+    /// Class TestUniqueConstraintNamingConvention.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestUniqueConstraintNamingConvention : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Table("Users")
@@ -1760,6 +1941,9 @@ namespace FluentMigrator.Tests.Integration
             Create.UniqueConstraint().OnTable("Users").Column("AccountId");
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.UniqueConstraint("UC_Users_GroupId").FromTable("Users");
@@ -1768,8 +1952,16 @@ namespace FluentMigrator.Tests.Integration
         }
     }
 
+    /// <summary>
+    /// Class TestIndexNamingConvention.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestIndexNamingConvention : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Table("Users")
@@ -1781,6 +1973,9 @@ namespace FluentMigrator.Tests.Integration
             Create.Index().OnTable("Users").OnColumn("GroupId").Ascending();
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Index("IX_Users_GroupId").OnTable("Users").OnColumn("GroupId");
@@ -1788,8 +1983,16 @@ namespace FluentMigrator.Tests.Integration
         }
     }
 
+    /// <summary>
+    /// Class TestForeignKeySilentFailure.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestForeignKeySilentFailure : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Table("Users")
@@ -1805,6 +2008,9 @@ namespace FluentMigrator.Tests.Integration
             Create.ForeignKey("FK_Foo").FromTable("Users").ForeignColumn("GroupId").ToTable("Groups").PrimaryColumn("GroupId");
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.ForeignKey("FK_Foo").OnTable("Users");
@@ -1813,8 +2019,16 @@ namespace FluentMigrator.Tests.Integration
         }
     }
 
+    /// <summary>
+    /// Class TestCreateAndDropTableMigration.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestCreateAndDropTableMigration : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Table("TestTable")
@@ -1838,6 +2052,9 @@ namespace FluentMigrator.Tests.Integration
             Insert.IntoTable("TestTable").Row(new { Name = "Test" });
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Table("TestTable2");
@@ -1845,37 +2062,72 @@ namespace FluentMigrator.Tests.Integration
         }
     }
 
+    /// <summary>
+    /// Class TestRenameTableMigration.
+    /// Implements the <see cref="FluentMigrator.AutoReversingMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.AutoReversingMigration" />
     internal class TestRenameTableMigration : AutoReversingMigration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Rename.Table("TestTable2").To("TestTable'3");
         }
     }
 
+    /// <summary>
+    /// Class TestRenameColumnMigration.
+    /// Implements the <see cref="FluentMigrator.AutoReversingMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.AutoReversingMigration" />
     internal class TestRenameColumnMigration : AutoReversingMigration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Rename.Column("Name").OnTable("TestTable2").To("Name'3");
         }
     }
 
+    /// <summary>
+    /// Class TestCreateAndDropIndexMigration.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestCreateAndDropIndexMigration : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Index("IX_TestTable_Name").OnTable("TestTable").OnColumn("Name");
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Index("IX_TestTable_Name").OnTable("TestTable");
         }
     }
 
+    /// <summary>
+    /// Class TestForeignKeyNamingConventionWithSchema.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestForeignKeyNamingConventionWithSchema : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             var createSchemaExpr = Create.Schema("TestSchema");
@@ -1896,6 +2148,9 @@ namespace FluentMigrator.Tests.Integration
             Create.ForeignKey().FromTable("Users").InSchema("TestSchema").ForeignColumn("GroupId").ToTable("Groups").InSchema("TestSchema").PrimaryColumn("GroupId");
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Table("Users").InSchema("TestSchema");
@@ -1904,8 +2159,16 @@ namespace FluentMigrator.Tests.Integration
         }
     }
 
+    /// <summary>
+    /// Class TestIndexNamingConventionWithSchema.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestIndexNamingConventionWithSchema : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             var createSchemaExpr = Create.Schema("TestSchema");
@@ -1922,6 +2185,9 @@ namespace FluentMigrator.Tests.Integration
             Create.Index().OnTable("Users").InSchema("TestSchema").OnColumn("GroupId").Ascending();
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Index("IX_Users_GroupId").OnTable("Users").InSchema("TestSchema").OnColumn("GroupId");
@@ -1930,8 +2196,16 @@ namespace FluentMigrator.Tests.Integration
         }
     }
 
+    /// <summary>
+    /// Class TestCreateAndDropTableMigrationWithSchema.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestCreateAndDropTableMigrationWithSchema : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Table("TestTable")
@@ -1957,6 +2231,9 @@ namespace FluentMigrator.Tests.Integration
             Insert.IntoTable("TestTable").InSchema("TestSchema").Row(new { Name = "Test" });
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Table("TestTable2").InSchema("TestSchema");
@@ -1964,37 +2241,72 @@ namespace FluentMigrator.Tests.Integration
         }
     }
 
+    /// <summary>
+    /// Class TestRenameTableMigrationWithSchema.
+    /// Implements the <see cref="FluentMigrator.AutoReversingMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.AutoReversingMigration" />
     internal class TestRenameTableMigrationWithSchema : AutoReversingMigration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Rename.Table("TestTable2").InSchema("TestSchema").To("TestTable'3");
         }
     }
 
+    /// <summary>
+    /// Class TestRenameColumnMigrationWithSchema.
+    /// Implements the <see cref="FluentMigrator.AutoReversingMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.AutoReversingMigration" />
     internal class TestRenameColumnMigrationWithSchema : AutoReversingMigration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Rename.Column("Name").OnTable("TestTable2").InSchema("TestSchema").To("Name'3");
         }
     }
 
+    /// <summary>
+    /// Class TestCreateAndDropIndexMigrationWithSchema.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestCreateAndDropIndexMigrationWithSchema : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Index("IX_TestTable_Name").OnTable("TestTable").InSchema("TestSchema").OnColumn("Name");
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Index("IX_TestTable_Name").OnTable("TestTable").InSchema("TestSchema");
         }
     }
 
+    /// <summary>
+    /// Class TestCreateSchema.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestCreateSchema : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             var createSchemaExpr = Create.Schema("TestSchema");
@@ -2002,66 +2314,121 @@ namespace FluentMigrator.Tests.Integration
                 .Delegate(() => createSchemaExpr.Password("TestSchemaPassword"));
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Schema("TestSchema");
         }
     }
 
+    /// <summary>
+    /// Class TestCreateSequence.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestCreateSequence : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Sequence("TestSequence").StartWith(1).IncrementBy(1).MinValue(0).MaxValue(1000).Cycle().Cache(10);
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Sequence("TestSequence");
         }
     }
 
+    /// <summary>
+    /// Class TestCreateSequenceWithSchema.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestCreateSequenceWithSchema : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Sequence("TestSequence").InSchema("TestSchema").StartWith(1).IncrementBy(1).MinValue(0).MaxValue(1000).Cycle().Cache(10);
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Sequence("TestSequence").InSchema("TestSchema");
         }
     }
 
+    /// <summary>
+    /// Class TestAlterColumnWithSchema.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestAlterColumnWithSchema: Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Alter.Column("Name2").OnTable("TestTable2").InSchema("TestSchema").AsAnsiString(100).Nullable();
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Alter.Column("Name2").OnTable("TestTable2").InSchema("TestSchema").AsString(10).Nullable();
         }
     }
 
+    /// <summary>
+    /// Class TestAlterTableWithSchema.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestAlterTableWithSchema : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Alter.Table("TestTable2").InSchema("TestSchema").AddColumn("NewColumn").AsInt32().WithDefaultValue(1);
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.Column("NewColumn").FromTable("TestTable2").InSchema("TestSchema");
         }
     }
 
+    /// <summary>
+    /// Class TestAlterSchema.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestAlterSchema : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             var createSchemaExpr = Create.Schema("NewSchema");
@@ -2070,6 +2437,9 @@ namespace FluentMigrator.Tests.Integration
             Alter.Table("TestTable").InSchema("TestSchema").ToSchema("NewSchema");
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Alter.Table("TestTable").InSchema("NewSchema").ToSchema("TestSchema");
@@ -2077,102 +2447,192 @@ namespace FluentMigrator.Tests.Integration
         }
     }
 
+    /// <summary>
+    /// Class TestCreateUniqueConstraint.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestCreateUniqueConstraint : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.UniqueConstraint("TestUnique").OnTable("TestTable2").Column("Name");
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.UniqueConstraint("TestUnique").FromTable("TestTable2");
         }
     }
 
+    /// <summary>
+    /// Class TestCreateUniqueConstraintWithSchema.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestCreateUniqueConstraintWithSchema : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.UniqueConstraint("TestUnique").OnTable("TestTable2").WithSchema("TestSchema").Column("Name");
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Delete.UniqueConstraint("TestUnique").FromTable("TestTable2").InSchema("TestSchema");
         }
     }
 
+    /// <summary>
+    /// Class TestUpdateData.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestUpdateData : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Update.Table("TestTable").InSchema("TestSchema").Set(new { Name = "Updated" }).AllRows();
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Update.Table("TestTable").InSchema("TestSchema").Set(new { Name = "Test" }).AllRows();
         }
     }
 
+    /// <summary>
+    /// Class TestDeleteData.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestDeleteData : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Delete.FromTable("TestTable").Row(new { Name = "Test" });
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Insert.IntoTable("TestTable").Row(new { Name = "Test" });
         }
     }
 
+    /// <summary>
+    /// Class TestDeleteDataWithSchema.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestDeleteDataWithSchema :Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Delete.FromTable("TestTable").InSchema("TestSchema").Row(new { Name = "Test"});
         }
 
+        /// <summary>
+        /// Collects the DOWN migration expressions
+        /// </summary>
         public override void Down()
         {
             Insert.IntoTable("TestTable").InSchema("TestSchema").Row(new { Name = "Test" });
         }
     }
 
+    /// <summary>
+    /// Class TestCreateIndexWithReversing.
+    /// Implements the <see cref="FluentMigrator.AutoReversingMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.AutoReversingMigration" />
     internal class TestCreateIndexWithReversing : AutoReversingMigration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.Index().OnTable("TestTable2").InSchema("TestSchema").OnColumn("Name2").Ascending();
         }
     }
 
+    /// <summary>
+    /// Class TestCreateUniqueConstraintWithReversing.
+    /// Implements the <see cref="FluentMigrator.AutoReversingMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.AutoReversingMigration" />
     internal class TestCreateUniqueConstraintWithReversing : AutoReversingMigration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.UniqueConstraint("TestUnique").OnTable("TestTable2").Column("Name");
         }
     }
 
+    /// <summary>
+    /// Class TestCreateUniqueConstraintWithSchemaWithReversing.
+    /// Implements the <see cref="FluentMigrator.AutoReversingMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.AutoReversingMigration" />
     internal class TestCreateUniqueConstraintWithSchemaWithReversing : AutoReversingMigration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Create.UniqueConstraint("TestUnique").OnTable("TestTable2").WithSchema("TestSchema").Column("Name");
         }
     }
 
+    /// <summary>
+    /// Class TestExecuteSql.
+    /// Implements the <see cref="FluentMigrator.Migration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Migration" />
     internal class TestExecuteSql : Migration
     {
+        /// <summary>
+        /// Collect the UP migration expressions
+        /// </summary>
         public override void Up()
         {
             Execute.Sql("select 1");
         }
 
+        /// <summary>
+        /// Downs this instance.
+        /// </summary>
         public override void Down()
         {
             Execute.Sql("select 2");

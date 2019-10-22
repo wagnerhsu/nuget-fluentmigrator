@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ObsoleteMigrationRunnerTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -52,13 +65,24 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration
 {
+    /// <summary>
+    /// Defines test class ObsoleteMigrationRunnerTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.ObsoleteIntegrationTestBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.ObsoleteIntegrationTestBase" />
     [TestFixture]
     [Category("Integration")]
     [Obsolete]
     public class ObsoleteMigrationRunnerTests : ObsoleteIntegrationTestBase
     {
+        /// <summary>
+        /// The runner context
+        /// </summary>
         private IRunnerContext _runnerContext;
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -68,6 +92,9 @@ namespace FluentMigrator.Tests.Integration
                                         };
         }
 
+        /// <summary>
+        /// Defines the test method CanRunMigration.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -97,6 +124,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanSilentlyFail.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -139,6 +169,9 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanApplyForeignKeyConvention.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -164,6 +197,9 @@ namespace FluentMigrator.Tests.Integration
                 }, false, typeof(SQLiteProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanApplyForeignKeyConventionWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -187,6 +223,9 @@ namespace FluentMigrator.Tests.Integration
                 }, false, new []{typeof(SQLiteProcessor), typeof(FirebirdProcessor)});
         }
 
+        /// <summary>
+        /// Defines the test method CanApplyIndexConvention.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -215,6 +254,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanApplyUniqueConvention.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -246,6 +288,9 @@ namespace FluentMigrator.Tests.Integration
                 typeof(SQLiteProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanApplyIndexConventionWithSchema.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -274,6 +319,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAndDropIndex.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -308,6 +356,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAndDropIndexWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -343,6 +394,9 @@ namespace FluentMigrator.Tests.Integration
                 }, false, new[] { typeof(SQLiteProcessor), typeof(FirebirdProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameTable.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -380,6 +434,9 @@ namespace FluentMigrator.Tests.Integration
         }
 
 
+        /// <summary>
+        /// Defines the test method CanRenameTableWithSchema.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -420,6 +477,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameColumn.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -453,6 +513,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, typeof(SQLiteProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameColumnWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -489,6 +552,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, typeof(SQLiteProcessor), typeof(FirebirdProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanLoadMigrations.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -517,6 +583,9 @@ namespace FluentMigrator.Tests.Integration
             });
         }
 
+        /// <summary>
+        /// Defines the test method CanLoadVersion.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -544,6 +613,9 @@ namespace FluentMigrator.Tests.Integration
             });
         }
 
+        /// <summary>
+        /// Defines the test method CanRunMigrations.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -575,6 +647,9 @@ namespace FluentMigrator.Tests.Integration
             });
         }
 
+        /// <summary>
+        /// Defines the test method CanMigrateASpecificVersion.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -605,6 +680,9 @@ namespace FluentMigrator.Tests.Integration
             });
         }
 
+        /// <summary>
+        /// Defines the test method CanMigrateASpecificVersionDown.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -644,6 +722,9 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Defines the test method RollbackAllShouldRemoveVersionInfoTable.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -675,6 +756,9 @@ namespace FluentMigrator.Tests.Integration
             });
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpWithSqlServerProcessorShouldCommitItsTransaction.
+        /// </summary>
         [Test]
         [Category("SqlServer2008")]
         public void MigrateUpWithSqlServerProcessorShouldCommitItsTransaction()
@@ -699,6 +783,9 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpSpecificVersionWithSqlServerProcessorShouldCommitItsTransaction.
+        /// </summary>
         [Test]
         [Category("SqlServer2008")]
         public void MigrateUpSpecificVersionWithSqlServerProcessorShouldCommitItsTransaction()
@@ -723,6 +810,9 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpWithTaggedMigrationsShouldOnlyApplyMatchedMigrations.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -764,6 +854,9 @@ namespace FluentMigrator.Tests.Integration
             });
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpWithTaggedMigrationsAndUsingMultipleTagsShouldOnlyApplyMatchedMigrations.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -805,6 +898,9 @@ namespace FluentMigrator.Tests.Integration
             });
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpWithDifferentTaggedShouldIgnoreConcreteOfTagged.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -845,6 +941,9 @@ namespace FluentMigrator.Tests.Integration
             });
         }
 
+        /// <summary>
+        /// Defines the test method MigrateDownWithDifferentTagsToMigrateUpShouldApplyMatchedMigrations.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -897,6 +996,9 @@ namespace FluentMigrator.Tests.Integration
             }, true, typeof(SQLiteProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method VersionInfoCreationScriptsOnlyGeneratedOnceInPreviewMode.
+        /// </summary>
         [Test]
         [Category("SqlServer2008")]
         public void VersionInfoCreationScriptsOnlyGeneratedOnceInPreviewMode()
@@ -955,6 +1057,9 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Defines the test method MigrateUpWithTaggedMigrationsShouldNotApplyAnyMigrationsIfNoTagsParameterIsPassedIntoTheRunner.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -995,6 +1100,9 @@ namespace FluentMigrator.Tests.Integration
             });
         }
 
+        /// <summary>
+        /// Defines the test method ValidateVersionOrderShouldDoNothingIfUnappliedMigrationVersionIsGreaterThanLatestAppliedMigration.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("SqlServer2005")]
@@ -1040,6 +1148,9 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Defines the test method ValidateVersionOrderShouldThrowExceptionIfUnappliedMigrationVersionIsLessThanLatestAppliedMigration.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("Postgres")]
@@ -1097,6 +1208,9 @@ namespace FluentMigrator.Tests.Integration
             keyValuePair.Value.Migration.ShouldBeOfType<Migrations.Interleaved.Pass3.UserEmail>();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequence.
+        /// </summary>
         [Test]
         [Category("SqlServer2016")]
         public void CanCreateSequence()
@@ -1121,6 +1235,9 @@ namespace FluentMigrator.Tests.Integration
                 IntegrationTestOptions.SqlServer2016);
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateSequenceWithSchema.
+        /// </summary>
         [Test]
         [Category("Postgres")]
         [Category("SqlServer2012")]
@@ -1158,6 +1275,9 @@ namespace FluentMigrator.Tests.Integration
             }
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1192,6 +1312,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor), typeof(FirebirdProcessor), typeof(SqlAnywhereProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterTableWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1225,6 +1348,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor), typeof(FirebirdProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterTablesSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1257,6 +1383,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor), typeof(FirebirdProcessor), typeof(SqlAnywhereProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateUniqueConstraint.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1287,6 +1416,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, typeof(SQLiteProcessor), typeof(SqlAnywhereProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateUniqueConstraintWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1319,6 +1451,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor), typeof(FirebirdProcessor), typeof(SqlAnywhereProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertData.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1346,6 +1481,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanInsertDataWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1375,6 +1513,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor), typeof(FirebirdProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanUpdateData.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1411,6 +1552,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor), typeof(FirebirdProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteData.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1444,6 +1588,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDataWithSchema.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("Postgres")]
@@ -1479,6 +1626,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor), typeof(FirebirdProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanReverseCreateIndex.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1512,6 +1662,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanReverseCreateUniqueConstraint.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1541,6 +1694,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor), typeof(SqlAnywhereProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanReverseCreateUniqueConstraintWithSchema.
+        /// </summary>
         [Test]
         [Category("Firebird")]
         [Category("MySql")]
@@ -1574,6 +1730,9 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(SQLiteProcessor), typeof(SqlAnywhereProcessor) });
         }
 
+        /// <summary>
+        /// Defines the test method CanExecuteSql.
+        /// </summary>
         [Test]
         [Category("MySql")]
         [Category("SQLite")]
@@ -1597,6 +1756,11 @@ namespace FluentMigrator.Tests.Integration
                 }, true, new[] { typeof(FirebirdProcessor) });
         }
 
+        /// <summary>
+        /// Setups the migration runner.
+        /// </summary>
+        /// <param name="processor">The processor.</param>
+        /// <returns>MigrationRunner.</returns>
         private static MigrationRunner SetupMigrationRunner(IMigrationProcessor processor)
         {
             Assembly asm = typeof(MigrationRunnerTests).Assembly;
@@ -1609,6 +1773,11 @@ namespace FluentMigrator.Tests.Integration
             return new MigrationRunner(asm, runnerContext, processor);
         }
 
+        /// <summary>
+        /// Cleanups the test SQL server database.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <param name="origProcessor">The original processor.</param>
         private static void CleanupTestSqlServerDatabase(SqlConnection connection, SqlServerProcessor origProcessor)
         {
             if (origProcessor.WasCommitted)

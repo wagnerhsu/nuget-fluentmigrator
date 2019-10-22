@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="NestingMultiLineComment.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,11 +36,17 @@ namespace FluentMigrator.Runner.BatchParser.RangeSearchers
     /// </summary>
     public sealed class NestingMultiLineComment : IRangeSearcher
     {
+        /// <summary>
+        /// The start code regex
+        /// </summary>
         private readonly Regex _startCodeRegex;
+        /// <summary>
+        /// The end code regex
+        /// </summary>
         private readonly Regex _endCodeRegex;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NestingMultiLineComment"/> class.
+        /// Initializes a new instance of the <see cref="NestingMultiLineComment" /> class.
         /// </summary>
         public NestingMultiLineComment()
         {

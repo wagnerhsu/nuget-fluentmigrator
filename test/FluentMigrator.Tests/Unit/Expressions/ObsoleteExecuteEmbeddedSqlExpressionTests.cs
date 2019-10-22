@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ObsoleteExecuteEmbeddedSqlExpressionTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -30,13 +43,25 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Expressions
 {
+    /// <summary>
+    /// Defines test class ObsoleteExecuteEmbeddedSqlScriptExpressionTests.
+    /// </summary>
     [TestFixture]
     [Obsolete]
     public class ObsoleteExecuteEmbeddedSqlScriptExpressionTests
     {
+        /// <summary>
+        /// The test SQL script
+        /// </summary>
         private const string TestSqlScript = "embeddedtestscript.sql";
+        /// <summary>
+        /// The script contents
+        /// </summary>
         private const string ScriptContents = "TEST SCRIPT";
 
+        /// <summary>
+        /// Defines the test method ErrorIsReturnWhenSqlScriptIsNullOrEmpty.
+        /// </summary>
         [Test]
         public void ErrorIsReturnWhenSqlScriptIsNullOrEmpty()
         {
@@ -45,6 +70,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             errors.ShouldContain(ErrorMessages.SqlScriptCannotBeNullOrEmpty);
         }
 
+        /// <summary>
+        /// Defines the test method ExecutesTheStatement.
+        /// </summary>
         [Test]
         public void ExecutesTheStatement()
         {
@@ -57,6 +85,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             processor.Verify();
         }
 
+        /// <summary>
+        /// Defines the test method ExecutesTheStatementWithParameters.
+        /// </summary>
         [Test]
         public void ExecutesTheStatementWithParameters()
         {
@@ -75,6 +106,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             processor.Verify();
         }
 
+        /// <summary>
+        /// Defines the test method ResourceFinderIsCaseInsensitive.
+        /// </summary>
         [Test]
         public void ResourceFinderIsCaseInsensitive()
         {
@@ -86,6 +120,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             processor.Verify();
         }
 
+        /// <summary>
+        /// Defines the test method ResourceFinderFindFileWithFullName.
+        /// </summary>
         [Test]
         public void ResourceFinderFindFileWithFullName()
         {
@@ -97,6 +134,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             processor.Verify();
         }
 
+        /// <summary>
+        /// Defines the test method ResourceFinderFindFileWithFullNameAndNamespace.
+        /// </summary>
         [Test]
         public void ResourceFinderFindFileWithFullNameAndNamespace()
         {
@@ -108,6 +148,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             processor.Verify();
         }
 
+        /// <summary>
+        /// Defines the test method ResourceFinderFindThrowsExceptionIfFoundMoreThenOneResource.
+        /// </summary>
         [Test]
         public void ResourceFinderFindThrowsExceptionIfFoundMoreThenOneResource()
         {
@@ -118,6 +161,9 @@ namespace FluentMigrator.Tests.Unit.Expressions
             processor.Verify(x => x.Execute("NotUniqueResource"), Times.Never());
         }
 
+        /// <summary>
+        /// Defines the test method ToStringIsDescriptive.
+        /// </summary>
         [Test]
         public void ToStringIsDescriptive()
         {

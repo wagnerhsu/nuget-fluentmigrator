@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServerCe
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerCeDbFactory.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -21,24 +34,47 @@ using System.Data;
 
 namespace FluentMigrator.Runner.Processors.SqlServer
 {
+    /// <summary>
+    /// Class SqlServerCeDbFactory.
+    /// Implements the <see cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Processors.ReflectionBasedDbFactory" />
     public class SqlServerCeDbFactory : ReflectionBasedDbFactory
     {
+        /// <summary>
+        /// The entries
+        /// </summary>
         private static readonly TestEntry[] _entries =
         {
             new TestEntry("System.Data.SqlServerCe", "System.Data.SqlServerCe.SqlCeProviderFactory"),
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServerCeDbFactory"/> class.
+        /// </summary>
         [Obsolete]
         public SqlServerCeDbFactory()
             : this(null)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServerCeDbFactory"/> class.
+        /// </summary>
+        /// <param name="serviceProvider">The service provider.</param>
         public SqlServerCeDbFactory(IServiceProvider serviceProvider)
             : base(serviceProvider, _entries)
         {
         }
 
+        /// <summary>
+        /// Creates the command.
+        /// </summary>
+        /// <param name="commandText">The command text.</param>
+        /// <param name="connection">The connection.</param>
+        /// <param name="transaction">The transaction.</param>
+        /// <param name="options">The options.</param>
+        /// <returns>IDbCommand.</returns>
         [Obsolete]
         public override IDbCommand CreateCommand(string commandText, IDbConnection connection, IDbTransaction transaction, IMigrationProcessorOptions options)
         {

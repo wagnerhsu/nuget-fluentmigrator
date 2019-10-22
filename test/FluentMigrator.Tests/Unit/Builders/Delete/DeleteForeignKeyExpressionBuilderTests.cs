@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteForeignKeyExpressionBuilderTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -26,9 +39,15 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Builders.Delete
 {
+    /// <summary>
+    /// Defines test class DeleteForeignKeyExpressionBuilderTests.
+    /// </summary>
     [TestFixture]
     public class DeleteForeignKeyExpressionBuilderTests
     {
+        /// <summary>
+        /// Defines the test method CallingFromTableSetsForeignTableName.
+        /// </summary>
         [Test]
         public void CallingFromTableSetsForeignTableName()
         {
@@ -44,6 +63,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingToTableSetsPrimaryTableName.
+        /// </summary>
         [Test]
         public void CallingToTableSetsPrimaryTableName()
         {
@@ -59,6 +81,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingOnTableSetsForeignTableName.
+        /// </summary>
         [Test]
         public void CallingOnTableSetsForeignTableName()
         {
@@ -74,6 +99,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingInSchemaSetsForeignTableSchemaName.
+        /// </summary>
         [Test]
         public void CallingInSchemaSetsForeignTableSchemaName()
         {
@@ -89,6 +117,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignColumnAddsColumnNameToForeignColumnCollection.
+        /// </summary>
         [Test]
         public void CallingForeignColumnAddsColumnNameToForeignColumnCollection()
         {
@@ -108,6 +139,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingForeignColumnsAddsColumnNamesToForeignColumnCollection.
+        /// </summary>
         [Test]
         public void CallingForeignColumnsAddsColumnNamesToForeignColumnCollection()
         {
@@ -128,6 +162,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingPrimaryColumnAddsColumnNameToPrimaryColumnCollection.
+        /// </summary>
         [Test]
         public void CallingPrimaryColumnAddsColumnNameToPrimaryColumnCollection()
         {
@@ -147,6 +184,9 @@ namespace FluentMigrator.Tests.Unit.Builders.Delete
             expressionMock.VerifyGet(e => e.ForeignKey);
         }
 
+        /// <summary>
+        /// Defines the test method CallingPrimaryColumnsAddsColumnNamesToForeignColumnCollection.
+        /// </summary>
         [Test]
         public void CallingPrimaryColumnsAddsColumnNamesToForeignColumnCollection()
         {

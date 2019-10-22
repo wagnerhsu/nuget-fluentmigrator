@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MissingMigrationsException.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -19,20 +32,42 @@ using System.Runtime.Serialization;
 
 namespace FluentMigrator.Runner.Exceptions
 {
+    /// <summary>
+    /// Class MissingMigrationsException.
+    /// Implements the <see cref="FluentMigrator.Runner.Exceptions.RunnerException" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Exceptions.RunnerException" />
     public class MissingMigrationsException : RunnerException
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MissingMigrationsException"/> class.
+        /// </summary>
         public MissingMigrationsException()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MissingMigrationsException"/> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public MissingMigrationsException(string message) : base(message)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MissingMigrationsException"/> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="innerException">The inner exception.</param>
         public MissingMigrationsException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MissingMigrationsException"/> class.
+        /// </summary>
+        /// <param name="info">The information.</param>
+        /// <param name="context">The context.</param>
         public MissingMigrationsException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

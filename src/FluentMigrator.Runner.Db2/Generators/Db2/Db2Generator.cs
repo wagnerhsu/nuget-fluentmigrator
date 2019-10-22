@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Db2
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Db2Generator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -28,13 +41,25 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Generators.DB2
 {
+    /// <summary>
+    /// Class Db2Generator.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Generic.GenericGenerator" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Generic.GenericGenerator" />
     public class Db2Generator : GenericGenerator
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Db2Generator"/> class.
+        /// </summary>
         public Db2Generator()
             : this(new Db2Quoter())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Db2Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
         public Db2Generator(
             Db2Quoter quoter)
             : this(
@@ -43,6 +68,11 @@ namespace FluentMigrator.Runner.Generators.DB2
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Db2Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         public Db2Generator(
             Db2Quoter quoter,
             IOptions<GeneratorOptions> generatorOptions)
@@ -50,6 +80,11 @@ namespace FluentMigrator.Runner.Generators.DB2
         {
         }
 
+        /// <summary>
+        /// Generates an SQL statement to alter a DEFAULT constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.AlterDefaultConstraintExpression expression)
         {
             return string.Format(
@@ -59,6 +94,11 @@ namespace FluentMigrator.Runner.Generators.DB2
                 ((Db2Column)Column).FormatAlterDefaultValue(expression.ColumnName, expression.DefaultValue));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop a default constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.DeleteDefaultConstraintExpression expression)
         {
             return string.Format(
@@ -67,6 +107,11 @@ namespace FluentMigrator.Runner.Generators.DB2
                 Quoter.QuoteColumnName(expression.ColumnName));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to rename a table
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.RenameTableExpression expression)
         {
             return string.Format(
@@ -75,6 +120,11 @@ namespace FluentMigrator.Runner.Generators.DB2
                 Quoter.QuoteTableName(expression.NewName));
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE DROP COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.DeleteColumnExpression expression)
         {
             var builder = new StringBuilder();
@@ -92,6 +142,11 @@ namespace FluentMigrator.Runner.Generators.DB2
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE ADD COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.CreateColumnExpression expression)
         {
             expression.Column.AdditionalFeatures.Add(new KeyValuePair<string, object>("IsCreateColumn", true));
@@ -102,6 +157,12 @@ namespace FluentMigrator.Runner.Generators.DB2
                 Column.Generate(expression.Column));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to create a foreign key
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
+        /// <exception cref="ArgumentException">Number of primary columns and secondary columns must be equal</exception>
         public override string Generate(Expressions.CreateForeignKeyExpression expression)
         {
             if (expression.ForeignKey.PrimaryColumns.Count != expression.ForeignKey.ForeignColumns.Count)
@@ -136,6 +197,11 @@ namespace FluentMigrator.Runner.Generators.DB2
                 Column.FormatCascade("DELETE", expression.ForeignKey.OnDelete));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to create a constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.CreateConstraintExpression expression)
         {
             var constraintName = Quoter.QuoteConstraintName(expression.Constraint.ConstraintName, expression.Constraint.SchemaName);
@@ -152,6 +218,12 @@ namespace FluentMigrator.Runner.Generators.DB2
                 columnList);
         }
 
+        /// <summary>
+        /// Generates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
+        /// <inheritdoc />
         public override string Generate(Expressions.CreateIndexExpression expression)
         {
             var indexWithSchema = Quoter.QuoteIndexName(expression.Index.Name, expression.Index.SchemaName);
@@ -172,27 +244,52 @@ namespace FluentMigrator.Runner.Generators.DB2
                 columnList);
         }
 
+        /// <summary>
+        /// Generates a <c>CREATE SCHEMA</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.CreateSchemaExpression expression)
         {
             return string.Format("CREATE SCHEMA {0}", Quoter.QuoteSchemaName(expression.SchemaName));
         }
 
+        /// <summary>
+        /// Generates a <c>DROP TABLE</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.DeleteTableExpression expression)
         {
             return string.Format("DROP TABLE {0}", Quoter.QuoteTableName(expression.TableName, expression.SchemaName));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop an index
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.DeleteIndexExpression expression)
         {
             var indexWithSchema = Quoter.QuoteIndexName(expression.Index.Name, expression.Index.SchemaName);
             return string.Format("DROP INDEX {0}", indexWithSchema);
         }
 
+        /// <summary>
+        /// Generates a <c>DROP SCHEMA</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.DeleteSchemaExpression expression)
         {
             return string.Format("DROP SCHEMA {0} RESTRICT", Quoter.QuoteSchemaName(expression.SchemaName));
         }
 
+        /// <summary>
+        /// Generates an SQL statement to drop a constraint
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.DeleteConstraintExpression expression)
         {
             var constraintName = Quoter.QuoteConstraintName(expression.Constraint.ConstraintName, expression.Constraint.SchemaName);
@@ -203,6 +300,11 @@ namespace FluentMigrator.Runner.Generators.DB2
                 constraintName);
         }
 
+        /// <summary>
+        /// Generates an SQL statement to delete a foreign key
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.DeleteForeignKeyExpression expression)
         {
             var constraintName = Quoter.QuoteConstraintName(expression.ForeignKey.Name, expression.ForeignKey.ForeignTableSchema);
@@ -213,6 +315,11 @@ namespace FluentMigrator.Runner.Generators.DB2
                 constraintName);
         }
 
+        /// <summary>
+        /// Generates an SQL statement to DELETE data
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.DeleteDataExpression expression)
         {
             if (expression.IsAllRows)
@@ -242,11 +349,21 @@ namespace FluentMigrator.Runner.Generators.DB2
             }
         }
 
+        /// <summary>
+        /// Generates an SQL statement to rename a column
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.RenameColumnExpression expression)
         {
             return CompatibilityMode.HandleCompatibilty("This feature not directly supported by most versions of DB2.");
         }
 
+        /// <summary>
+        /// Generates an SQL statement to INSERT data
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.InsertDataExpression expression)
         {
             var sb = new StringBuilder();
@@ -277,6 +394,11 @@ namespace FluentMigrator.Runner.Generators.DB2
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Generates an SQL statement to UPDATE data
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.UpdateDataExpression expression)
         {
             var updateClauses = expression.Set.Aggregate(new StringBuilder(), (acc, newRow) =>
@@ -301,11 +423,21 @@ namespace FluentMigrator.Runner.Generators.DB2
             return string.Format("UPDATE {0} SET {1} WHERE {2}", Quoter.QuoteTableName(expression.TableName, expression.SchemaName), updateClauses, whereClauses);
         }
 
+        /// <summary>
+        /// Outputs a create table string
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.CreateTableExpression expression)
         {
             return string.Format("CREATE TABLE {0} ({1})", Quoter.QuoteTableName(expression.TableName, expression.SchemaName), Column.Generate(expression.Columns, expression.TableName));
         }
 
+        /// <summary>
+        /// Generates a <c>ALTER TABLE ALTER COLUMN</c> SQL statement
+        /// </summary>
+        /// <param name="expression">The expression to create the SQL for</param>
+        /// <returns>The generated SQL</returns>
         public override string Generate(Expressions.AlterColumnExpression expression)
         {
             try
@@ -318,6 +450,11 @@ namespace FluentMigrator.Runner.Generators.DB2
                 return CompatibilityMode.HandleCompatibilty(e.Message);
             }
         }
+        /// <summary>
+        /// Generates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public override string Generate(Expressions.AlterSchemaExpression expression)
         {
             return CompatibilityMode.HandleCompatibilty("This feature not directly supported by most versions of DB2.");

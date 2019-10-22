@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="HanaTestEndToEnd.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -26,10 +39,17 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd
 {
+    /// <summary>
+    /// Class HanaEndToEndFixture.
+    /// </summary>
     [Category("Integration")]
     [Category("Hana")]
     public class HanaEndToEndFixture
     {
+        /// <summary>
+        /// Migrates the specified migrations namespace.
+        /// </summary>
+        /// <param name="migrationsNamespace">The migrations namespace.</param>
         protected void Migrate(string migrationsNamespace)
         {
             using (var serviceProvider = CreateTaskServices("migrate", migrationsNamespace))
@@ -39,6 +59,10 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd
             }
         }
 
+        /// <summary>
+        /// Rollbacks the specified migrations namespace.
+        /// </summary>
+        /// <param name="migrationsNamespace">The migrations namespace.</param>
         protected void Rollback(string migrationsNamespace)
         {
             using (var serviceProvider = CreateTaskServices("rollback", migrationsNamespace))
@@ -48,6 +72,12 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd
             }
         }
 
+        /// <summary>
+        /// Creates the task services.
+        /// </summary>
+        /// <param name="task">The task.</param>
+        /// <param name="migrationsNamespace">The migrations namespace.</param>
+        /// <returns>ServiceProvider.</returns>
         protected ServiceProvider CreateTaskServices(string task, string migrationsNamespace)
         {
             var serivces = ServiceCollectionExtensions.CreateServices()
@@ -60,13 +90,33 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd
             return serivces.BuildServiceProvider(false);
         }
 
+        /// <summary>
+        /// Class ScopedConnection.
+        /// Implements the <see cref="System.IDisposable" />
+        /// </summary>
+        /// <seealso cref="System.IDisposable" />
         protected class ScopedConnection : IDisposable
         {
+            /// <summary>
+            /// Gets the processor.
+            /// </summary>
+            /// <value>The processor.</value>
             public HanaProcessor Processor { get; }
+            /// <summary>
+            /// Gets the service scope.
+            /// </summary>
+            /// <value>The service scope.</value>
             public IServiceScope ServiceScope { get; }
 
+            /// <summary>
+            /// Gets the service provider.
+            /// </summary>
+            /// <value>The service provider.</value>
             private ServiceProvider ServiceProvider { get; }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ScopedConnection"/> class.
+            /// </summary>
             public ScopedConnection()
             {
                 if (!IntegrationTestOptions.Hana.IsEnabled)
@@ -82,6 +132,9 @@ namespace FluentMigrator.Tests.Integration.Processors.Hana.EndToEnd
                 Processor = ServiceScope.ServiceProvider.GetRequiredService<HanaProcessor>();
             }
 
+            /// <summary>
+            /// Disposes this instance.
+            /// </summary>
             public void Dispose()
             {
                 ServiceScope?.Dispose();

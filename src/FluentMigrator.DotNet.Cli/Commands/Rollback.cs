@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Rollback.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -21,6 +34,11 @@ using McMaster.Extensions.CommandLineUtils;
 
 namespace FluentMigrator.DotNet.Cli.Commands
 {
+    /// <summary>
+    /// Class Rollback.
+    /// Implements the <see cref="FluentMigrator.DotNet.Cli.Commands.ConnectionCommand" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.DotNet.Cli.Commands.ConnectionCommand" />
     [HelpOption]
     [Command("rollback", Description = "Rollback last migration")]
     [Subcommand(typeof(RollbackBy))]
@@ -28,9 +46,18 @@ namespace FluentMigrator.DotNet.Cli.Commands
     [Subcommand(typeof(RollbackAll))]
     public class Rollback : ConnectionCommand
     {
+        /// <summary>
+        /// Gets the transaction mode.
+        /// </summary>
+        /// <value>The transaction mode.</value>
         [Option("-m|--transaction-mode <MODE>", Description = "Overrides the transaction behavior of migrations, so that all migrations to be executed will run in one transaction.")]
         public TransactionMode TransactionMode { get; }
 
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <returns>System.Int32.</returns>
         private int OnExecute(IConsole console)
         {
             var options = MigratorOptions.CreateRollbackBy(this, null);

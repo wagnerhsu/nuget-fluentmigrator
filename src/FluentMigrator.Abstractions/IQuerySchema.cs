@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IQuerySchema.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -30,12 +43,14 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the database type
         /// </summary>
+        /// <value>The type of the database.</value>
         [NotNull]
         string DatabaseType { get; }
 
         /// <summary>
         /// Gets the database type aliases
         /// </summary>
+        /// <value>The database type aliases.</value>
         [NotNull, ItemNotNull]
         IList<string> DatabaseTypeAliases { get; }
 

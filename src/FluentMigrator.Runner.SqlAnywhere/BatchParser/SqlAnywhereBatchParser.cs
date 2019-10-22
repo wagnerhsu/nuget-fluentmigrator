@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlAnywhere
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlAnywhereBatchParser.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -24,15 +37,16 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Runner.BatchParser
 {
     /// <summary>
-    /// A specialization of the <see cref="SqlBatchParser"/> for the Microsoft SQL Server
+    /// A specialization of the <see cref="SqlBatchParser" /> for the Microsoft SQL Server
     /// </summary>
-    /// <remarks>
-    /// It uses the following range searchers: <see cref="MultiLineComment"/>, <see cref="DoubleDashSingleLineComment"/>,
-    /// <see cref="PoundSignSingleLineComment"/>, <see cref="AnsiSqlIdentifier"/>, <see cref="SqlString"/>
-    /// and the following token searchers: <see cref="GoSearcher"/>.
-    /// </remarks>
+    /// <remarks>It uses the following range searchers: <see cref="MultiLineComment" />, <see cref="DoubleDashSingleLineComment" />,
+    /// <see cref="PoundSignSingleLineComment" />, <see cref="AnsiSqlIdentifier" />, <see cref="SqlString" />
+    /// and the following token searchers: <see cref="GoSearcher" />.</remarks>
     public class SqlAnywhereBatchParser : SqlBatchParser
     {
+        /// <summary>
+        /// The range searchers
+        /// </summary>
         [NotNull, ItemNotNull]
         private static readonly IEnumerable<IRangeSearcher> _rangeSearchers = new IRangeSearcher[]
         {
@@ -45,6 +59,9 @@ namespace FluentMigrator.Runner.BatchParser
             new MySqlIdentifier(),
         };
 
+        /// <summary>
+        /// The special token searchers
+        /// </summary>
         [NotNull, ItemNotNull]
         private static readonly IEnumerable<ISpecialTokenSearcher> _specialTokenSearchers = new ISpecialTokenSearcher[]
         {
@@ -52,7 +69,7 @@ namespace FluentMigrator.Runner.BatchParser
         };
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlAnywhereBatchParser"/> class.
+        /// Initializes a new instance of the <see cref="SqlAnywhereBatchParser" /> class.
         /// </summary>
         /// <param name="newLine">The string used to write a new line sequence</param>
         public SqlAnywhereBatchParser(string newLine = null)
@@ -61,7 +78,7 @@ namespace FluentMigrator.Runner.BatchParser
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlAnywhereBatchParser"/> class.
+        /// Initializes a new instance of the <see cref="SqlAnywhereBatchParser" /> class.
         /// </summary>
         /// <param name="rangeSearchers">The range searchers to be used</param>
         /// <param name="specialTokenSearchers">The special token searchers to be used</param>

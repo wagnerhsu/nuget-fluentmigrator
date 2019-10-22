@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Firebird
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="FirebirdIdentifierComparer.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -22,14 +35,17 @@ using FluentMigrator.Runner.Generators;
 namespace FluentMigrator.Runner.Processors.Firebird
 {
     /// <summary>
-    /// A custom <see cref="IEqualityComparer{T}"/> for Firebird identifiers
+    /// A custom <see cref="IEqualityComparer{T}" /> for Firebird identifiers
     /// </summary>
     public class FirebirdIdentifierComparer : IEqualityComparer<string>
     {
+        /// <summary>
+        /// The quoter
+        /// </summary>
         private readonly IQuoter _quoter;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirebirdIdentifierComparer"/> class.
+        /// Initializes a new instance of the <see cref="FirebirdIdentifierComparer" /> class.
         /// </summary>
         /// <param name="quoter">The quoted used to unquote the quoted identifiers</param>
         public FirebirdIdentifierComparer(IQuoter quoter)

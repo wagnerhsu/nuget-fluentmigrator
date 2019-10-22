@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="GoSearcher.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,6 +37,9 @@ namespace FluentMigrator.Runner.BatchParser.SpecialTokenSearchers
     /// </summary>
     public class GoSearcher : ISpecialTokenSearcher
     {
+        /// <summary>
+        /// The regex
+        /// </summary>
         private static readonly Regex _regex = new Regex(@"^\s*(?<statement>GO(\s+(?<count>\d+))?)\s*$", RegexOptions.CultureInvariant | RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /// <inheritdoc />
@@ -43,12 +59,22 @@ namespace FluentMigrator.Runner.BatchParser.SpecialTokenSearchers
             return new SpecialTokenInfo(0, reader.Line.Length, token, parameters);
         }
 
+        /// <summary>
+        /// Gets the go count.
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
+        /// <returns>System.Nullable&lt;System.Int32&gt;.</returns>
         public static int? GetGoCount(string sql)
         {
             var match = _regex.Match(sql);
             return GetGoCount(match);
         }
 
+        /// <summary>
+        /// Gets the go count.
+        /// </summary>
+        /// <param name="match">The match.</param>
+        /// <returns>System.Nullable&lt;System.Int32&gt;.</returns>
         private static int? GetGoCount(Match match)
         {
             if (!match.Success)
@@ -67,7 +93,7 @@ namespace FluentMigrator.Runner.BatchParser.SpecialTokenSearchers
         public class GoSearcherParameters
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="GoSearcherParameters"/> class.
+            /// Initializes a new instance of the <see cref="GoSearcherParameters" /> class.
             /// </summary>
             /// <param name="count">the number of times the batch should be executed</param>
             internal GoSearcherParameters(int count)
@@ -78,6 +104,7 @@ namespace FluentMigrator.Runner.BatchParser.SpecialTokenSearchers
             /// <summary>
             /// Gets the number of times the batch should be executed
             /// </summary>
+            /// <value>The count.</value>
             public int Count { get; }
         }
     }

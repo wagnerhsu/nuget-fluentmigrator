@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IMigration.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,21 +41,23 @@ namespace FluentMigrator
         /// <summary>
         /// Gets the arbitrary application context passed to the task runner
         /// </summary>
+        /// <value>The application context.</value>
         object ApplicationContext { get; }
 
         /// <summary>
         /// Gets the connection string passed to the task runner
         /// </summary>
+        /// <value>The connection string.</value>
         string ConnectionString { get; }
 
         /// <summary>
-        /// Collects all Up migration expressions in the <paramref name="context"/>.
+        /// Collects all Up migration expressions in the <paramref name="context" />.
         /// </summary>
         /// <param name="context">The context to use while collecting the Up migration expressions</param>
         void GetUpExpressions(IMigrationContext context);
 
         /// <summary>
-        /// Collects all Down migration expressions in the <paramref name="context"/>.
+        /// Collects all Down migration expressions in the <paramref name="context" />.
         /// </summary>
         /// <param name="context">The context to use while collecting the Down migration expressions</param>
         void GetDownExpressions(IMigrationContext context);

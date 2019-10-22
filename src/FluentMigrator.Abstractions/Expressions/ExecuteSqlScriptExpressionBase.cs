@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ExecuteSqlScriptExpressionBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,10 +39,11 @@ namespace FluentMigrator.Expressions
         /// <summary>
         /// Gets or sets parameters to be replaced before script execution
         /// </summary>
+        /// <value>The parameters.</value>
         public IDictionary<string, string> Parameters { get; set; }
 
         /// <summary>
-        /// Executes the <paramref name="sqlScript"/> with the given <paramref name="processor"/>
+        /// Executes the <paramref name="sqlScript" /> with the given <paramref name="processor" />
         /// </summary>
         /// <param name="processor">The processor to execute the script with</param>
         /// <param name="sqlScript">The SQL script to execute</param>

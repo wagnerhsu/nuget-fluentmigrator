@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerRunnerBuilderExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -24,18 +37,16 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 namespace FluentMigrator.Runner
 {
     /// <summary>
-    /// Extension methods for <see cref="IMigrationRunnerBuilder"/>
+    /// Extension methods for <see cref="IMigrationRunnerBuilder" />
     /// </summary>
     public static class SqlServerRunnerBuilderExtensions
     {
         /// <summary>
         /// Adds SQL Server support
         /// </summary>
-        /// <remarks>
-        /// This always selects the latest supported SQL server version.
-        /// </remarks>
         /// <param name="builder">The builder to add the SQL Server-specific services to</param>
         /// <returns>The migration runner builder</returns>
+        /// <remarks>This always selects the latest supported SQL server version.</remarks>
         public static IMigrationRunnerBuilder AddSqlServer(this IMigrationRunnerBuilder builder)
         {
             builder.Services.TryAddTransient<SqlServerBatchParser>();

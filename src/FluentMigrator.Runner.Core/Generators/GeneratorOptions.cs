@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="GeneratorOptions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,13 +30,14 @@
 namespace FluentMigrator.Runner.Generators
 {
     /// <summary>
-    /// Options for <see cref="IMigrationGenerator"/> implementations
+    /// Options for <see cref="IMigrationGenerator" /> implementations
     /// </summary>
     public class GeneratorOptions
     {
         /// <summary>
         /// Gets or sets the compatibility mode
         /// </summary>
+        /// <value>The compatibility mode.</value>
         public CompatibilityMode? CompatibilityMode { get; set; }
     }
 }

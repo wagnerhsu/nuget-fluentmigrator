@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ExtensionsForIMigrationInfo.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -17,15 +30,15 @@
 namespace FluentMigrator.Infrastructure.Extensions
 {
     /// <summary>
-    /// Extension methods for <see cref="IMigrationInfo"/>
+    /// Extension methods for <see cref="IMigrationInfo" />
     /// </summary>
     public static class ExtensionsForIMigrationInfo
     {
         /// <summary>
-        /// Returns <c>true</c> when the migration behind the <paramref name="migrationInfo"/> has a migration attribute
+        /// Returns <c>true</c> when the migration behind the <paramref name="migrationInfo" /> has a migration attribute
         /// </summary>
         /// <param name="migrationInfo">The migration information to test</param>
-        /// <returns><c>true</c> when the migration behind the <paramref name="migrationInfo"/> has a migration attribute</returns>
+        /// <returns><c>true</c> when the migration behind the <paramref name="migrationInfo" /> has a migration attribute</returns>
         public static bool IsAttributed(this IMigrationInfo migrationInfo)
         {
             return !(migrationInfo is NonAttributedMigrationToMigrationInfoAdapter);

@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SpecialTokenTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,9 +34,16 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.BatchParser
 {
+    /// <summary>
+    /// Class SpecialTokenTests.
+    /// </summary>
     [Category("BatchParser")]
     public class SpecialTokenTests
     {
+        /// <summary>
+        /// Defines the test method TestIfSemicolonExists.
+        /// </summary>
+        /// <param name="input">The input.</param>
         [TestCase(";")]
         [TestCase(" ; ")]
         [TestCase(" ;")]
@@ -41,6 +61,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(";", result.Token);
         }
 
+        /// <summary>
+        /// Defines the test method TestIfSemicolonMissing.
+        /// </summary>
         [Test]
         public void TestIfSemicolonMissing()
         {
@@ -52,6 +75,12 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.IsNull(result);
         }
 
+        /// <summary>
+        /// Defines the test method TestIfGoExists.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
+        /// <param name="expectedCount">The expected count.</param>
         [TestCase("GO", "GO", 1)]
         [TestCase(" GO ", "GO", 1)]
         [TestCase(" GO", "GO", 1)]
@@ -78,6 +107,10 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(expectedCount, goParams.Count);
         }
 
+        /// <summary>
+        /// Defines the test method TestIfGoMissing.
+        /// </summary>
+        /// <param name="input">The input.</param>
         [TestCase("x GO")]
         [TestCase("GO x")]
         [TestCase("GO 123 123")]
@@ -91,6 +124,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.IsNull(result);
         }
 
+        /// <summary>
+        /// Defines the test method TestIfGoMissingIfReaderNotAtBeginOfLine.
+        /// </summary>
         [Test]
         public void TestIfGoMissingIfReaderNotAtBeginOfLine()
         {

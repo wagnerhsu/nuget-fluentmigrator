@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DeleteConstraintExpression.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -12,8 +25,9 @@ namespace FluentMigrator.Expressions
     public class DeleteConstraintExpression : MigrationExpressionBase, ISupportAdditionalFeatures, IConstraintExpression, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeleteConstraintExpression"/> class.
+        /// Initializes a new instance of the <see cref="DeleteConstraintExpression" /> class.
         /// </summary>
+        /// <param name="type">The type.</param>
         public DeleteConstraintExpression(ConstraintType type)
         {
             Constraint = new ConstraintDefinition(type);
@@ -22,6 +36,7 @@ namespace FluentMigrator.Expressions
         /// <summary>
         /// Gets or sets the constraint definition
         /// </summary>
+        /// <value>The constraint.</value>
         public ConstraintDefinition Constraint { get; set; }
 
         /// <inheritdoc />

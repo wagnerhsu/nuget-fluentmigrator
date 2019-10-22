@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ListProcessors.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -26,10 +39,18 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentMigrator.DotNet.Cli.Commands
 {
+    /// <summary>
+    /// Class ListProcessors.
+    /// </summary>
     [HelpOption]
     [Command("processors", Description = "List processors")]
     public class ListProcessors
     {
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <returns>System.Int32.</returns>
         private int OnExecute(IConsole console)
         {
             var migratorOptions = new MigratorOptions();

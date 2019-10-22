@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="DoubleSlashSingleLineComment.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -22,7 +35,7 @@ namespace FluentMigrator.Runner.BatchParser.RangeSearchers
     public sealed class DoubleSlashSingleLineComment : SingleLineComment
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DoubleSlashSingleLineComment"/> class.
+        /// Initializes a new instance of the <see cref="DoubleSlashSingleLineComment" /> class.
         /// </summary>
         public DoubleSlashSingleLineComment()
             : base("//")

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="RenameTableExpressionBuilder.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -21,14 +34,14 @@ using FluentMigrator.Expressions;
 namespace FluentMigrator.Builders.Rename.Table
 {
     /// <summary>
-    /// An expression builder for a <see cref="RenameTableExpression"/>
+    /// An expression builder for a <see cref="RenameTableExpression" />
     /// </summary>
     public class RenameTableExpressionBuilder : ExpressionBuilderBase<RenameTableExpression>,
         IRenameTableToOrInSchemaSyntax,
         IInSchemaSyntax
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RenameTableExpressionBuilder"/> class.
+        /// Initializes a new instance of the <see cref="RenameTableExpressionBuilder" /> class.
         /// </summary>
         /// <param name="expression">The underlying expression</param>
         public RenameTableExpressionBuilder(RenameTableExpression expression)

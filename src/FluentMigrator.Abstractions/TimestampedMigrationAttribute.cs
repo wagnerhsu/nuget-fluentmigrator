@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TimestampedMigrationAttribute.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -27,7 +40,7 @@ namespace FluentMigrator
     public class TimestampedMigrationAttribute : MigrationAttribute
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute"/> class whose version is based on date and time information.
+        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute" /> class whose version is based on date and time information.
         /// </summary>
         /// <param name="year">The year the migration was created.</param>
         /// <param name="month">The month the migration was created.</param>
@@ -41,7 +54,7 @@ namespace FluentMigrator
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute"/> class whose version is based on date and time information.
+        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute" /> class whose version is based on date and time information.
         /// </summary>
         /// <param name="year">The year the migration was created.</param>
         /// <param name="month">The month the migration was created.</param>
@@ -54,7 +67,7 @@ namespace FluentMigrator
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute"/> class whose version is based on date and time information.
+        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute" /> class whose version is based on date and time information.
         /// </summary>
         /// <param name="year">The year the migration was created.</param>
         /// <param name="month">The month the migration was created.</param>
@@ -68,7 +81,7 @@ namespace FluentMigrator
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute"/> class whose version is based on date and time information.
+        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute" /> class whose version is based on date and time information.
         /// </summary>
         /// <param name="year">The year the migration was created.</param>
         /// <param name="month">The month the migration was created.</param>
@@ -83,21 +96,21 @@ namespace FluentMigrator
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute"/> class whose version is based on date and time information.
+        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute" /> class whose version is based on date and time information.
         /// </summary>
         /// <param name="year">The year the migration was created.</param>
         /// <param name="month">The month the migration was created.</param>
         /// <param name="day">The day the migration was created.</param>
         /// <param name="hour">The hour the migration was created.</param>
         /// <param name="minute">The minute the migration was created.</param>
-        /// <param name="transactionBehavior">The <see cref="FluentMigrator.TransactionBehavior"/> the migration will use.</param>
+        /// <param name="transactionBehavior">The <see cref="FluentMigrator.TransactionBehavior" /> the migration will use.</param>
         public TimestampedMigrationAttribute(ushort year, ushort month, ushort day, ushort hour, ushort minute, TransactionBehavior transactionBehavior)
             : base(DateTimeToFormattedInt(year, month, day, hour, minute, 0), transactionBehavior)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute"/> class whose version is based on date and time information.
+        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute" /> class whose version is based on date and time information.
         /// </summary>
         /// <param name="year">The year the migration was created.</param>
         /// <param name="month">The month the migration was created.</param>
@@ -105,21 +118,21 @@ namespace FluentMigrator
         /// <param name="hour">The hour the migration was created.</param>
         /// <param name="minute">The minute the migration was created.</param>
         /// <param name="second">The second the migration was created.</param>
-        /// <param name="transactionBehavior">The <see cref="FluentMigrator.TransactionBehavior"/> the migration will use.</param>
+        /// <param name="transactionBehavior">The <see cref="FluentMigrator.TransactionBehavior" /> the migration will use.</param>
         public TimestampedMigrationAttribute(ushort year, ushort month, ushort day, ushort hour, ushort minute, ushort second, TransactionBehavior transactionBehavior)
             : base(DateTimeToFormattedInt(year, month, day, hour, minute, second), transactionBehavior)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute"/> class whose version is based on date and time information.
+        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute" /> class whose version is based on date and time information.
         /// </summary>
         /// <param name="year">The year the migration was created.</param>
         /// <param name="month">The month the migration was created.</param>
         /// <param name="day">The day the migration was created.</param>
         /// <param name="hour">The hour the migration was created.</param>
         /// <param name="minute">The minute the migration was created.</param>
-        /// <param name="transactionBehavior">The <see cref="FluentMigrator.TransactionBehavior"/> the migration will use.</param>
+        /// <param name="transactionBehavior">The <see cref="FluentMigrator.TransactionBehavior" /> the migration will use.</param>
         /// <param name="description">A description for the migration.</param>
         public TimestampedMigrationAttribute(ushort year, ushort month, ushort day, ushort hour, ushort minute, TransactionBehavior transactionBehavior, string description)
             : base(DateTimeToFormattedInt(year, month, day, hour, minute, 0), transactionBehavior, description)
@@ -127,7 +140,7 @@ namespace FluentMigrator
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute"/> class whose version is based on date and time information.
+        /// Initializes a new instance of the <see cref="TimestampedMigrationAttribute" /> class whose version is based on date and time information.
         /// </summary>
         /// <param name="year">The year the migration was created.</param>
         /// <param name="month">The month the migration was created.</param>
@@ -135,13 +148,23 @@ namespace FluentMigrator
         /// <param name="hour">The hour the migration was created.</param>
         /// <param name="minute">The minute the migration was created.</param>
         /// <param name="second">The second the migration was created.</param>
-        /// <param name="transactionBehavior">The <see cref="FluentMigrator.TransactionBehavior"/> the migration will use.</param>
+        /// <param name="transactionBehavior">The <see cref="FluentMigrator.TransactionBehavior" /> the migration will use.</param>
         /// <param name="description">A description for the migration.</param>
         public TimestampedMigrationAttribute(ushort year, ushort month, ushort day, ushort hour, ushort minute, ushort second, TransactionBehavior transactionBehavior, string description)
             : base(DateTimeToFormattedInt(year, month, day, hour, minute, second), transactionBehavior, description)
         {
         }
 
+        /// <summary>
+        /// Dates the time to formatted int.
+        /// </summary>
+        /// <param name="year">The year.</param>
+        /// <param name="month">The month.</param>
+        /// <param name="day">The day.</param>
+        /// <param name="hour">The hour.</param>
+        /// <param name="minute">The minute.</param>
+        /// <param name="second">The second.</param>
+        /// <returns>System.Int64.</returns>
         private static long DateTimeToFormattedInt(int year, int month, int day, int hour, int minute, int second)
         {
             var dt = new DateTime(year, month, day, hour, minute, second);

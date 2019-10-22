@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Postgres
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PostgresColumn.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -29,8 +42,17 @@ using JetBrains.Annotations;
 
 namespace FluentMigrator.Runner.Generators.Postgres
 {
+    /// <summary>
+    /// Class PostgresColumn.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Base.ColumnBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Base.ColumnBase" />
     internal class PostgresColumn : ColumnBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostgresColumn"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
         [Obsolete]
         public PostgresColumn([NotNull] PostgresQuoter quoter)
             : this(quoter, new PostgresTypeMap())
@@ -39,7 +61,7 @@ namespace FluentMigrator.Runner.Generators.Postgres
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PostgresColumn"/> class.
+        /// Initializes a new instance of the <see cref="PostgresColumn" /> class.
         /// </summary>
         /// <param name="quoter">The Postgres quoter.</param>
         /// <param name="typeMap">The Postgres type map.</param>
@@ -49,6 +71,12 @@ namespace FluentMigrator.Runner.Generators.Postgres
             AlterClauseOrder = new List<Func<ColumnDefinition, string>> { FormatAlterType, FormatAlterNullable };
         }
 
+        /// <summary>
+        /// Formats the alter default value.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="defaultValue">The default value.</param>
+        /// <returns>System.String.</returns>
         public string FormatAlterDefaultValue(string column, object defaultValue)
         {
             string formatDefaultValue = FormatDefaultValue(new ColumnDefinition { Name = column, DefaultValue = defaultValue });
@@ -56,6 +84,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return string.Format("SET {0}", formatDefaultValue);
         }
 
+        /// <summary>
+        /// Formats the alter nullable.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         private string FormatAlterNullable(ColumnDefinition column)
         {
             if (!column.IsNullable.HasValue)
@@ -67,13 +100,27 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return "SET NOT NULL";
         }
 
+        /// <summary>
+        /// Formats the type of the alter.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         private string FormatAlterType(ColumnDefinition column)
         {
             return string.Format("TYPE {0}", GetColumnType(column));
         }
 
+        /// <summary>
+        /// Gets or sets the alter clause order.
+        /// </summary>
+        /// <value>The alter clause order.</value>
         protected IList<Func<ColumnDefinition, string>> AlterClauseOrder { get; set; }
 
+        /// <summary>
+        /// Generates the alter clauses.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         public string GenerateAlterClauses(ColumnDefinition column)
         {
             var clauses = new List<string>();
@@ -140,6 +187,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return base.FormatType(column);
         }
 
+        /// <summary>
+        /// Gets the type of the column.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
         public string GetColumnType(ColumnDefinition column)
         {
             return FormatType(column);

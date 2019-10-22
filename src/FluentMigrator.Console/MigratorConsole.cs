@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : Migrate
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-17-2019
+// ***********************************************************************
+// <copyright file="MigratorConsole.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -38,38 +51,134 @@ using static FluentMigrator.Runner.ConsoleUtilities;
 
 namespace FluentMigrator.Console
 {
+    /// <summary>
+    /// Class MigratorConsole.
+    /// </summary>
     public class MigratorConsole
     {
+        /// <summary>
+        /// The application context
+        /// </summary>
         public string ApplicationContext;
+        /// <summary>
+        /// The connection
+        /// </summary>
         public string Connection;
+        /// <summary>
+        /// The connection string configuration path
+        /// </summary>
         public string ConnectionStringConfigPath;
+        /// <summary>
+        /// The namespace
+        /// </summary>
         public string Namespace;
+        /// <summary>
+        /// The nested namespaces
+        /// </summary>
         public bool NestedNamespaces;
+        /// <summary>
+        /// The output
+        /// </summary>
         public bool Output;
+        /// <summary>
+        /// The output filename
+        /// </summary>
         public string OutputFilename;
+        /// <summary>
+        /// The preview only
+        /// </summary>
         public bool PreviewOnly;
+        /// <summary>
+        /// The processor type
+        /// </summary>
         public string ProcessorType;
+        /// <summary>
+        /// The profile
+        /// </summary>
         public string Profile;
+        /// <summary>
+        /// The show help
+        /// </summary>
         public bool ShowHelp;
+        /// <summary>
+        /// The steps
+        /// </summary>
         public int Steps;
+        /// <summary>
+        /// The tags
+        /// </summary>
         public List<string> Tags = new List<string>();
+        /// <summary>
+        /// The include untagged maintenances
+        /// </summary>
         public bool IncludeUntaggedMaintenances;
+        /// <summary>
+        /// The include untagged migrations
+        /// </summary>
         public bool IncludeUntaggedMigrations = true;
+        /// <summary>
+        /// The target assembly
+        /// </summary>
         public string TargetAssembly;
+        /// <summary>
+        /// The task
+        /// </summary>
         public string Task;
+        /// <summary>
+        /// The timeout
+        /// </summary>
         public int? Timeout;
+        /// <summary>
+        /// The verbose
+        /// </summary>
         public bool Verbose;
+        /// <summary>
+        /// The stop on error
+        /// </summary>
         public bool StopOnError;
+        /// <summary>
+        /// The version
+        /// </summary>
         public long Version;
+        /// <summary>
+        /// The start version
+        /// </summary>
         public long StartVersion;
+        /// <summary>
+        /// The no connection
+        /// </summary>
         public bool NoConnection;
+        /// <summary>
+        /// The working directory
+        /// </summary>
         public string WorkingDirectory;
+        /// <summary>
+        /// The transaction per session
+        /// </summary>
         public bool TransactionPerSession;
+        /// <summary>
+        /// The allow breaking change
+        /// </summary>
         public bool AllowBreakingChange;
+        /// <summary>
+        /// The provider switches
+        /// </summary>
         public string ProviderSwitches;
+        /// <summary>
+        /// The strip comments
+        /// </summary>
         public bool StripComments = true;
+        /// <summary>
+        /// Gets or sets the default name of the schema.
+        /// </summary>
+        /// <value>The default name of the schema.</value>
         public string DefaultSchemaName { get; set; }
 
+        /// <summary>
+        /// Runs the specified arguments.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <returns>System.Int32.</returns>
         public int Run(params string[] args)
         {
             var dbChoicesList = new List<string>();
@@ -332,6 +441,11 @@ namespace FluentMigrator.Console
             }
         }
 
+        /// <summary>
+        /// Validates the arguments.
+        /// </summary>
+        /// <param name="optionSet">The option set.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private bool ValidateArguments(OptionSet optionSet)
         {
             if (string.IsNullOrEmpty(TargetAssembly))
@@ -347,6 +461,11 @@ namespace FluentMigrator.Console
             return true;
         }
 
+        /// <summary>
+        /// Displays the help.
+        /// </summary>
+        /// <param name="optionSet">The option set.</param>
+        /// <param name="validationErrorMessage">The validation error message.</param>
         private void DisplayHelp(OptionSet optionSet, string validationErrorMessage)
         {
             System.Console.ForegroundColor = ConsoleColor.Yellow;
@@ -355,6 +474,10 @@ namespace FluentMigrator.Console
             DisplayHelp(optionSet);
         }
 
+        /// <summary>
+        /// Displays the help.
+        /// </summary>
+        /// <param name="p">The p.</param>
         private void DisplayHelp(OptionSet p)
         {
             System.Console.WriteLine(@"Usage:");
@@ -376,8 +499,16 @@ namespace FluentMigrator.Console
             p.WriteOptionDescriptions(System.Console.Out);
         }
 
+        /// <summary>
+        /// Gets a value indicating whether [executing against ms SQL].
+        /// </summary>
+        /// <value><c>true</c> if [executing against ms SQL]; otherwise, <c>false</c>.</value>
         private bool ExecutingAgainstMsSql => ProcessorType.StartsWith("SqlServer", StringComparison.InvariantCultureIgnoreCase);
 
+        /// <summary>
+        /// Executes the migrations.
+        /// </summary>
+        /// <returns>System.Int32.</returns>
         private int ExecuteMigrations()
         {
             var conventionSet = new DefaultConventionSet(DefaultSchemaName, WorkingDirectory);
@@ -463,6 +594,10 @@ namespace FluentMigrator.Console
             return 0;
         }
 
+        /// <summary>
+        /// Creates the core services.
+        /// </summary>
+        /// <returns>IServiceCollection.</returns>
         private static IServiceCollection CreateCoreServices()
         {
             var services = new ServiceCollection()

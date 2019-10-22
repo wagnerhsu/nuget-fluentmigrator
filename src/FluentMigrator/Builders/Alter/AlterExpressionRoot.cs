@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AlterExpressionRoot.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -28,10 +41,13 @@ namespace FluentMigrator.Builders.Alter
     /// </summary>
     public class AlterExpressionRoot : IAlterExpressionRoot
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly IMigrationContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AlterExpressionRoot"/> class.
+        /// Initializes a new instance of the <see cref="AlterExpressionRoot" /> class.
         /// </summary>
         /// <param name="context">The migration context</param>
         public AlterExpressionRoot(IMigrationContext context)

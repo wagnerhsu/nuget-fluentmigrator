@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationWithScopedService.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,11 +35,23 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.Initialization.Migrations
 {
+    /// <summary>
+    /// Class MigrationWithScopedService.
+    /// Implements the <see cref="FluentMigrator.ForwardOnlyMigration" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.ForwardOnlyMigration" />
     [Migration(20180517100700, "This one requires a scoped service")]
     public class MigrationWithScopedService : ForwardOnlyMigration
     {
+        /// <summary>
+        /// The processor options
+        /// </summary>
         private readonly ProcessorOptions _processorOptions;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MigrationWithScopedService"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
         public MigrationWithScopedService(IOptionsSnapshot<ProcessorOptions> options)
         {
             _processorOptions = options.Value;

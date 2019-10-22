@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationRunnerBuilderExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -32,7 +45,7 @@ using Microsoft.Extensions.Options;
 namespace FluentMigrator.Runner
 {
     /// <summary>
-    /// Extension methods for the <see cref="IMigrationRunnerBuilder"/> interface
+    /// Extension methods for the <see cref="IMigrationRunnerBuilder" /> interface
     /// </summary>
     public static class MigrationRunnerBuilderExtensions
     {
@@ -188,10 +201,25 @@ namespace FluentMigrator.Runner
             return new ScanInBuilder(builder, sourceItem);
         }
 
+        /// <summary>
+        /// Class ScanInBuilder.
+        /// Implements the <see cref="FluentMigrator.Runner.Initialization.IScanInBuilder" />
+        /// Implements the <see cref="FluentMigrator.Runner.Initialization.IScanInForBuilder" />
+        /// </summary>
+        /// <seealso cref="FluentMigrator.Runner.Initialization.IScanInBuilder" />
+        /// <seealso cref="FluentMigrator.Runner.Initialization.IScanInForBuilder" />
         private class ScanInBuilder : IScanInBuilder, IScanInForBuilder
         {
+            /// <summary>
+            /// The builder
+            /// </summary>
             private readonly IMigrationRunnerBuilder _builder;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ScanInBuilder"/> class.
+            /// </summary>
+            /// <param name="builder">The builder.</param>
+            /// <param name="currentSourceItem">The current source item.</param>
             public ScanInBuilder(IMigrationRunnerBuilder builder, IAssemblySourceItem currentSourceItem)
             {
                 if (builder.DanglingAssemblySourceItem != null)
@@ -205,6 +233,12 @@ namespace FluentMigrator.Runner
                 SourceItem = currentSourceItem;
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ScanInBuilder"/> class.
+            /// </summary>
+            /// <param name="builder">The builder.</param>
+            /// <param name="currentSourceItem">The current source item.</param>
+            /// <param name="sourceItem">The source item.</param>
             private ScanInBuilder(
                 IMigrationRunnerBuilder builder,
                 IAssemblySourceItem currentSourceItem,
@@ -217,6 +251,12 @@ namespace FluentMigrator.Runner
                 Services.AddSingleton(sourceItem);
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ScanInBuilder"/> class.
+            /// </summary>
+            /// <param name="builder">The builder.</param>
+            /// <param name="currentSourceItem">The current source item.</param>
+            /// <param name="sourceItem">The source item.</param>
             private ScanInBuilder(
                 IMigrationRunnerBuilder builder,
                 IAssemblySourceItem currentSourceItem,
@@ -229,6 +269,12 @@ namespace FluentMigrator.Runner
                 Services.AddSingleton(sourceItem);
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ScanInBuilder"/> class.
+            /// </summary>
+            /// <param name="builder">The builder.</param>
+            /// <param name="currentSourceItem">The current source item.</param>
+            /// <param name="sourceItem">The source item.</param>
             private ScanInBuilder(
                 IMigrationRunnerBuilder builder,
                 IAssemblySourceItem currentSourceItem,
@@ -241,6 +287,12 @@ namespace FluentMigrator.Runner
                 Services.AddSingleton(sourceItem);
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="ScanInBuilder"/> class.
+            /// </summary>
+            /// <param name="builder">The builder.</param>
+            /// <param name="currentSourceItem">The current source item.</param>
+            /// <param name="sourceItem">The source item.</param>
             private ScanInBuilder(
                 IMigrationRunnerBuilder builder,
                 IAssemblySourceItem currentSourceItem,

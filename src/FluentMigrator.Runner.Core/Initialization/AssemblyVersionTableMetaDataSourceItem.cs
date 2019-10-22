@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AssemblyVersionTableMetaDataSourceItem.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,15 +39,18 @@ using JetBrains.Annotations;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// Implementation of <see cref="IVersionTableMetaDataSourceItem"/> that uses assemblies as source
+    /// Implementation of <see cref="IVersionTableMetaDataSourceItem" /> that uses assemblies as source
     /// </summary>
     public class AssemblyVersionTableMetaDataSourceItem : IVersionTableMetaDataSourceItem
     {
+        /// <summary>
+        /// The assemblies
+        /// </summary>
         [NotNull, ItemNotNull]
         private readonly Assembly[] _assemblies;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssemblyVersionTableMetaDataSourceItem"/> class.
+        /// Initializes a new instance of the <see cref="AssemblyVersionTableMetaDataSourceItem" /> class.
         /// </summary>
         /// <param name="assemblies">The assemblies to load the type from</param>
         public AssemblyVersionTableMetaDataSourceItem([NotNull, ItemNotNull] params Assembly[] assemblies)

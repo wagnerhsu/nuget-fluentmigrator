@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ICreateConstraintOptionsSyntax.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -23,9 +36,7 @@ namespace FluentMigrator.Builders.Create.Constraint
     /// <summary>
     /// Options for creating the constraint
     /// </summary>
-    /// <remarks>
-    /// This is an extension point for DB-specific constraint options
-    /// </remarks>
+    /// <remarks>This is an extension point for DB-specific constraint options</remarks>
     public interface ICreateConstraintOptionsSyntax : IFluentSyntax
     {
     }

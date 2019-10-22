@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlTextWriter.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,12 +33,19 @@ using System.Text;
 namespace FluentMigrator.Runner.Logging
 {
     /// <summary>
-    /// A <see cref="TextWriter"/> implementation that puts everything into multi-line comments
+    /// A <see cref="TextWriter" /> implementation that puts everything into multi-line comments
     /// </summary>
     internal class SqlTextWriter : TextWriter
     {
+        /// <summary>
+        /// The inner writer
+        /// </summary>
         private readonly TextWriter _innerWriter;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlTextWriter"/> class.
+        /// </summary>
+        /// <param name="innerWriter">The inner writer.</param>
         public SqlTextWriter(TextWriter innerWriter)
         {
             _innerWriter = innerWriter;
@@ -49,6 +69,10 @@ namespace FluentMigrator.Runner.Logging
             _innerWriter.Flush();
         }
 
+        /// <summary>
+        /// Writes the line direct.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public void WriteLineDirect(string message)
         {
             _innerWriter.WriteLine(message);

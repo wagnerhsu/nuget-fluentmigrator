@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="LegacyFluentMigratorLoggerProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,15 +34,18 @@ using Microsoft.Extensions.Logging;
 namespace FluentMigrator.Runner.Logging
 {
     /// <summary>
-    /// Provider for a <see cref="AnnouncerFluentMigratorLogger"/>
+    /// Provider for a <see cref="AnnouncerFluentMigratorLogger" />
     /// </summary>
     [Obsolete("Used to ease transition to the logging framework")]
     internal class LegacyFluentMigratorLoggerProvider : ILoggerProvider
     {
+        /// <summary>
+        /// The announcer
+        /// </summary>
         private readonly IAnnouncer _announcer;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LegacyFluentMigratorLoggerProvider"/> class.
+        /// Initializes a new instance of the <see cref="LegacyFluentMigratorLoggerProvider" /> class.
         /// </summary>
         /// <param name="announcer">The announcer to send the messages to</param>
         public LegacyFluentMigratorLoggerProvider(IAnnouncer announcer)

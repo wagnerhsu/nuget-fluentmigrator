@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="CharWithEscapeByDuplication.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,12 +37,21 @@ namespace FluentMigrator.Runner.BatchParser.RangeSearchers
     /// </summary>
     public class CharWithEscapeByDuplication : IRangeSearcher
     {
+        /// <summary>
+        /// The end character
+        /// </summary>
         private readonly char _endChar;
+        /// <summary>
+        /// The start code regex
+        /// </summary>
         private readonly Regex _startCodeRegex;
+        /// <summary>
+        /// The end code regex
+        /// </summary>
         private readonly Regex _endCodeRegex;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CharWithEscapeByDuplication"/> class.
+        /// Initializes a new instance of the <see cref="CharWithEscapeByDuplication" /> class.
         /// </summary>
         /// <param name="startAndEndChar">The character used for start and end</param>
         /// <param name="isComment">Is this a comment</param>
@@ -43,7 +65,7 @@ namespace FluentMigrator.Runner.BatchParser.RangeSearchers
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CharWithEscapeByDuplication"/> class.
+        /// Initializes a new instance of the <see cref="CharWithEscapeByDuplication" /> class.
         /// </summary>
         /// <param name="startChar">The start character</param>
         /// <param name="endChar">The end character</param>

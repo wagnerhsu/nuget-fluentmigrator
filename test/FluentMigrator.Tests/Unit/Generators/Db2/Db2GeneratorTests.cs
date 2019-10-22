@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Db2GeneratorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,11 +29,20 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.Db2
 {
+    /// <summary>
+    /// Defines test class Db2GeneratorTests.
+    /// </summary>
     [TestFixture]
     public class Db2GeneratorTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected Db2Generator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -28,6 +50,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             Generator = new Db2Generator(new Db2ISeriesQuoter(), generatorOptions);
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAutoIncrementColumnForInt64.
+        /// </summary>
         [Test]
         public void CanCreateAutoIncrementColumnForInt64()
         {
@@ -38,6 +63,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("CREATE TABLE TestTable1 (TestColumn1 BIGINT NOT NULL AS IDENTITY, TestColumn2 INTEGER NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithBinaryColumnWithSize.
+        /// </summary>
         [Test]
         public void CanCreateTableWithBinaryColumnWithSize()
         {
@@ -49,6 +77,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("CREATE TABLE TestTable1 (TestColumn1 VARBINARY(10000) NOT NULL, TestColumn2 INTEGER NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateTableWithBoolDefaultValue.
+        /// </summary>
         [Test]
         public void CanCreateTableWithBoolDefaultValue()
         {
@@ -60,6 +91,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("CREATE TABLE TestTable1 (TestColumn1 CHAR(1) NOT NULL DEFAULT 'T', TestColumn2 INTEGER NOT NULL)");
         }
 
+        /// <summary>
+        /// Defines the test method CanUseSystemMethodCurrentUserAsADefaultValueForAColumn.
+        /// </summary>
         [Test]
         public void CanUseSystemMethodCurrentUserAsADefaultValueForAColumn()
         {
@@ -71,6 +105,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE NewTable ADD COLUMN NewColumn VARCHAR(18) NOT NULL DEFAULT USER");
         }
 
+        /// <summary>
+        /// Defines the test method CanUseSystemMethodCurrentUTCDateTimeAsADefaultValueForAColumn.
+        /// </summary>
         [Test]
         public void CanUseSystemMethodCurrentUTCDateTimeAsADefaultValueForAColumn()
         {
@@ -82,6 +119,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE NewTable ADD COLUMN NewColumn VARGRAPHIC(5) CCSID 1200 NOT NULL DEFAULT (CURRENT_TIMESTAMP - CURRENT_TIMEZONE)");
         }
 
+        /// <summary>
+        /// Defines the test method NonUnicodeQuotesCorrectly.
+        /// </summary>
         [Test]
         public void NonUnicodeQuotesCorrectly()
         {
@@ -96,6 +136,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("INSERT INTO TestTable (NormalString, UnicodeString) VALUES ('Just''in', 'codethinked''.com')");
         }
 
+        /// <summary>
+        /// Defines the test method ExplicitUnicodeStringIgnoredForNonSqlServer.
+        /// </summary>
         [Test]
         [Obsolete]
         public void ExplicitUnicodeStringIgnoredForNonSqlServer()
@@ -111,6 +154,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("INSERT INTO TestTable (NormalString, UnicodeString) VALUES ('Just''in', 'codethinked''.com')");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnAndSetAsNullable.
+        /// </summary>
         [Test]
         public void CanAlterColumnAndSetAsNullable()
         {
@@ -125,6 +171,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ALTER COLUMN TestColumn1 SET DATA TYPE DBCLOB(1048576) CCSID 1200");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnAndSetAsNotNullable.
+        /// </summary>
         [Test]
         public void CanAlterColumnAndSetAsNotNullable()
         {
@@ -139,6 +188,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ALTER COLUMN TestColumn1 SET DATA TYPE DBCLOB(1048576) CCSID 1200 NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanDeleteDefaultConstraint.
+        /// </summary>
         [Test]
         public void CanDeleteDefaultConstraint()
         {
@@ -153,6 +205,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ALTER COLUMN TestColumn1 DROP DEFAULT");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintToCurrentUser.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintToCurrentUser()
         {
@@ -164,6 +219,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
             result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ALTER COLUMN TestColumn1 SET DEFAULT USER");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterDefaultConstraintToCurrentDate.
+        /// </summary>
         [Test]
         public void CanAlterDefaultConstraintToCurrentDate()
         {
@@ -186,6 +244,9 @@ namespace FluentMigrator.Tests.Unit.Generators.Db2
         //    result.ShouldBe("ALTER TABLE TestSchema.TestTable1 ALTER COLUMN TestColumn1 DROP DEFAULT, ALTER TestColumn1 SET DEFAULT (now() at time zone 'UTC')");
         //}
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnAndOnlySetTypeIfIsNullableNotSet.
+        /// </summary>
         [Test]
         public void CanAlterColumnAndOnlySetTypeIfIsNullableNotSet()
         {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SourceTestsBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -22,11 +35,24 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Unit.BatchParser
 {
+    /// <summary>
+    /// Class SourceTestsBase.
+    /// </summary>
     [Category("BatchParser")]
     public abstract class SourceTestsBase
     {
+        /// <summary>
+        /// Creates the source.
+        /// </summary>
+        /// <param name="content">The content.</param>
+        /// <returns>ITextSource.</returns>
         public abstract ITextSource CreateSource(string content);
 
+        /// <summary>
+        /// Defines the test method TestInputs.
+        /// </summary>
+        /// <param name="content">The content.</param>
+        /// <param name="lines">The lines.</param>
         [TestCase("")]
         [TestCase("a", "a")]
         [TestCase("a\n", "a")]
@@ -54,6 +80,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.IsNull(reader);
         }
 
+        /// <summary>
+        /// Defines the test method TestReadTooMuch.
+        /// </summary>
         [Test]
         public void TestReadTooMuch()
         {
@@ -67,6 +96,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.Throws<ArgumentOutOfRangeException>(() => reader.ReadString(100));
         }
 
+        /// <summary>
+        /// Defines the test method TestFullLineAdvance.
+        /// </summary>
         [Test]
         public void TestFullLineAdvance()
         {
@@ -81,6 +113,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.IsNull(newReader);
         }
 
+        /// <summary>
+        /// Defines the test method TestPartialAdvance.
+        /// </summary>
         [Test]
         public void TestPartialAdvance()
         {
@@ -98,6 +133,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(8, reader.Length);
         }
 
+        /// <summary>
+        /// Defines the test method TestOverlappingAdvanceOneLine.
+        /// </summary>
         [Test]
         public void TestOverlappingAdvanceOneLine()
         {
@@ -111,6 +149,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(1, reader.Index);
         }
 
+        /// <summary>
+        /// Defines the test method TestOverlappingAdvanceTwoLine.
+        /// </summary>
         [Test]
         public void TestOverlappingAdvanceTwoLine()
         {
@@ -124,6 +165,9 @@ namespace FluentMigrator.Tests.Unit.BatchParser
             Assert.AreEqual(1, reader.Index);
         }
 
+        /// <summary>
+        /// Defines the test method TestNonOverlappingAdvanceTwoLine.
+        /// </summary>
         [Test]
         public void TestNonOverlappingAdvanceTwoLine()
         {

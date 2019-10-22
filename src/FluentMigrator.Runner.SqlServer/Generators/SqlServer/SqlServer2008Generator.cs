@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2008Generator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2010, Nathan Brown
@@ -30,24 +43,44 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Generators.SqlServer
 {
+    /// <summary>
+    /// Class SqlServer2008Generator.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2005Generator" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.SqlServer.SqlServer2005Generator" />
     public class SqlServer2008Generator : SqlServer2005Generator
     {
+        /// <summary>
+        /// The supported additional features
+        /// </summary>
         private static readonly HashSet<string> _supportedAdditionalFeatures = new HashSet<string>
         {
             SqlServerExtensions.IndexColumnNullsDistinct,
         };
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2008Generator"/> class.
+        /// </summary>
         public SqlServer2008Generator()
             : this(new SqlServer2008Quoter())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2008Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
         public SqlServer2008Generator(
             [NotNull] SqlServer2008Quoter quoter)
             : this(quoter, new OptionsWrapper<GeneratorOptions>(new GeneratorOptions()))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2008Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         public SqlServer2008Generator(
             [NotNull] SqlServer2008Quoter quoter,
             [NotNull] IOptions<GeneratorOptions> generatorOptions)
@@ -59,6 +92,13 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServer2008Generator"/> class.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="descriptionGenerator">The description generator.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         protected SqlServer2008Generator(
             [NotNull] IColumn column,
             [NotNull] IQuoter quoter,
@@ -68,12 +108,22 @@ namespace FluentMigrator.Runner.Generators.SqlServer
         {
         }
 
+        /// <summary>
+        /// Determines whether [is additional feature supported] [the specified feature].
+        /// </summary>
+        /// <param name="feature">The feature.</param>
+        /// <returns><c>true</c> if [is additional feature supported] [the specified feature]; otherwise, <c>false</c>.</returns>
         public override bool IsAdditionalFeatureSupported(string feature)
         {
             return _supportedAdditionalFeatures.Contains(feature)
              || base.IsAdditionalFeatureSupported(feature);
         }
 
+        /// <summary>
+        /// Gets the with nulls distinct string.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns>System.String.</returns>
         public virtual string GetWithNullsDistinctString(IndexDefinition index)
         {
             bool? GetNullsDistinct(IndexColumnDefinition column)
@@ -105,6 +155,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return $" WHERE {condition}";
         }
 
+        /// <summary>
+        /// Generates the specified expression.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public override string Generate(CreateIndexExpression expression)
         {
             var sql = base.Generate(expression);

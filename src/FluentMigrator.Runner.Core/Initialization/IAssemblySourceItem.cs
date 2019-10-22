@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IAssemblySourceItem.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,13 +33,14 @@ using System.Reflection;
 namespace FluentMigrator.Runner.Initialization
 {
     /// <summary>
-    /// Represents an item for the <see cref="AssemblySource"/>
+    /// Represents an item for the <see cref="AssemblySource" />
     /// </summary>
     public interface IAssemblySourceItem
     {
         /// <summary>
         /// Gets all assemblies covered by this item
         /// </summary>
+        /// <value>The assemblies.</value>
         IEnumerable<Assembly> Assemblies { get; }
     }
 }

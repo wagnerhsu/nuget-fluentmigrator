@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MigrationProcessorFactoryProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -36,12 +49,24 @@ using FluentMigrator.Runner.Processors.SQLite;
 
 namespace FluentMigrator.Runner.Processors
 {
+    /// <summary>
+    /// Class MigrationProcessorFactoryProvider.
+    /// </summary>
     [Obsolete]
     public class MigrationProcessorFactoryProvider
     {
+        /// <summary>
+        /// The lock
+        /// </summary>
         private static readonly object _lock = new object();
+        /// <summary>
+        /// The migration processor factories
+        /// </summary>
         private static IDictionary<string, IMigrationProcessorFactory> _migrationProcessorFactories;
 
+        /// <summary>
+        /// Initializes static members of the <see cref="MigrationProcessorFactoryProvider"/> class.
+        /// </summary>
         [Obsolete]
         static MigrationProcessorFactoryProvider()
         {
@@ -77,11 +102,18 @@ namespace FluentMigrator.Runner.Processors
 #endif
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MigrationProcessorFactoryProvider"/> class.
+        /// </summary>
         [Obsolete("Ony the statically provided factories are accessed")]
         public MigrationProcessorFactoryProvider()
         {
         }
 
+        /// <summary>
+        /// Gets the migration processor factories.
+        /// </summary>
+        /// <value>The migration processor factories.</value>
         private static IDictionary<string, IMigrationProcessorFactory> MigrationProcessorFactories
         {
             get
@@ -93,9 +125,17 @@ namespace FluentMigrator.Runner.Processors
             }
         }
 
+        /// <summary>
+        /// Gets the registered factories.
+        /// </summary>
+        /// <value>The registered factories.</value>
         public static IEnumerable<IMigrationProcessorFactory> RegisteredFactories
             => MigrationProcessorFactories.Values;
 
+        /// <summary>
+        /// Registers the specified factory.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
         public static void Register(IMigrationProcessorFactory factory)
         {
             lock (_lock)
@@ -109,9 +149,18 @@ namespace FluentMigrator.Runner.Processors
             }
         }
 
+        /// <summary>
+        /// Gets the processor types.
+        /// </summary>
+        /// <value>The processor types.</value>
         public static IEnumerable<string> ProcessorTypes
             => MigrationProcessorFactories.Keys;
 
+        /// <summary>
+        /// Gets the factory.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>IMigrationProcessorFactory.</returns>
         [Obsolete("Ony the statically provided factories are accessed")]
         public virtual IMigrationProcessorFactory GetFactory(string name)
         {
@@ -120,12 +169,20 @@ namespace FluentMigrator.Runner.Processors
             return null;
         }
 
+        /// <summary>
+        /// Lists the available processor types.
+        /// </summary>
+        /// <returns>System.String.</returns>
         [Obsolete]
         public string ListAvailableProcessorTypes()
         {
             return string.Join(", ", MigrationProcessorFactories.Keys.ToArray());
         }
 
+        /// <summary>
+        /// Finds the processor factories.
+        /// </summary>
+        /// <returns>IDictionary&lt;System.String, IMigrationProcessorFactory&gt;.</returns>
         private static IDictionary<string, IMigrationProcessorFactory> FindProcessorFactories()
         {
             var availableMigrationProcessorFactories = new SortedDictionary<string, IMigrationProcessorFactory>(StringComparer.OrdinalIgnoreCase);
@@ -147,6 +204,10 @@ namespace FluentMigrator.Runner.Processors
             return availableMigrationProcessorFactories;
         }
 
+        /// <summary>
+        /// Gets the assemblies.
+        /// </summary>
+        /// <returns>IEnumerable&lt;Assembly&gt;.</returns>
         private static IEnumerable<Assembly> GetAssemblies()
         {
             var initialAssemblies = RuntimeHost.Current.GetLoadedAssemblies()

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Postgres
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Postgres92Generator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2019, FluentMigrator Project
 //
@@ -22,8 +35,18 @@ using Microsoft.Extensions.Options;
 
 namespace FluentMigrator.Runner.Generators.Postgres92
 {
+    /// <summary>
+    /// Class Postgres92Generator.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Postgres.PostgresGenerator" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Postgres.PostgresGenerator" />
     public class Postgres92Generator : PostgresGenerator
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Postgres92Generator"/> class.
+        /// </summary>
+        /// <param name="quoter">The quoter.</param>
+        /// <param name="generatorOptions">The generator options.</param>
         public Postgres92Generator(
             [NotNull] PostgresQuoter quoter,
             [NotNull] IOptions<GeneratorOptions> generatorOptions)

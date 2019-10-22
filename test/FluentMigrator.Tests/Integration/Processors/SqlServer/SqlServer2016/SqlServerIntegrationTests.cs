@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServerIntegrationTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, FluentMigrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,27 +42,55 @@ using NUnit.Framework;
 
 namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
 {
+    /// <summary>
+    /// Class SqlServerIntegrationTests.
+    /// </summary>
     [Category("Integration")]
     [Category("SqlServer2016")]
     public abstract class SqlServerIntegrationTests
     {
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         protected SqlServer2016Processor Processor { get; private set; }
+        /// <summary>
+        /// Gets the quoter.
+        /// </summary>
+        /// <value>The quoter.</value>
         protected SqlServer2008Quoter Quoter { get; private set; }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
             ServiceProvider = CreateProcessorServices(initAction: null);
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -58,12 +99,20 @@ namespace FluentMigrator.Tests.Integration.Processors.SqlServer.SqlServer2016
             Quoter = ServiceScope.ServiceProvider.GetRequiredService<SqlServer2008Quoter>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {
             ServiceScope?.Dispose();
         }
 
+        /// <summary>
+        /// Creates the processor services.
+        /// </summary>
+        /// <param name="initAction">The initialize action.</param>
+        /// <returns>ServiceProvider.</returns>
         protected ServiceProvider CreateProcessorServices([CanBeNull] Action<IServiceCollection> initAction)
         {
             if (!IntegrationTestOptions.SqlServer2016.IsEnabled)

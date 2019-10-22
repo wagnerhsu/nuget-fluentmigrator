@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.DotNet.Cli
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ListMigrations.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, Sean Chambers and the FluentMigrator Project
 //
@@ -20,10 +33,20 @@ using McMaster.Extensions.CommandLineUtils;
 
 namespace FluentMigrator.DotNet.Cli.Commands
 {
+    /// <summary>
+    /// Class ListMigrations.
+    /// Implements the <see cref="FluentMigrator.DotNet.Cli.Commands.ConnectionCommand" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.DotNet.Cli.Commands.ConnectionCommand" />
     [HelpOption]
     [Command("migrations", Description = "List migrations")]
     public class ListMigrations : ConnectionCommand
     {
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="console">The console.</param>
+        /// <returns>System.Int32.</returns>
         private int OnExecute(IConsole console)
         {
             var options = MigratorOptions.CreateListMigrations(this);

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="TransactionalMigrationScope.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -23,13 +36,17 @@ namespace FluentMigrator.Runner
     /// </summary>
     public class TransactionalMigrationScope : TrackingMigrationScope
     {
+        /// <summary>
+        /// The migration processor
+        /// </summary>
         private readonly IMigrationProcessor _migrationProcessor;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransactionalMigrationScope"/> class.
+        /// Initializes a new instance of the <see cref="TransactionalMigrationScope" /> class.
         /// </summary>
         /// <param name="processor">The migration processor</param>
         /// <param name="disposalAction">Called after the scope was cancelled</param>
+        /// <exception cref="ArgumentNullException">processor</exception>
         public TransactionalMigrationScope(IMigrationProcessor processor, Action disposalAction)
             : base(disposalAction)
         {

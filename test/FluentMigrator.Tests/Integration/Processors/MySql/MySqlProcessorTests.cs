@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MySqlProcessorTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using System;
 using System.IO;
 
@@ -18,15 +31,33 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration.Processors.MySql
 {
+    /// <summary>
+    /// Defines test class MySqlProcessorTests.
+    /// </summary>
     [TestFixture]
     [Category("Integration")]
     [Category("MySql")]
     public class MySqlProcessorTests
     {
+        /// <summary>
+        /// Gets or sets the service provider.
+        /// </summary>
+        /// <value>The service provider.</value>
         private ServiceProvider ServiceProvider { get; set; }
+        /// <summary>
+        /// Gets or sets the service scope.
+        /// </summary>
+        /// <value>The service scope.</value>
         private IServiceScope ServiceScope { get; set; }
+        /// <summary>
+        /// Gets or sets the processor.
+        /// </summary>
+        /// <value>The processor.</value>
         private MySql4Processor Processor { get; set; }
 
+        /// <summary>
+        /// Defines the test method CallingProcessWithPerformDBOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges.
+        /// </summary>
         [Test]
         public void CallingProcessWithPerformDBOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges()
         {
@@ -72,6 +103,9 @@ namespace FluentMigrator.Tests.Integration.Processors.MySql
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingExecuteWithPerformDBOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges.
+        /// </summary>
         [Test]
         public void CallingExecuteWithPerformDBOperationExpressionWhenInPreviewOnlyModeWillNotMakeDbChanges()
         {
@@ -104,6 +138,9 @@ namespace FluentMigrator.Tests.Integration.Processors.MySql
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingDefaultValueExistsReturnsTrueWhenMatches.
+        /// </summary>
         [Test]
         public void CallingDefaultValueExistsReturnsTrueWhenMatches()
         {
@@ -118,6 +155,9 @@ namespace FluentMigrator.Tests.Integration.Processors.MySql
             }
         }
 
+        /// <summary>
+        /// Defines the test method CallingReadTableDataQuotesTableName.
+        /// </summary>
         [Test]
         public void CallingReadTableDataQuotesTableName()
         {
@@ -132,6 +172,11 @@ namespace FluentMigrator.Tests.Integration.Processors.MySql
             }
         }
 
+        /// <summary>
+        /// Creates the processor services.
+        /// </summary>
+        /// <param name="initAction">The initialize action.</param>
+        /// <returns>ServiceProvider.</returns>
         private static ServiceProvider CreateProcessorServices([CanBeNull] Action<IServiceCollection> initAction)
         {
             if (!IntegrationTestOptions.MySql.IsEnabled)
@@ -145,18 +190,27 @@ namespace FluentMigrator.Tests.Integration.Processors.MySql
             return serivces.BuildServiceProvider();
         }
 
+        /// <summary>
+        /// Classes the set up.
+        /// </summary>
         [OneTimeSetUp]
         public void ClassSetUp()
         {
             ServiceProvider = CreateProcessorServices(null);
         }
 
+        /// <summary>
+        /// Classes the tear down.
+        /// </summary>
         [OneTimeTearDown]
         public void ClassTearDown()
         {
             ServiceProvider?.Dispose();
         }
 
+        /// <summary>
+        /// Sets up.
+        /// </summary>
         [SetUp]
         public void SetUp()
         {
@@ -164,6 +218,9 @@ namespace FluentMigrator.Tests.Integration.Processors.MySql
             Processor = ServiceScope.ServiceProvider.GetRequiredService<MySql4Processor>();
         }
 
+        /// <summary>
+        /// Tears down.
+        /// </summary>
         [TearDown]
         public void TearDown()
         {

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="ObsoleteVersionMigrationTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -36,6 +49,11 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Integration
 {
+    /// <summary>
+    /// Defines test class ObsoleteVersionMigrationTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Integration.ObsoleteIntegrationTestBase" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Integration.ObsoleteIntegrationTestBase" />
     [TestFixture]
     [Obsolete]
     [Category("Integration")]
@@ -49,6 +67,9 @@ namespace FluentMigrator.Tests.Integration
     [Category("SqlServer2014")]
     public class ObsoleteVersionMigrationTests : ObsoleteIntegrationTestBase
     {
+        /// <summary>
+        /// Defines the test method CanUseVersionInfo.
+        /// </summary>
         [Test]
         public void CanUseVersionInfo()
         {
@@ -70,6 +91,9 @@ namespace FluentMigrator.Tests.Integration
                 });
         }
 
+        /// <summary>
+        /// Defines the test method CanUseCustomVersionInfo.
+        /// </summary>
         [Test]
         public void CanUseCustomVersionInfo()
         {
@@ -102,6 +126,9 @@ namespace FluentMigrator.Tests.Integration
             }, true, typeof(SQLiteProcessor), typeof(MySqlProcessor), typeof(FirebirdProcessor), typeof(SqlAnywhereProcessor));
         }
 
+        /// <summary>
+        /// Defines the test method CanUseCustomVersionInfoDefaultSchema.
+        /// </summary>
         [Test]
         public void CanUseCustomVersionInfoDefaultSchema()
         {

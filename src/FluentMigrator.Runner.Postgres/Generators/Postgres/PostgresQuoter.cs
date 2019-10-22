@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Postgres
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="PostgresQuoter.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -23,8 +36,17 @@ using FluentMigrator.Runner.Processors.Postgres;
 
 namespace FluentMigrator.Runner.Generators.Postgres
 {
+    /// <summary>
+    /// Class PostgresQuoter.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Generic.GenericQuoter" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Generic.GenericQuoter" />
     public class PostgresQuoter : GenericQuoter
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PostgresQuoter"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
         public PostgresQuoter(PostgresOptions options)
         {
             Options = options ?? new PostgresOptions();
@@ -50,6 +72,10 @@ namespace FluentMigrator.Runner.Generators.Postgres
                 "where", "window", "with", "xmlattributes", "xmlconcat", "xmlelement", "xmlexists", "xmlforest", "xmlnamespaces", "xmlparse",
                 "xmlpi", "xmlroot", "xmlserialize", "xmltable" }, StringComparer.OrdinalIgnoreCase);
 
+        /// <summary>
+        /// Gets the options.
+        /// </summary>
+        /// <value>The options.</value>
         public PostgresOptions Options { get; }
 
         /// <inheritdoc />
@@ -58,8 +84,19 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return Options.ForceQuote ? base.ShouldQuote(name) : _keywords.Contains(name);
         }
 
+        /// <summary>
+        /// Formats the bool.
+        /// </summary>
+        /// <param name="value">if set to <c>true</c> [value].</param>
+        /// <returns>System.String.</returns>
         public override string FormatBool(bool value) { return value ? "true" : "false"; }
 
+        /// <summary>
+        /// Quotes the name of the schema.
+        /// </summary>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns>System.String.</returns>
+        /// <inheritdoc />
         public override string QuoteSchemaName(string schemaName)
         {
             if (string.IsNullOrEmpty(schemaName))
@@ -67,6 +104,13 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return base.QuoteSchemaName(schemaName);
         }
 
+        /// <summary>
+        /// Quotes the name of the sequence.
+        /// </summary>
+        /// <param name="sequenceName">Name of the sequence.</param>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns>System.String.</returns>
+        /// <inheritdoc />
         public override string QuoteSequenceName(string sequenceName, string schemaName)
         {
             return CreateSchemaPrefixedQuotedIdentifier(
@@ -74,12 +118,22 @@ namespace FluentMigrator.Runner.Generators.Postgres
                 IsQuoted(sequenceName) ? sequenceName : Quote(sequenceName));
         }
 
+        /// <summary>
+        /// Formats the byte array.
+        /// </summary>
+        /// <param name="array">The array.</param>
+        /// <returns>System.String.</returns>
         protected override string FormatByteArray(byte[] array)
         {
             var arrayAsHex = array.Select(b => b.ToString("X2")).ToArray();
             return @"E'\\x" + string.Concat(arrayAsHex) + "'";
         }
 
+        /// <summary>
+        /// Uns the name of the quote schema.
+        /// </summary>
+        /// <param name="quoted">The quoted.</param>
+        /// <returns>System.String.</returns>
         public string UnQuoteSchemaName(string quoted)
         {
             if (string.IsNullOrEmpty(quoted))
@@ -88,6 +142,11 @@ namespace FluentMigrator.Runner.Generators.Postgres
             return UnQuote(quoted);
         }
 
+        /// <summary>
+        /// Formats the system methods.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public override string FormatSystemMethods(SystemMethods value)
         {
             switch (value)

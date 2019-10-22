@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Tests
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="MySql4ColumnTests.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -29,17 +42,31 @@ using Shouldly;
 
 namespace FluentMigrator.Tests.Unit.Generators.MySql4
 {
+    /// <summary>
+    /// Defines test class MySql4ColumnTests.
+    /// Implements the <see cref="FluentMigrator.Tests.Unit.Generators.BaseColumnTests" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Tests.Unit.Generators.BaseColumnTests" />
     [TestFixture]
     public class MySql4ColumnTests : BaseColumnTests
     {
+        /// <summary>
+        /// The generator
+        /// </summary>
         protected MySql4Generator Generator;
 
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
             Generator = new MySql4Generator();
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNullableColumnWithCustomDomainTypeAndCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNullableColumnWithCustomDomainTypeAndCustomSchema()
         {
@@ -50,6 +77,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` ADD COLUMN `TestColumn1` MyDomainType");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateNullableColumnWithCustomDomainTypeAndDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateNullableColumnWithCustomDomainTypeAndDefaultSchema()
         {
@@ -59,6 +89,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` ADD COLUMN `TestColumn1` MyDomainType");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanAlterColumnWithCustomSchema()
         {
@@ -69,6 +102,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` MODIFY COLUMN `TestColumn1` VARCHAR(20) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanAlterColumnWithDefaultSchema()
         {
@@ -78,6 +114,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` MODIFY COLUMN `TestColumn1` VARCHAR(20) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAutoIncrementColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateAutoIncrementColumnWithCustomSchema()
         {
@@ -88,6 +127,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` MODIFY COLUMN `TestColumn1` INTEGER NOT NULL AUTO_INCREMENT");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateAutoIncrementColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateAutoIncrementColumnWithDefaultSchema()
         {
@@ -97,6 +139,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` MODIFY COLUMN `TestColumn1` INTEGER NOT NULL AUTO_INCREMENT");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithCustomSchema()
         {
@@ -107,6 +152,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` ADD COLUMN `TestColumn1` VARCHAR(5) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithDefaultSchema()
         {
@@ -116,6 +164,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` ADD COLUMN `TestColumn1` VARCHAR(5) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithSystemMethodAndCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithSystemMethodAndCustomSchema()
         {
@@ -126,6 +177,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
                 "UPDATE `TestTable1` SET `TestColumn1` = CURRENT_TIMESTAMP WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithSystemMethodAndDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateColumnWithSystemMethodAndDefaultSchema()
         {
@@ -136,6 +190,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
                 "UPDATE `TestTable1` SET `TestColumn1` = CURRENT_TIMESTAMP WHERE 1 = 1");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateDecimalColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanCreateDecimalColumnWithCustomSchema()
         {
@@ -146,6 +203,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` ADD COLUMN `TestColumn1` DECIMAL(19,2) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateDecimalColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanCreateDecimalColumnWithDefaultSchema()
         {
@@ -155,6 +215,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` ADD COLUMN `TestColumn1` DECIMAL(19,2) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateCurrencyColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public void CanCreateCurrencyColumnWithDefaultSchema()
         {
@@ -164,6 +227,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` ADD COLUMN `TestColumn1` DECIMAL(19,4) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateCurrencyColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public void CanCreateCurrencyColumnWithCustomSchema()
         {
@@ -174,6 +240,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` ADD COLUMN `TestColumn1` DECIMAL(19,4) NOT NULL");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropColumnWithCustomSchema()
         {
@@ -184,6 +253,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` DROP COLUMN `TestColumn1`");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropColumnWithDefaultSchema()
         {
@@ -193,6 +265,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` DROP COLUMN `TestColumn1`");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropMultipleColumnsWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanDropMultipleColumnsWithCustomSchema()
         {
@@ -203,6 +278,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` DROP COLUMN `TestColumn1`; ALTER TABLE `TestTable1` DROP COLUMN `TestColumn2`");
         }
 
+        /// <summary>
+        /// Defines the test method CanDropMultipleColumnsWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanDropMultipleColumnsWithDefaultSchema()
         {
@@ -212,6 +290,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` DROP COLUMN `TestColumn1`; ALTER TABLE `TestTable1` DROP COLUMN `TestColumn2`");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameColumnWithCustomSchema.
+        /// </summary>
         [Test]
         public override void CanRenameColumnWithCustomSchema()
         {
@@ -222,6 +303,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` CHANGE `TestColumn1` `TestColumn2` ");
         }
 
+        /// <summary>
+        /// Defines the test method CanRenameColumnWithDefaultSchema.
+        /// </summary>
         [Test]
         public override void CanRenameColumnWithDefaultSchema()
         {
@@ -232,6 +316,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` CHANGE `TestColumn1` `TestColumn2` ");
         }
 
+        /// <summary>
+        /// Defines the test method CanAlterColumnWithDescription.
+        /// </summary>
         [Test]
         public void CanAlterColumnWithDescription()
         {
@@ -241,6 +328,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` MODIFY COLUMN `TestColumn1` VARCHAR(20) NOT NULL COMMENT 'TestColumn1Description'");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithDescription.
+        /// </summary>
         [Test]
         public void CanCreateColumnWithDescription()
         {
@@ -250,6 +340,9 @@ namespace FluentMigrator.Tests.Unit.Generators.MySql4
             result.ShouldBe("ALTER TABLE `TestTable1` ADD COLUMN `TestColumn1` VARCHAR(5) NOT NULL COMMENT 'TestColumn1Description'");
         }
 
+        /// <summary>
+        /// Defines the test method CanCreateColumnWithBinaryIntMax.
+        /// </summary>
         [Test]
         public void CanCreateColumnWithBinaryIntMax()
         {

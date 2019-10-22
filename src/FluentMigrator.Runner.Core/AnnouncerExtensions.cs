@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="AnnouncerExtensions.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -21,7 +34,7 @@ using System;
 namespace FluentMigrator.Runner
 {
     /// <summary>
-    /// Extension methods for an <see cref="IAnnouncer"/>
+    /// Extension methods for an <see cref="IAnnouncer" />
     /// </summary>
     [Obsolete]
     public static class AnnouncerExtensions

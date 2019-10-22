@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="VersionOrderInvalidException.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
@@ -24,23 +37,47 @@ using FluentMigrator.Infrastructure;
 
 namespace FluentMigrator.Runner.Exceptions
 {
+    /// <summary>
+    /// Class VersionOrderInvalidException.
+    /// Implements the <see cref="FluentMigrator.Runner.Exceptions.RunnerException" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Exceptions.RunnerException" />
     public class VersionOrderInvalidException : RunnerException
     {
+        /// <summary>
+        /// The invalid migrations
+        /// </summary>
         private IReadOnlyCollection<KeyValuePair<long, IMigrationInfo>> _invalidMigrations;
 
+        /// <summary>
+        /// Gets or sets the invalid migrations.
+        /// </summary>
+        /// <value>The invalid migrations.</value>
         public IEnumerable<KeyValuePair<long, IMigrationInfo>> InvalidMigrations
         {
             get => _invalidMigrations;
             set => _invalidMigrations = value.ToList();
         }
 
+        /// <summary>
+        /// Gets the invalid versions.
+        /// </summary>
+        /// <value>The invalid versions.</value>
         public IEnumerable<long> InvalidVersions => _invalidMigrations.Select(x => x.Key);
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VersionOrderInvalidException"/> class.
+        /// </summary>
+        /// <param name="invalidMigrations">The invalid migrations.</param>
         public VersionOrderInvalidException(IEnumerable<KeyValuePair<long, IMigrationInfo>> invalidMigrations)
         {
             _invalidMigrations = invalidMigrations.ToList();
         }
 
+        /// <summary>
+        /// Gets the message.
+        /// </summary>
+        /// <value>The message.</value>
         public override string Message
         {
             get

@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SearchStatus.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 // Copyright (c) 2018, Fluent Migrator Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,20 +40,32 @@ namespace FluentMigrator.Runner.BatchParser
     /// </summary>
     internal class SearchStatus
     {
+        /// <summary>
+        /// The context
+        /// </summary>
         [NotNull]
         private readonly SearchContext _context;
 
+        /// <summary>
+        /// The reader
+        /// </summary>
         [NotNull]
         private readonly ILineReader _reader;
 
+        /// <summary>
+        /// The active ranges
+        /// </summary>
         [NotNull, ItemNotNull]
         private readonly Stack<IRangeSearcher> _activeRanges;
 
+        /// <summary>
+        /// The found token
+        /// </summary>
         [CanBeNull]
         private readonly SpecialTokenInfo _foundToken;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SearchStatus"/> class.
+        /// Initializes a new instance of the <see cref="SearchStatus" /> class.
         /// </summary>
         /// <param name="context">The search context</param>
         /// <param name="reader">The reader to be read from</param>
@@ -52,7 +77,7 @@ namespace FluentMigrator.Runner.BatchParser
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SearchStatus"/> class
+        /// Initializes a new instance of the <see cref="SearchStatus" /> class
         /// </summary>
         /// <param name="context">The search context</param>
         /// <param name="reader">The reader to be read from</param>
@@ -131,6 +156,7 @@ namespace FluentMigrator.Runner.BatchParser
         /// Search for the end of a range
         /// </summary>
         /// <returns><c>null</c> when no range end token could be found</returns>
+        /// <exception cref="InvalidOperationException">Missing end of range ({searcher.GetType().Name})</exception>
         [CanBeNull]
         private SearchStatus FindRangeEnd()
         {
@@ -182,10 +208,8 @@ namespace FluentMigrator.Runner.BatchParser
         /// <summary>
         /// Search for a token or range start token
         /// </summary>
-        /// <remarks>
-        /// In other words: Search for everything that is allowed outside of a range.
-        /// </remarks>
         /// <returns><c>null</c> if neither a token nor a range start sequence could be found</returns>
+        /// <remarks>In other words: Search for everything that is allowed outside of a range.</remarks>
         [CanBeNull]
         private SearchStatus FindTokenOrRangeStart()
         {
@@ -221,6 +245,7 @@ namespace FluentMigrator.Runner.BatchParser
         /// <param name="reader">The reader where the sequence was found</param>
         /// <param name="info">Information about the start sequence</param>
         /// <returns>A new search status</returns>
+        /// <exception cref="InvalidOperationException">Missing end of range ({info.Searcher.GetType().Name})</exception>
         [NotNull]
         private SearchStatus UseNewRange([NotNull] ILineReader reader, [NotNull] RangeStart info)
         {
@@ -232,6 +257,11 @@ namespace FluentMigrator.Runner.BatchParser
             return new SearchStatus(_context, nextReader, _activeRanges, null);
         }
 
+        /// <summary>
+        /// Writes the SQL.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <returns>ILineReader.</returns>
         [CanBeNull]
         private ILineReader WriteSql([NotNull] ILineReader reader)
         {
@@ -240,6 +270,12 @@ namespace FluentMigrator.Runner.BatchParser
             return reader.Advance(reader.Length);
         }
 
+        /// <summary>
+        /// Writes the SQL.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="info">The information.</param>
+        /// <returns>ILineReader.</returns>
         [CanBeNull]
         private ILineReader WriteSql([NotNull] ILineReader reader, [NotNull] RangeStart info)
         {
@@ -248,6 +284,13 @@ namespace FluentMigrator.Runner.BatchParser
             return WriteSql(reader, info.Index + info.Searcher.StartCodeLength);
         }
 
+        /// <summary>
+        /// Writes the SQL.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="searcher">The searcher.</param>
+        /// <param name="info">The information.</param>
+        /// <returns>ILineReader.</returns>
         [CanBeNull]
         private ILineReader WriteSql([NotNull] ILineReader reader, [NotNull] IRangeSearcher searcher, [NotNull] EndCodeSearchResult info)
         {
@@ -262,6 +305,13 @@ namespace FluentMigrator.Runner.BatchParser
             return WriteSql(_reader, info.Index + searcher.EndCodeLength);
         }
 
+        /// <summary>
+        /// Writes the SQL.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="itemIndex">Index of the item.</param>
+        /// <param name="skipLength">Length of the skip.</param>
+        /// <returns>ILineReader.</returns>
         [CanBeNull]
         private ILineReader WriteSql([NotNull] ILineReader reader, int itemIndex, int skipLength = 0)
         {
@@ -276,17 +326,33 @@ namespace FluentMigrator.Runner.BatchParser
             return reader.Advance(readLength + skipLength);
         }
 
+        /// <summary>
+        /// Class RangeStart.
+        /// </summary>
         private class RangeStart
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="RangeStart"/> class.
+            /// </summary>
+            /// <param name="searcher">The searcher.</param>
+            /// <param name="index">The index.</param>
             public RangeStart([NotNull] IRangeSearcher searcher, int index)
             {
                 Searcher = searcher;
                 Index = index;
             }
 
+            /// <summary>
+            /// Gets the searcher.
+            /// </summary>
+            /// <value>The searcher.</value>
             [NotNull]
             public IRangeSearcher Searcher { get; }
 
+            /// <summary>
+            /// Gets the index.
+            /// </summary>
+            /// <value>The index.</value>
             public int Index { get; }
         }
     }

@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Abstractions
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IndexDefinition.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
@@ -39,38 +52,47 @@ namespace FluentMigrator.Model
           IValidatableObject,
           IValidationChildren
     {
+        /// <summary>
+        /// The additional features
+        /// </summary>
         private readonly IDictionary<string, object> _additionalFeatures = new Dictionary<string, object>();
 
         /// <summary>
         /// Gets or sets the index name
         /// </summary>
+        /// <value>The name.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.IndexNameCannotBeNullOrEmpty))]
         public virtual string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the schema name
         /// </summary>
+        /// <value>The name of the schema.</value>
         public virtual string SchemaName { get; set; }
 
         /// <summary>
         /// Gets or sets the table name
         /// </summary>
+        /// <value>The name of the table.</value>
         [Required(ErrorMessageResourceType = typeof(ErrorMessages), ErrorMessageResourceName = nameof(ErrorMessages.TableNameCannotBeNullOrEmpty))]
         public virtual string TableName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whteher the index only allows unique values
         /// </summary>
+        /// <value><c>true</c> if this instance is unique; otherwise, <c>false</c>.</value>
         public virtual bool IsUnique { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the index is clustered
         /// </summary>
+        /// <value><c>true</c> if this instance is clustered; otherwise, <c>false</c>.</value>
         public bool IsClustered { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of index column definitions
         /// </summary>
+        /// <value>The columns.</value>
         public virtual ICollection<IndexColumnDefinition> Columns { get; set; } = new List<IndexColumnDefinition>();
 
         /// <inheritdoc />

@@ -1,4 +1,17 @@
-﻿#region License
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.SqlServer
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="SqlServer2005DescriptionGenerator.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2018, Fluent Migrator Project
 //
@@ -21,21 +34,49 @@ using FluentMigrator.Runner.Generators.Generic;
 
 namespace FluentMigrator.Runner.Generators.SqlServer
 {
+    /// <summary>
+    /// Class SqlServer2005DescriptionGenerator.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Generic.GenericDescriptionGenerator" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Generic.GenericDescriptionGenerator" />
     public class SqlServer2005DescriptionGenerator : GenericDescriptionGenerator
     {
         #region Constants
 
+        /// <summary>
+        /// The table description template
+        /// </summary>
         private const string TableDescriptionTemplate =
             "EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'{0}', @level0type=N'SCHEMA', @level0name='{1}', @level1type=N'TABLE', @level1name='{2}'";
+        /// <summary>
+        /// The column description template
+        /// </summary>
         private const string ColumnDescriptionTemplate =
             "EXEC sys.sp_addextendedproperty @name = N'MS_Description', @value = N'{0}', @level0type = N'SCHEMA', @level0name = '{1}', @level1type = N'Table', @level1name = '{2}', @level2type = N'Column',  @level2name = '{3}'";
+        /// <summary>
+        /// The remove table description template
+        /// </summary>
         private const string RemoveTableDescriptionTemplate = "EXEC sys.sp_dropextendedproperty @name=N'MS_Description', @level0type=N'SCHEMA', @level0name='{0}', @level1type=N'TABLE', @level1name='{1}'";
+        /// <summary>
+        /// The remove column description template
+        /// </summary>
         private const string RemoveColumnDescriptionTemplate = "EXEC sys.sp_dropextendedproperty @name=N'MS_Description', @level0type = N'SCHEMA', @level0name = '{0}', @level1type = N'Table', @level1name = '{1}', @level2type = N'Column',  @level2name = '{2}'";
+        /// <summary>
+        /// The table description verification template
+        /// </summary>
         private const string TableDescriptionVerificationTemplate = "IF EXISTS ( SELECT * FROM fn_listextendedproperty(N'MS_Description', N'SCHEMA', N'{0}', N'TABLE', N'{1}', NULL, NULL))";
+        /// <summary>
+        /// The column description verification template
+        /// </summary>
         private const string ColumnDescriptionVerificationTemplate = "IF EXISTS (SELECT * FROM fn_listextendedproperty(N'MS_Description', N'SCHEMA', N'{0}', N'TABLE', N'{1}', N'Column', N'{2}' ))";
 
         #endregion
 
+        /// <summary>
+        /// Generates the description statement.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public override string GenerateDescriptionStatement(AlterTableExpression expression)
         {
             if (string.IsNullOrEmpty(expression.TableDescription))
@@ -51,6 +92,11 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return string.Join(";", new[] { removalStatement, newDescriptionStatement });
         }
 
+        /// <summary>
+        /// Generates the description statement.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <returns>System.String.</returns>
         public override string GenerateDescriptionStatement(AlterColumnExpression expression)
         {
             if (string.IsNullOrEmpty(expression.Column.ColumnDescription))
@@ -66,6 +112,13 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return string.Join(";", new[] { removalStatement, newDescriptionStatement });
         }
 
+        /// <summary>
+        /// Generates the table description.
+        /// </summary>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="tableDescription">The table description.</param>
+        /// <returns>System.String.</returns>
         protected override string GenerateTableDescription(string schemaName, string tableName, string tableDescription)
         {
             if (string.IsNullOrEmpty(tableDescription))
@@ -79,6 +132,14 @@ namespace FluentMigrator.Runner.Generators.SqlServer
                 tableName);
         }
 
+        /// <summary>
+        /// Generates the column description.
+        /// </summary>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <param name="columnDescription">The column description.</param>
+        /// <returns>System.String.</returns>
         protected override string GenerateColumnDescription(string schemaName, string tableName, string columnName, string columnDescription)
         {
             if (string.IsNullOrEmpty(columnDescription))
@@ -89,16 +150,34 @@ namespace FluentMigrator.Runner.Generators.SqlServer
             return string.Format(ColumnDescriptionTemplate, columnDescription.Replace("'", "''"), formattedSchemaName, tableName, columnName);
         }
 
+        /// <summary>
+        /// Generates the table description removal.
+        /// </summary>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="tableName">Name of the table.</param>
+        /// <returns>System.String.</returns>
         private string GenerateTableDescriptionRemoval(string schemaName, string tableName)
         {
             return string.Format(RemoveTableDescriptionTemplate, schemaName, tableName);
         }
 
+        /// <summary>
+        /// Generates the column description removal.
+        /// </summary>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <returns>System.String.</returns>
         private string GenerateColumnDescriptionRemoval(string schemaName, string tableName, string columnName)
         {
             return string.Format(RemoveColumnDescriptionTemplate, schemaName, tableName, columnName);
         }
 
+        /// <summary>
+        /// Formats the name of the schema.
+        /// </summary>
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns>System.String.</returns>
         private string FormatSchemaName(string schemaName)
         {
             return (string.IsNullOrEmpty(schemaName)) ? "dbo" : schemaName;

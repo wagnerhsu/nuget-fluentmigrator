@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="OracleQuoterBase.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2018, FluentMigrator Project
 //
@@ -20,14 +33,29 @@ using FluentMigrator.Runner.Generators.Generic;
 
 namespace FluentMigrator.Runner.Generators.Oracle
 {
+    /// <summary>
+    /// Class OracleQuoterBase.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Generic.GenericQuoter" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Generic.GenericQuoter" />
     public class OracleQuoterBase : GenericQuoter
     {
+        /// <summary>
+        /// Formats the date time.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public override string FormatDateTime(DateTime value)
         {
             var result = string.Format("to_date({0}{1}{0}, {0}yyyy-mm-dd hh24:mi:ss{0})", ValueQuote, value.ToString("yyyy-MM-dd HH:mm:ss")); //ISO 8601 DATETIME FORMAT (EXCEPT 'T' CHAR)
             return result;
         }
 
+        /// <summary>
+        /// Froms the time span.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public override string FromTimeSpan(TimeSpan value)
         {
             return string.Format("{0}{1} {2}:{3}:{4}.{5}{0}"
@@ -39,11 +67,21 @@ namespace FluentMigrator.Runner.Generators.Oracle
                 , value.Milliseconds);
         }
 
+        /// <summary>
+        /// Formats the unique identifier.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public override string FormatGuid(Guid value)
         {
             return string.Format("{0}{1}{0}", ValueQuote, BitConverter.ToString(value.ToByteArray()).Replace("-", string.Empty));
         }
 
+        /// <summary>
+        /// Formats the system methods.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>System.String.</returns>
         public override string FormatSystemMethods(SystemMethods value)
         {
             switch (value)

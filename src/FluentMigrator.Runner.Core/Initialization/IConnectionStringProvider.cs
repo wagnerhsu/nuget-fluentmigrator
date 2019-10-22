@@ -1,4 +1,17 @@
-﻿#region License
+﻿// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Core
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="IConnectionStringProvider.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+#region License
 //
 // Copyright (c) 2007-2018, Sean Chambers <schambers80@gmail.com>
 //
@@ -22,9 +35,21 @@ using JetBrains.Annotations;
 
 namespace FluentMigrator.Runner.Initialization
 {
+    /// <summary>
+    /// Interface IConnectionStringProvider
+    /// </summary>
     [Obsolete]
     public interface IConnectionStringProvider
     {
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <param name="announcer">The announcer.</param>
+        /// <param name="connection">The connection.</param>
+        /// <param name="configPath">The configuration path.</param>
+        /// <param name="assemblyLocation">The assembly location.</param>
+        /// <param name="database">The database.</param>
+        /// <returns>System.String.</returns>
         [CanBeNull]
         string GetConnectionString(IAnnouncer announcer, string connection, string configPath, string assemblyLocation, string database);
     }

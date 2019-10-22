@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : FluentMigrator.Runner.Oracle
+// Author           : eivin
+// Created          : 10-10-2019
+//
+// Last Modified By : eivin
+// Last Modified On : 10-10-2019
+// ***********************************************************************
+// <copyright file="Oracle12CColumn.cs" company="FluentMigrator Project">
+//     Sean Chambers and the FluentMigrator project 2008-2018
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 #region License
 // Copyright (c) 2007-2018, FluentMigrator Project
 //
@@ -23,8 +36,17 @@ using FluentMigrator.Oracle;
 
 namespace FluentMigrator.Runner.Generators.Oracle
 {
+    /// <summary>
+    /// Class Oracle12CColumn.
+    /// Implements the <see cref="FluentMigrator.Runner.Generators.Oracle.OracleColumn" />
+    /// </summary>
+    /// <seealso cref="FluentMigrator.Runner.Generators.Oracle.OracleColumn" />
     internal class Oracle12CColumn : OracleColumn
     {
+        /// <summary>
+        /// Gets the maximum length of the oracle object name.
+        /// </summary>
+        /// <value>The maximum length of the oracle object name.</value>
         protected override int OracleObjectNameMaxLength => 128;
 
         /// <inheritdoc />
@@ -32,6 +54,12 @@ namespace FluentMigrator.Runner.Generators.Oracle
         {
         }
 
+        /// <summary>
+        /// Gets the identity string.
+        /// </summary>
+        /// <param name="column">The column.</param>
+        /// <returns>System.String.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         private static string GetIdentityString(ColumnDefinition column)
         {
             string generationType;
