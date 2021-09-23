@@ -1,0 +1,5 @@
+﻿CREATE PROC GetAllMember
+as
+BEGIN
+SELECT * FROM Member
+END
